@@ -1,0 +1,191 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>ASEN5090_ecef2azelrange</title><meta name="generator" content="MATLAB 8.2"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2014-09-28"><meta name="DC.source" content="ASEN5090_ecef2azelrange.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, tt, code { font-size:12px; }
+pre { margin:0px 0px 20px; }
+pre.error { color:red; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><pre class="codeinput"><span class="keyword">function</span> [az,el,range] = ASEN5090_ecef2azelrange(r_sat,r_site,latgd,lon)
+
+<span class="comment">%==========================================================================</span>
+<span class="comment">%==========================================================================</span>
+<span class="comment">% [az,el,range] = ecef2azelrange(r_sat,r_site,latgd,lon)</span>
+<span class="comment">%</span>
+<span class="comment">% Calculates the azimuth, elevation, and range of a satellite with respect</span>
+<span class="comment">%  to an observation site.</span>
+<span class="comment">%</span>
+<span class="comment">%</span>
+<span class="comment">% Author: Ben K. Bradley</span>
+<span class="comment">% Date: 11/15/2010</span>
+<span class="comment">% Modified to remove calculations for ASEN5090 assignments</span>
+<span class="comment">%</span>
+<span class="comment">% INPUT:         Description                                         Units</span>
+<span class="comment">%</span>
+<span class="comment">%  r_sat      - position of satellite in ECEF frame                 [x y z]</span>
+<span class="comment">%  r_site     - position of observing site in ECEF frame            [x y z]</span>
+<span class="comment">%  latgd      - geodetic latitude of observation site          [-90,90] deg</span>
+<span class="comment">%  lon        - longitude of observation site     [-180,180] or [0,360] deg</span>
+<span class="comment">%</span>
+<span class="comment">%</span>
+<span class="comment">% OUTPUT:</span>
+<span class="comment">%</span>
+<span class="comment">%  az         - azimuth (degrees clockwise from North)          [0,360] deg</span>
+<span class="comment">%  el         - elevation (degrees up from horizon)            [-90,90] deg</span>
+<span class="comment">%  range      - distance from observation site to satellite</span>
+<span class="comment">%</span>
+<span class="comment">%</span>
+<span class="comment">% Coupling:</span>
+<span class="comment">%</span>
+<span class="comment">%  none</span>
+<span class="comment">%</span>
+<span class="comment">%</span>
+<span class="comment">%==========================================================================</span>
+<span class="comment">%==========================================================================</span>
+
+<span class="comment">% Satellite pos rel to site</span>
+r_site2sat_ecef = r_sat - r_site;
+<span class="comment">% sines and cosines used later</span>
+sinp = sind(latgd);
+cosp = cosd(latgd);
+sinl = sind(lon);
+cosl = cosd(lon);
+<span class="comment">% Rotation from ECEF to ENU</span>
+R_ecef2local = <span class="keyword">...</span>
+    [-sinl cosl 0;
+    -sinp*cosl -sinp*sinl cosp;
+    cosp*cosl cosp*sinl sinp];
+
+<span class="comment">% Rotate the rel pos into ENU</span>
+r_site2sat_enu = r_site2sat_ecef* R_ecef2local';
+
+<span class="comment">% ENU coords give you az/el/range</span>
+az = atan2(r_site2sat_enu(1), r_site2sat_enu(2))*180/pi;
+range = norm(r_site2sat_enu);
+el = asin(r_site2sat_enu(3)/range)*180/pi;
+<span class="keyword">end</span>
+</pre><pre class="codeoutput">Error using ASEN5090_ecef2azelrange (line 39)
+Not enough input arguments.
+</pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2013b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+function [az,el,range] = ASEN5090_ecef2azelrange(r_sat,r_site,latgd,lon)
+
+%==========================================================================
+%==========================================================================
+% [az,el,range] = ecef2azelrange(r_sat,r_site,latgd,lon)
+%
+% Calculates the azimuth, elevation, and range of a satellite with respect
+%  to an observation site.
+%
+%
+% Author: Ben K. Bradley
+% Date: 11/15/2010
+% Modified to remove calculations for ASEN5090 assignments
+%
+% INPUT:         Description                                         Units
+%
+%  r_sat      - position of satellite in ECEF frame                 [x y z]
+%  r_site     - position of observing site in ECEF frame            [x y z]
+%  latgd      - geodetic latitude of observation site          [-90,90] deg
+%  lon        - longitude of observation site     [-180,180] or [0,360] deg
+%
+%
+% OUTPUT:       
+%    
+%  az         - azimuth (degrees clockwise from North)          [0,360] deg
+%  el         - elevation (degrees up from horizon)            [-90,90] deg
+%  range      - distance from observation site to satellite                                    
+%
+%
+% Coupling:
+%
+%  none
+%
+%
+%==========================================================================
+%==========================================================================
+
+% Satellite pos rel to site
+r_site2sat_ecef = r_sat - r_site;
+% sines and cosines used later
+sinp = sind(latgd);
+cosp = cosd(latgd);
+sinl = sind(lon);
+cosl = cosd(lon);
+% Rotation from ECEF to ENU
+R_ecef2local = ...
+    [-sinl cosl 0;
+    -sinp*cosl -sinp*sinl cosp;
+    cosp*cosl cosp*sinl sinp];
+
+% Rotate the rel pos into ENU
+r_site2sat_enu = r_site2sat_ecef* R_ecef2local';
+
+% ENU coords give you az/el/range
+az = atan2(r_site2sat_enu(1), r_site2sat_enu(2))*180/pi;
+range = norm(r_site2sat_enu);
+el = asin(r_site2sat_enu(3)/range)*180/pi;
+end
+
+
+##### SOURCE END #####
+--></body></html>

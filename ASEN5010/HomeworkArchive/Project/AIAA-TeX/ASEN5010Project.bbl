@@ -1,0 +1,26 @@
+\begin{thebibliography}{1}
+\newcommand{\enquote}[1]{``#1''}
+
+\bibitem{Coverstone96}
+Coverstone-Carroll, V., \enquote{Detumbling and Reorienting Underactuated Rigid
+  Spacecraft,} {\em Journal of Guidance, Control, and Dynamics\/}, Vol.~19,
+  1996, pp.~708--710.
+
+\bibitem{Krishnan95}
+Krishnan, H., McClamroch, N.~H., and Reyhanoglu, M., \enquote{Detumbling and
+  Reorienting Underactuated Rigid Spacecraft,} {\em Journal of Guidance,
+  Control, and Dynamics\/}, Vol.~18, 1995, pp.~256--263.
+
+\bibitem{SchaubJunkins}
+Schaub, H. and Junkins, J.~L., {\em Analytical Mechanics of Space Systems\/},
+  AIAA, Reston, VA, 2nd ed., 2009.
+
+\bibitem{IntroToMech}
+Alciatore, D. and Histand, M., {\em Introduction to Mechatronics and
+  Measurement Systems\/}, McGraw-Hill, 3rd ed., 2007.
+
+\bibitem{NiseControl}
+Nise, N.~S., {\em Control Systems Engineering\/}, Wiley, Hoboken, NJ, 5th ed.,
+  2008.
+
+\end{thebibliography}

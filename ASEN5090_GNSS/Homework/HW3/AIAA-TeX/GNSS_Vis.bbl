@@ -1,0 +1,14 @@
+\begin{thebibliography}{1}
+\newcommand{\enquote}[1]{``#1''}
+
+\bibitem{GPSWorldAlm}
+\enquote{GPS World Almanac, August 2014,}
+  \url{http://gpsworld.com/wp-content/uploads/2014/07/GPSWorld_Almanac_August2014.pdf},
+  Accessed: 2014-09-28.
+
+\bibitem{MisraEnge}
+Misra, P. and Enge, P., {\em Global Positioning System Signals, Measurements,
+  and Performance\/}, Ganga-Jumana Press, Lincoln, MA, revised second ed.,
+  2012.
+
+\end{thebibliography}

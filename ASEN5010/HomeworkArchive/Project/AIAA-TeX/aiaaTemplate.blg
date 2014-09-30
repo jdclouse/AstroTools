@@ -1,0 +1,10 @@
+This is BibTeX, Version 0.99dThe top-level auxiliary file: aiaaTemplate.aux
+The style file: aiaa.bst
+I couldn't open database file references.bib
+---line 20 of file aiaaTemplate.aux
+ : \bibdata{references
+ :                    }
+I'm skipping whatever remains of this command
+I found no \citation commands---while reading file aiaaTemplate.aux
+I found no database files---while reading file aiaaTemplate.aux
+(There were 3 error messages)
