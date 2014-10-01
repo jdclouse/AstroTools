@@ -1,0 +1,175 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>HW2 Problem 1: PRN generation</title><meta name="generator" content="MATLAB 8.2"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2014-09-30"><meta name="DC.source" content="HW4_P1.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, tt, code { font-size:12px; }
+pre { margin:0px 0px 20px; }
+pre.error { color:red; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>HW2 Problem 1: PRN generation</h1><!--introduction--><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Initialize</a></li><li><a href="#2">1) Ellipsoidal height vs time</a></li><li><a href="#3">2) Latitude/Longitude errors</a></li><li><a href="#4">3) Compute standard deviations, P, error ellipse, 50% CEP</a></li></ul></div><h2>Initialize<a name="1"></a></h2><pre class="codeinput">fprintf(<span class="string">'\n'</span>);
+clearvars <span class="string">-except</span> <span class="string">function_list</span> <span class="string">pub_opt</span>
+close <span class="string">all</span>
+</pre><pre class="codeoutput">
+</pre><h2>1) Ellipsoidal height vs time<a name="2"></a></h2><p>The variation of ellipsoidal height seems to vary more when fewer satellites are used in the position solution.</p><pre class="codeinput">load(<span class="string">'GPS2009L1L2_data.mat'</span>);
+time = data(:,1);
+lat = data(:,2);
+long = data(:,3);
+ell_h = data(:,4);
+num_sat = data(:,5);
+[haxes, hline1, hline2] = plotyy(time, ell_h, time, num_sat);
+ylim(haxes(2), [min(num_sat)-1, max(num_sat)+1]);
+xlabel(<span class="string">'GPS Time of Week (s)'</span>);
+ylabel(haxes(1), <span class="string">'Ellipsoidal height (m)'</span>);
+ylabel(haxes(2), <span class="string">'Number of Satellites'</span>);
+</pre><img vspace="5" hspace="5" src="HW4_P1_01.png" alt=""> <h2>2) Latitude/Longitude errors<a name="3"></a></h2><p>The scatter looks more varied in the y direction (North/South) than the x direction.</p><pre class="codeinput">mean_lat = mean(lat);
+lat_err = lat - mean_lat;
+mean_long = mean(long);
+long_err = long - mean_long;
+
+<span class="comment">% Get the error arc-lengths</span>
+re = 6378e3; <span class="comment">% m</span>
+NS_err = 2*pi*re*lat_err/360;
+EW_err = 2*pi*re*long_err/360;
+
+figure
+plot(EW_err, NS_err, <span class="string">'.'</span>)
+title(<span class="string">'Position Errors'</span>)
+ylabel(<span class="string">'North (m)'</span>)
+xlabel(<span class="string">'East (m)'</span>)
+grid <span class="string">on</span>
+axis <span class="string">equal</span>
+hold <span class="string">on</span>
+</pre><img vspace="5" hspace="5" src="HW4_P1_02.png" alt=""> <h2>3) Compute standard deviations, P, error ellipse, 50% CEP<a name="4"></a></h2><pre class="codeinput">nn = length(NS_err);
+err_radii = sqrt((NS_err.*NS_err)+(EW_err.*EW_err));
+CEP_50_radius = err_radii(round(nn/2));
+drawellipse(CEP_50_radius,CEP_50_radius,0,0,0,<span class="string">'r-.'</span>);
+
+P = cov([EW_err NS_err]);
+
+<span class="comment">% Eigenvalues of the covariance matrix are the principle components</span>
+[evec,ev]=eig(P);
+ell_a=sqrt(ev(1,1));<span class="comment">%, evec(:,1)'</span>
+ell_b=sqrt(ev(2,2));<span class="comment">%, evec(:,2)'</span>
+angle=atan2(evec(2,1),evec(1,1));
+drawellipse(ell_a,ell_b,angle,0,0,<span class="string">'g-'</span>);
+</pre><img vspace="5" hspace="5" src="HW4_P1_03.png" alt=""> <p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2013b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% HW2 Problem 1: PRN generation
+%% Initialize
+fprintf('\n');
+clearvars -except function_list pub_opt
+close all
+
+%% 1) Ellipsoidal height vs time
+% The variation of ellipsoidal height seems to vary more when fewer
+% satellites are used in the position solution.
+load('GPS2009L1L2_data.mat');
+time = data(:,1);
+lat = data(:,2);
+long = data(:,3);
+ell_h = data(:,4);
+num_sat = data(:,5);
+[haxes, hline1, hline2] = plotyy(time, ell_h, time, num_sat);
+ylim(haxes(2), [min(num_sat)-1, max(num_sat)+1]);
+xlabel('GPS Time of Week (s)');
+ylabel(haxes(1), 'Ellipsoidal height (m)');
+ylabel(haxes(2), 'Number of Satellites');
+
+%% 2) Latitude/Longitude errors
+% The scatter looks more varied in the y direction (North/South) than the x
+% direction.
+mean_lat = mean(lat);
+lat_err = lat - mean_lat;
+mean_long = mean(long);
+long_err = long - mean_long;
+
+% Get the error arc-lengths
+re = 6378e3; % m
+NS_err = 2*pi*re*lat_err/360; 
+EW_err = 2*pi*re*long_err/360; 
+
+figure
+plot(EW_err, NS_err, '.')
+title('Position Errors')
+ylabel('North (m)')
+xlabel('East (m)')
+grid on
+axis equal
+hold on
+
+%% 3) Compute standard deviations, P, error ellipse, 50% CEP
+nn = length(NS_err);
+err_radii = sqrt((NS_err.*NS_err)+(EW_err.*EW_err));
+CEP_50_radius = err_radii(round(nn/2));
+drawellipse(CEP_50_radius,CEP_50_radius,0,0,0,'r-.');
+
+P = cov([EW_err NS_err]);
+
+% Eigenvalues of the covariance matrix are the principle components
+[evec,ev]=eig(P);
+ell_a=sqrt(ev(1,1));%, evec(:,1)'
+ell_b=sqrt(ev(2,2));%, evec(:,2)'
+angle=atan2(evec(2,1),evec(1,1));
+drawellipse(ell_a,ell_b,angle,0,0,'g-');
+
+##### SOURCE END #####
+--></body></html>
