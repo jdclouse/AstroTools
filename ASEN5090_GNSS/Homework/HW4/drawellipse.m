@@ -7,6 +7,7 @@ function C=drawellipse(a,b,th,xc,yc,lt)
 %        lt is an optional input specifying the line type
 % Output: rotation matrix
 % Author: P. Axelrad, University of Colorado 2/94
+fcnPrintQueue(mfilename('fullpath')) % Add this code to code app 
 
 E=0:pi/100:2*pi;
 x=a*cos(E);
