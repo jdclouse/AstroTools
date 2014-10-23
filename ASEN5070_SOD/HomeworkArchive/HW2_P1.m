@@ -20,7 +20,7 @@ clearvars -except function_list pub_opt
 % $\Omega$ decreases with J2 effects.
 
 ode_opts = odeset('RelTol', 1e-12, 'AbsTol', 1e-20);
-propagator_opts.J2 = 1;
+propagator_opts.J2.use = 1;
 r = [-2436.45; -2436.45; 6891.037]; % km
 v = [5.088611; -5.088611; 0.0]; % km/s
 state = [r;v];
