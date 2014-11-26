@@ -1,6 +1,7 @@
 function range = compute_range_ECFsite( inrtl_pos, ecf_site, theta )
 %compute_range_ECFsite Summary of this function goes here
 %   Detailed explanation goes here
+fcnPrintQueue(mfilename('fullpath'))
 
 x = inrtl_pos(1);
 y = inrtl_pos(2);

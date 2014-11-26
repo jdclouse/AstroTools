@@ -1,0 +1,11 @@
+     2              NAVIGATION DATA     GPS                 RINEX VERSION / TYPE
+INXFIT V5.3         AIUB                25-MAR-14 07:09     PGM / RUN BY / DATE 
+CODE'S KLOBUCHAR-STYLE IONOSPHERE MODEL FOR DAY 079, 2014   COMMENT             
+Contact address: stefan.schaer or code @aiub.unibe.ch       COMMENT             
+Web page:        www.aiub.unibe.ch/content/ionosphere/      COMMENT             
+Data archive:    ftp.unibe.ch/aiub/CODE/                    COMMENT             
+                 www.aiub.unibe.ch/download/CODE/           COMMENT             
+WARNING: USE DATA AT BOTH POLAR REGIONS WITH CARE           COMMENT             
+    3.5404D-08  1.1407D-08 -1.3468D-07 -4.3045D-08          ION ALPHA           
+    1.7226D+05  1.3073D+05 -8.6663D+05 -2.1569D+06          ION BETA            
+                                                            END OF HEADER       

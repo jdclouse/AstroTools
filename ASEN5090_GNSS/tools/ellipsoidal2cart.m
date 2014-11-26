@@ -2,11 +2,11 @@ function r = ellipsoidal2cart(geod_latitude, geod_longitude, h)
 %ellipsoidal2cart Earth ellipsoidal coords to cartesian
 % Longitude and Latitude are input radians
 % Height h given in km
-fcnPrintQueue(mfilename('fullpath')) % Add this code to code app
+% fcnPrintQueue(mfilename('fullpath')); % Add this code to code app
 
 %Misra & Enge, Ch 4
-a = 6378.1370; % km
-f = 298.257223563; %flattening
+a = 6378.1370e3; % km
+f = 1/298.257223563; %flattening
 e = 2*f + f*f;
 
 sin_phi = sin(geod_latitude);

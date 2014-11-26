@@ -1,3 +1,5 @@
+%Symbolically Compute Htilda matrix for project
+fcnPrintQueue(mfilename('fullpath'))
 syms x y z xdot ydot zdot mu J2 Cd s1x s1y s1z s2x s2y s2z s3x s3y s3z
 syms Re area m rho theta_dot H r0 rho0 xs ys zs theta
 % syms t x(t) y(t) z(t) theta(t)

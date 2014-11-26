@@ -1,3 +1,4 @@
+fcnPrintQueue(mfilename('fullpath'))
 %% Initial data for stat OD project
 mu = 3.986004415e14; %m3/s2
 J2 = 1.082626925638815e-3;

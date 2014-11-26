@@ -1,0 +1,289 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>HW8 Problem 1</title><meta name="generator" content="MATLAB 8.2"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2014-11-13"><meta name="DC.source" content="HW8_P2.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, tt, code { font-size:12px; }
+pre { margin:0px 0px 20px; }
+pre.error { color:red; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>HW8 Problem 1</h1><!--introduction--><p>John Clouse</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Initialize</a></li><li><a href="#2">CKF State</a></li><li><a href="#3">Joseph State</a></li><li><a href="#4">Potter State</a></li><li><a href="#5">Batch State</a></li></ul></div><h2>Initialize<a name="1"></a></h2><pre class="codeinput">clear
+close <span class="string">all</span>
+logx_fig = figure;
+loglog_fig = figure;
+<span class="comment">% Epsilon values</span>
+len = 10;
+eps = ones(len,1)*1e-5; <span class="comment">% start at 1e-6 after the loop iterates</span>
+<span class="keyword">for</span> ii = 1:len
+    eps(ii:end) = eps(ii:end)/10;
+<span class="keyword">end</span>
+std_dev = 1./eps;
+R = 1;
+
+X_exact = [3;1];
+X_ap0 = [4;2]; <span class="comment">% a priori state</span>
+</pre><img vspace="5" hspace="5" src="HW8_P2_01.png" alt=""> <img vspace="5" hspace="5" src="HW8_P2_02.png" alt=""> <h2>CKF State<a name="2"></a></h2><pre class="codeinput">X_ckf = zeros(2,len);
+diff_ckf = zeros(2,len);
+<span class="keyword">for</span> ii = 1:len
+    H1 = [1 2*eps(ii)];
+    P1_ap = eye(2)*std_dev(ii)*std_dev(ii);
+    K1 = P1_ap*H1'*inv(H1*P1_ap*H1' + R);
+    X_est1 = X_ap0 + K1*(H1*X_exact - H1*X_ap0);
+    P1 = (eye(2) - K1*H1)*P1_ap;
+    X_ap1 = X_est1;
+
+    <span class="comment">%P1 is now P2_ap</span>
+    P2_ap = P1;
+    H2 = [1 3*eps(ii)];
+    K2 = P2_ap*H2'*inv(H2*P2_ap*H2' + R);
+    X_est2 = X_ap1 + K2*(H2*X_exact - H2*X_ap1);
+    P2 = (eye(2) - K2*H2)*P2_ap;
+    X_ckf(:,ii) = X_est2;
+    diff_ckf(:,ii) = X_exact - X_ckf(:,ii);
+<span class="keyword">end</span>
+
+row = 2;
+HW8_P2_plot(eps, -diff_ckf, row, <span class="string">'Kalman'</span>, logx_fig, loglog_fig)
+</pre><img vspace="5" hspace="5" src="HW8_P2_03.png" alt=""> <img vspace="5" hspace="5" src="HW8_P2_04.png" alt=""> <h2>Joseph State<a name="3"></a></h2><pre class="codeinput">I = eye(2);
+X_joseph = zeros(2,len);
+diff_joseph = zeros(2,len);
+<span class="keyword">for</span> ii = 1:len
+    H = [1 2*eps(ii); 1 3*eps(ii)];
+    P_ap = I*std_dev(ii)*std_dev(ii);
+    X_ap = X_ap0;
+    <span class="keyword">for</span> jj = 1:2
+        K = P_ap*H(jj,:)'*inv(H(jj,:)*P_ap*H(jj,:)' + R);
+        P = (I-K*H(jj,:))*P_ap*(I-K*H(jj,:))' + K*R*K';
+        X_est = X_ap + K*(H(jj,:)*X_exact - H(jj,:)*X_ap);
+        P_ap = P; <span class="comment">% a priori for next measurement</span>
+        X_ap = X_est;
+    <span class="keyword">end</span>
+    X_joseph(:,ii) = X_est;
+    diff_joseph(:,ii) = X_exact - X_joseph(:,ii);
+<span class="keyword">end</span>
+row = 3;
+HW8_P2_plot(eps, -diff_joseph, row, <span class="string">'Joseph'</span>, logx_fig, loglog_fig)
+</pre><img vspace="5" hspace="5" src="HW8_P2_05.png" alt=""> <img vspace="5" hspace="5" src="HW8_P2_06.png" alt=""> <h2>Potter State<a name="4"></a></h2><pre class="codeinput">X_potter = zeros(2,len);
+diff_potter = zeros(2,len);
+<span class="keyword">for</span> ii = 1:len
+    H = [1 2*eps(ii); 1 3*eps(ii)];
+    P_ap = I*std_dev(ii)*std_dev(ii);
+    X_ap = X_ap0;
+    W_bar = sqrt(P_ap);
+    <span class="keyword">for</span> jj = 1:2
+        F = W_bar*H(jj,:)';
+        alpha = inv(F'*F + R);
+        gamma = 1/(1+sqrt(R*alpha));
+        K = alpha*W_bar*F;
+        W = W_bar-gamma*K*F';
+        X_est = X_ap + K*(H(jj,:)*X_exact - H(jj,:)*X_ap);
+        W_bar = W; <span class="comment">% sequential update</span>
+        X_ap = X_est;
+    <span class="keyword">end</span>
+    X_potter(:,ii) = X_est;
+    diff_potter(:,ii) = X_exact - X_potter(:,ii);
+<span class="keyword">end</span>
+row = 4;
+HW8_P2_plot(eps, -diff_potter, row, <span class="string">'Potter'</span>, logx_fig, loglog_fig)
+</pre><img vspace="5" hspace="5" src="HW8_P2_07.png" alt=""> <img vspace="5" hspace="5" src="HW8_P2_08.png" alt=""> <h2>Batch State<a name="5"></a></h2><pre class="codeinput">X_batch = zeros(2,len);
+diff_batch = zeros(2,len);
+<span class="keyword">for</span> ii = 1:len
+    H = [1 2*eps(ii); 1 3*eps(ii)];
+    info_mat = inv(I*std_dev(ii)*std_dev(ii));
+    info_mat = info_mat + H(1,:)'*inv(R)*H(1,:);
+    info_mat = info_mat + H(2,:)'*inv(R)*H(2,:);
+
+    N = inv(I*std_dev(ii)*std_dev(ii))*X_ap0;
+    N = N + H(1,:)'*inv(R)*H(1,:)*X_exact;
+    N = N + H(2,:)'*inv(R)*H(2,:)*X_exact;
+    X_est = inv(info_mat)*N;
+    X_batch(:,ii) = X_est;
+    diff_batch(:,ii) = X_exact - X_batch(:,ii);
+<span class="keyword">end</span>
+row = 1;
+HW8_P2_plot(eps, -diff_batch, row, <span class="string">'Batch'</span>, logx_fig, loglog_fig)
+</pre><pre class="codeoutput">Warning: Matrix is close to singular or badly scaled. Results may be inaccurate.
+RCOND =  7.500000e-17. 
+Warning: Matrix is close to singular or badly scaled. Results may be inaccurate.
+RCOND =  7.500000e-19. 
+Warning: Matrix is close to singular or badly scaled. Results may be inaccurate.
+RCOND =  7.500000e-21. 
+Warning: Matrix is close to singular or badly scaled. Results may be inaccurate.
+RCOND =  7.500000e-23. 
+Warning: Matrix is close to singular or badly scaled. Results may be inaccurate.
+RCOND =  7.500000e-25. 
+Warning: Matrix is close to singular or badly scaled. Results may be inaccurate.
+RCOND =  7.500000e-27. 
+Warning: Matrix is close to singular or badly scaled. Results may be inaccurate.
+RCOND =  7.500000e-29. 
+Warning: Matrix is close to singular or badly scaled. Results may be inaccurate.
+RCOND =  7.500000e-31. 
+</pre><img vspace="5" hspace="5" src="HW8_P2_09.png" alt=""> <img vspace="5" hspace="5" src="HW8_P2_10.png" alt=""> <p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2013b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% HW8 Problem 1
+% John Clouse
+%% Initialize
+clear 
+close all
+logx_fig = figure;
+loglog_fig = figure;
+% Epsilon values
+len = 10;
+eps = ones(len,1)*1e-5; % start at 1e-6 after the loop iterates
+for ii = 1:len
+    eps(ii:end) = eps(ii:end)/10;
+end
+std_dev = 1./eps;
+R = 1;
+
+X_exact = [3;1];
+X_ap0 = [4;2]; % a priori state
+
+%% CKF State
+X_ckf = zeros(2,len);
+diff_ckf = zeros(2,len);
+for ii = 1:len
+    H1 = [1 2*eps(ii)];
+    P1_ap = eye(2)*std_dev(ii)*std_dev(ii);
+    K1 = P1_ap*H1'*inv(H1*P1_ap*H1' + R);
+    X_est1 = X_ap0 + K1*(H1*X_exact - H1*X_ap0);
+    P1 = (eye(2) - K1*H1)*P1_ap;
+    X_ap1 = X_est1;
+    
+    %P1 is now P2_ap
+    P2_ap = P1;
+    H2 = [1 3*eps(ii)];
+    K2 = P2_ap*H2'*inv(H2*P2_ap*H2' + R);
+    X_est2 = X_ap1 + K2*(H2*X_exact - H2*X_ap1);
+    P2 = (eye(2) - K2*H2)*P2_ap;
+    X_ckf(:,ii) = X_est2;
+    diff_ckf(:,ii) = X_exact - X_ckf(:,ii);
+end
+
+row = 2;
+HW8_P2_plot(eps, -diff_ckf, row, 'Kalman', logx_fig, loglog_fig)
+
+%% Joseph State
+I = eye(2);
+X_joseph = zeros(2,len);
+diff_joseph = zeros(2,len);
+for ii = 1:len
+    H = [1 2*eps(ii); 1 3*eps(ii)];
+    P_ap = I*std_dev(ii)*std_dev(ii);
+    X_ap = X_ap0;
+    for jj = 1:2
+        K = P_ap*H(jj,:)'*inv(H(jj,:)*P_ap*H(jj,:)' + R);
+        P = (I-K*H(jj,:))*P_ap*(I-K*H(jj,:))' + K*R*K';
+        X_est = X_ap + K*(H(jj,:)*X_exact - H(jj,:)*X_ap);
+        P_ap = P; % a priori for next measurement
+        X_ap = X_est;
+    end
+    X_joseph(:,ii) = X_est;    
+    diff_joseph(:,ii) = X_exact - X_joseph(:,ii);
+end
+row = 3;
+HW8_P2_plot(eps, -diff_joseph, row, 'Joseph', logx_fig, loglog_fig)
+
+%% Potter State
+X_potter = zeros(2,len);
+diff_potter = zeros(2,len);
+for ii = 1:len    
+    H = [1 2*eps(ii); 1 3*eps(ii)];
+    P_ap = I*std_dev(ii)*std_dev(ii);
+    X_ap = X_ap0;
+    W_bar = sqrt(P_ap);
+    for jj = 1:2
+        F = W_bar*H(jj,:)';
+        alpha = inv(F'*F + R);
+        gamma = 1/(1+sqrt(R*alpha));
+        K = alpha*W_bar*F;
+        W = W_bar-gamma*K*F';
+        X_est = X_ap + K*(H(jj,:)*X_exact - H(jj,:)*X_ap);
+        W_bar = W; % sequential update
+        X_ap = X_est;
+    end
+    X_potter(:,ii) = X_est;    
+    diff_potter(:,ii) = X_exact - X_potter(:,ii);
+end
+row = 4;
+HW8_P2_plot(eps, -diff_potter, row, 'Potter', logx_fig, loglog_fig)
+
+%% Batch State
+X_batch = zeros(2,len);
+diff_batch = zeros(2,len);
+for ii = 1:len    
+    H = [1 2*eps(ii); 1 3*eps(ii)];
+    info_mat = inv(I*std_dev(ii)*std_dev(ii));
+    info_mat = info_mat + H(1,:)'*inv(R)*H(1,:);
+    info_mat = info_mat + H(2,:)'*inv(R)*H(2,:);
+    
+    N = inv(I*std_dev(ii)*std_dev(ii))*X_ap0;
+    N = N + H(1,:)'*inv(R)*H(1,:)*X_exact;
+    N = N + H(2,:)'*inv(R)*H(2,:)*X_exact;
+    X_est = inv(info_mat)*N;
+    X_batch(:,ii) = X_est;
+    diff_batch(:,ii) = X_exact - X_batch(:,ii);
+end
+row = 1;
+HW8_P2_plot(eps, -diff_batch, row, 'Batch', logx_fig, loglog_fig)
+
+##### SOURCE END #####
+--></body></html>

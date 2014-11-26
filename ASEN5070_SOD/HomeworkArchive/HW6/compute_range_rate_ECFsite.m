@@ -2,6 +2,7 @@ function range_rate = compute_range_rate_ECFsite( inrtl_state, ...
     ecf_site, theta, theta_dot )
 %UNTITLED2 Summary of this function goes here
 %   Detailed explanation goes here
+fcnPrintQueue(mfilename('fullpath'))
 
 x = inrtl_state(1);
 y = inrtl_state(2);

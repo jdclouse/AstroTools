@@ -9,7 +9,6 @@ if exist('function_list', 'var')
         end
     end
     if ~file_in_list
-        fprintf('%s\n', filename);
         function_list = [function_list, filename];
     end
 end
