@@ -49,7 +49,7 @@ R_ecef2local = ...
     cosp*cosl cosp*sinl sinp];
 
 % Rotate the rel pos into ENU
-r_site2sat_enu = r_site2sat_ecef* R_ecef2local';
+r_site2sat_enu =  R_ecef2local*r_site2sat_ecef;
 
 % ENU coords give you az/el/range
 az = atan2(r_site2sat_enu(1), r_site2sat_enu(2))*180/pi;

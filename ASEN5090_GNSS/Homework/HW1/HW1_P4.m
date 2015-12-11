@@ -1,6 +1,6 @@
 %% HW1 Problem 4: Ground station observations
 fprintf('\n');
-clearvars -except function_list pub_opt
+clearvars -except function_list hw_pub toolsPath 
 close all
 
 v = 50; %m/s
@@ -18,6 +18,7 @@ range2 = sqrt(h2*h2 + x.*x);
 range_rate2 = x./range2*v;
 zenith2 = atan2(x,h2);
 
+figure('OuterPosition', [0 50 hw_pub.figWidth hw_pub.figHeight])
 subplot(3,1,1)
 plot(x, range)
 hold on

@@ -1,14 +1,12 @@
 %% HW 10: Sequential Processor for the Term Project
 %% Initialize
-% clearvars -except function_list pub_opt
+clearvars -except function_list pub_opt P_joseph_store x_est_batch P0_est_batch P_trace_store
 global function_list;
 function_list = {};
 close all
 
 stat_od_proj_init
 ObsData = load('ObsData.txt');
-
-% Calculate PHI(18340,0)
 
 consts.Re = Re;
 consts.area = drag.A;
@@ -28,7 +26,7 @@ sig_rangerate = 0.001; %m/s
 W = [1/(sig_range*sig_range) 0; 0 1/(sig_rangerate*sig_rangerate)];
 R = [(sig_range*sig_range) 0; 0 (sig_rangerate*sig_rangerate)];
 
-
+%% Sequential Processor
 dt = 0.1;
 times = 0:dt:18340;
 ode_opts = odeset('RelTol', 1e-12, 'AbsTol', 1e-20);
@@ -40,19 +38,14 @@ ode_opts = odeset('RelTol', 1e-12, 'AbsTol', 1e-20);
 X_store = X(mod(times,20) == 0,:);
 T_store = T(mod(times,20) == 0);
 
-% % State at t = 18340 seconds
-% times2 = 
-% [T,X] = ode45(@two_body_state_dot, times, X_store(end,:)', ode_opts, propagator_opts);
-
-% Accumulate the information and normal matrices
 [num_obs, ~] = size(ObsData);
-% info_mat = zeros(consts.state_len);
 chol_P0 = chol(P0,'lower');
 P0_inv = chol_P0'\inv(chol_P0);
 info_mat = P0_inv;
 norm_mat = P0_inv*x0_ap;
 H_tilda_given = load('BatchHtilda.mat');
 cntr =1 ;
+
 % Obs. deviation
 y1 = zeros(num_obs,1);
 y2 = zeros(num_obs,1);
@@ -77,9 +70,19 @@ for ii = 1:num_obs
 
 end
 
+% CKF init
 x_est = x0_ap;
 P = P0;
 obs_time_last = ObsData(ii,1);
+
+use_joseph = 0;
+if use_joseph
+    P_joseph_store = zeros(num_obs,1);
+else
+    P_trace_store = zeros(num_obs,1);
+end
+STM_accum = eye(consts.state_len);
+% Run CKF
 for ii = 1:num_obs
     obs_time = ObsData(ii,1);
     obs_site = ObsData(ii,2);    
@@ -107,6 +110,7 @@ for ii = 1:num_obs
     obs_time_last = obs_time;    
     
     % Time update
+    STM_accum = STM_obs2obs*STM_accum;
     x_ap = STM_obs2obs*x_est;
     P_ap = STM_obs2obs*P*STM_obs2obs';
     
@@ -127,37 +131,81 @@ for ii = 1:num_obs
     % Measurement Update
     y = [y1(ii);y2(ii)];
     x_est = x_ap + K*(y - H_tilda*x_ap);
-    P = (eye(consts.state_len)-K*H_tilda)*P_ap;
+    I = eye(consts.state_len);
+    if use_joseph
+        P = (I-K*H_tilda)*P_ap*(I-K*H_tilda)' + K*R*K';
+        P_joseph_store(ii) = trace(P(1:3,1:3));
+    else
+        P = (I-K*H_tilda)*P_ap;
+        P_trace_store(ii) = trace(P(1:3,1:3));
+    end
+
 end
+% Estimated state at t=0
 STM_18340_0 = eye(consts.state_len);
 STM_18340_0(1:important_block(1),1:important_block(2)) = ...
     reshape(X_store(end,consts.state_len+1:end), ...
     important_block(1), important_block(2));
 est_x0 = STM_18340_0\x_est;
-% x_est = cholesky_linear_solver(info_mat,norm_mat);
-% % x0_ap = x0_ap-x_est;
-% % state(1:18) = state(1:18) + x_est;
-% % end
-% 
-% info_mat_given = load('BatchInfoMat.mat');
-% info_diff = abs((info_mat-info_mat_given.InfoMat)./info_mat_given.InfoMat);
-% hist(reshape(log10(info_diff),18*18,1))
-% title('Information matrix diff histogram.')
-% xlabel('Exponent')
-% ylabel('Num Elements')
-% 
+
+% Result of accumulated STM
+Phi_given = load('BatchPhi.mat');
+relDiffSTMend = abs((STM_accum-Phi_given.Phi_t18340)./Phi_given.Phi_t18340);
+figure
+hist(reshape(log10(relDiffSTMend(1:6, 1:9)),6*9,1))
+title('I(18340,0) Matrix relative diff histogram.')
+xlabel('Exponent')
+ylabel('Num Elements')
+
+%% Compare results with Online Solution and Batch Solution
+% The relative difference between CKF and the online solution is worse than
+% the batch-vs-online difference. I suspect it has to do with the
+% usage and update of the covariance matrix at each step, since it's not
+% well-conditioned.
+
+% Covariance matrix rel diffs from batch soln
+% relDiffCov = abs((STM_accum\P/(STM_accum')-P0_est_batch)./P0_est_batch);
 % figure
-% norm_mat_given = load('BatchNormMat.mat');
-% norm_diff = abs((norm_mat-norm_mat_given.NormMat)./norm_mat_given.NormMat);
-% hist(log10(norm_diff))
-% title('Normal matrix diff histogram.')
+% hist(reshape(log10(relDiffCov),18*18,1))
+% title('P Matrix relative diff histogram.')
 % xlabel('Exponent')
 % ylabel('Num Elements')
-% 
+
+format long
+est_x_18340 = x_est
+est_x0
+% Compare with online answers
 x_hat_given = load('BatchXhat');
 x_diff = abs((est_x0 - x_hat_given.xhat_pass1)./x_hat_given.xhat_pass1);
-est_x0
-fprintf('Estimated State Deviation Error\n')
+fprintf('Estimated State Deviation Error with online answers\n')
 for ii = 1:consts.state_len
     fprintf('%.0e\n',x_diff(ii))
 end
+fprintf('\n')
+
+% Compare with batch-derived state.
+x_diff = abs((est_x0 - x_est_batch)./x_est_batch);
+fprintf('Estimated State Deviation Error with batch solution\n')
+for ii = 1:consts.state_len
+    fprintf('%.0e\n',x_diff(ii))
+end
+
+%% Covariance Matrix Traces
+% The Joseph formulation follows the same basic shape of the regular Kalman
+% P formulation, but is generally slightly larger. The Joseph formulation
+% will better consider measurements because of this.
+figure
+semilogy(ObsData(:,1),abs(P_trace_store))
+hold on
+semilogy(ObsData(:,1),abs(P_joseph_store),'r')
+legend('Kalman P trace', 'Joseph P trace')
+title('Traces of Covariance Matrix')
+xlabel('Measurement'), ylabel('Position Variance Trace (m^2)')
+
+%% Error Ellipsoid
+[U,Pprime] = eigs(P0_est_batch(1:3,1:3));
+Semi = [sqrt(9*Pprime(1,1)) sqrt(9*Pprime(2,2)) sqrt(9*Pprime(3,3))];
+figure
+plotEllipsoid(U,Semi);
+title('3-sigma Position Error Probability Ellipsoid')
+xlabel('x (m)'),ylabel('y (m)'),zlabel('z (m)'),

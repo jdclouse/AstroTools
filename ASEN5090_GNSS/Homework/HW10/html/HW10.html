@@ -1,0 +1,577 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>HW 8</title><meta name="generator" content="MATLAB 8.2"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2014-12-11"><meta name="DC.source" content="HW10.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, tt, code { font-size:12px; }
+pre { margin:0px 0px 20px; }
+pre.error { color:red; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>HW 8</h1><!--introduction--><p>John Clouse</p><p>read_GPSbroadcast, broadcast2xv, adjust year, and read_rinex functions provided from class are used in this homework.</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Initialize</a></li><li><a href="#2">Read the data files</a></li><li><a href="#3">Loop through the observations, create storage arrays</a></li><li><a href="#5">Observations at the given epoch</a></li><li><a href="#6">Remove errors, compute range</a></li><li><a href="#7">Observation/Geometry matrix</a></li><li><a href="#8">Prefit residuals</a></li><li><a href="#9">Least squares solution for position deviation</a></li><li><a href="#11">Plots</a></li></ul></div><h2>Initialize<a name="1"></a></h2><pre class="codeinput">clearvars <span class="string">-except</span> <span class="string">function_list</span> <span class="string">pub_opt</span> <span class="string">obs_data</span> <span class="string">eph</span>
+close <span class="string">all</span>
+c = 2.99792458e8; <span class="comment">%m/s</span>
+f_L1 = 1575.42; <span class="comment">% MHz</span>
+f_L2 = 1227.60; <span class="comment">% MHz</span>
+
+print_vec3 = @(x) <span class="keyword">...</span>
+    fprintf(sprintf(<span class="string">'%13.2f\n%13.2f\n%13.2f\n'</span>,x(1),x(2),x(3)));
+print_vec4 = @(x) <span class="keyword">...</span>
+    fprintf(sprintf(<span class="string">'%13.2f\n%13.2f\n%13.2f\n%13.2f\n'</span>,x(1),x(2),x(3),x(4)));
+</pre><h2>Read the data files<a name="2"></a></h2><pre class="codeinput"><span class="keyword">if</span> ~exist(<span class="string">'eph'</span>,<span class="string">'var'</span>)
+    eph = read_GPSbroadcast(<span class="string">'brdc3000.14n'</span>);
+<span class="keyword">end</span>
+<span class="keyword">if</span> ~exist(<span class="string">'obs_data'</span>,<span class="string">'var'</span>)
+    obs_data = read_rinex_obs(<span class="string">'amc23000.14o'</span>);
+<span class="keyword">end</span>
+<span class="comment">% if ~exist('eph','var')</span>
+<span class="comment">%     eph = read_GPSbroadcast('brdc2550.14n');</span>
+<span class="comment">% end</span>
+<span class="comment">% if ~exist('obs_data','var')</span>
+<span class="comment">%     obs_data = read_rinex_obs('test.14o');</span>
+<span class="comment">% end</span>
+P1 = 6;
+P2 = 7;
+C1 = 8;
+approx_rx_pos = [-1248596.2520 -4819428.2840  3976506.0340]'; <span class="comment">% m</span>
+
+GPS_Week = eph(1,19); <span class="comment">% assuming no week crossover</span>
+
+<span class="comment">% Visibility params</span>
+durationhrs = 1;
+dt_sec = 3601;
+ant_enu = [0 0 1];
+mask_min = 0;  <span class="comment">% deg</span>
+mask_max = 90; <span class="comment">% deg</span>
+[latgd, lon, alt] = ECEF2ellipsoidal(approx_rx_pos);
+<span class="comment">% Azimuth, Elevation</span>
+GPSvec = [2014 10 27 0 0 0];
+<span class="comment">% GPSvec = [2014 09 12 0 0 00];</span>
+[navfilename,statusflag] = download_GPSyuma(GPSvec);
+R_ecf2enu = R_ECEF2ENU(latgd, lon);
+R_ecf2enu_4x4 = eye(4);
+R_ecf2enu_4x4(1:3,1:3) = R_ecf2enu;
+</pre><h2>Loop through the observations, create storage arrays<a name="3"></a></h2><pre class="codeinput">epoch_dt = 30; <span class="comment">% s</span>
+num_epochs = 60/epoch_dt*60*24;<span class="comment">%assuming one day</span>
+dy_store = zeros(32,num_epochs);
+pfr_store = zeros(32,num_epochs);
+el_store = zeros(32,num_epochs);
+rel_pos_store = zeros(3,num_epochs);
+H_store = zeros(4,num_epochs);
+
+GPS_TOD = [0 0 -30]; <span class="comment">% time of day, HMS</span>
+TOD_s = -30; <span class="comment">% time of day, seconds</span>
+<span class="keyword">for</span> epoch = 1:num_epochs
+</pre><pre class="codeinput">GPS_TOD(3) = GPS_TOD(3) + epoch_dt;
+TOD_s = TOD_s + epoch_dt;
+<span class="keyword">if</span> GPS_TOD(3) &gt;= 60
+    GPS_TOD(3) = 0;
+    GPS_TOD(2) = GPS_TOD(2)+1;
+<span class="keyword">end</span>
+<span class="keyword">if</span> GPS_TOD(2) &gt;= 60
+    GPS_TOD(2) = 0;
+    GPS_TOD(1) = GPS_TOD(1)+1;
+<span class="keyword">end</span>
+TOW = eph(1,20)+GPS_TOD(1)*3600 + GPS_TOD(2)*60 + GPS_TOD(3);
+
+<span class="keyword">if</span> mod(GPS_TOD(2),10) == 0
+    fprintf(sprintf(<span class="string">'%02.f:%02.f\n'</span>,GPS_TOD(1),GPS_TOD(2)));
+    fprintf(<span class="string">'%.f%%\r'</span>,epoch/num_epochs*100)
+<span class="keyword">end</span>
+</pre><h2>Observations at the given epoch<a name="5"></a></h2><pre class="codeinput">obs_at_epoch = obs_data.data(obs_data.data(:,2) == TOW, :);
+prn_list = obs_at_epoch(:,3);
+num_sats = length(prn_list);
+
+GPSvec = [GPSvec(1:3) GPS_TOD];
+
+[time_wntow, GPSdata] = <span class="keyword">...</span>
+    ASEN5090_GPSvis(navfilename, 1, GPSvec,<span class="keyword">...</span>
+    durationhrs, dt_sec, latgd*180/pi, lon*180/pi, alt,<span class="keyword">...</span>
+    mask_min, mask_max, mask_min, ant_enu, 0, []);
+<span class="comment">% rearrange the data to be in the same order as prn list</span>
+prn_el = zeros(num_sats,1);
+prn_az = zeros(num_sats,1);
+<span class="keyword">for</span> ii = 1:num_sats
+    prn_el(ii) = GPSdata.topo_el(prn_list(ii));
+    prn_az(ii) = GPSdata.topo_az(prn_list(ii));
+<span class="keyword">end</span>
+
+<span class="comment">% Remove any satellites below an arbitrary mask</span>
+<span class="comment">% Done here, like this, because GPS_vis outputs all prns anyway and NaNs</span>
+<span class="comment">% the ones under the mask.</span>
+bad_els = prn_el &lt; 10; <span class="comment">%Elevations under X degrees</span>
+obs_at_epoch(bad_els,:) = [];
+prn_list(bad_els) = [];
+num_sats = length(prn_list);
+prn_el(bad_els) = [];
+prn_az(bad_els) = [];
+</pre><h2>Remove errors, compute range<a name="6"></a></h2><p>Ionosphere</p><pre class="codeinput">iono_free_pseudorange = <span class="keyword">...</span>
+    (f_L1*f_L1*obs_at_epoch(:,P1) - f_L2*f_L2*obs_at_epoch(:,P2))./ <span class="keyword">...</span>
+    (f_L1*f_L1-f_L2*f_L2);
+
+<span class="comment">% Geometric range, satellite clock correction, relativity correction</span>
+geo_range = zeros(num_sats,1);
+relativityCorr = zeros(num_sats,1);
+satClkCorr = zeros(num_sats,1);
+r_sat = zeros(num_sats,3);
+<span class="keyword">for</span> ii = 1:num_sats
+    [~, geo_range(ii), tmp] = compute_range(eph, prn_list(ii), TOW, approx_rx_pos);
+    r_sat(ii,:) = tmp';
+    [~,~,~,relativityCorr(ii),satClkCorr(ii)] = <span class="keyword">...</span>
+        broadcast2xv(eph,[GPS_Week TOW],prn_list(ii));
+<span class="keyword">end</span>
+
+<span class="comment">% Tropo</span>
+tropo = 2.0./sin(prn_el*pi/180);
+</pre><h2>Observation/Geometry matrix<a name="7"></a></h2><pre class="codeinput">A = ones(num_sats, 4); <span class="comment">% x, y, z, rx time error</span>
+<span class="keyword">for</span> ii = 1:num_sats
+    A(ii,1:3) = -(r_sat(ii,:)-approx_rx_pos')./geo_range(ii);
+<span class="keyword">end</span>
+<span class="comment">% A</span>
+</pre><h2>Prefit residuals<a name="8"></a></h2><p>Plotting the residuals and Lecture 15's simple Tropo model vs. elevation</p><pre class="codeinput">dy = iono_free_pseudorange <span class="keyword">...</span>
+    - geo_range + satClkCorr - relativityCorr - tropo;
+
+<span class="comment">% edit out atrocious prefits</span>
+bad_dy = abs(dy) &gt; 1e2; <span class="comment">%m</span>
+obs_at_epoch(bad_dy,:) = [];
+prn_list(bad_dy) = [];
+num_sats = length(prn_list);
+prn_el(bad_dy) = [];
+prn_az(bad_dy) = [];
+A(bad_dy,:) = [];
+dy(bad_dy) = [];
+
+dy_store(prn_list,epoch) = dy;
+
+<span class="comment">% plot(prn_el, dy, '.')</span>
+<span class="comment">% hold on</span>
+<span class="comment">% T_el = 10:90;</span>
+<span class="comment">% plot(T_el, 2.5./sin(T_el*pi/180), 'r')</span>
+<span class="comment">% ylabel('(m)')</span>
+<span class="comment">% xlabel('Elevation (degrees)')</span>
+<span class="comment">% legend('Pre-fit residuals','Tropospheric delay')</span>
+</pre><h2>Least squares solution for position deviation<a name="9"></a></h2><p>Find the position deviation from the RINEX location, dx</p><pre class="codeinput">est_deviation = (A'*A)\A'*dy;
+postfit_res = dy - A*est_deviation;
+pfr_store(prn_list,epoch) = postfit_res;
+
+pos_correction_ENU = R_ecf2enu * est_deviation(1:3);
+rel_pos_store(:,epoch) = pos_correction_ENU;
+
+
+el_store(prn_list,epoch) = prn_el;
+H_enu = R_ecf2enu_4x4/(A'*A)*R_ecf2enu_4x4';
+H_store(:,epoch) = diag(H_enu);
+<span class="comment">% est_deviation_with_T = (A'*A)\A'*(dy - 2.5./sin(prn_el*pi/180));</span>
+<span class="comment">%</span>
+<span class="comment">% fprintf('Estimated Deviation (m):\n')</span>
+<span class="comment">% print_vec4(est_deviation)</span>
+<span class="comment">% fprintf('Estimated Deviation with Troposphere model (m):\n')</span>
+<span class="comment">% print_vec4(est_deviation_with_T)</span>
+<span class="comment">% fprintf('\n')</span>
+</pre><pre class="codeinput"><span class="keyword">end</span>
+times_hrs = (0:30:86370)/3600;
+</pre><h2>Plots<a name="11"></a></h2><pre class="codeinput">dy_store(dy_store == 0) = NaN;
+pfr_store(pfr_store == 0) = NaN;
+
+figure
+subplot(2,1,1)
+plot(times_hrs,dy_store,<span class="string">'b.'</span>)
+title(<span class="string">'Pre-Fit Residuals'</span>)
+ylabel(<span class="string">'Pre-Fit Residuals (m)'</span>), xlabel(<span class="string">'Time (hr)'</span>)
+subplot(2,1,2)
+plot(el_store,dy_store,<span class="string">'b.'</span>)
+ylabel(<span class="string">'Pre-Fit Residuals (m)'</span>), xlabel(<span class="string">'SV Elevation (deg)'</span>)
+
+figure
+subplot(2,1,1)
+plot(times_hrs,pfr_store,<span class="string">'b.'</span>)
+title(<span class="string">'Post-Fit Residuals'</span>)
+ylabel(<span class="string">'Post-Fit Residuals (m)'</span>), xlabel(<span class="string">'Time (hr)'</span>)
+subplot(2,1,2)
+plot(el_store,pfr_store,<span class="string">'b.'</span>)
+ylabel(<span class="string">'Post-Fit Residuals (m)'</span>), xlabel(<span class="string">'SV Elevation (deg)'</span>)
+
+figure
+subplot(3,1,1)
+plot(times_hrs,rel_pos_store(1,:),<span class="string">'.'</span>)
+title(<span class="string">'Relative Position'</span>)
+ylabel(<span class="string">'E Rel Pos (m)'</span>), xlabel(<span class="string">'Time (hr)'</span>)
+subplot(3,1,2)
+plot(times_hrs,rel_pos_store(2,:),<span class="string">'.'</span>)
+ylabel(<span class="string">'N Rel Pos (m)'</span>), xlabel(<span class="string">'Time (hr)'</span>)
+subplot(3,1,3)
+plot(times_hrs,rel_pos_store(3,:),<span class="string">'.'</span>)
+ylabel(<span class="string">'U Rel Pos (m)'</span>), xlabel(<span class="string">'Time (hr)'</span>)
+
+<span class="comment">%DOPs</span>
+HDOP = sqrt(H_store(1,:)+H_store(2,:));
+VDOP = sqrt(H_store(3,:));
+figure
+subplot(2,1,1)
+plot(times_hrs,HDOP,<span class="string">'.'</span>)
+title(<span class="string">'DOPs'</span>)
+ylabel(<span class="string">'HDOP'</span>), xlabel(<span class="string">'Time (hr)'</span>)
+subplot(2,1,2)
+plot(times_hrs,VDOP,<span class="string">'.'</span>)
+ylabel(<span class="string">'VDOP'</span>), xlabel(<span class="string">'Time (hr)'</span>)
+
+fprintf(<span class="string">'Position Errors at 1:00:\n'</span>)
+fprintf(<span class="string">'East:  %.2f m\n'</span>,rel_pos_store(1,times_hrs==1))
+fprintf(<span class="string">'North: %.2f m\n'</span>,rel_pos_store(2,times_hrs==1))
+fprintf(<span class="string">'Up:    %.2f m\n'</span>,rel_pos_store(3,times_hrs==1))
+fprintf(<span class="string">'\nDOPs at 1:00:\n'</span>)
+fprintf(<span class="string">'HDOP: %.2f\n'</span>,sqrt(H_store(1,times_hrs==1)+H_store(2,times_hrs==1)))
+fprintf(<span class="string">'VDOP: %.2f\n'</span>,sqrt(H_store(3,times_hrs==1)))
+
+a = dy_store(~isnan(dy_store));
+b = pfr_store(~isnan(pfr_store));
+rms_e = sqrt(sum(rel_pos_store(1,:).*rel_pos_store(1,:))/num_epochs);
+std_e = std(rel_pos_store(1,:));
+rms_n = sqrt(sum(rel_pos_store(2,:).*rel_pos_store(2,:))/num_epochs);
+std_n = std(rel_pos_store(2,:));
+rms_u = sqrt(sum(rel_pos_store(3,:).*rel_pos_store(3,:))/num_epochs);
+std_u = std(rel_pos_store(3,:));
+mean_prefit = mean(a);
+std_prefit = std(a(:));
+mean_postfit = mean(b);
+std_postfit = std(b(:));
+
+fprintf(<span class="string">'\nEast RMS: %.2f\n'</span>,rms_e)
+fprintf(<span class="string">'East STD: %.2f\n'</span>,std_e)
+fprintf(<span class="string">'North RMS: %.2f\n'</span>,rms_n)
+fprintf(<span class="string">'North STD: %.2f\n'</span>,std_n)
+fprintf(<span class="string">'Up RMS: %.2f\n'</span>,rms_u)
+fprintf(<span class="string">'Up STD: %.2f\n'</span>,std_u)
+fprintf(<span class="string">'Prefit Mean: %.2f\n'</span>,mean_prefit)
+fprintf(<span class="string">'Prefit STD: %.2f\n'</span>,std_prefit)
+fprintf(<span class="string">'Postfit Mean: %.2f\n'</span>,mean_postfit)
+fprintf(<span class="string">'Postfit STD: %.2f\n'</span>,std_postfit)
+</pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2013b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% HW 8
+% John Clouse
+% 
+% read_GPSbroadcast, broadcast2xv, adjust year, and read_rinex functions 
+% provided from class are used in this homework.
+
+%% Initialize
+clearvars -except function_list pub_opt obs_data eph
+close all
+c = 2.99792458e8; %m/s
+f_L1 = 1575.42; % MHz
+f_L2 = 1227.60; % MHz
+
+print_vec3 = @(x) ...
+    fprintf(sprintf('%13.2f\n%13.2f\n%13.2f\n',x(1),x(2),x(3)));
+print_vec4 = @(x) ...
+    fprintf(sprintf('%13.2f\n%13.2f\n%13.2f\n%13.2f\n',x(1),x(2),x(3),x(4)));
+%% Read the data files
+
+if ~exist('eph','var')
+    eph = read_GPSbroadcast('brdc3000.14n');
+end
+if ~exist('obs_data','var')
+    obs_data = read_rinex_obs('amc23000.14o');
+end
+% if ~exist('eph','var')
+%     eph = read_GPSbroadcast('brdc2550.14n');
+% end
+% if ~exist('obs_data','var')
+%     obs_data = read_rinex_obs('test.14o');
+% end
+P1 = 6;
+P2 = 7; 
+C1 = 8;
+approx_rx_pos = [-1248596.2520 -4819428.2840  3976506.0340]'; % m
+
+GPS_Week = eph(1,19); % assuming no week crossover
+
+% Visibility params
+durationhrs = 1;
+dt_sec = 3601;
+ant_enu = [0 0 1];
+mask_min = 0;  % deg
+mask_max = 90; % deg
+[latgd, lon, alt] = ECEF2ellipsoidal(approx_rx_pos);
+% Azimuth, Elevation
+GPSvec = [2014 10 27 0 0 0];
+% GPSvec = [2014 09 12 0 0 00];
+[navfilename,statusflag] = download_GPSyuma(GPSvec);
+R_ecf2enu = R_ECEF2ENU(latgd, lon);
+R_ecf2enu_4x4 = eye(4);
+R_ecf2enu_4x4(1:3,1:3) = R_ecf2enu;
+
+%% Loop through the observations, create storage arrays
+epoch_dt = 30; % s
+num_epochs = 60/epoch_dt*60*24;%assuming one day
+dy_store = zeros(32,num_epochs);
+pfr_store = zeros(32,num_epochs);
+el_store = zeros(32,num_epochs);
+rel_pos_store = zeros(3,num_epochs);
+H_store = zeros(4,num_epochs);
+
+GPS_TOD = [0 0 -30]; % time of day, HMS
+TOD_s = -30; % time of day, seconds
+for epoch = 1:num_epochs 
+
+GPS_TOD(3) = GPS_TOD(3) + epoch_dt;
+TOD_s = TOD_s + epoch_dt;
+if GPS_TOD(3) >= 60
+    GPS_TOD(3) = 0;
+    GPS_TOD(2) = GPS_TOD(2)+1;
+end
+if GPS_TOD(2) >= 60
+    GPS_TOD(2) = 0;
+    GPS_TOD(1) = GPS_TOD(1)+1;
+end
+TOW = eph(1,20)+GPS_TOD(1)*3600 + GPS_TOD(2)*60 + GPS_TOD(3);
+
+if mod(GPS_TOD(2),10) == 0
+    fprintf(sprintf('%02.f:%02.f\n',GPS_TOD(1),GPS_TOD(2)));
+    fprintf('%.f%%\r',epoch/num_epochs*100)
+end
+
+%% Observations at the given epoch
+obs_at_epoch = obs_data.data(obs_data.data(:,2) == TOW, :); 
+prn_list = obs_at_epoch(:,3);
+num_sats = length(prn_list);
+
+GPSvec = [GPSvec(1:3) GPS_TOD];
+
+[time_wntow, GPSdata] = ...
+    ASEN5090_GPSvis(navfilename, 1, GPSvec,...
+    durationhrs, dt_sec, latgd*180/pi, lon*180/pi, alt,...
+    mask_min, mask_max, mask_min, ant_enu, 0, []);
+% rearrange the data to be in the same order as prn list
+prn_el = zeros(num_sats,1);
+prn_az = zeros(num_sats,1);
+for ii = 1:num_sats
+    prn_el(ii) = GPSdata.topo_el(prn_list(ii));
+    prn_az(ii) = GPSdata.topo_az(prn_list(ii));
+end
+
+% Remove any satellites below an arbitrary mask
+% Done here, like this, because GPS_vis outputs all prns anyway and NaNs
+% the ones under the mask.
+bad_els = prn_el < 10; %Elevations under X degrees
+obs_at_epoch(bad_els,:) = [];
+prn_list(bad_els) = [];
+num_sats = length(prn_list);
+prn_el(bad_els) = [];
+prn_az(bad_els) = [];
+
+%% Remove errors, compute range
+% Ionosphere
+iono_free_pseudorange = ...
+    (f_L1*f_L1*obs_at_epoch(:,P1) - f_L2*f_L2*obs_at_epoch(:,P2))./ ...
+    (f_L1*f_L1-f_L2*f_L2);
+
+% Geometric range, satellite clock correction, relativity correction
+geo_range = zeros(num_sats,1);
+relativityCorr = zeros(num_sats,1);
+satClkCorr = zeros(num_sats,1);
+r_sat = zeros(num_sats,3);
+for ii = 1:num_sats
+    [~, geo_range(ii), tmp] = compute_range(eph, prn_list(ii), TOW, approx_rx_pos);
+    r_sat(ii,:) = tmp';
+    [~,~,~,relativityCorr(ii),satClkCorr(ii)] = ...
+        broadcast2xv(eph,[GPS_Week TOW],prn_list(ii));
+end
+
+% Tropo
+tropo = 2.0./sin(prn_el*pi/180);
+
+%% Observation/Geometry matrix
+A = ones(num_sats, 4); % x, y, z, rx time error
+for ii = 1:num_sats
+    A(ii,1:3) = -(r_sat(ii,:)-approx_rx_pos')./geo_range(ii);
+end
+% A
+
+%% Prefit residuals
+% Plotting the residuals and Lecture 15's simple Tropo model vs. elevation
+dy = iono_free_pseudorange ...
+    - geo_range + satClkCorr - relativityCorr - tropo;
+
+% edit out atrocious prefits
+bad_dy = abs(dy) > 1e2; %m
+obs_at_epoch(bad_dy,:) = [];
+prn_list(bad_dy) = [];
+num_sats = length(prn_list);
+prn_el(bad_dy) = [];
+prn_az(bad_dy) = [];
+A(bad_dy,:) = [];
+dy(bad_dy) = [];
+
+dy_store(prn_list,epoch) = dy;
+
+% plot(prn_el, dy, '.')
+% hold on
+% T_el = 10:90;
+% plot(T_el, 2.5./sin(T_el*pi/180), 'r')
+% ylabel('(m)')
+% xlabel('Elevation (degrees)')
+% legend('Pre-fit residuals','Tropospheric delay')
+
+%% Least squares solution for position deviation
+% Find the position deviation from the RINEX location, dx
+
+est_deviation = (A'*A)\A'*dy;
+postfit_res = dy - A*est_deviation;
+pfr_store(prn_list,epoch) = postfit_res;
+
+pos_correction_ENU = R_ecf2enu * est_deviation(1:3);
+rel_pos_store(:,epoch) = pos_correction_ENU;
+
+
+el_store(prn_list,epoch) = prn_el;
+H_enu = R_ecf2enu_4x4/(A'*A)*R_ecf2enu_4x4';
+H_store(:,epoch) = diag(H_enu);
+% est_deviation_with_T = (A'*A)\A'*(dy - 2.5./sin(prn_el*pi/180));
+% 
+% fprintf('Estimated Deviation (m):\n')
+% print_vec4(est_deviation)
+% fprintf('Estimated Deviation with Troposphere model (m):\n')
+% print_vec4(est_deviation_with_T)
+% fprintf('\n')
+
+end
+times_hrs = (0:30:86370)/3600;
+%% Plots
+
+
+dy_store(dy_store == 0) = NaN;
+pfr_store(pfr_store == 0) = NaN;
+
+figure
+subplot(2,1,1)
+plot(times_hrs,dy_store,'b.')
+title('Pre-Fit Residuals')
+ylabel('Pre-Fit Residuals (m)'), xlabel('Time (hr)')
+subplot(2,1,2)
+plot(el_store,dy_store,'b.')
+ylabel('Pre-Fit Residuals (m)'), xlabel('SV Elevation (deg)')
+
+figure
+subplot(2,1,1)
+plot(times_hrs,pfr_store,'b.')
+title('Post-Fit Residuals')
+ylabel('Post-Fit Residuals (m)'), xlabel('Time (hr)')
+subplot(2,1,2)
+plot(el_store,pfr_store,'b.')
+ylabel('Post-Fit Residuals (m)'), xlabel('SV Elevation (deg)')
+
+figure
+subplot(3,1,1)
+plot(times_hrs,rel_pos_store(1,:),'.')
+title('Relative Position')
+ylabel('E Rel Pos (m)'), xlabel('Time (hr)')
+subplot(3,1,2)
+plot(times_hrs,rel_pos_store(2,:),'.')
+ylabel('N Rel Pos (m)'), xlabel('Time (hr)')
+subplot(3,1,3)
+plot(times_hrs,rel_pos_store(3,:),'.')
+ylabel('U Rel Pos (m)'), xlabel('Time (hr)')
+
+%DOPs
+HDOP = sqrt(H_store(1,:)+H_store(2,:));
+VDOP = sqrt(H_store(3,:));
+figure
+subplot(2,1,1)
+plot(times_hrs,HDOP,'.')
+title('DOPs')
+ylabel('HDOP'), xlabel('Time (hr)')
+subplot(2,1,2)
+plot(times_hrs,VDOP,'.')
+ylabel('VDOP'), xlabel('Time (hr)')
+
+fprintf('Position Errors at 1:00:\n')
+fprintf('East:  %.2f m\n',rel_pos_store(1,times_hrs==1))
+fprintf('North: %.2f m\n',rel_pos_store(2,times_hrs==1))
+fprintf('Up:    %.2f m\n',rel_pos_store(3,times_hrs==1))
+fprintf('\nDOPs at 1:00:\n')
+fprintf('HDOP: %.2f\n',sqrt(H_store(1,times_hrs==1)+H_store(2,times_hrs==1)))
+fprintf('VDOP: %.2f\n',sqrt(H_store(3,times_hrs==1)))
+
+a = dy_store(~isnan(dy_store));
+b = pfr_store(~isnan(pfr_store));
+rms_e = sqrt(sum(rel_pos_store(1,:).*rel_pos_store(1,:))/num_epochs);
+std_e = std(rel_pos_store(1,:));
+rms_n = sqrt(sum(rel_pos_store(2,:).*rel_pos_store(2,:))/num_epochs);
+std_n = std(rel_pos_store(2,:));
+rms_u = sqrt(sum(rel_pos_store(3,:).*rel_pos_store(3,:))/num_epochs);
+std_u = std(rel_pos_store(3,:));
+mean_prefit = mean(a);
+std_prefit = std(a(:));
+mean_postfit = mean(b);
+std_postfit = std(b(:));
+
+fprintf('\nEast RMS: %.2f\n',rms_e)
+fprintf('East STD: %.2f\n',std_e)
+fprintf('North RMS: %.2f\n',rms_n)
+fprintf('North STD: %.2f\n',std_n)
+fprintf('Up RMS: %.2f\n',rms_u)
+fprintf('Up STD: %.2f\n',std_u)
+fprintf('Prefit Mean: %.2f\n',mean_prefit)
+fprintf('Prefit STD: %.2f\n',std_prefit)
+fprintf('Postfit Mean: %.2f\n',mean_postfit)
+fprintf('Postfit STD: %.2f\n',std_postfit)
+##### SOURCE END #####
+--></body></html>

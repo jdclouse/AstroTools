@@ -1,46 +1,68 @@
 %% HW 1 Master Script
 
 %% Initialize
-if ispc
-    addpath('C:\Users\John\Documents\ASEN5070_SOD\tools')
-end
 clear all
 clc
+toolsPath = @(x) ...
+    strcat('C:\Users\John\Documents\Astro\ASEN5090_GNSS\tools\',x);
+if ispc
+    addpath(toolsPath(''))
+end
 
+hw_pub.script_list = {};
+hw_pub.script_list = [hw_pub.script_list 'HW1_P3'];
+hw_pub.script_list = [hw_pub.script_list 'HW1_P4'];
 % Cell array to track what functions are used, so they can be published
 % later
 global function_list;
 function_list = {};
 
 % publishing options
-pub_opt.format = 'pdf';
-pub_opt.outputDir = '.\html';
-pub_opt.imageFormat = 'bmp';
-pub_opt.figureSnapMethod = 'entireGUIWindow';
-pub_opt.useNewFigure = true ;
-pub_opt.maxHeight = Inf;
-pub_opt.maxWidth = Inf;
-pub_opt.showCode = true;
-pub_opt.evalCode = true;
-pub_opt.catchError = true;
-pub_opt.createThumbnail = true;
-pub_opt.maxOutputLines = Inf;
+hw_pub.pub_opt.format = 'pdf';
+hw_pub.pub_opt.outputDir = '.\pdf';
+hw_pub.pub_opt.imageFormat = 'bmp';
+hw_pub.pub_opt.figureSnapMethod = 'entireGUIWindow';
+hw_pub.pub_opt.useNewFigure = true ;
+hw_pub.pub_opt.maxHeight = Inf;
+hw_pub.pub_opt.maxWidth = Inf;
+hw_pub.pub_opt.showCode = true;
+hw_pub.pub_opt.evalCode = true;
+hw_pub.pub_opt.catchError = true;
+hw_pub.pub_opt.createThumbnail = true;
+hw_pub.pub_opt.maxOutputLines = Inf;
+
+% helpful figure dimensions for better resolution in the pdf
+hw_pub.figWidth = 1120; % pixels
+hw_pub.figHeight = 840; % pixels
 
 %% Run Problem scripts and publish them
-
-% Problem 3
-publish('HW1_P3', pub_opt);
-
-% Problem 4
-publish('HW1_P4', pub_opt);
+for idx = 1:length(hw_pub.script_list)
+    publish(hw_pub.script_list{idx}, hw_pub.pub_opt);
+end
 
 %% Publishing tools and support code
-% pub_opt.outputDir = '.\tools';
-% pub_opt.evalCode = false;
-% 
-% %Publish all used functions
-% function_list = ...
-%     [function_list; 'C:\Users\John\Documents\ASEN5070_SOD\tools\fcnPrintQueue'];
-% for idx = 1:length(function_list)
-%     publish(function_list{idx}, pub_opt);
-% end
+hw_pub.pub_opt.outputDir = '.\pdf\tools';
+hw_pub.pub_opt.evalCode = false;
+
+%Publish all used functions
+if isempty(function_list)
+    return % nothing to publish
+end
+function_list = ...
+    [function_list; toolsPath('fcnPrintQueue.m')];
+for idx = 1:length(function_list)
+    publish(function_list{idx}, hw_pub.pub_opt);
+end
+
+pdfCmdStr = 'pdftk ';
+for idx = 1:length(hw_pub.script_list)
+    pdfCmdStr = [pdfCmdStr 'pdf\' hw_pub.script_list{idx} '.pdf ']; %#ok<*AGROW>
+end
+for idx = 1:length(function_list)
+    tmp = strsplit(function_list{idx},'\');
+    pdfCmdStr = [pdfCmdStr 'pdf\tools\' tmp{end}(1:end-2) '.pdf '];
+end
+tmp = strsplit(pwd,'\');
+hw_num = tmp{end};
+pdfCmdStr = [pdfCmdStr 'output pdf\Clouse_ASEN5050_' hw_num '.pdf'];
+system(pdfCmdStr)

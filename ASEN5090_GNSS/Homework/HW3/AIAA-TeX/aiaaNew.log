@@ -1,0 +1,15 @@
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9 64-bit) (preloaded format=pdftex 2014.4.6)  13 NOV 2015 20:22
+entering extended mode
+**C:/Users/John/Documents/Astro/ASEN5090_GNSS/Homework/HW3/AIAA-TeX/aiaaNew.cls
+
+(C:/Users/John/Documents/Astro/ASEN5090_GNSS/Homework/HW3/AIAA-TeX/aiaaNew.cls
+! Undefined control sequence.
+l.43 \NeedsTeXFormat
+                    {LaTeX2e}[1994/06/01]
+? 
+! Emergency stop.
+l.43 \NeedsTeXFormat
+                    {LaTeX2e}[1994/06/01]
+End of file on the terminal!
+
+!  ==> Fatal error occurred, no output PDF file produced!

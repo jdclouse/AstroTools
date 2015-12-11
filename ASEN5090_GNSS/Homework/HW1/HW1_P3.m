@@ -1,6 +1,6 @@
 %% HW1 Problem 3: Data means, standard deviations
 fprintf('\n');
-clearvars -except function_list pub_opt
+clearvars -except function_list hw_pub toolsPath 
 close all
 
 sets = [0.64	35.0495

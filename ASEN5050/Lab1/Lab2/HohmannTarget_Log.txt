@@ -1,0 +1,926 @@
+Astrogator Log File; DriverMCS: Mission_Control_Sequence
+-------------------------------------------------------------
+
+
+----------------------------------------------
+Begin targeter profile Start_Transfer.Differential_Corrector
+
+Initial control parameters:
+
+Unscaled Controls:
+Name                              Current Value            Last Update        Total Correction
+DV1 : ImpulsiveMnvr.Cartesian.X  0.000000000000 km/sec  0.000000000000 km/sec   0.000000000000 km/sec
+
+
+Homotopy step   1 of   1
+
+Intermediate Goals Desired:
+DV1 : Radius_Of_Apoapsis  42164.140039999998 km
+
+
+
+---Running one step of the differential corrector...
+
+-------------------------------------------------------------
+Iteration =   1
+Unscaled Intermediate Constraints:
+Name                          Current Value                Desired             Difference          Tolerance
+DV1 : Radius_Of_Apoapsis  6628.000000000116 km  42164.140039999998 km -35536.140039999882 km  0.100000000000 km
+
+
+
+Performing one Newton-Raphson Step...
+
+Perturbation evaluation +1
+Controls:
+Name                                      Value           Perturbation        Scaled Perturbation
+DV1 : ImpulsiveMnvr.Cartesian.X  0.000100000000 km/sec  0.000100000000 km/sec      0.100000000000
+
+Constraints:
+Name                                  Value             Change          Scaled Change
+DV1 : Radius_Of_Apoapsis  6628.341884061020 km  0.341884060903 km  8.10840824879e-006
+
+
+Partial derivative matrix (scaled) :
+
+   8.10840824879e-005
+
+Newton Step Done...
+
+DC proposed step:
+Name                                         Scaled         Unscaled
+DV1 : ImpulsiveMnvr.Cartesian.X  10394.207892024322  10.394207892024 km/sec
+
+
+Step with Max Step limits applied:
+Name                                       Scaled        Unscaled
+DV1 : ImpulsiveMnvr.Cartesian.X  300.000000000000  0.300000000000 km/sec
+
+
+Step final values:
+
+Unscaled Controls:
+Name                              Current Value            Last Update        Total Correction
+DV1 : ImpulsiveMnvr.Cartesian.X  0.300000000000 km/sec  0.300000000000 km/sec   0.300000000000 km/sec
+
+
+Unscaled Intermediate Constraints:
+Name                          Current Value                Desired             Difference          Tolerance
+DV1 : Radius_Of_Apoapsis  7762.968437143996 km  42164.140039999998 km -34401.171602856004 km  0.100000000000 km
+
+
+
+-------------------------------------------------------------
+Iteration =   2
+Unscaled Intermediate Constraints:
+Name                          Current Value                Desired             Difference          Tolerance
+DV1 : Radius_Of_Apoapsis  7762.968437143996 km  42164.140039999998 km -34401.171602856004 km  0.100000000000 km
+
+
+
+Updating partials with Secant method...
+
+Partial derivative matrix (scaled) :
+
+   8.97262014647e-005
+
+Secant Update Done...
+
+DC proposed step:
+Name                                        Scaled        Unscaled
+DV1 : ImpulsiveMnvr.Cartesian.X  9093.073554386861  9.093073554387 km/sec
+
+
+Step with Max Step limits applied:
+Name                                       Scaled        Unscaled
+DV1 : ImpulsiveMnvr.Cartesian.X  300.000000000000  0.300000000000 km/sec
+
+
+Step final values:
+
+Unscaled Controls:
+Name                              Current Value            Last Update        Total Correction
+DV1 : ImpulsiveMnvr.Cartesian.X  0.600000000000 km/sec  0.300000000000 km/sec   0.600000000000 km/sec
+
+
+Unscaled Intermediate Constraints:
+Name                          Current Value                Desired             Difference          Tolerance
+DV1 : Radius_Of_Apoapsis  9166.612967467458 km  42164.140039999998 km -32997.527072532539 km  0.100000000000 km
+
+
+
+-------------------------------------------------------------
+Iteration =   3
+Unscaled Intermediate Constraints:
+Name                          Current Value                Desired             Difference          Tolerance
+DV1 : Radius_Of_Apoapsis  9166.612967467458 km  42164.140039999998 km -32997.527072532539 km  0.100000000000 km
+
+
+
+Updating partials with Secant method...
+
+Partial derivative matrix (scaled) :
+
+    0.000110966691047
+
+Secant Update Done...
+
+DC proposed step:
+Name                                        Scaled        Unscaled
+DV1 : ImpulsiveMnvr.Cartesian.X  7052.539234758067  7.052539234758 km/sec
+
+
+Step with Max Step limits applied:
+Name                                       Scaled        Unscaled
+DV1 : ImpulsiveMnvr.Cartesian.X  300.000000000000  0.300000000000 km/sec
+
+
+Step final values:
+
+Unscaled Controls:
+Name                              Current Value            Last Update        Total Correction
+DV1 : ImpulsiveMnvr.Cartesian.X  0.900000000000 km/sec  0.300000000000 km/sec   0.900000000000 km/sec
+
+
+Unscaled Intermediate Constraints:
+Name                           Current Value                Desired             Difference          Tolerance
+DV1 : Radius_Of_Apoapsis  10943.099531593594 km  42164.140039999998 km -31221.040508406404 km  0.100000000000 km
+
+
+
+-------------------------------------------------------------
+Iteration =   4
+Unscaled Intermediate Constraints:
+Name                           Current Value                Desired             Difference          Tolerance
+DV1 : Radius_Of_Apoapsis  10943.099531593594 km  42164.140039999998 km -31221.040508406404 km  0.100000000000 km
+
+
+
+Updating partials with Secant method...
+
+Partial derivative matrix (scaled) :
+
+    0.000140442135777
+
+Secant Update Done...
+
+DC proposed step:
+Name                                        Scaled        Unscaled
+DV1 : ImpulsiveMnvr.Cartesian.X  5272.379955842365  5.272379955842 km/sec
+
+
+Step with Max Step limits applied:
+Name                                       Scaled        Unscaled
+DV1 : ImpulsiveMnvr.Cartesian.X  300.000000000000  0.300000000000 km/sec
+
+
+Step final values:
+
+Unscaled Controls:
+Name                              Current Value            Last Update        Total Correction
+DV1 : ImpulsiveMnvr.Cartesian.X  1.200000000000 km/sec  0.300000000000 km/sec   1.200000000000 km/sec
+
+
+Unscaled Intermediate Constraints:
+Name                           Current Value                Desired             Difference          Tolerance
+DV1 : Radius_Of_Apoapsis  13258.743473440050 km  42164.140039999998 km -28905.396566559946 km  0.100000000000 km
+
+
+
+-------------------------------------------------------------
+Iteration =   5
+Unscaled Intermediate Constraints:
+Name                           Current Value                Desired             Difference          Tolerance
+DV1 : Radius_Of_Apoapsis  13258.743473440050 km  42164.140039999998 km -28905.396566559946 km  0.100000000000 km
+
+
+
+Updating partials with Secant method...
+
+Partial derivative matrix (scaled) :
+
+    0.000183065826367
+
+Secant Update Done...
+
+DC proposed step:
+Name                                        Scaled        Unscaled
+DV1 : ImpulsiveMnvr.Cartesian.X  3744.798072476280  3.744798072476 km/sec
+
+
+Step with Max Step limits applied:
+Name                                       Scaled        Unscaled
+DV1 : ImpulsiveMnvr.Cartesian.X  300.000000000000  0.300000000000 km/sec
+
+
+Step final values:
+
+Unscaled Controls:
+Name                              Current Value            Last Update        Total Correction
+DV1 : ImpulsiveMnvr.Cartesian.X  1.500000000000 km/sec  0.300000000000 km/sec   1.500000000000 km/sec
+
+
+Unscaled Intermediate Constraints:
+Name                           Current Value                Desired             Difference          Tolerance
+DV1 : Radius_Of_Apoapsis  16396.454162999038 km  42164.140039999998 km -25767.685877000957 km  0.100000000000 km
+
+
+
+-------------------------------------------------------------
+Iteration =   6
+Unscaled Intermediate Constraints:
+Name                           Current Value                Desired             Difference          Tolerance
+DV1 : Radius_Of_Apoapsis  16396.454162999038 km  42164.140039999998 km -25767.685877000957 km  0.100000000000 km
+
+
+
+Updating partials with Secant method...
+
+Partial derivative matrix (scaled) :
+
+    0.000248055234186
+
+Secant Update Done...
+
+DC proposed step:
+Name                                        Scaled        Unscaled
+DV1 : ImpulsiveMnvr.Cartesian.X  2463.677033329927  2.463677033330 km/sec
+
+
+Step with Max Step limits applied:
+Name                                       Scaled        Unscaled
+DV1 : ImpulsiveMnvr.Cartesian.X  300.000000000000  0.300000000000 km/sec
+
+
+Step final values:
+
+Unscaled Controls:
+Name                              Current Value            Last Update        Total Correction
+DV1 : ImpulsiveMnvr.Cartesian.X  1.800000000000 km/sec  0.300000000000 km/sec   1.800000000000 km/sec
+
+
+Unscaled Intermediate Constraints:
+Name                           Current Value                Desired             Difference          Tolerance
+DV1 : Radius_Of_Apoapsis  20879.575608845855 km  42164.140039999998 km -21284.564431154144 km  0.100000000000 km
+
+
+
+-------------------------------------------------------------
+Iteration =   7
+Unscaled Intermediate Constraints:
+Name                           Current Value                Desired             Difference          Tolerance
+DV1 : Radius_Of_Apoapsis  20879.575608845855 km  42164.140039999998 km -21284.564431154144 km  0.100000000000 km
+
+
+
+Updating partials with Secant method...
+
+Partial derivative matrix (scaled) :
+
+    0.000354418188979
+
+Secant Update Done...
+
+DC proposed step:
+Name                                        Scaled        Unscaled
+DV1 : ImpulsiveMnvr.Cartesian.X  1424.313261747945  1.424313261748 km/sec
+
+
+Step with Max Step limits applied:
+Name                                       Scaled        Unscaled
+DV1 : ImpulsiveMnvr.Cartesian.X  300.000000000000  0.300000000000 km/sec
+
+
+Step final values:
+
+Unscaled Controls:
+Name                              Current Value            Last Update        Total Correction
+DV1 : ImpulsiveMnvr.Cartesian.X  2.100000000000 km/sec  0.300000000000 km/sec   2.100000000000 km/sec
+
+
+Unscaled Intermediate Constraints:
+Name                           Current Value                Desired             Difference          Tolerance
+DV1 : Radius_Of_Apoapsis  27796.153582269253 km  42164.140039999998 km -14367.986457730747 km  0.100000000000 km
+
+
+
+-------------------------------------------------------------
+Iteration =   8
+Unscaled Intermediate Constraints:
+Name                           Current Value                Desired             Difference          Tolerance
+DV1 : Radius_Of_Apoapsis  27796.153582269253 km  42164.140039999998 km -14367.986457730747 km  0.100000000000 km
+
+
+
+Updating partials with Secant method...
+
+Partial derivative matrix (scaled) :
+
+    0.000546797821313
+
+Secant Update Done...
+
+DC proposed step:
+Name                                       Scaled        Unscaled
+DV1 : ImpulsiveMnvr.Cartesian.X  623.197765409673  0.623197765410 km/sec
+
+
+Step with Max Step limits applied:
+Name                                       Scaled        Unscaled
+DV1 : ImpulsiveMnvr.Cartesian.X  300.000000000000  0.300000000000 km/sec
+
+
+Step final values:
+
+Unscaled Controls:
+Name                              Current Value            Last Update        Total Correction
+DV1 : ImpulsiveMnvr.Cartesian.X  2.400000000000 km/sec  0.300000000000 km/sec   2.400000000000 km/sec
+
+
+Unscaled Intermediate Constraints:
+Name                           Current Value                Desired            Difference          Tolerance
+DV1 : Radius_Of_Apoapsis  39841.848948798535 km  42164.140039999998 km -2322.291091201462 km  0.100000000000 km
+
+
+
+-------------------------------------------------------------
+Iteration =   9
+Unscaled Intermediate Constraints:
+Name                           Current Value                Desired            Difference          Tolerance
+DV1 : Radius_Of_Apoapsis  39841.848948798535 km  42164.140039999998 km -2322.291091201462 km  0.100000000000 km
+
+
+
+Updating partials with Secant method...
+
+Partial derivative matrix (scaled) :
+
+    0.000952285943703
+
+Secant Update Done...
+
+DC proposed step:
+Name                                      Scaled        Unscaled
+DV1 : ImpulsiveMnvr.Cartesian.X  57.837036896706  0.057837036897 km/sec
+
+
+Step with Max Step limits applied:
+Name                                      Scaled        Unscaled
+DV1 : ImpulsiveMnvr.Cartesian.X  57.837036896706  0.057837036897 km/sec
+
+
+Step final values:
+
+Unscaled Controls:
+Name                              Current Value            Last Update        Total Correction
+DV1 : ImpulsiveMnvr.Cartesian.X  2.457837036897 km/sec  0.057837036897 km/sec   2.457837036897 km/sec
+
+
+Unscaled Intermediate Constraints:
+Name                           Current Value                Desired            Difference          Tolerance
+DV1 : Radius_Of_Apoapsis  43268.088858365467 km  42164.140039999998 km  1103.948818365470 km  0.100000000000 km
+
+
+
+-------------------------------------------------------------
+Iteration =  10
+Unscaled Intermediate Constraints:
+Name                           Current Value                Desired            Difference          Tolerance
+DV1 : Radius_Of_Apoapsis  43268.088858365467 km  42164.140039999998 km  1103.948818365470 km  0.100000000000 km
+
+
+
+Updating partials with Secant method...
+
+Partial derivative matrix (scaled) :
+
+      0.0014049746468
+
+Secant Update Done...
+
+DC proposed step:
+Name                                      Scaled        Unscaled
+DV1 : ImpulsiveMnvr.Cartesian.X -18.635335010136 -0.018635335010 km/sec
+
+
+Step with Max Step limits applied:
+Name                                      Scaled        Unscaled
+DV1 : ImpulsiveMnvr.Cartesian.X -18.635335010136 -0.018635335010 km/sec
+
+
+Step final values:
+
+Unscaled Controls:
+Name                              Current Value            Last Update        Total Correction
+DV1 : ImpulsiveMnvr.Cartesian.X  2.439201701887 km/sec -0.018635335010 km/sec   2.439201701887 km/sec
+
+
+Unscaled Intermediate Constraints:
+Name                           Current Value                Desired          Difference          Tolerance
+DV1 : Radius_Of_Apoapsis  42108.074650502567 km  42164.140039999998 km -56.065389497429 km  0.100000000000 km
+
+
+
+-------------------------------------------------------------
+Iteration =  11
+Unscaled Intermediate Constraints:
+Name                           Current Value                Desired          Difference          Tolerance
+DV1 : Radius_Of_Apoapsis  42108.074650502567 km  42164.140039999998 km -56.065389497429 km  0.100000000000 km
+
+
+
+Updating partials with Secant method...
+
+Partial derivative matrix (scaled) :
+
+     0.00147632800078
+
+Secant Update Done...
+
+DC proposed step:
+Name                                     Scaled        Unscaled
+DV1 : ImpulsiveMnvr.Cartesian.X  0.900676309546  0.000900676310 km/sec
+
+
+Step with Max Step limits applied:
+Name                                     Scaled        Unscaled
+DV1 : ImpulsiveMnvr.Cartesian.X  0.900676309546  0.000900676310 km/sec
+
+
+Step final values:
+
+Unscaled Controls:
+Name                              Current Value            Last Update        Total Correction
+DV1 : ImpulsiveMnvr.Cartesian.X  2.440102378196 km/sec  0.000900676310 km/sec   2.440102378196 km/sec
+
+
+Unscaled Intermediate Constraints:
+Name                           Current Value                Desired         Difference          Tolerance
+DV1 : Radius_Of_Apoapsis  42162.850502194291 km  42164.140039999998 km -1.289537805706 km  0.100000000000 km
+
+
+
+-------------------------------------------------------------
+Iteration =  12
+Unscaled Intermediate Constraints:
+Name                           Current Value                Desired         Difference          Tolerance
+DV1 : Radius_Of_Apoapsis  42162.850502194291 km  42164.140039999998 km -1.289537805706 km  0.100000000000 km
+
+
+
+Updating partials with Secant method...
+
+Partial derivative matrix (scaled) :
+
+     0.00144237156549
+
+Secant Update Done...
+
+DC proposed step:
+Name                                     Scaled        Unscaled
+DV1 : ImpulsiveMnvr.Cartesian.X  0.021203799046  0.000021203799 km/sec
+
+
+Step with Max Step limits applied:
+Name                                     Scaled        Unscaled
+DV1 : ImpulsiveMnvr.Cartesian.X  0.021203799046  0.000021203799 km/sec
+
+
+Step final values:
+
+Unscaled Controls:
+Name                              Current Value            Last Update        Total Correction
+DV1 : ImpulsiveMnvr.Cartesian.X  2.440123581995 km/sec  0.000021203799 km/sec   2.440123581995 km/sec
+
+
+Unscaled Intermediate Constraints:
+Name                           Current Value                Desired         Difference          Tolerance
+DV1 : Radius_Of_Apoapsis  42164.141581881973 km  42164.140039999998 km  0.001541881971 km  0.100000000000 km
+
+
+
+--------------------------------------------------------
+
+<<< Targeting Finished >>>
+    [Goals met]
+
+
+--------------------------------------------------------
+
+---Done. (running one step of the differential corrector.)
+
+Params from single diff corr
+
+Unscaled Controls:
+Name                              Current Value            Last Update        Total Correction
+DV1 : ImpulsiveMnvr.Cartesian.X  2.440123581995 km/sec  0.000021203799 km/sec   2.440123581995 km/sec
+
+
+Unscaled Intermediate Constraints:
+Name                           Current Value                Desired         Difference          Tolerance
+DV1 : Radius_Of_Apoapsis  42164.141581881973 km  42164.140039999998 km  0.001541881971 km  0.100000000000 km
+
+
+
+----------------------------------------------
+Final Params from Homotopy Diff Corr
+
+Unscaled Controls:
+Name                              Current Value            Last Update        Total Correction
+DV1 : ImpulsiveMnvr.Cartesian.X  2.440123581995 km/sec  0.000021203799 km/sec   2.440123581995 km/sec
+
+
+Unscaled Intermediate Constraints:
+Name                           Current Value                Desired         Difference          Tolerance
+DV1 : Radius_Of_Apoapsis  42164.141581881973 km  42164.140039999998 km  0.001541881971 km  0.100000000000 km
+
+
+
+----------------------------------------------
+
+*********** Done Targeting************************
+
+End targeter profile Start_Transfer.Differential_Corrector
+----------------------------------------------
+Begin targeter profile Finish_Transfer.Differential_Corrector
+
+Initial control parameters:
+
+Unscaled Controls:
+Name                              Current Value            Last Update        Total Correction
+DV2 : ImpulsiveMnvr.Cartesian.X  0.000000000000 km/sec  0.000000000000 km/sec   0.000000000000 km/sec
+
+
+Homotopy step   1 of   1
+
+Intermediate Goals Desired:
+DV2 : Eccentricity  0.000000000000
+
+
+
+---Running one step of the differential corrector...
+
+-------------------------------------------------------------
+Iteration =   1
+Unscaled Intermediate Constraints:
+Name                 Current Value         Desired      Difference       Tolerance
+DV2 : Eccentricity  0.728316905751  0.000000000000  0.728316905751  0.000100000000
+
+
+
+Performing one Newton-Raphson Step...
+
+Perturbation evaluation +1
+Controls:
+Name                                      Value           Perturbation        Scaled Perturbation
+DV2 : ImpulsiveMnvr.Cartesian.X  0.000100000000 km/sec  0.000100000000 km/sec      0.100000000000
+
+Constraints:
+Name                         Value          Change       Scaled Change
+DV2 : Eccentricity  0.728282999670 -0.000033906081 -3.39060810693e-005
+
+
+Partial derivative matrix (scaled) :
+
+   -0.000339060810693
+
+Newton Step Done...
+
+DC proposed step:
+Name                                        Scaled        Unscaled
+DV2 : ImpulsiveMnvr.Cartesian.X  2148.042129262124  2.148042129262 km/sec
+
+
+Step with Max Step limits applied:
+Name                                       Scaled        Unscaled
+DV2 : ImpulsiveMnvr.Cartesian.X  300.000000000000  0.300000000000 km/sec
+
+
+Step final values:
+
+Unscaled Controls:
+Name                              Current Value            Last Update        Total Correction
+DV2 : ImpulsiveMnvr.Cartesian.X  0.300000000000 km/sec  0.300000000000 km/sec   0.300000000000 km/sec
+
+
+Unscaled Intermediate Constraints:
+Name                 Current Value         Desired      Difference       Tolerance
+DV2 : Eccentricity  0.617081593770  0.000000000000  0.617081593770  0.000100000000
+
+
+
+-------------------------------------------------------------
+Iteration =   2
+Unscaled Intermediate Constraints:
+Name                 Current Value         Desired      Difference       Tolerance
+DV2 : Eccentricity  0.617081593770  0.000000000000  0.617081593770  0.000100000000
+
+
+
+Updating partials with Secant method...
+
+Partial derivative matrix (scaled) :
+
+   -0.000370784373273
+
+Secant Update Done...
+
+DC proposed step:
+Name                                        Scaled        Unscaled
+DV2 : ImpulsiveMnvr.Cartesian.X  1664.259980330209  1.664259980330 km/sec
+
+
+Step with Max Step limits applied:
+Name                                       Scaled        Unscaled
+DV2 : ImpulsiveMnvr.Cartesian.X  300.000000000000  0.300000000000 km/sec
+
+
+Step final values:
+
+Unscaled Controls:
+Name                              Current Value            Last Update        Total Correction
+DV2 : ImpulsiveMnvr.Cartesian.X  0.600000000000 km/sec  0.300000000000 km/sec   0.600000000000 km/sec
+
+
+Unscaled Intermediate Constraints:
+Name                 Current Value         Desired      Difference       Tolerance
+DV2 : Eccentricity  0.486805797411  0.000000000000  0.486805797411  0.000100000000
+
+
+
+-------------------------------------------------------------
+Iteration =   3
+Unscaled Intermediate Constraints:
+Name                 Current Value         Desired      Difference       Tolerance
+DV2 : Eccentricity  0.486805797411  0.000000000000  0.486805797411  0.000100000000
+
+
+
+Updating partials with Secant method...
+
+Partial derivative matrix (scaled) :
+
+   -0.000434252654529
+
+Secant Update Done...
+
+DC proposed step:
+Name                                        Scaled        Unscaled
+DV2 : ImpulsiveMnvr.Cartesian.X  1121.019738931657  1.121019738932 km/sec
+
+
+Step with Max Step limits applied:
+Name                                       Scaled        Unscaled
+DV2 : ImpulsiveMnvr.Cartesian.X  300.000000000000  0.300000000000 km/sec
+
+
+Step final values:
+
+Unscaled Controls:
+Name                              Current Value            Last Update        Total Correction
+DV2 : ImpulsiveMnvr.Cartesian.X  0.900000000000 km/sec  0.300000000000 km/sec   0.900000000000 km/sec
+
+
+Unscaled Intermediate Constraints:
+Name                 Current Value         Desired      Difference       Tolerance
+DV2 : Eccentricity  0.337489516675  0.000000000000  0.337489516675  0.000100000000
+
+
+
+-------------------------------------------------------------
+Iteration =   4
+Unscaled Intermediate Constraints:
+Name                 Current Value         Desired      Difference       Tolerance
+DV2 : Eccentricity  0.337489516675  0.000000000000  0.337489516675  0.000100000000
+
+
+
+Updating partials with Secant method...
+
+Partial derivative matrix (scaled) :
+
+   -0.000497720935786
+
+Secant Update Done...
+
+DC proposed step:
+Name                                       Scaled        Unscaled
+DV2 : ImpulsiveMnvr.Cartesian.X  678.069762410472  0.678069762410 km/sec
+
+
+Step with Max Step limits applied:
+Name                                       Scaled        Unscaled
+DV2 : ImpulsiveMnvr.Cartesian.X  300.000000000000  0.300000000000 km/sec
+
+
+Step final values:
+
+Unscaled Controls:
+Name                              Current Value            Last Update        Total Correction
+DV2 : ImpulsiveMnvr.Cartesian.X  1.200000000000 km/sec  0.300000000000 km/sec   1.200000000000 km/sec
+
+
+Unscaled Intermediate Constraints:
+Name                 Current Value         Desired      Difference       Tolerance
+DV2 : Eccentricity  0.169132751562  0.000000000000  0.169132751562  0.000100000000
+
+
+
+-------------------------------------------------------------
+Iteration =   5
+Unscaled Intermediate Constraints:
+Name                 Current Value         Desired      Difference       Tolerance
+DV2 : Eccentricity  0.169132751562  0.000000000000  0.169132751562  0.000100000000
+
+
+
+Updating partials with Secant method...
+
+Partial derivative matrix (scaled) :
+
+   -0.000561189217042
+
+Secant Update Done...
+
+DC proposed step:
+Name                                       Scaled        Unscaled
+DV2 : ImpulsiveMnvr.Cartesian.X  301.382753670260  0.301382753670 km/sec
+
+
+Step with Max Step limits applied:
+Name                                       Scaled        Unscaled
+DV2 : ImpulsiveMnvr.Cartesian.X  300.000000000000  0.300000000000 km/sec
+
+
+Step final values:
+
+Unscaled Controls:
+Name                              Current Value            Last Update        Total Correction
+DV2 : ImpulsiveMnvr.Cartesian.X  1.500000000000 km/sec  0.300000000000 km/sec   1.500000000000 km/sec
+
+
+Unscaled Intermediate Constraints:
+Name                 Current Value         Desired      Difference       Tolerance
+DV2 : Eccentricity  0.018264497927  0.000000000000  0.018264497927  0.000100000000
+
+
+
+-------------------------------------------------------------
+Iteration =   6
+Unscaled Intermediate Constraints:
+Name                 Current Value         Desired      Difference       Tolerance
+DV2 : Eccentricity  0.018264497927  0.000000000000  0.018264497927  0.000100000000
+
+
+
+Updating partials with Secant method...
+
+Partial derivative matrix (scaled) :
+
+   -0.000502894178783
+
+Secant Update Done...
+
+DC proposed step:
+Name                                      Scaled        Unscaled
+DV2 : ImpulsiveMnvr.Cartesian.X  36.318769828774  0.036318769829 km/sec
+
+
+Step with Max Step limits applied:
+Name                                      Scaled        Unscaled
+DV2 : ImpulsiveMnvr.Cartesian.X  36.318769828774  0.036318769829 km/sec
+
+
+Step final values:
+
+Unscaled Controls:
+Name                              Current Value            Last Update        Total Correction
+DV2 : ImpulsiveMnvr.Cartesian.X  1.536318769829 km/sec  0.036318769829 km/sec   1.536318769829 km/sec
+
+
+Unscaled Intermediate Constraints:
+Name                 Current Value         Desired      Difference       Tolerance
+DV2 : Eccentricity  0.042243364828  0.000000000000  0.042243364828  0.000100000000
+
+
+
+-------------------------------------------------------------
+Iteration =   7
+Unscaled Intermediate Constraints:
+Name                 Current Value         Desired      Difference       Tolerance
+DV2 : Eccentricity  0.042243364828  0.000000000000  0.042243364828  0.000100000000
+
+
+
+Updating partials with Secant method...
+
+Partial derivative matrix (scaled) :
+
+    0.000660233455424
+
+Secant Update Done...
+
+DC proposed step:
+Name                                      Scaled        Unscaled
+DV2 : ImpulsiveMnvr.Cartesian.X -63.982466324911 -0.063982466325 km/sec
+
+
+Step with Max Step limits applied:
+Name                                      Scaled        Unscaled
+DV2 : ImpulsiveMnvr.Cartesian.X -63.982466324911 -0.063982466325 km/sec
+
+
+Step final values:
+
+Unscaled Controls:
+Name                              Current Value            Last Update        Total Correction
+DV2 : ImpulsiveMnvr.Cartesian.X  1.472336303504 km/sec -0.063982466325 km/sec   1.472336303504 km/sec
+
+
+Unscaled Intermediate Constraints:
+Name                 Current Value         Desired      Difference       Tolerance
+DV2 : Eccentricity  0.000187230538  0.000000000000  0.000187230538  0.000100000000
+
+
+
+-------------------------------------------------------------
+Iteration =   8
+Unscaled Intermediate Constraints:
+Name                 Current Value         Desired      Difference       Tolerance
+DV2 : Eccentricity  0.000187230538  0.000000000000  0.000187230538  0.000100000000
+
+
+
+Updating partials with Secant method...
+
+Partial derivative matrix (scaled) :
+
+     0.00065730717658
+
+Secant Update Done...
+
+DC proposed step:
+Name                                     Scaled        Unscaled
+DV2 : ImpulsiveMnvr.Cartesian.X -0.284844809686 -0.000284844810 km/sec
+
+
+Step with Max Step limits applied:
+Name                                     Scaled        Unscaled
+DV2 : ImpulsiveMnvr.Cartesian.X -0.284844809686 -0.000284844810 km/sec
+
+
+Step final values:
+
+Unscaled Controls:
+Name                              Current Value            Last Update        Total Correction
+DV2 : ImpulsiveMnvr.Cartesian.X  1.472051458694 km/sec -0.000284844810 km/sec   1.472051458694 km/sec
+
+
+Unscaled Intermediate Constraints:
+Name                 Current Value         Desired      Difference       Tolerance
+DV2 : Eccentricity  0.000001936821  0.000000000000  0.000001936821  0.000100000000
+
+
+
+--------------------------------------------------------
+
+<<< Targeting Finished >>>
+    [Goals met]
+
+
+--------------------------------------------------------
+
+---Done. (running one step of the differential corrector.)
+
+Params from single diff corr
+
+Unscaled Controls:
+Name                              Current Value            Last Update        Total Correction
+DV2 : ImpulsiveMnvr.Cartesian.X  1.472051458694 km/sec -0.000284844810 km/sec   1.472051458694 km/sec
+
+
+Unscaled Intermediate Constraints:
+Name                 Current Value         Desired      Difference       Tolerance
+DV2 : Eccentricity  0.000001936821  0.000000000000  0.000001936821  0.000100000000
+
+
+
+----------------------------------------------
+Final Params from Homotopy Diff Corr
+
+Unscaled Controls:
+Name                              Current Value            Last Update        Total Correction
+DV2 : ImpulsiveMnvr.Cartesian.X  1.472051458694 km/sec -0.000284844810 km/sec   1.472051458694 km/sec
+
+
+Unscaled Intermediate Constraints:
+Name                 Current Value         Desired      Difference       Tolerance
+DV2 : Eccentricity  0.000001936821  0.000000000000  0.000001936821  0.000100000000
+
+
+
+----------------------------------------------
+
+*********** Done Targeting************************
+
+End targeter profile Finish_Transfer.Differential_Corrector

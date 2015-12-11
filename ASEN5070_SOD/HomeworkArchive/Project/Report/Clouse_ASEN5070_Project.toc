@@ -1,0 +1,12 @@
+\contentsline {section}{\numberline {I}The Orbit Determination Problem}{3}{section.1}
+\contentsline {section}{\numberline {II}Batch Processing Algorithm}{3}{section.2}
+\contentsline {section}{\numberline {III}Conventional Kalman Filter}{3}{section.3}
+\contentsline {section}{\numberline {IV}Simulation Setup and Results: Batch vs. CKF}{4}{section.4}
+\contentsline {section}{\numberline {V}Discussion: Batch vs. CKF}{8}{section.5}
+\contentsline {section}{\numberline {VI}Processing of Only One Measurement Type}{9}{section.6}
+\contentsline {section}{\numberline {VII}Ground Station Knowledge}{10}{section.7}
+\contentsline {section}{\numberline {VIII}Potter Square Root Formulation for the CKF}{13}{section.8}
+\contentsline {section}{\numberline {IX}Varying Data Noise and \textit {A Priori} Covariance Matrices}{14}{section.9}
+\contentsline {section}{\numberline {X}Conclusion and Recommendations}{17}{section.10}
+\contentsline {section}{\numberline {XI}Appendix A: Supplemental Data}{18}{section.11}
+\contentsline {section}{\numberline {XII}Appendix B: Code}{20}{section.12}

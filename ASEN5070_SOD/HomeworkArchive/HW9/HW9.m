@@ -128,3 +128,7 @@ fprintf('Estimated State Deviation Error\n')
 for ii = 1:consts.state_len
     fprintf('%.0e\n',x_diff(ii))
 end
+
+x_est_batch = x_est;
+chol_info_mat = chol(info_mat,'lower');
+P0_est_batch = chol_info_mat'\inv(chol_info_mat);

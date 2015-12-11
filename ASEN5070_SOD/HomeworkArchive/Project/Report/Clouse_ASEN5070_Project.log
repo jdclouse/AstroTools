@@ -1,0 +1,1074 @@
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.4.5)  15 DEC 2014 08:08
+entering extended mode
+**C:/Users/John/Documents/Astro/ASEN5070_SOD/HomeworkArchive/Project/Report/Clo
+use_ASEN5070_Project.tex
+
+(C:/Users/John/Documents/Astro/ASEN5070_SOD/HomeworkArchive/Project/Report/Clou
+se_ASEN5070_Project.tex
+LaTeX2e <2011/06/27>
+Babel <v3.8m> and hyphenation patterns for english, afrikaans, ancientgreek, ar
+abic, armenian, assamese, basque, bengali, bokmal, bulgarian, catalan, coptic, 
+croatian, czech, danish, dutch, esperanto, estonian, farsi, finnish, french, ga
+lician, german, german-x-2012-05-30, greek, gujarati, hindi, hungarian, iceland
+ic, indonesian, interlingua, irish, italian, kannada, kurmanji, latin, latvian,
+ lithuanian, malayalam, marathi, mongolian, mongolianlmc, monogreek, ngerman, n
+german-x-2012-05-30, nynorsk, oriya, panjabi, pinyin, polish, portuguese, roman
+ian, russian, sanskrit, serbian, slovak, slovenian, spanish, swedish, swissgerm
+an, tamil, telugu, turkish, turkmen, ukenglish, ukrainian, uppersorbian, usengl
+ishmax, welsh, loaded.
+
+If latex fails to find aiaa-tc, read the README file!
+("C:\Program Files\MiKTeX 2.9\tex\latex\aiaa\aiaa-tc.cls"
+Document Class: aiaa-tc 2004/04/03 v3.5 AIAA technical conference paper
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\article.cls"
+Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\size10.clo"
+File: size10.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
+)
+\c@part=\count79
+\c@section=\count80
+\c@subsection=\count81
+\c@subsubsection=\count82
+\c@paragraph=\count83
+\c@subparagraph=\count84
+\c@figure=\count85
+\c@table=\count86
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\geometry\geometry.sty"
+Package: geometry 2010/09/12 v5.6 Page Geometry
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\keyval.sty"
+Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
+\KV@toks@=\toks14
+)
+("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\ifpdf.sty"
+Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
+Package ifpdf Info: pdfTeX in PDF mode is detected.
+)
+("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\ifvtex.sty"
+Package: ifvtex 2010/03/01 v1.5 Detect VTeX and its facilities (HO)
+Package ifvtex Info: VTeX not detected.
+)
+("C:\Program Files\MiKTeX 2.9\tex\generic\ifxetex\ifxetex.sty"
+Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
+)
+\Gm@cnth=\count87
+\Gm@cntv=\count88
+\c@Gm@tempcnt=\count89
+\Gm@bindingoffset=\dimen103
+\Gm@wd@mp=\dimen104
+\Gm@odd@mp=\dimen105
+\Gm@even@mp=\dimen106
+\Gm@layoutwidth=\dimen107
+\Gm@layoutheight=\dimen108
+\Gm@layouthoffset=\dimen109
+\Gm@layoutvoffset=\dimen110
+\Gm@dimlist=\toks15
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\geometry\geometry.cfg"))
+("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\graphicx.sty"
+Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\graphics.sty"
+Package: graphics 2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\trig.sty"
+Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\00miktex\graphics.cfg"
+File: graphics.cfg 2007/01/18 v1.5 graphics configuration of teTeX/TeXLive
+)
+Package graphics Info: Driver file: pdftex.def on input line 91.
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\pdftex-def\pdftex.def"
+File: pdftex.def 2011/05/27 v0.06d Graphics/color for pdfTeX
+
+("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\infwarerr.sty"
+Package: infwarerr 2010/04/08 v1.3 Providing info/warning/error messages (HO)
+)
+("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\ltxcmds.sty"
+Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
+)
+\Gread@gobject=\count90
+))
+\Gin@req@height=\dimen111
+\Gin@req@width=\dimen112
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\tools\array.sty"
+Package: array 2008/09/09 v2.4c Tabular extension package (FMi)
+\col@sep=\dimen113
+\extrarowheight=\dimen114
+\NC@list=\toks16
+\extratabsurround=\skip43
+\backup@length=\skip44
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\cite\overcite.sty"
+Package: overcite 1999/04/23  v 3.8
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\lastpage\lastpage.sty"
+Package: lastpage 2013/01/28 v1.2l Refers to last page's name (HMM; JPG)
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\fancyhdr\fancyhdr.sty"
+\fancy@headwidth=\skip45
+\f@ncyO@elh=\skip46
+\f@ncyO@erh=\skip47
+\f@ncyO@olh=\skip48
+\f@ncyO@orh=\skip49
+\f@ncyO@elf=\skip50
+\f@ncyO@erf=\skip51
+\f@ncyO@olf=\skip52
+\f@ncyO@orf=\skip53
+)
+\c@aiaa@cthanks=\count91
+\c@aiaa@cfootnote=\count92
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\float\float.sty"
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count93
+\float@exts=\toks17
+\float@box=\box26
+\@float@everytoks=\toks18
+\@floatcapt=\box27
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\oberdiek\epstopdf.sty"
+Package: epstopdf 2010/02/09 v2.5 Conversion with epstopdf on the fly (HO)
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\oberdiek\epstopdf-base.sty"
+Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\oberdiek\grfext.sty"
+Package: grfext 2010/08/19 v1.1 Manage graphics extensions (HO)
+
+("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\kvdefinekeys.sty"
+Package: kvdefinekeys 2011/04/07 v1.3 Define keys (HO)
+))
+("C:\Program Files\MiKTeX 2.9\tex\latex\oberdiek\kvoptions.sty"
+Package: kvoptions 2011/06/30 v3.11 Key value format for package options (HO)
+
+("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\kvsetkeys.sty"
+Package: kvsetkeys 2012/04/25 v1.16 Key value parser (HO)
+
+("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\etexcmds.sty"
+Package: etexcmds 2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
+
+("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\ifluatex.sty"
+Package: ifluatex 2010/03/01 v1.3 Provides the ifluatex switch (HO)
+Package ifluatex Info: LuaTeX not detected.
+)
+Package etexcmds Info: Could not find \expanded.
+(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
+(etexcmds)             that some package has redefined \expanded.
+(etexcmds)             In the latter case, load this package earlier.
+)))
+("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\pdftexcmds.sty"
+Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
+)
+Package pdftexcmds Info: LuaTeX not detected.
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+)
+Package grfext Info: Graphics extension search list:
+(grfext)             [.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPE
+G,.JBIG2,.JB2,.eps]
+(grfext)             \AppendGraphicsExtensions on input line 452.
+))
+("C:\Program Files\MiKTeX 2.9\tex\latex\textgreek\textgreek.sty"
+Package: textgreek 2011/10/09 v0.7 Greek symbols in text
+Package textgreek Info: Loading the definitions for the Greek fontencoding. on 
+input line 39.
+
+("C:\Program Files\MiKTeX 2.9\tex\generic\babel\lgrenc.def"
+File: lgrenc.def 2008/06/17 v2.3 Greek Encoding
+)
+Package textgreek Info: Loaded fontmap: {phv/*/*}{U/psy/*/*} {*/bx/n}{U/eur/b/n
+} {*/b/n}{U/eur/b/n} {*/*/n}{U/eur/m/n} {*/*/it}{OML/*/*/*}. on input line 69.
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\hyperref\hyperref.sty"
+Package: hyperref 2012/11/06 v6.83m Hypertext links for LaTeX
+
+("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\hobsub-hyperref.sty"
+Package: hobsub-hyperref 2012/04/25 v1.12 Bundle oberdiek, subset hyperref (HO)
+
+
+("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\hobsub-generic.sty"
+Package: hobsub-generic 2012/04/25 v1.12 Bundle oberdiek, subset generic (HO)
+Package: hobsub 2012/04/25 v1.12 Construct package bundles (HO)
+Package hobsub Info: Skipping package `infwarerr' (already loaded).
+Package hobsub Info: Skipping package `ltxcmds' (already loaded).
+Package hobsub Info: Skipping package `ifluatex' (already loaded).
+Package hobsub Info: Skipping package `ifvtex' (already loaded).
+Package: intcalc 2007/09/27 v1.1 Expandable calculations with integers (HO)
+Package hobsub Info: Skipping package `ifpdf' (already loaded).
+Package hobsub Info: Skipping package `etexcmds' (already loaded).
+Package hobsub Info: Skipping package `kvsetkeys' (already loaded).
+Package hobsub Info: Skipping package `kvdefinekeys' (already loaded).
+Package hobsub Info: Skipping package `pdftexcmds' (already loaded).
+Package: pdfescape 2011/11/25 v1.13 Implements pdfTeX's escape features (HO)
+Package: bigintcalc 2012/04/08 v1.3 Expandable calculations on big integers (HO
+)
+Package: bitset 2011/01/30 v1.1 Handle bit-vector datatype (HO)
+Package: uniquecounter 2011/01/30 v1.2 Provide unlimited unique counter (HO)
+)
+Package hobsub Info: Skipping package `hobsub' (already loaded).
+Package: letltxmacro 2010/09/02 v1.4 Let assignment for LaTeX macros (HO)
+Package: hopatch 2011/06/24 v1.1 Wrapper for package hooks (HO)
+Package: xcolor-patch 2011/01/30 xcolor patch
+Package: atveryend 2011/06/30 v1.8 Hooks at the very end of document (HO)
+Package atveryend Info: \enddocument detected (standard20110627).
+Package: atbegshi 2011/10/05 v1.16 At begin shipout hook (HO)
+Package: refcount 2011/10/16 v3.4 Data extraction from label references (HO)
+Package: hycolor 2011/01/30 v1.7 Color options for hyperref/bookmark (HO)
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\oberdiek\auxhook.sty"
+Package: auxhook 2011/03/04 v1.3 Hooks for auxiliary files (HO)
+)
+\@linkdim=\dimen115
+\Hy@linkcounter=\count94
+\Hy@pagecounter=\count95
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\hyperref\pd1enc.def"
+File: pd1enc.def 2012/11/06 v6.83m Hyperref: PDFDocEncoding definition (HO)
+)
+\Hy@SavedSpaceFactor=\count96
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\00miktex\hyperref.cfg"
+File: hyperref.cfg 2002/06/06 v1.2 hyperref configuration of TeXLive
+)
+Package hyperref Info: Option `colorlinks' set `true' on input line 4319.
+Package hyperref Info: Hyper figures OFF on input line 4443.
+Package hyperref Info: Link nesting OFF on input line 4448.
+Package hyperref Info: Hyper index ON on input line 4451.
+Package hyperref Info: Plain pages OFF on input line 4458.
+Package hyperref Info: Backreferencing OFF on input line 4463.
+Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
+Package hyperref Info: Bookmarks ON on input line 4688.
+\c@Hy@tempcnt=\count97
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\ltxmisc\url.sty"
+\Urlmuskip=\muskip10
+Package: url 2006/04/12  ver 3.3  Verb mode for urls, etc.
+)
+LaTeX Info: Redefining \url on input line 5041.
+\XeTeXLinkMargin=\dimen116
+\Fld@menulength=\count98
+\Field@Width=\dimen117
+\Fld@charsize=\dimen118
+Package hyperref Info: Hyper figures OFF on input line 6295.
+Package hyperref Info: Link nesting OFF on input line 6300.
+Package hyperref Info: Hyper index ON on input line 6303.
+Package hyperref Info: backreferencing OFF on input line 6310.
+Package hyperref Info: Link coloring ON on input line 6313.
+Package hyperref Info: Link coloring with OCG OFF on input line 6320.
+Package hyperref Info: PDF/A mode OFF on input line 6325.
+LaTeX Info: Redefining \ref on input line 6365.
+LaTeX Info: Redefining \pageref on input line 6369.
+\Hy@abspage=\count99
+\c@Item=\count100
+\c@Hfootnote=\count101
+)
+
+Package hyperref Message: Driver (autodetected): hpdftex.
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\hyperref\hpdftex.def"
+File: hpdftex.def 2012/11/06 v6.83m Hyperref driver for pdfTeX
+\Fld@listcount=\count102
+\c@bookmark@seq@number=\count103
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\oberdiek\rerunfilecheck.sty"
+Package: rerunfilecheck 2011/04/15 v1.7 Rerun checks for auxiliary files (HO)
+Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
+82.
+)
+\Hy@SectionHShift=\skip54
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\listings\listings.sty"
+\lst@mode=\count104
+\lst@gtempboxa=\box28
+\lst@token=\toks19
+\lst@length=\count105
+\lst@currlwidth=\dimen119
+\lst@column=\count106
+\lst@pos=\count107
+\lst@lostspace=\dimen120
+\lst@width=\dimen121
+\lst@newlines=\count108
+\lst@lineno=\count109
+\lst@maxwidth=\dimen122
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\listings\lstmisc.sty"
+File: lstmisc.sty 2007/02/22 1.4 (Carsten Heinz)
+\c@lstnumber=\count110
+\lst@skipnumbers=\count111
+\lst@framebox=\box29
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\listings\listings.cfg"
+File: listings.cfg 2007/02/22 1.4 listings configuration
+))
+Package: listings 2007/02/22 1.4 (Carsten Heinz)
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\color.sty"
+Package: color 2005/11/14 v1.0j Standard LaTeX Color (DPC)
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\00miktex\color.cfg"
+File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
+)
+Package color Info: Driver file: pdftex.def on input line 130.
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\tablefootnote\tablefootnote.sty"
+Package: tablefootnote 2012/07/29 v1.0h Table foot notes (HMM)
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\etoolbox\etoolbox.sty"
+Package: etoolbox 2011/01/03 v2.1 e-TeX tools for LaTeX
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\misc\etex.sty"
+Package: etex 1998/03/26 v2.0 eTeX basic definition package (PEB)
+\et@xins=\count112
+)
+\etb@tempcnta=\count113
+))
+("C:\Program Files\MiKTeX 2.9\tex\latex\amsmath\amsmath.sty"
+Package: amsmath 2013/01/14 v2.14 AMS math features
+\@mathmargin=\skip55
+
+For additional information on amsmath, use the `?' option.
+("C:\Program Files\MiKTeX 2.9\tex\latex\amsmath\amstext.sty"
+Package: amstext 2000/06/29 v2.01
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\amsmath\amsgen.sty"
+File: amsgen.sty 1999/11/30 v2.0
+\@emptytoks=\toks20
+\ex@=\dimen123
+))
+("C:\Program Files\MiKTeX 2.9\tex\latex\amsmath\amsbsy.sty"
+Package: amsbsy 1999/11/29 v1.2d
+\pmbraise@=\dimen124
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\amsmath\amsopn.sty"
+Package: amsopn 1999/12/14 v2.01 operator names
+)
+\inf@bad=\count114
+LaTeX Info: Redefining \frac on input line 210.
+\uproot@=\count115
+\leftroot@=\count116
+LaTeX Info: Redefining \overline on input line 306.
+\classnum@=\count117
+\DOTSCASE@=\count118
+LaTeX Info: Redefining \ldots on input line 378.
+LaTeX Info: Redefining \dots on input line 381.
+LaTeX Info: Redefining \cdots on input line 466.
+\Mathstrutbox@=\box30
+\strutbox@=\box31
+\big@size=\dimen125
+LaTeX Font Info:    Redeclaring font encoding OML on input line 566.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 567.
+\macc@depth=\count119
+\c@MaxMatrixCols=\count120
+\dotsspace@=\muskip11
+\c@parentequation=\count121
+\dspbrk@lvl=\count122
+\tag@help=\toks21
+\row@=\count123
+\column@=\count124
+\maxfields@=\count125
+\andhelp@=\toks22
+\eqnshift@=\dimen126
+\alignsep@=\dimen127
+\tagshift@=\dimen128
+\tagwidth@=\dimen129
+\totwidth@=\dimen130
+\lineht@=\dimen131
+\@envbody=\toks23
+\multlinegap=\skip56
+\multlinetaggap=\skip57
+\mathdisplay@stack=\toks24
+LaTeX Info: Redefining \[ on input line 2665.
+LaTeX Info: Redefining \] on input line 2666.
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\tools\bm.sty"
+Package: bm 2004/02/26 v1.1c Bold Symbol Support (DPC/FMi)
+\symboldoperators=\mathgroup4
+\symboldletters=\mathgroup5
+\symboldsymbols=\mathgroup6
+LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 138.
+LaTeX Info: Redefining \bm on input line 204.
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\subfigure\subfigure.sty"
+Package: subfigure 2002/07/30 v2.1.4 subfigure package
+\subfigtopskip=\skip58
+\subfigcapskip=\skip59
+\subfigcaptopadj=\dimen132
+\subfigbottomskip=\skip60
+\subfigcapmargin=\dimen133
+\subfiglabelskip=\skip61
+\c@subfigure=\count126
+\c@lofdepth=\count127
+\c@subtable=\count128
+\c@lotdepth=\count129
+
+****************************************
+* Local config file subfigure.cfg used *
+****************************************
+("C:\Program Files\MiKTeX 2.9\tex\latex\subfigure\subfigure.cfg")
+\subfig@top=\skip62
+\subfig@bottom=\skip63
+)
+Package color Info: Redefining color mylilas on input line 89.
+
+(C:\Users\John\Documents\Astro\ASEN5070_SOD\HomeworkArchive\Project\Report\Clou
+se_ASEN5070_Project.aux)
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 111.
+LaTeX Font Info:    ... okay on input line 111.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 111.
+LaTeX Font Info:    ... okay on input line 111.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 111.
+LaTeX Font Info:    ... okay on input line 111.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 111.
+LaTeX Font Info:    ... okay on input line 111.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 111.
+LaTeX Font Info:    ... okay on input line 111.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 111.
+LaTeX Font Info:    ... okay on input line 111.
+LaTeX Font Info:    Checking defaults for LGR/cmr/m/n on input line 111.
+LaTeX Font Info:    Try loading font information for LGR+cmr on input line 111.
+
+
+("C:\Program Files\MiKTeX 2.9\tex\generic\babel\lgrcmr.fd"
+File: lgrcmr.fd 2008/06/17 v2.3 Greek Computer Modern
+)
+LaTeX Font Info:    ... okay on input line 111.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 111.
+LaTeX Font Info:    ... okay on input line 111.
+
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+*geometry* verbose mode - [ preamble ] result:
+* driver: pdftex
+* paper: <default>
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(72.26999pt, 469.75502pt, 72.26999pt)
+* v-part:(T,H,B)=(54.2025pt, 668.4975pt, 72.26999pt)
+* \paperwidth=614.295pt
+* \paperheight=794.96999pt
+* \textwidth=469.75502pt
+* \textheight=668.4975pt
+* \oddsidemargin=0.0pt
+* \evensidemargin=0.0pt
+* \topmargin=-55.06749pt
+* \headheight=12.0pt
+* \headsep=25.0pt
+* \topskip=10.0pt
+* \footskip=30.0pt
+* \marginparwidth=65.0pt
+* \marginparsep=11.0pt
+* \columnsep=10.0pt
+* \skip\footins=9.0pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+("C:\Program Files\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count130
+\scratchdimen=\dimen134
+\scratchbox=\box32
+\nofMPsegments=\count131
+\nofMParguments=\count132
+\everyMPshowfont=\toks25
+\MPscratchCnt=\count133
+\MPscratchDim=\dimen135
+\MPnumerator=\count134
+\makeMPintoPDFobject=\count135
+\everyMPtoPDFconversion=\toks26
+)
+Package lastpage Info: Please have a look at the pageslts package at
+(lastpage)             http://www.ctan.org/tex-archive/ 
+(lastpage)             macros/latex/contrib/pageslts/ 
+(lastpage)             or
+(lastpage)             http://www.ctan.org/tex-archive/ 
+(lastpage)             install/macros/latex/contrib/pageslts.tds.zip
+(lastpage)             ! on input line 111.
+\AtBeginShipoutBox=\box33
+Package hyperref Info: Link coloring ON on input line 111.
+ ("C:\Program Files\MiKTeX 2.9\tex\latex\hyperref\nameref.sty"
+Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
+
+("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\gettitlestring.sty"
+Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
+)
+\c@section@level=\count136
+)
+LaTeX Info: Redefining \ref on input line 111.
+LaTeX Info: Redefining \pageref on input line 111.
+LaTeX Info: Redefining \nameref on input line 111.
+
+(C:\Users\John\Documents\Astro\ASEN5070_SOD\HomeworkArchive\Project\Report\Clou
+se_ASEN5070_Project.out)
+(C:\Users\John\Documents\Astro\ASEN5070_SOD\HomeworkArchive\Project\Report\Clou
+se_ASEN5070_Project.out)
+\@outlinefile=\write3
+\c@lstlisting=\count137
+ [1
+
+{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}]
+(C:\Users\John\Documents\Astro\ASEN5070_SOD\HomeworkArchive\Project\Report\Clou
+se_ASEN5070_Project.toc)
+\tf@toc=\write4
+ [2] [3]
+Package epstopdf Info: Source file: <Batch_Prefit.eps>
+(epstopdf)                    date: 2014-12-13 19:33:14
+(epstopdf)                    size: 26256 bytes
+(epstopdf)             Output file: <Batch_Prefit-eps-converted-to.pdf>
+(epstopdf)                    date: 2014-12-13 19:33:20
+(epstopdf)                    size: 43271 bytes
+(epstopdf)             Command: <epstopdf --outfile=Batch_Prefit-eps-converted-
+to.pdf Batch_Prefit.eps>
+(epstopdf)             \includegraphics on input line 221.
+Package epstopdf Info: Output file is already uptodate.
+
+<Batch_Prefit-eps-converted-to.pdf, id=106, 509.905pt x 404.51125pt>
+File: Batch_Prefit-eps-converted-to.pdf Graphic file (type pdf)
+
+<use Batch_Prefit-eps-converted-to.pdf>
+Package pdftex.def Info: Batch_Prefit-eps-converted-to.pdf used on input line 2
+21.
+(pdftex.def)             Requested size: 284.54115pt x 225.72852pt.
+ [4] [5 <C:/Users/John/Documents/Astro/ASEN5070_SOD/HomeworkArchive/Project/Rep
+ort/Batch_Prefit-eps-converted-to.pdf>]
+Package epstopdf Info: Source file: <Batch_PostFit.eps>
+(epstopdf)                    date: 2014-12-13 19:47:14
+(epstopdf)                    size: 49051 bytes
+(epstopdf)             Output file: <Batch_PostFit-eps-converted-to.pdf>
+(epstopdf)                    date: 2014-12-13 19:47:20
+(epstopdf)                    size: 16235 bytes
+(epstopdf)             Command: <epstopdf --outfile=Batch_PostFit-eps-converted
+-to.pdf Batch_PostFit.eps>
+(epstopdf)             \includegraphics on input line 287.
+Package epstopdf Info: Output file is already uptodate.
+
+<Batch_PostFit-eps-converted-to.pdf, id=134, 506.89375pt x 400.49625pt>
+File: Batch_PostFit-eps-converted-to.pdf Graphic file (type pdf)
+
+<use Batch_PostFit-eps-converted-to.pdf>
+Package pdftex.def Info: Batch_PostFit-eps-converted-to.pdf used on input line 
+287.
+(pdftex.def)             Requested size: 284.53148pt x 224.80803pt.
+Package epstopdf Info: Source file: <CKF_PostFit.eps>
+(epstopdf)                    date: 2014-12-14 21:10:12
+(epstopdf)                    size: 24443 bytes
+(epstopdf)             Output file: <CKF_PostFit-eps-converted-to.pdf>
+(epstopdf)                    date: 2014-12-14 21:10:17
+(epstopdf)                    size: 7882 bytes
+(epstopdf)             Command: <epstopdf --outfile=CKF_PostFit-eps-converted-t
+o.pdf CKF_PostFit.eps>
+(epstopdf)             \includegraphics on input line 295.
+Package epstopdf Info: Output file is already uptodate.
+
+<CKF_PostFit-eps-converted-to.pdf, id=135, 500.87125pt x 404.51125pt>
+File: CKF_PostFit-eps-converted-to.pdf Graphic file (type pdf)
+
+<use CKF_PostFit-eps-converted-to.pdf>
+Package pdftex.def Info: CKF_PostFit-eps-converted-to.pdf used on input line 29
+5.
+(pdftex.def)             Requested size: 199.16797pt x 160.85109pt.
+Package epstopdf Info: Source file: <CKF_Joseph_PostFit.eps>
+(epstopdf)                    date: 2014-12-14 21:10:15
+(epstopdf)                    size: 24243 bytes
+(epstopdf)             Output file: <CKF_Joseph_PostFit-eps-converted-to.pdf>
+(epstopdf)                    date: 2014-12-14 21:10:17
+(epstopdf)                    size: 7790 bytes
+(epstopdf)             Command: <epstopdf --outfile=CKF_Joseph_PostFit-eps-conv
+erted-to.pdf CKF_Joseph_PostFit.eps>
+(epstopdf)             \includegraphics on input line 298.
+Package epstopdf Info: Output file is already uptodate.
+
+<CKF_Joseph_PostFit-eps-converted-to.pdf, id=136, 506.89375pt x 404.51125pt>
+File: CKF_Joseph_PostFit-eps-converted-to.pdf Graphic file (type pdf)
+
+<use CKF_Joseph_PostFit-eps-converted-to.pdf>
+Package pdftex.def Info: CKF_Joseph_PostFit-eps-converted-to.pdf used on input 
+line 298.
+(pdftex.def)             Requested size: 199.16507pt x 158.93767pt.
+ [6 <C:/Users/John/Documents/Astro/ASEN5070_SOD/HomeworkArchive/Project/Report/
+Batch_PostFit-eps-converted-to.pdf>]
+Package epstopdf Info: Source file: <CKF_Cov.eps>
+(epstopdf)                    date: 2014-12-13 23:55:28
+(epstopdf)                    size: 19875 bytes
+(epstopdf)             Output file: <CKF_Cov-eps-converted-to.pdf>
+(epstopdf)                    date: 2014-12-13 23:55:31
+(epstopdf)                    size: 7385 bytes
+(epstopdf)             Command: <epstopdf --outfile=CKF_Cov-eps-converted-to.pd
+f CKF_Cov.eps>
+(epstopdf)             \includegraphics on input line 307.
+Package epstopdf Info: Output file is already uptodate.
+ <CKF_Cov-eps-converted-to.pdf, id=150, 494.84875pt x 404.51125pt>
+File: CKF_Cov-eps-converted-to.pdf Graphic file (type pdf)
+
+<use CKF_Cov-eps-converted-to.pdf>
+Package pdftex.def Info: CKF_Cov-eps-converted-to.pdf used on input line 307.
+(pdftex.def)             Requested size: 284.52827pt x 232.58598pt.
+Package epstopdf Info: Source file: <Batch_Ellipsoid_Final.eps>
+(epstopdf)                    date: 2014-12-13 19:28:15
+(epstopdf)                    size: 174152 bytes
+(epstopdf)             Output file: <Batch_Ellipsoid_Final-eps-converted-to.pdf
+>
+(epstopdf)                    date: 2014-12-13 23:15:54
+(epstopdf)                    size: 30111 bytes
+(epstopdf)             Command: <epstopdf --outfile=Batch_Ellipsoid_Final-eps-c
+onverted-to.pdf Batch_Ellipsoid_Final.eps>
+(epstopdf)             \includegraphics on input line 318.
+Package epstopdf Info: Output file is already uptodate.
+
+<Batch_Ellipsoid_Final-eps-converted-to.pdf, id=152, 512.91624pt x 399.4925pt>
+File: Batch_Ellipsoid_Final-eps-converted-to.pdf Graphic file (type pdf)
+
+<use Batch_Ellipsoid_Final-eps-converted-to.pdf>
+Package pdftex.def Info: Batch_Ellipsoid_Final-eps-converted-to.pdf used on inp
+ut line 318.
+(pdftex.def)             Requested size: 199.16779pt x 155.12482pt.
+Package epstopdf Info: Source file: <CKF_Ellipsoid_Final.eps>
+(epstopdf)                    date: 2014-12-13 19:54:37
+(epstopdf)                    size: 173458 bytes
+(epstopdf)             Output file: <CKF_Ellipsoid_Final-eps-converted-to.pdf>
+(epstopdf)                    date: 2014-12-13 23:15:56
+(epstopdf)                    size: 29824 bytes
+(epstopdf)             Command: <epstopdf --outfile=CKF_Ellipsoid_Final-eps-con
+verted-to.pdf CKF_Ellipsoid_Final.eps>
+(epstopdf)             \includegraphics on input line 321.
+Package epstopdf Info: Output file is already uptodate.
+
+<CKF_Ellipsoid_Final-eps-converted-to.pdf, id=153, 528.97626pt x 400.49625pt>
+File: CKF_Ellipsoid_Final-eps-converted-to.pdf Graphic file (type pdf)
+
+<use CKF_Ellipsoid_Final-eps-converted-to.pdf>
+Package pdftex.def Info: CKF_Ellipsoid_Final-eps-converted-to.pdf used on input
+ line 321.
+(pdftex.def)             Requested size: 199.16469pt x 150.79071pt.
+ [7 <C:/Users/John/Documents/Astro/ASEN5070_SOD/HomeworkArchive/Project/Report/
+CKF_PostFit-eps-converted-to.pdf> <C:/Users/John/Documents/Astro/ASEN5070_SOD/H
+omeworkArchive/Project/Report/CKF_Joseph_PostFit-eps-converted-to.pdf> <C:/User
+s/John/Documents/Astro/ASEN5070_SOD/HomeworkArchive/Project/Report/CKF_Cov-eps-
+converted-to.pdf>] [8 <C:/Users/John/Documents/Astro/ASEN5070_SOD/HomeworkArchi
+ve/Project/Report/Batch_Ellipsoid_Final-eps-converted-to.pdf> <C:/Users/John/Do
+cuments/Astro/ASEN5070_SOD/HomeworkArchive/Project/Report/CKF_Ellipsoid_Final-e
+ps-converted-to.pdf>]
+Package epstopdf Info: Source file: <R_only_Postfit.eps>
+(epstopdf)                    date: 2014-12-14 09:59:34
+(epstopdf)                    size: 32659 bytes
+(epstopdf)             Output file: <R_only_Postfit-eps-converted-to.pdf>
+(epstopdf)                    date: 2014-12-14 10:43:20
+(epstopdf)                    size: 10180 bytes
+(epstopdf)             Command: <epstopdf --outfile=R_only_Postfit-eps-converte
+d-to.pdf R_only_Postfit.eps>
+(epstopdf)             \includegraphics on input line 380.
+Package epstopdf Info: Output file is already uptodate.
+
+<R_only_Postfit-eps-converted-to.pdf, id=196, 506.89375pt x 400.49625pt>
+File: R_only_Postfit-eps-converted-to.pdf Graphic file (type pdf)
+
+<use R_only_Postfit-eps-converted-to.pdf>
+Package pdftex.def Info: R_only_Postfit-eps-converted-to.pdf used on input line
+ 380.
+(pdftex.def)             Requested size: 199.16507pt x 157.36012pt.
+Package epstopdf Info: Source file: <RR_only_Postfit.eps>
+(epstopdf)                    date: 2014-12-14 09:59:52
+(epstopdf)                    size: 33778 bytes
+(epstopdf)             Output file: <RR_only_Postfit-eps-converted-to.pdf>
+(epstopdf)                    date: 2014-12-14 10:43:21
+(epstopdf)                    size: 10247 bytes
+(epstopdf)             Command: <epstopdf --outfile=RR_only_Postfit-eps-convert
+ed-to.pdf RR_only_Postfit.eps>
+(epstopdf)             \includegraphics on input line 383.
+Package epstopdf Info: Output file is already uptodate.
+
+<RR_only_Postfit-eps-converted-to.pdf, id=197, 492.84125pt x 400.49625pt>
+File: RR_only_Postfit-eps-converted-to.pdf Graphic file (type pdf)
+
+<use RR_only_Postfit-eps-converted-to.pdf>
+Package pdftex.def Info: RR_only_Postfit-eps-converted-to.pdf used on input lin
+e 383.
+(pdftex.def)             Requested size: 199.17096pt x 161.85176pt.
+Package epstopdf Info: Source file: <R_only_Ell.eps>
+(epstopdf)                    date: 2014-12-14 09:59:43
+(epstopdf)                    size: 173826 bytes
+(epstopdf)             Output file: <R_only_Ell-eps-converted-to.pdf>
+(epstopdf)                    date: 2014-12-14 10:43:22
+(epstopdf)                    size: 29857 bytes
+(epstopdf)             Command: <epstopdf --outfile=R_only_Ell-eps-converted-to
+.pdf R_only_Ell.eps>
+(epstopdf)             \includegraphics on input line 392.
+Package epstopdf Info: Output file is already uptodate.
+
+<R_only_Ell-eps-converted-to.pdf, id=198, 533.995pt x 403.5075pt>
+File: R_only_Ell-eps-converted-to.pdf Graphic file (type pdf)
+
+<use R_only_Ell-eps-converted-to.pdf>
+Package pdftex.def Info: R_only_Ell-eps-converted-to.pdf used on input line 392
+.
+(pdftex.def)             Requested size: 199.17207pt x 150.50221pt.
+Package epstopdf Info: Source file: <RR_only_Ell.eps>
+(epstopdf)                    date: 2014-12-14 10:00:13
+(epstopdf)                    size: 173588 bytes
+(epstopdf)             Output file: <RR_only_Ell-eps-converted-to.pdf>
+(epstopdf)                    date: 2014-12-14 10:43:23
+(epstopdf)                    size: 29809 bytes
+(epstopdf)             Command: <epstopdf --outfile=RR_only_Ell-eps-converted-t
+o.pdf RR_only_Ell.eps>
+(epstopdf)             \includegraphics on input line 395.
+Package epstopdf Info: Output file is already uptodate.
+
+<RR_only_Ell-eps-converted-to.pdf, id=199, 532.99126pt x 403.5075pt>
+File: RR_only_Ell-eps-converted-to.pdf Graphic file (type pdf)
+
+<use RR_only_Ell-eps-converted-to.pdf>
+Package pdftex.def Info: RR_only_Ell-eps-converted-to.pdf used on input line 39
+5.
+(pdftex.def)             Requested size: 199.16368pt x 150.77928pt.
+ [9 <C:/Users/John/Documents/Astro/ASEN5070_SOD/HomeworkArchive/Project/Report/
+R_only_Postfit-eps-converted-to.pdf> <C:/Users/John/Documents/Astro/ASEN5070_SO
+D/HomeworkArchive/Project/Report/RR_only_Postfit-eps-converted-to.pdf>]
+Package epstopdf Info: Source file: <GS_Turk_PFR.eps>
+(epstopdf)                    date: 2014-12-14 12:58:59
+(epstopdf)                    size: 48331 bytes
+(epstopdf)             Output file: <GS_Turk_PFR-eps-converted-to.pdf>
+(epstopdf)                    date: 2014-12-14 13:32:04
+(epstopdf)                    size: 16370 bytes
+(epstopdf)             Command: <epstopdf --outfile=GS_Turk_PFR-eps-converted-t
+o.pdf GS_Turk_PFR.eps>
+(epstopdf)             \includegraphics on input line 430.
+Package epstopdf Info: Output file is already uptodate.
+
+<GS_Turk_PFR-eps-converted-to.pdf, id=223, 492.84125pt x 400.49625pt>
+File: GS_Turk_PFR-eps-converted-to.pdf Graphic file (type pdf)
+
+<use GS_Turk_PFR-eps-converted-to.pdf>
+Package pdftex.def Info: GS_Turk_PFR-eps-converted-to.pdf used on input line 43
+0.
+(pdftex.def)             Requested size: 199.17096pt x 161.85176pt.
+Package epstopdf Info: Source file: <GS_Gnld_PFR.eps>
+(epstopdf)                    date: 2014-12-14 12:59:14
+(epstopdf)                    size: 48652 bytes
+(epstopdf)             Output file: <GS_Gnld_PFR-eps-converted-to.pdf>
+(epstopdf)                    date: 2014-12-14 13:32:05
+(epstopdf)                    size: 16315 bytes
+(epstopdf)             Command: <epstopdf --outfile=GS_Gnld_PFR-eps-converted-t
+o.pdf GS_Gnld_PFR.eps>
+(epstopdf)             \includegraphics on input line 433.
+Package epstopdf Info: Output file is already uptodate.
+
+<GS_Gnld_PFR-eps-converted-to.pdf, id=224, 500.87125pt x 400.49625pt>
+File: GS_Gnld_PFR-eps-converted-to.pdf Graphic file (type pdf)
+
+<use GS_Gnld_PFR-eps-converted-to.pdf>
+Package pdftex.def Info: GS_Gnld_PFR-eps-converted-to.pdf used on input line 43
+3.
+(pdftex.def)             Requested size: 199.16797pt x 159.25455pt.
+Package epstopdf Info: Source file: <GS_none_PFR.eps>
+(epstopdf)                    date: 2014-12-14 12:58:28
+(epstopdf)                    size: 49380 bytes
+(epstopdf)             Output file: <GS_none_PFR-eps-converted-to.pdf>
+(epstopdf)                    date: 2014-12-14 13:32:06
+(epstopdf)                    size: 16317 bytes
+(epstopdf)             Command: <epstopdf --outfile=GS_none_PFR-eps-converted-t
+o.pdf GS_none_PFR.eps>
+(epstopdf)             \includegraphics on input line 436.
+Package epstopdf Info: Output file is already uptodate.
+
+<GS_none_PFR-eps-converted-to.pdf, id=225, 506.89375pt x 400.49625pt>
+File: GS_none_PFR-eps-converted-to.pdf Graphic file (type pdf)
+
+<use GS_none_PFR-eps-converted-to.pdf>
+Package pdftex.def Info: GS_none_PFR-eps-converted-to.pdf used on input line 43
+6.
+(pdftex.def)             Requested size: 199.16507pt x 157.36012pt.
+ [10 <C:/Users/John/Documents/Astro/ASEN5070_SOD/HomeworkArchive/Project/Report
+/R_only_Ell-eps-converted-to.pdf> <C:/Users/John/Documents/Astro/ASEN5070_SOD/H
+omeworkArchive/Project/Report/RR_only_Ell-eps-converted-to.pdf>]
+Package epstopdf Info: Source file: <GS_Turk_Ell.eps>
+(epstopdf)                    date: 2014-12-14 12:59:32
+(epstopdf)                    size: 172480 bytes
+(epstopdf)             Output file: <GS_Turk_Ell-eps-converted-to.pdf>
+(epstopdf)                    date: 2014-12-14 13:32:07
+(epstopdf)                    size: 29761 bytes
+(epstopdf)             Command: <epstopdf --outfile=GS_Turk_Ell-eps-converted-t
+o.pdf GS_Turk_Ell.eps>
+(epstopdf)             \includegraphics on input line 445.
+Package epstopdf Info: Output file is already uptodate.
+
+<GS_Turk_Ell-eps-converted-to.pdf, id=245, 530.98375pt x 401.5pt>
+File: GS_Turk_Ell-eps-converted-to.pdf Graphic file (type pdf)
+
+<use GS_Turk_Ell-eps-converted-to.pdf>
+Package pdftex.def Info: GS_Turk_Ell-eps-converted-to.pdf used on input line 44
+5.
+(pdftex.def)             Requested size: 199.16702pt x 150.59888pt.
+Package epstopdf Info: Source file: <GS_Gnld_Ell.eps>
+(epstopdf)                    date: 2014-12-14 12:59:42
+(epstopdf)                    size: 171353 bytes
+(epstopdf)             Output file: <GS_Gnld_Ell-eps-converted-to.pdf>
+(epstopdf)                    date: 2014-12-14 13:32:08
+(epstopdf)                    size: 30100 bytes
+(epstopdf)             Command: <epstopdf --outfile=GS_Gnld_Ell-eps-converted-t
+o.pdf GS_Gnld_Ell.eps>
+(epstopdf)             \includegraphics on input line 448.
+Package epstopdf Info: Output file is already uptodate.
+
+<GS_Gnld_Ell-eps-converted-to.pdf, id=246, 505.89pt x 406.51875pt>
+File: GS_Gnld_Ell-eps-converted-to.pdf Graphic file (type pdf)
+
+<use GS_Gnld_Ell-eps-converted-to.pdf>
+Package pdftex.def Info: GS_Gnld_Ell-eps-converted-to.pdf used on input line 44
+8.
+(pdftex.def)             Requested size: 199.17207pt x 160.04898pt.
+Package epstopdf Info: Source file: <GS_none_Ell.eps>
+(epstopdf)                    date: 2014-12-14 13:33:30
+(epstopdf)                    size: 93412 bytes
+(epstopdf)             Output file: <GS_none_Ell-eps-converted-to.pdf>
+(epstopdf)                    date: 2014-12-14 13:33:51
+(epstopdf)                    size: 13471 bytes
+(epstopdf)             Command: <epstopdf --outfile=GS_none_Ell-eps-converted-t
+o.pdf GS_none_Ell.eps>
+(epstopdf)             \includegraphics on input line 451.
+Package epstopdf Info: Output file is already uptodate.
+
+<GS_none_Ell-eps-converted-to.pdf, id=247, 486.81876pt x 224.84pt>
+File: GS_none_Ell-eps-converted-to.pdf Graphic file (type pdf)
+
+<use GS_none_Ell-eps-converted-to.pdf>
+Package pdftex.def Info: GS_none_Ell-eps-converted-to.pdf used on input line 45
+1.
+(pdftex.def)             Requested size: 199.16614pt x 91.98601pt.
+ [11 <C:/Users/John/Documents/Astro/ASEN5070_SOD/HomeworkArchive/Project/Report
+/GS_Turk_PFR-eps-converted-to.pdf> <C:/Users/John/Documents/Astro/ASEN5070_SOD/
+HomeworkArchive/Project/Report/GS_Gnld_PFR-eps-converted-to.pdf> <C:/Users/John
+/Documents/Astro/ASEN5070_SOD/HomeworkArchive/Project/Report/GS_none_PFR-eps-co
+nverted-to.pdf>]
+<CoveragePlot.jpg, id=269, 575.90157pt x 406.51875pt>
+File: CoveragePlot.jpg Graphic file (type jpg)
+ <use CoveragePlot.jpg>
+Package pdftex.def Info: CoveragePlot.jpg used on input line 460.
+(pdftex.def)             Requested size: 284.53172pt x 200.84592pt.
+
+[12 <C:/Users/John/Documents/Astro/ASEN5070_SOD/HomeworkArchive/Project/Report/
+GS_Turk_Ell-eps-converted-to.pdf> <C:/Users/John/Documents/Astro/ASEN5070_SOD/H
+omeworkArchive/Project/Report/GS_Gnld_Ell-eps-converted-to.pdf> <C:/Users/John/
+Documents/Astro/ASEN5070_SOD/HomeworkArchive/Project/Report/GS_none_Ell-eps-con
+verted-to.pdf> <C:/Users/John/Documents/Astro/ASEN5070_SOD/HomeworkArchive/Proj
+ect/Report/CoveragePlot.jpg>]
+Package epstopdf Info: Source file: <Potter_Postfit.eps>
+(epstopdf)                    date: 2014-12-14 15:52:31
+(epstopdf)                    size: 31831 bytes
+(epstopdf)             Output file: <Potter_Postfit-eps-converted-to.pdf>
+(epstopdf)                    date: 2014-12-14 15:58:17
+(epstopdf)                    size: 8088 bytes
+(epstopdf)             Command: <epstopdf --outfile=Potter_Postfit-eps-converte
+d-to.pdf Potter_Postfit.eps>
+(epstopdf)             \includegraphics on input line 495.
+Package epstopdf Info: Output file is already uptodate.
+
+<Potter_Postfit-eps-converted-to.pdf, id=295, 500.87125pt x 404.51125pt>
+File: Potter_Postfit-eps-converted-to.pdf Graphic file (type pdf)
+
+<use Potter_Postfit-eps-converted-to.pdf>
+Package pdftex.def Info: Potter_Postfit-eps-converted-to.pdf used on input line
+ 495.
+(pdftex.def)             Requested size: 284.53659pt x 229.79608pt.
+Package epstopdf Info: Source file: <Potter_Cov.eps>
+(epstopdf)                    date: 2014-12-14 15:52:41
+(epstopdf)                    size: 23829 bytes
+(epstopdf)             Output file: <Potter_Cov-eps-converted-to.pdf>
+(epstopdf)                    date: 2014-12-14 15:58:18
+(epstopdf)                    size: 9278 bytes
+(epstopdf)             Command: <epstopdf --outfile=Potter_Cov-eps-converted-to
+.pdf Potter_Cov.eps>
+(epstopdf)             \includegraphics on input line 501.
+Package epstopdf Info: Output file is already uptodate.
+
+<Potter_Cov-eps-converted-to.pdf, id=296, 494.84875pt x 404.51125pt>
+File: Potter_Cov-eps-converted-to.pdf Graphic file (type pdf)
+
+<use Potter_Cov-eps-converted-to.pdf>
+Package pdftex.def Info: Potter_Cov-eps-converted-to.pdf used on input line 501
+.
+(pdftex.def)             Requested size: 284.52827pt x 232.58598pt.
+ [13 <C:/Users/John/Documents/Astro/ASEN5070_SOD/HomeworkArchive/Project/Report
+/Potter_Postfit-eps-converted-to.pdf>]
+Package epstopdf Info: Source file: <DataNoise_inc_PFR.eps>
+(epstopdf)                    date: 2014-12-14 22:20:12
+(epstopdf)                    size: 46995 bytes
+(epstopdf)             Output file: <DataNoise_inc_PFR-eps-converted-to.pdf>
+(epstopdf)                    date: 2014-12-14 22:41:31
+(epstopdf)                    size: 14944 bytes
+(epstopdf)             Command: <epstopdf --outfile=DataNoise_inc_PFR-eps-conve
+rted-to.pdf DataNoise_inc_PFR.eps>
+(epstopdf)             \includegraphics on input line 520.
+Package epstopdf Info: Output file is already uptodate.
+
+<DataNoise_inc_PFR-eps-converted-to.pdf, id=317, 500.87125pt x 400.49625pt>
+File: DataNoise_inc_PFR-eps-converted-to.pdf Graphic file (type pdf)
+
+<use DataNoise_inc_PFR-eps-converted-to.pdf>
+Package pdftex.def Info: DataNoise_inc_PFR-eps-converted-to.pdf used on input l
+ine 520.
+(pdftex.def)             Requested size: 199.16797pt x 159.25455pt.
+Package epstopdf Info: Source file: <DataNoise_dec_PFR.eps>
+(epstopdf)                    date: 2014-12-14 22:20:20
+(epstopdf)                    size: 49586 bytes
+(epstopdf)             Output file: <DataNoise_dec_PFR-eps-converted-to.pdf>
+(epstopdf)                    date: 2014-12-14 22:41:32
+(epstopdf)                    size: 16564 bytes
+(epstopdf)             Command: <epstopdf --outfile=DataNoise_dec_PFR-eps-conve
+rted-to.pdf DataNoise_dec_PFR.eps>
+(epstopdf)             \includegraphics on input line 523.
+Package epstopdf Info: Output file is already uptodate.
+
+<DataNoise_dec_PFR-eps-converted-to.pdf, id=318, 506.89375pt x 400.49625pt>
+File: DataNoise_dec_PFR-eps-converted-to.pdf Graphic file (type pdf)
+
+<use DataNoise_dec_PFR-eps-converted-to.pdf>
+Package pdftex.def Info: DataNoise_dec_PFR-eps-converted-to.pdf used on input l
+ine 523.
+(pdftex.def)             Requested size: 199.16507pt x 157.36012pt.
+Package epstopdf Info: Source file: <DataNoise_rdec_PFR.eps>
+(epstopdf)                    date: 2014-12-14 22:20:41
+(epstopdf)                    size: 49371 bytes
+(epstopdf)             Output file: <DataNoise_rdec_PFR-eps-converted-to.pdf>
+(epstopdf)                    date: 2014-12-14 22:41:33
+(epstopdf)                    size: 16417 bytes
+(epstopdf)             Command: <epstopdf --outfile=DataNoise_rdec_PFR-eps-conv
+erted-to.pdf DataNoise_rdec_PFR.eps>
+(epstopdf)             \includegraphics on input line 526.
+Package epstopdf Info: Output file is already uptodate.
+
+<DataNoise_rdec_PFR-eps-converted-to.pdf, id=319, 506.89375pt x 400.49625pt>
+File: DataNoise_rdec_PFR-eps-converted-to.pdf Graphic file (type pdf)
+
+<use DataNoise_rdec_PFR-eps-converted-to.pdf>
+Package pdftex.def Info: DataNoise_rdec_PFR-eps-converted-to.pdf used on input 
+line 526.
+(pdftex.def)             Requested size: 199.16507pt x 157.36012pt.
+ [14 <C:/Users/John/Documents/Astro/ASEN5070_SOD/HomeworkArchive/Project/Report
+/Potter_Cov-eps-converted-to.pdf>]
+Package epstopdf Info: Source file: <DataNoise_inc_Ell.eps>
+(epstopdf)                    date: 2014-12-14 22:20:54
+(epstopdf)                    size: 173864 bytes
+(epstopdf)             Output file: <DataNoise_inc_Ell-eps-converted-to.pdf>
+(epstopdf)                    date: 2014-12-14 22:41:34
+(epstopdf)                    size: 29893 bytes
+(epstopdf)             Command: <epstopdf --outfile=DataNoise_inc_Ell-eps-conve
+rted-to.pdf DataNoise_inc_Ell.eps>
+(epstopdf)             \includegraphics on input line 535.
+Package epstopdf Info: Output file is already uptodate.
+<DataNoise_inc_Ell-eps-converted-to.pdf, id=332, 520.94624pt x 403.5075pt>
+File: DataNoise_inc_Ell-eps-converted-to.pdf Graphic file (type pdf)
+
+<use DataNoise_inc_Ell-eps-converted-to.pdf>
+Package pdftex.def Info: DataNoise_inc_Ell-eps-converted-to.pdf used on input l
+ine 535.
+(pdftex.def)             Requested size: 199.16988pt x 154.27031pt.
+Package epstopdf Info: Source file: <DataNoise_dec_Ell.eps>
+(epstopdf)                    date: 2014-12-14 22:21:02
+(epstopdf)                    size: 174589 bytes
+(epstopdf)             Output file: <DataNoise_dec_Ell-eps-converted-to.pdf>
+(epstopdf)                    date: 2014-12-14 22:41:35
+(epstopdf)                    size: 29882 bytes
+(epstopdf)             Command: <epstopdf --outfile=DataNoise_dec_Ell-eps-conve
+rted-to.pdf DataNoise_dec_Ell.eps>
+(epstopdf)             \includegraphics on input line 538.
+Package epstopdf Info: Output file is already uptodate.
+
+<DataNoise_dec_Ell-eps-converted-to.pdf, id=333, 508.90125pt x 429.605pt>
+File: DataNoise_dec_Ell-eps-converted-to.pdf Graphic file (type pdf)
+
+<use DataNoise_dec_Ell-eps-converted-to.pdf>
+Package pdftex.def Info: DataNoise_dec_Ell-eps-converted-to.pdf used on input l
+ine 538.
+(pdftex.def)             Requested size: 199.16956pt x 168.13524pt.
+Package epstopdf Info: Source file: <DataNoise_rdec_Ell.eps>
+(epstopdf)                    date: 2014-12-14 22:21:13
+(epstopdf)                    size: 174600 bytes
+(epstopdf)             Output file: <DataNoise_rdec_Ell-eps-converted-to.pdf>
+(epstopdf)                    date: 2014-12-14 22:41:36
+(epstopdf)                    size: 30050 bytes
+(epstopdf)             Command: <epstopdf --outfile=DataNoise_rdec_Ell-eps-conv
+erted-to.pdf DataNoise_rdec_Ell.eps>
+(epstopdf)             \includegraphics on input line 541.
+Package epstopdf Info: Output file is already uptodate.
+
+<DataNoise_rdec_Ell-eps-converted-to.pdf, id=334, 508.90125pt x 429.605pt>
+File: DataNoise_rdec_Ell-eps-converted-to.pdf Graphic file (type pdf)
+
+<use DataNoise_rdec_Ell-eps-converted-to.pdf>
+Package pdftex.def Info: DataNoise_rdec_Ell-eps-converted-to.pdf used on input 
+line 541.
+(pdftex.def)             Requested size: 199.16956pt x 168.13524pt.
+ [15 <C:/Users/John/Documents/Astro/ASEN5070_SOD/HomeworkArchive/Project/Report
+/DataNoise_inc_PFR-eps-converted-to.pdf> <C:/Users/John/Documents/Astro/ASEN507
+0_SOD/HomeworkArchive/Project/Report/DataNoise_dec_PFR-eps-converted-to.pdf> <C
+:/Users/John/Documents/Astro/ASEN5070_SOD/HomeworkArchive/Project/Report/DataNo
+ise_rdec_PFR-eps-converted-to.pdf>] [16 <C:/Users/John/Documents/Astro/ASEN5070
+_SOD/HomeworkArchive/Project/Report/DataNoise_inc_Ell-eps-converted-to.pdf> <C:
+/Users/John/Documents/Astro/ASEN5070_SOD/HomeworkArchive/Project/Report/DataNoi
+se_dec_Ell-eps-converted-to.pdf> <C:/Users/John/Documents/Astro/ASEN5070_SOD/Ho
+meworkArchive/Project/Report/DataNoise_rdec_Ell-eps-converted-to.pdf>] [17]
+Overfull \hbox (29.28491pt too wide) in paragraph at lines 585--609
+ [] 
+ []
+
+[18] [19] 
+AED: lastpage setting LastPage
+[20]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 684.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 684.
+
+(C:\Users\John\Documents\Astro\ASEN5070_SOD\HomeworkArchive\Project\Report\Clou
+se_ASEN5070_Project.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 684.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 684.
+Package rerunfilecheck Info: File `Clouse_ASEN5070_Project.out' has not changed
+.
+(rerunfilecheck)             Checksum: A9BBA0EFAC251A18F408DE5175648D72;820.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 684.
+ ) 
+Here is how much of TeX's memory you used:
+ 8723 strings out of 493921
+ 129796 string characters out of 3147286
+ 232462 words of memory out of 3000000
+ 11749 multiletter control sequences out of 15000+200000
+ 15300 words of font info for 53 fonts, out of 3000000 for 9000
+ 841 hyphenation exceptions out of 8191
+ 42i,13n,45p,1290b,363s stack positions out of 5000i,500n,10000p,200000b,50000s
+<C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Pr
+ogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Program Fi
+les/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx7.pfb><C:/Program Files/MiKTe
+X 2.9/fonts/type1/public/amsfonts/cm/cmbx8.pfb><C:/Program Files/MiKTeX 2.9/fon
+ts/type1/public/amsfonts/cm/cmbxti10.pfb><C:/Program Files/MiKTeX 2.9/fonts/typ
+e1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/publi
+c/amsfonts/cm/cmmi7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfont
+s/cm/cmmi8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi
+b10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><
+C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Progra
+m Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Program Files/Mi
+KTeX 2.9/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Program Files/MiKTeX 2.9/f
+onts/type1/public/amsfonts/cm/cmr8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1
+/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/
+amsfonts/cm/cmsy6.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/
+cm/cmsy7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.
+pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/
+Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti8.pfb>
+Output written on Clouse_ASEN5070_Project.pdf (20 pages, 875016 bytes).
+PDF statistics:
+ 483 PDF objects out of 1000 (max. 8388607)
+ 90 named destinations out of 1000 (max. 500000)
+ 227 words of extra memory for PDF output out of 10000 (max. 10000000)
+

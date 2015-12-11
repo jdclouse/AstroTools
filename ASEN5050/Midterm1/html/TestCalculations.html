@@ -1,0 +1,596 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>TestCalculations</title><meta name="generator" content="MATLAB 8.2"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2015-10-23"><meta name="DC.source" content="TestCalculations.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, tt, code { font-size:12px; }
+pre { margin:0px 0px 20px; }
+pre.error { color:red; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#1">Problem 1</a></li><li><a href="#2">Problem 2</a></li><li><a href="#3">Problem 3</a></li><li><a href="#4">Problem 4</a></li><li><a href="#5">Problem 5</a></li><li><a href="#6">Problem 6</a></li><li><a href="#7">Problem 7</a></li></ul></div><h2>Problem 1<a name="1"></a></h2><pre class="codeinput">clear
+a = 7078.1363*(1-0.22)
+n = sqrt(398600.4415/a/a/a)
+E1 = atan2(sind(50)*sqrt(1-0.22*0.22),0.22+cosd(50))
+E2 = atan2(sind(230)*sqrt(1-0.22*0.22),0.22+cosd(230)) + 2*pi
+M1 = E1 - 0.22*sin(E1)
+M2 = E2 - 0.22*sin(E2)
+delta_time = (M2-M1)/n
+delta_time = delta_time/3600
+</pre><pre class="codeoutput">
+a =
+
+     5.520946314000001e+03
+
+
+n =
+
+   0.001539035372641
+
+
+E1 =
+
+   0.713777538425738
+
+
+E2 =
+
+   4.197517817922569
+
+
+M1 =
+
+   0.569744890419595
+
+
+M2 =
+
+   4.388996175774035
+
+
+delta_time =
+
+     2.481587722574390e+03
+
+
+delta_time =
+
+   0.689329922937331
+
+</pre><h2>Problem 2<a name="2"></a></h2><pre class="codeinput">clear
+a = 8580;
+e = 0.39;
+i = 150.9;
+raan = 275.0;
+w = 110.1;
+f1 = 230;
+rp = 8580*(1-0.39)
+p = 8580*(1-0.39*0.39)
+f_imp = acosd((p/6378.1363-1)/e)
+f_imp = 360-f_imp
+n = sqrt(398600.4415/a^3)
+E1 = atan2(sind(f1)*sqrt(1-e*e),e+cosd(f1)) + 2*pi
+E_imp = atan2(sind(f_imp)*sqrt(1-e*e),e+cosd(f_imp)) + 2*pi
+M1 = E1 - e*sin(E1)
+M_imp = E_imp - e*sin(E_imp)
+delta_time = (M_imp - M1)/n
+delta_time = delta_time/3600
+v_imp = sqrt(2*398600.4415/6378.1363 - 398600.4415/a)
+</pre><pre class="codeoutput">
+rp =
+
+     5.233800000000000e+03
+
+
+p =
+
+     7.274982000000000e+03
+
+
+f_imp =
+
+  68.866337534291588
+
+
+f_imp =
+
+     2.911336624657084e+02
+
+
+n =
+
+     7.943976594657110e-04
+
+
+E1 =
+
+   4.368278707889063
+
+
+E_imp =
+
+   5.430574108957914
+
+
+M1 =
+
+   4.735415341246480
+
+
+M_imp =
+
+   5.724244572571012
+
+
+delta_time =
+
+     1.244753455076378e+03
+
+
+delta_time =
+
+   0.345764848632327
+
+
+v_imp =
+
+   8.861867749662673
+
+</pre><h2>Problem 3<a name="3"></a></h2><pre class="codeinput">clear
+<span class="comment">% a)</span>
+w = sqrt(398600.4415/(6378.1363+380)^3)
+t2 = 60*8
+x_b2 = 2*0.2/w*(1 - cos(w*t2))
+y_b2 = 0.2*(4/w*sin(w*t2) - 3*t2)
+z_a2 = 0.4/w*sin(w*t2)
+<span class="comment">% b)</span>
+t3 = 60*20
+x_b3 = 2*0.2/w*(1 - cos(w*t3))
+y_b3 = 0.2*(4/w*sin(w*t3) - 3*t3)
+t_elapsed = 12*60
+A = [sin(w*t_elapsed)/w  2/w*(1-cos(w*t_elapsed)), 0;<span class="keyword">...</span>
+    2/w*cos(w*t_elapsed)-2/w, 4/w*sin(w*t_elapsed)-3*t_elapsed, 0;<span class="keyword">...</span>
+    0, 0, sin(w*t_elapsed)/w];
+v_imp_1_plus = inv(A)*[x_b3; y_b3; -z_a2*cos(w*t_elapsed)]
+zdot_a2 = 0.4*cos(w*t2)
+v_burnA = v_imp_1_plus-[0;0;zdot_a2]
+vb_2 = [2*.2*sin(w*t2); 0.2*(4*cos(w*t2)-3);0]
+v_burnA_wrtB = v_burnA-vb_2
+vb_3 = [2*.2*sin(w*t3); 0.2*(4*cos(w*t3)-3);0]
+<span class="comment">% c)</span>
+va_prerdv = [v_imp_1_plus(1)*cos(w*t_elapsed) + <span class="keyword">...</span>
+    2*v_imp_1_plus(2)*sin(w*t_elapsed);<span class="keyword">...</span>
+    -2*v_imp_1_plus(1)*sin(w*t_elapsed) + <span class="keyword">...</span>
+    v_imp_1_plus(2)*(4*cos(w*t_elapsed)-3);<span class="keyword">...</span>
+    -z_a2*sin(w*t_elapsed) + v_imp_1_plus(3)*cos(w*t_elapsed)]
+</pre><pre class="codeoutput">
+w =
+
+   0.001136392785631
+
+
+t2 =
+
+   480
+
+
+x_b2 =
+
+  51.079416559984061
+
+
+y_b2 =
+
+  77.238990609620771
+
+
+z_a2 =
+
+     1.826194953048104e+02
+
+
+t3 =
+
+        1200
+
+
+x_b3 =
+
+     2.796050176841309e+02
+
+
+y_b3 =
+
+ -31.064829166872642
+
+
+t_elapsed =
+
+   720
+
+
+v_imp_1_plus =
+
+   0.229864548890809
+   0.236927155029161
+  -0.194339638992939
+
+
+zdot_a2 =
+
+   0.341953719527011
+
+
+v_burnA =
+
+   0.229864548890809
+   0.236927155029161
+  -0.536293358519950
+
+
+vb_2 =
+
+   0.207527476979899
+   0.083907439054022
+                   0
+
+
+v_burnA_wrtB =
+
+   0.022337071910910
+   0.153019715975139
+  -0.536293358519950
+
+
+vb_3 =
+
+   0.391450478950996
+  -0.435482249844759
+                   0
+
+
+va_prerdv =
+
+   1.0e+02 *
+
+   0.005029953194855
+  -0.003985550948156
+  -1.334301978229648
+
+</pre><h2>Problem 4<a name="4"></a></h2><pre class="codeinput">clear
+theta_dot_earth = 360*.99726968/24/3600
+P = 25/theta_dot_earth
+a = ((P/2/pi)^2*398600.4415)^(1/3)
+h = a - 6378.1363
+</pre><pre class="codeoutput">
+theta_dot_earth =
+
+   0.004155290333333
+
+
+P =
+
+     6.016426770339594e+03
+
+
+a =
+
+     7.149655280995402e+03
+
+
+h =
+
+     7.715189809954018e+02
+
+</pre><h2>Problem 5<a name="5"></a></h2><pre class="codeinput">clear
+<span class="comment">% a)</span>
+a = (362600 + 405400)/2
+P = 2*pi*sqrt(a^3/398600.4415)
+P = P/3600/24
+<span class="comment">% b)</span>
+e = (405400 - 362600)/(362600 + 405400)
+p = a*(1-e*e)
+f = acosd((p/380000-1)/e)
+n = sqrt(398600.4415/a^3)
+E = atan2(sind(f)*sqrt(1-e*e),e+cosd(f))
+M = E - e*sin(E)
+delta_time = 2*M/n
+delta_time = delta_time/3600/24
+percentage = delta_time/P*100
+</pre><pre class="codeoutput">
+a =
+
+      384000
+
+
+P =
+
+     2.368142419555083e+06
+
+
+P =
+
+  27.409055781887528
+
+
+e =
+
+   0.055729166666667
+
+
+p =
+
+     3.828073958333334e+05
+
+
+f =
+
+  82.382008626558246
+
+
+n =
+
+     2.653212600431374e-06
+
+
+E =
+
+   1.382774565564997
+
+
+M =
+
+   1.328027574114172
+
+
+delta_time =
+
+     1.001071360733214e+06
+
+
+delta_time =
+
+  11.586474082560345
+
+
+percentage =
+
+  42.272430596521779
+
+</pre><h2>Problem 6<a name="6"></a></h2><pre class="codeinput">clear
+r = [8800; -1100; 5500];
+norm(r)
+phi = asind(r(3)/norm(r))
+theta_sat = atan2d(r(2),r(1))
+theta_LST = 90 - 105.27
+R_LST = [cosd(theta_LST) sind(theta_LST) 0;
+    -sind(theta_LST) cosd(theta_LST) 0;
+    0 0 1];
+R_lat = [cosd(90-40.015) 0 -sind(90-40.015);
+    0 1 0;
+    sind(90-40.015) 0 cosd(90-40.015)];
+r_SEZ = R_lat*R_LST*r
+range = r_SEZ - [0;0;6379.77]
+el = asind(range(3)/norm(range))
+az = 180 - atan2d(range(2),range(1))
+</pre><pre class="codeoutput">
+ans =
+
+     1.043551627855565e+04
+
+
+phi =
+
+  31.806100019378505
+
+
+theta_sat =
+
+  -7.125016348901798
+
+
+theta_LST =
+
+ -15.269999999999996
+
+
+r_SEZ =
+
+   1.0e+04 *
+
+   0.143249001530773
+   0.125647316523753
+   1.026008028921225
+
+
+range =
+
+   1.0e+03 *
+
+   1.432490015307728
+   1.256473165237528
+   3.880310289212246
+
+
+el =
+
+  63.846332466985089
+
+
+az =
+
+     1.387451815072555e+02
+
+</pre><h2>Problem 7<a name="7"></a></h2><pre class="codeinput">clear
+2*asind((sqrt(3)-1/sqrt(3)-1)/2)
+</pre><pre class="codeoutput">
+ans =
+
+   8.872550488587605
+
+</pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2013b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% Problem 1
+clear
+a = 7078.1363*(1-0.22)
+n = sqrt(398600.4415/a/a/a)
+E1 = atan2(sind(50)*sqrt(1-0.22*0.22),0.22+cosd(50))
+E2 = atan2(sind(230)*sqrt(1-0.22*0.22),0.22+cosd(230)) + 2*pi
+M1 = E1 - 0.22*sin(E1)
+M2 = E2 - 0.22*sin(E2)
+delta_time = (M2-M1)/n
+delta_time = delta_time/3600
+
+%% Problem 2
+clear
+a = 8580;
+e = 0.39;
+i = 150.9;
+raan = 275.0;
+w = 110.1;
+f1 = 230;
+rp = 8580*(1-0.39)
+p = 8580*(1-0.39*0.39)
+f_imp = acosd((p/6378.1363-1)/e)
+f_imp = 360-f_imp
+n = sqrt(398600.4415/a^3)
+E1 = atan2(sind(f1)*sqrt(1-e*e),e+cosd(f1)) + 2*pi
+E_imp = atan2(sind(f_imp)*sqrt(1-e*e),e+cosd(f_imp)) + 2*pi
+M1 = E1 - e*sin(E1)
+M_imp = E_imp - e*sin(E_imp)
+delta_time = (M_imp - M1)/n
+delta_time = delta_time/3600
+v_imp = sqrt(2*398600.4415/6378.1363 - 398600.4415/a)
+
+%% Problem 3
+clear
+% a)
+w = sqrt(398600.4415/(6378.1363+380)^3)
+t2 = 60*8
+x_b2 = 2*0.2/w*(1 - cos(w*t2))
+y_b2 = 0.2*(4/w*sin(w*t2) - 3*t2)
+z_a2 = 0.4/w*sin(w*t2)
+% b)
+t3 = 60*20
+x_b3 = 2*0.2/w*(1 - cos(w*t3))
+y_b3 = 0.2*(4/w*sin(w*t3) - 3*t3)
+t_elapsed = 12*60
+A = [sin(w*t_elapsed)/w  2/w*(1-cos(w*t_elapsed)), 0;...
+    2/w*cos(w*t_elapsed)-2/w, 4/w*sin(w*t_elapsed)-3*t_elapsed, 0;...
+    0, 0, sin(w*t_elapsed)/w];
+v_imp_1_plus = inv(A)*[x_b3; y_b3; -z_a2*cos(w*t_elapsed)]
+zdot_a2 = 0.4*cos(w*t2)
+v_burnA = v_imp_1_plus-[0;0;zdot_a2]
+vb_2 = [2*.2*sin(w*t2); 0.2*(4*cos(w*t2)-3);0]
+v_burnA_wrtB = v_burnA-vb_2
+vb_3 = [2*.2*sin(w*t3); 0.2*(4*cos(w*t3)-3);0]
+% c)
+va_prerdv = [v_imp_1_plus(1)*cos(w*t_elapsed) + ...
+    2*v_imp_1_plus(2)*sin(w*t_elapsed);...
+    -2*v_imp_1_plus(1)*sin(w*t_elapsed) + ...
+    v_imp_1_plus(2)*(4*cos(w*t_elapsed)-3);...
+    -z_a2*sin(w*t_elapsed) + v_imp_1_plus(3)*cos(w*t_elapsed)]
+
+%% Problem 4
+clear
+theta_dot_earth = 360*.99726968/24/3600
+P = 25/theta_dot_earth
+a = ((P/2/pi)^2*398600.4415)^(1/3)
+h = a - 6378.1363
+
+%% Problem 5
+clear 
+% a)
+a = (362600 + 405400)/2
+P = 2*pi*sqrt(a^3/398600.4415)
+P = P/3600/24
+% b)
+e = (405400 - 362600)/(362600 + 405400)
+p = a*(1-e*e)
+f = acosd((p/380000-1)/e)
+n = sqrt(398600.4415/a^3)
+E = atan2(sind(f)*sqrt(1-e*e),e+cosd(f))
+M = E - e*sin(E)
+delta_time = 2*M/n
+delta_time = delta_time/3600/24
+percentage = delta_time/P*100
+%% Problem 6
+clear
+r = [8800; -1100; 5500];
+norm(r)
+phi = asind(r(3)/norm(r))
+theta_sat = atan2d(r(2),r(1))
+theta_LST = 90 - 105.27
+R_LST = [cosd(theta_LST) sind(theta_LST) 0;
+    -sind(theta_LST) cosd(theta_LST) 0;
+    0 0 1];
+R_lat = [cosd(90-40.015) 0 -sind(90-40.015);
+    0 1 0;
+    sind(90-40.015) 0 cosd(90-40.015)];
+r_SEZ = R_lat*R_LST*r
+range = r_SEZ - [0;0;6379.77]
+el = asind(range(3)/norm(range))
+az = 180 - atan2d(range(2),range(1))
+
+%% Problem 7
+clear
+2*asind((sqrt(3)-1/sqrt(3)-1)/2)
+##### SOURCE END #####
+--></body></html>
