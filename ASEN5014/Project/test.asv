@@ -45,7 +45,6 @@ B = [0; -1/a_dd_LHS_1; 0; (1+BIG)/d_dd_LHS];
 
 C = [1 0 0 0];
 
-
 P = ctrb(A,B);
 fprintf('Rank of P: %d\n',rank(P))
 O = obsv(A,C);

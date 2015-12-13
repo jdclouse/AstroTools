@@ -10,7 +10,7 @@ Earth.R = 6378; %km
 Earth.a = 149598023; %km
 Earth.spin_rate = 7.2921158553e-05; %rad/s
 Earth.flattening = 1/298.25722; %WGS-84
-Earth.oblate_ecc = 0.081819221456; %WGS-84
+Earth.flattening = 1/298.25722; %WGS-84
 Earth.J2 = 0.0010826267;
 Earth.P_days = 365.2421897; %days
 Earth.P_years = 0.99997862; %days
@@ -43,7 +43,6 @@ Venus.R = 6052.0; %km
 Venus.J2 = 0.000027;
 Venus.P_days = 224.6906; %days
 Venus.mu = 3.257e5; %km3/s2
-Venus.m = 4.869e24; %km
 
 %% Mars
 Mars.name = 'Mars';

@@ -53,6 +53,7 @@
 \documentclass[]{aiaa-tc}% insert '[draft]' option to show overfull boxes
 \usepackage{float}
 \usepackage{epstopdf}
+\usepackage{amsmath}
 
 \title{Single-Axis Control of a Solar Sail Through a Gimbal}
 
@@ -162,7 +163,7 @@ System performance will be judged by the response to errors, both with a step-er
 0 & 1 & 0 & 0\\ 
 0 & 0 & \frac{d}{J_s}F_n & 0\\ 
 0 & 0 & 0 & 1\\ 
--\frac{m_pl}{J_pm+m_sm_pl^{2}}F_t & 0 & -\frac{m_pl}{J_pm+m_sm_pl^{2}}F_n & 0
+\frac{-m_pl}{m(J_p+\frac{m_sm_p}{m}l^2)}F_t & 0 & \frac{-m_pl}{m(J_p+\frac{m_sm_p}{m}l^2)}F_n & 0
 \end{bmatrix}
 \begin{bmatrix}
 \alpha\\ 
@@ -269,6 +270,75 @@ $\rho_d$ &     -0.5949 \\
 		\caption{Linear solutions of the sail forces vs. sun angle. }
 		\label{fig:StepResp}
 	\end{figure}	
+
+	Reachability is determined by comparing the rank of the controllability matrix with the rank of the open-loop system. The controllability matrix $P$ turns out to be 
+
+	\begin{equation}
+P=\begin{bmatrix}
+B & AB & A^2B &A^3B 
+\end{bmatrix}=\begin{bmatrix}
+            0 &     -1.6564\times10^{-4} &             0 &    4.6394\times10^{-9}\\ 
+  -1.6564\times10^{-4} &               0 &    4.6394\times10^{-9} &             0\\ 
+            0 &      7.4412\times10^{-3} &             0 &   -9.3875\times10^{-7}\\ 
+   7.4412\times10^{-3} &               0 &   -9.3875\times10^{-7} &             0
+\end{bmatrix}
+	\end{equation}
+
+The rank of the controllability matrix is 4, as is the rank of the system matrix $A$. Thus, the system is controllable. Because A is full rank, controllability implies reachability, so the system is actually reachable.
+
+	\vspace{5 mm}
+
+	Observability is determined by comparing the rank of the observability matrix with the rank of the open-loop system. The observability matrix $O$ is
+	\begin{equation}
+O=\begin{bmatrix}
+C\\ 
+CA\\ 
+CA^2\\ 
+CA^3
+\end{bmatrix}=\begin{bmatrix}
+    1.0000 &             0 &            0 &           0\\ 
+             0 &    1.0000 &            0 &           0\\ 
+   -1.2654\times10^{-8} &             0 &   6.2320\times10^{-7} &           0\\ 
+             0 &   -1.2654\times10^{-8} &            0 &  6.2320\times10^{-7}
+\end{bmatrix}
+	\end{equation}
+
+The rank of the observability matrix is 4. Thus, the system is observable.
+
+	\section{State Feedback from Manual Pole Placement}
+	The design parameters were chosen to be as follows: for a state at the origin, control the sun angle to 35$^{\circ}$ in 90 minutes (within 5\%) with no more than 10\% overshoot and without violating the actuator limits defined previously. This slew is actually fairly fast compared to the nominal steering, but would be useful for attitude maneuvers needed to meet payload or communications constraints, recovering from a fault en route. An integral term was also implemented to drive the steady-state error of the sun angle to zero while being robust to disturbances and plant errors. The poles were then chosen such that the dominant poles for a damped harmonic oscilator would have these characteristics. The other complex conjugate poles were placed to the left of the dominant poles by 0.1 on the real axis. The final pole was picked to be far to the left of the dominant poles, at -100. With the poles placed, the full-state feedback gains were:
+
+\begin{equation}
+\begin{aligned}
+K &= \begin{bmatrix}
+K_{\alpha} & K_{\delta} & K_{\dot{\alpha}} & K_{\dot{\delta}} & K_i
+\end{bmatrix}\\ 
+ &= \begin{bmatrix}
+-3.7246\times10^5 & -5.9012\times10^7 & -5.4575\times10^3 & -1.3001\times10^6 & 1.2580\times10^3
+\end{bmatrix}
+\end{aligned}
+\end{equation}
+
+	Figure  \ref{fig:Controller1} shows the response of a sail starting at $\alpha=\delta=0^{\circ}$ being controlled to $\alpha = 35^{\circ}$.
+
+	\vspace{5 mm}
+	
+	\begin{figure}[H]
+		\centering
+		\subfigure[$\alpha$ response]{
+			\includegraphics[width = 7.75cm]{Ctrl1_Alpha.png}
+		}
+		\subfigure[$\delta$ response]{
+			\includegraphics[width = 7.75cm]{Ctrl1_Delta.png}
+		}
+		\subfigure[Gimbal torque]{
+			\includegraphics[width = 7.75cm]{Ctrl1_Torque.png}
+		}
+		\caption{System response of controller with manually placed poles, commanded $\alpha=35^{\circ}$. }
+		\label{fig:Controller1}
+	\end{figure}	
+
+	One can see from the results that the controller met the design criteria. The underdamped motion of $\alpha$ is expected due to the complex-conjugate eigenvalue pairs. The gimbal tourque is a maximum of 0.35 N-m to maximize the initial change in $\alpha$, and settles the value required to hold the sail/bus configuration as $\alpha$ settles. The gimbal angle $\delta$ settles to a non-zero trim position to keep $\alpha$ at its reference value. This result is practical given that the actuator limit is not violated. The gimbal torque, which is the control effort, is also less compared to that of comparable systems [Wie].
 
 %    \section{Appendix B}
 %This appendix contains all Matlab code used by the authors to analyize their data.
