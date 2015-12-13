@@ -1,45 +1,6 @@
 %%
 close all
-
-L_boom = 30;
-h = L_boom*sin(pi/4)*2;
-m_s = 40;
-I = m_s*h*h/12;
-% I = I + ms*2.5^2
-
-m_p = 116; %kg
-m = m_p+m_s;
-J_s = I; %kg*m2
-J_p = 20; %kg*m2
-r = 0.88;
-s = 0.94;
-Bf = 0.79;
-Bb = 0.55;
-ef = 0.05;
-eb=0.55;
-rho_s = r*s;
-rho_d = (Bf*r*(1-s)+(ef*Bf-eb*Bb)/(ef+eb))*3/2;
-P = 4.563e-6; %N/m2
-A_sail = h*h;
-l = 2; %m
-d = l*m_p/m;
-
-Ft_max = P*A_sail*(1-rho_s);
-Fn_max = P*A_sail*(1+rho_s+2/3*rho_d);
-
-X = -m_p/m*l/(J_p + m_s*m_p/m*l*l);
-
-A = [0 1 0 0;
-    0 0 d/J_s*Fn_max 0;
-    0 0 0 1;
-    X*Ft_max 0 X*Fn_max 0];
-
-B = [0; -1/J_s;0;1/(J_p + m_s*m_p/m*l*l)];
-
-C = [1 0 0 0];
-
-
-eig(A)
+test
 
 if 0
 alpha_range = 0:0.01:pi/2;
@@ -94,7 +55,6 @@ figWidth = 1120; % pixels
 figHeight = 840; % pixels
 r2d = 180/pi;
 
-test
 
 % The design parameters
 PO_desired = 10/100;
@@ -301,6 +261,7 @@ print(['Report/' analysis_set '_ObsErr'],'-dpng')
 
 %% Monte Carlo Analysis
 % Disturbance solar torque
+if 0
 analysis_set = 'MonteCarlo';
 r = 35*pi/180;
 offset_min = -0.1;
@@ -340,6 +301,7 @@ for ii = 1:num_runs
 end
 fprintf('\n')
 plotSailSysResp( analysis_set,y_lqr_mc_store(:,1:5,:),t,K_LQR,r,Ts,3600 )
+end
 
 %%
 % A little ODE45 verification of the system. If the gimbal torque holds the

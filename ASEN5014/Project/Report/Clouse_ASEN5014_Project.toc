@@ -4,3 +4,5 @@
 \contentsline {section}{\numberline {IV}State Feedback from Manual Pole Placement}{6}{section.4}
 \contentsline {section}{\numberline {V}Observer Design}{7}{section.5}
 \contentsline {section}{\numberline {VI}Optimal Control}{8}{section.6}
+\contentsline {section}{\numberline {VII}Monte Carlo on Plant Errors}{11}{section.7}
+\contentsline {section}{\numberline {VIII}Conclusion}{13}{section.8}

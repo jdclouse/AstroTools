@@ -59,7 +59,7 @@
 
 \author{
 	Johnathan Clouse%
-	\thanks{Graduate Students, Aerospace Engineering Sciences, 1111 Engineering Drive, Boulder, CO, 80309-0429}\\
+	\thanks{Graduate Student, Aerospace Engineering Sciences, 1111 Engineering Drive, Boulder, CO, 80309-0429}\\
 	{\normalsize\itshape
 		University of Colorado, Boulder, CO, 80309-0429, USA}
 }
@@ -467,6 +467,58 @@ Figure \ref{fig:ControllerLQRNom} shows the implementation of the LQR controller
 		\caption{Observer errors with LQR control. }
 		\label{fig:DiffInError}
 	\end{figure}	
+
+	\section{Monte Carlo on Plant Errors}
+
+	The most significant source of error between the real plant and the model is the offset between the sail center of mass and center of pressure [Wie]. Design constraints, unaccounted occultation, and sail billowing could all cause this offset, which introduces disturbance torques. For this analysis, an offset of up to 1 m of the center of pressure to the center of mass along the sail transverse axis is considered.  Uniformly random variations were tested for 100 cases. Figure \ref{fig:Ctrl1MC} shows the first controller in these cases.
+
+	\begin{figure}[H]
+		\centering
+		\subfigure[$\alpha$ response]{
+			\includegraphics[width = 7.75cm]{Ctrl1MonteCarlo_Alpha.png}
+		}
+		\subfigure[$\delta$ response]{
+			\includegraphics[width = 7.75cm]{Ctrl1MonteCarlo_Delta.png}
+		}
+		\subfigure[Gimbal torque]{
+			\includegraphics[width = 7.75cm]{Ctrl1MonteCarlo_Torque.png}
+		}
+		\caption{System response of the first controller with observer implemented with random CM/CP offsets in plant, commanded $\alpha=35^{\circ}$ }
+		\label{fig:Ctrl1MC}
+	\end{figure}	
+
+	The controller was able to meet the design criteria even with the disturbance torque. Because the steady-state error is tracked and forced to zero, the sun angle meets its commanded state. The control torque shows a change in effort compared to without the disturbance. Figure \ref{fig:LQR_MC} shows the LQR controller's response.
+
+	\begin{figure}[H]
+		\centering
+		\subfigure[$\alpha$ response]{
+			\includegraphics[width = 7.75cm]{LQRMonteCarlo_Alpha.png}
+		}
+		\subfigure[$\delta$ response]{
+			\includegraphics[width = 7.75cm]{LQRMonteCarlo_Delta.png}
+		}
+		\subfigure[Gimbal torque]{
+			\includegraphics[width = 7.75cm]{LQRMonteCarlo_Torque.png}
+		}
+		\caption{System response of LQR controller with observer implemented with random CM/CP offsets in plant, commanded $\alpha=35^{\circ}$ }
+		\label{fig:LQR_MC}
+	\end{figure}	
+
+	The LQR controller was also able to meet the design criteria with disturbance torques. Steady-state error is forced to zero due to the integral term, and gimbal angle is quite similar compared to the undisturbed case. The gimbal torque shows the same range of effort as the first controller. 
+
+	\section{Conclusion}
+
+	The non-optimal controller was able to meet the design criteria without observer errors. However, it proved to not be as robust to such errors as the LQR controller. This is due to the control effort used in both controllers. The LQR design assigned a cost to control effort, so less was used. On the other hand, the non-optimal controller, which was tuned with SISO methods, was otherwise sufficient in meeting control objectives. Perhaps with sensor filtering, observer error could be reduced such that the control effort would also be reduced. 
+
+	\vspace{5 mm}
+
+	The Luenberger observer was able to reconstruct the entire state from only knowing the sun angle. The poles also drove initial (realistic) initial observer error to zero without forcing the actuator to violate its constraints.
+
+	\vspace{5 mm}
+
+	The control methods presented were able to meet the design criteria for single-axis control of the specified solar-sail spacecraft. Further research should be done for both 2-axis gimballing and combining a gimbal with sail vanes at the edges of the sail, as well as craft with more massive busses and perhaps a gimballed payload on the other side of the sail. With such research, design flexibility will allow viable missions with reduced time or resource cost.
+
+
 
 %    \section{Appendix B}
 %This appendix contains all Matlab code used by the authors to analyize their data.
