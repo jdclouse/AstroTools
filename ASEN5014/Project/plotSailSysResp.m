@@ -27,7 +27,7 @@ print(['Report/' analysis_set '_Alpha'],'-dpng')
 % Control torque
 u = [];
 for ii = 1:length(t)
-    u(ii) = -K*y(ii,:)';
+    u(ii) = r-K*y(ii,:)';
 end
 ctrl1Obs_Torque_plot = figure('Position', [0, 0, figWidth, figHeight]);
 % torque_tmax = 600;

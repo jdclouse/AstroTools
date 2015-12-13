@@ -340,6 +340,134 @@ K_{\alpha} & K_{\delta} & K_{\dot{\alpha}} & K_{\dot{\delta}} & K_i
 
 	One can see from the results that the controller met the design criteria. The underdamped motion of $\alpha$ is expected due to the complex-conjugate eigenvalue pairs. The gimbal tourque is a maximum of 0.35 N-m to maximize the initial change in $\alpha$, and settles the value required to hold the sail/bus configuration as $\alpha$ settles. The gimbal angle $\delta$ settles to a non-zero trim position to keep $\alpha$ at its reference value. This result is practical given that the actuator limit is not violated. The gimbal torque, which is the control effort, is also less compared to that of comparable systems [Wie].
 
+	\section{Observer Design}
+
+	A Luenberger observer was designed to reconstruct the state from sun-angle measurements. The Luenberger gains $L$ were tuned by placing poles on the negative-real axis until the previously-studied step response produced a gimbal angle within the limits and the gimbal torque was minimized for an observer error at the maximum sensor inaccuracy.
+
+\begin{equation}
+\begin{aligned}
+L &= \begin{bmatrix}
+L_{\alpha} & L_{\delta} & L_{\dot{\alpha}} & L_{\dot{\delta}} 
+\end{bmatrix}\\ 
+ &= \begin{bmatrix}
+-3.7246\times10^5 & -5.9012\times10^7 & -5.4575\times10^3 & -1.3001\times10^6 
+\end{bmatrix}
+\end{aligned}
+\end{equation}
+
+	For an initial error of zero, the observer implementation performed the same as the previously-analyzed controlled system. However, with an error in sun angle of 0.05$^{\circ}$, the results differed. The previously-defined controller response with the observer implementation and initial error are shown in Figure  \ref{fig:Controller1Obs}.
+
+	\begin{figure}[H]
+		\centering
+		\subfigure[$\alpha$ response]{
+			\includegraphics[width = 7.75cm]{Ctrl1ObsError_Alpha.png}
+		}
+		\subfigure[$\delta$ response]{
+			\includegraphics[width = 7.75cm]{Ctrl1ObsError_Delta.png}
+		}
+		\subfigure[Gimbal torque]{
+			\includegraphics[width = 7.75cm]{Ctrl1ObsError_Torque.png}
+		}
+		\caption{System response of controller with observer implemented, commanded $\alpha=35^{\circ}$, 0.05$^{\circ}$ sun angle initial error. }
+		\label{fig:Controller1Obs}
+	\end{figure}	
+
+	The controller still meets the design criteria. However, the torque magnitude is drastically increased, though still feasible to implement on a spacecraft. The additional control effort, which greatly fluctuates the gimbal angle initially, is the most visible result compared to the implementation without the observer. Sensor noise could have a large effect, as the system works hard to rectify a small observer error. Further study should involve realistic sensor noise and filtering techniqes. Figure \ref{fig:Controller1ObsErrors} shows all observer error being driven to zero.
+
+	\begin{figure}[H]
+		\centering
+		\subfigure[No initial error]{
+			\includegraphics[width = 7.75cm]{Ctrl1Obs_ObsErr.png}
+		}
+		\subfigure[0.05$^{\circ}$ initial error in sun angle]{
+			\includegraphics[width = 7.75cm]{Ctrl1ObsError_ObsErr.png}
+		}
+		\caption{Observer errors. }
+		\label{fig:Controller1ObsErrors}
+	\end{figure}	
+
+	\section{Optimal Control}
+
+	A linear-quadratic regulator (LQR) controller was implemented, with the cost function
+\begin{equation}
+J=\int_{0}^{\infty}\left ( x^T(t)Qx(t)+u^T(t)Ru(t) \right )dt
+\end{equation}
+
+\noindent
+where $Q$ weights the state and $R$ weights the control effort. After tuning with Bryson's method, the weights and resulting gains were found to be
+\begin{equation}
+\begin{matrix}
+Q=diag(\begin{bmatrix}
+4.0496\times10^{-9} & 9.9920\times10^{-5} & 3.6446 & 9.9920\times10^{-5} & 9.9920\times10^{-5}
+\end{bmatrix})\\ 
+R = 10\\ 
+
+K_{LQR}=\begin{bmatrix}
+-2.6947 & -1.2308\times10^{-3} & 5.8316\times10^{-1} & -1.4250\times10^{1} & 3.1610\times10^{-3}\end{bmatrix}
+\end{matrix}
+\end{equation}
+
+Figure \ref{fig:ControllerLQRNom} shows the implementation of the LQR controller with the previously-derived observer, without initial observer error.
+
+	\begin{figure}[H]
+		\centering
+		\subfigure[$\alpha$ response]{
+			\includegraphics[width = 7.75cm]{CtrlLqrObs_Alpha.png}
+		}
+		\subfigure[$\delta$ response]{
+			\includegraphics[width = 7.75cm]{CtrlLqrObs_Delta.png}
+		}
+		\subfigure[Gimbal torque]{
+			\includegraphics[width = 7.75cm]{CtrlLqrObs_Torque.png}
+		}
+		\caption{System response of LQR controller with observer implemented, commanded $\alpha=35^{\circ}$ }
+		\label{fig:ControllerLQRNom}
+	\end{figure}	
+
+	The LQR controller settles considerably better than the one with manually-placed poles using a SISO technique. The gimbal angle fluctuates more, but again settles to its trim state for the commanded $\alpha$. The control effort is only slightly less than the first controller, but the LQR control effort fluctuates more (note the differing time scales on the torque plots).
+
+	\vspace{5 mm}
+
+	The response of the LQR controller implemented with observer error can be seen in Figure \ref{fig:ControllerLQRErr}.
+
+	\begin{figure}[H]
+		\centering
+		\subfigure[$\alpha$ response]{
+			\includegraphics[width = 7.75cm]{CtrlLqrObsError_Alpha.png}
+		}
+		\subfigure[$\delta$ response]{
+			\includegraphics[width = 7.75cm]{CtrlLqrObsError_Delta.png}
+		}
+		\subfigure[Gimbal torque]{
+			\includegraphics[width = 7.75cm]{CtrlLqrObsError_Torque.png}
+		}
+		\caption{System response of LQR controller with observer implemented, commanded $\alpha=35^{\circ}$, initial observer error }
+		\label{fig:ControllerLQRErr}
+	\end{figure}	
+
+	Despite observer error, the LQR controller still settles quickly. Gimbal angle comes very close to the limit, but is still within the boundary. The control torque is considerably less than the first controller's with the same observer error. The lesser control effort makes this response more desirable than the first controller's response. Observer error can be seen in Figure \ref{fig:ControllerLQRObsErrors}.
+
+	\begin{figure}[H]
+		\centering
+		\subfigure[No initial error]{
+			\includegraphics[width = 7.75cm]{CtrlLqrObs_ObsErr.png}
+		}
+		\subfigure[0.05$^{\circ}$ initial error in sun angle]{
+			\includegraphics[width = 7.75cm]{CtrlLqrObsError_ObsErr.png}
+		}
+		\caption{Observer errors. }
+		\label{fig:ControllerLQRObsErrors}
+	\end{figure}	
+
+	The observer error goes to zero in the same way the first controller-observer implementation did. Due to the difference being imperceivable, the difference in error is provided in Figure \ref{fig:DiffInError}.
+
+	\begin{figure}[H]
+		\centering
+			\includegraphics[width = 7.75cm]{Ctrl1_LQR_error_diff_ObsErr.png}
+		\caption{Observer errors with LQR control. }
+		\label{fig:DiffInError}
+	\end{figure}	
+
 %    \section{Appendix B}
 %This appendix contains all Matlab code used by the authors to analyize their data.
 %    

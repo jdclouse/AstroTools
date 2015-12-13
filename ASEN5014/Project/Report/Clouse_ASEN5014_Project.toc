@@ -2,3 +2,5 @@
 \contentsline {section}{\numberline {II}State Space Representation}{3}{section.2}
 \contentsline {section}{\numberline {III}Homework 7}{4}{section.3}
 \contentsline {section}{\numberline {IV}State Feedback from Manual Pole Placement}{6}{section.4}
+\contentsline {section}{\numberline {V}Observer Design}{7}{section.5}
+\contentsline {section}{\numberline {VI}Optimal Control}{8}{section.6}
