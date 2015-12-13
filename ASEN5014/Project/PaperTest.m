@@ -153,51 +153,6 @@ y_int = lsim(ss(A_CL_Aug, B_CL_Aug, eye(5), 0),repmat(r,1,length(t)),t);
 
 plotSailSysResp( analysis_set,y_int,t,K_Aug,r,Ts,150 )
 
-% % Coning angle plot
-% ctrl1_Alpha_plot = figure('Position', [0, 0, figWidth, figHeight]);
-% plot(t/3600,y_int(:,1)*r2d)
-% ylabel('\alpha (deg)')
-% xlabel('Time (hr)')
-% title(...
-%     [sprintf('Sun Angle, Step Reference at %.1f degrees', r*180/pi)...
-%     ', ' analysis_set]);
-% hold on
-% plot([Ts Ts]/3600,[0, r*1.10]*r2d,'r')
-% plot([t(1),t(end)]/3600,[1 1]*r*1.1*r2d,'r-.')
-% plot([t(1),t(end)]/3600,[1 1]*r*1.05*r2d,'r--')
-% plot([t(1),t(end)]/3600,[1 1]*r*.95*r2d,'r--')
-% legend('\alpha','T_{settle}','10% Overshoot', '5% Settling',...
-%     'Location','SouthEast')
-% print(['Report/' analysis_set '_Alpha'],'-dpng')
-% 
-% % Control torque
-% u = [];
-% for ii = 1:length(t)
-%     u(ii) = -K_Aug*y_int(ii,:)';
-% end
-% ctrl1_Torque_plot = figure('Position', [0, 0, figWidth, figHeight]);
-% torque_tmax = 150;
-% plot(t(t<torque_tmax),u(t<torque_tmax))
-% title([sprintf('Gimbal Torque, %.0f-degree Step',r*180/pi)...
-%     ', ' analysis_set])
-% ylabel('T_g (N-m)')
-% xlabel('Time (s)')
-% print(['Report/' analysis_set '_Torque'],'-dpng')
-% 
-% %Gimbal angle plot
-% ctrl1_GimbalAng_plot = figure('Position', [0, 0, figWidth, figHeight]);
-% plot(t/3600,y_int(:,3)*r2d)
-% hold on
-% plot([t(1) t(end)]/3600,[1 1]*pi/6*r2d, 'r--')
-% plot([t(1) t(end)]/3600,[1 1]*-pi/6*r2d, 'r--')
-% title([sprintf('Gimbal Angle, %.0f-degree Step',r*180/pi)...
-%     ', ' analysis_set])
-% ylabel('\delta (deg)')
-% ylim([-pi/6*r2d-1, pi/6*r2d+1])
-% xlabel('Time (hr)')
-% legend('\delta','Actuator Limit',...
-%     'Location','SouthEast')
-% print(['Report/' analysis_set '_Delta'],'-dpng')
 
 %% Observer in loop
 L = place(A',C',P)';
@@ -226,54 +181,7 @@ analysis_set = 'Ctrl1Obs';
 y_obs=lsim(Obs_system,repmat(r,1,length(t)),t);
 
 plotSailSysResp( analysis_set,y_obs,t,K_Aug,r,Ts,150 )
-% title(...
-%     sprintf('Observer lsim Results: Step reference at %.1f degrees', r*180/pi));
 
-% % Coning angle plot
-% ctrl1Obs_Alpha_plot = figure('Position', [0, 0, figWidth, figHeight]);
-% plot(t/3600,y_obs(:,1)*r2d)
-% ylabel('\alpha (deg)')
-% xlabel('Time (hr)')
-% title(...
-%     [sprintf('Sun Angle, Step Reference at %.1f degrees', r*180/pi)...
-%     ', ' analysis_set]);
-% hold on
-% plot([Ts Ts]/3600,[0, r*1.10]*r2d,'r')
-% plot([t(1),t(end)]/3600,[1 1]*r*1.1*r2d,'r-.')
-% plot([t(1),t(end)]/3600,[1 1]*r*1.05*r2d,'r--')
-% plot([t(1),t(end)]/3600,[1 1]*r*.95*r2d,'r--')
-% legend('\alpha','T_{settle}','10% Overshoot', '5% Settling',...
-%     'Location','SouthEast')
-% print(['Report/' analysis_set '_Alpha'],'-dpng')
-% 
-% % Control torque
-% u = [];
-% for ii = 1:length(t)
-%     u(ii) = -K_Aug*y_obs(ii,:)';
-% end
-% ctrl1Obs_Torque_plot = figure('Position', [0, 0, figWidth, figHeight]);
-% torque_tmax = 150;
-% plot(t(t<torque_tmax),u(t<torque_tmax))
-% title([sprintf('Gimbal Torque, %.0f-degree Step',r*180/pi)...
-%     ', ' analysis_set])
-% ylabel('T_g (N-m)')
-% xlabel('Time (s)')
-% print(['Report/' analysis_set '_Torque'],'-dpng')
-% 
-% %Gimbal angle plot
-% ctrl1Obs_GimbalAng_plot = figure('Position', [0, 0, figWidth, figHeight]);
-% plot(t/3600,y_obs(:,3)*r2d)
-% hold on
-% plot([t(1) t(end)]/3600,[1 1]*pi/6*r2d, 'r--')
-% plot([t(1) t(end)]/3600,[1 1]*-pi/6*r2d, 'r--')
-% title([sprintf('Gimbal Angle, %.0f-degree Step',r*180/pi)...
-%     ', ' analysis_set])
-% ylabel('\delta (deg)')
-% ylim([-pi/6*r2d-1, pi/6*r2d+1])
-% xlabel('Time (hr)')
-% legend('\delta','Actuator Limit',...
-%     'Location','SouthEast')
-% print(['Report/' analysis_set '_Delta'],'-dpng')
 
 %% Observer with error
 % lsim(Obs_system,repmat(r,1,length(t)),t,[0,0,0,0,.5*pi/180,0, 0, 0])
@@ -283,57 +191,6 @@ y_obs_error = ...
     lsim(Obs_system,repmat(r,1,length(t)),t,[0,0,0,0,0,.05*pi/180,0, 0, 0]);
 
 plotSailSysResp( analysis_set,y_obs_error,t,K_Aug,r,Ts,600 )
-
-% title(...
-%     sprintf('Observer lsim Results: Step reference at %.1f degrees, initial error', r*180/pi));
-% 
-% % Coning angle plot
-% ctrl1_Alpha_plot = figure('Position', [0, 0, figWidth, figHeight]);
-% plot(t/3600,y_obs_error(:,1)*r2d)
-% % hold on
-% % plot(t/3600,(y_obs_error(:,1)-y_obs_error(:,6))*r2d)
-% ylabel('\alpha (deg)')
-% xlabel('Time (hr)')
-% title(...
-%     [sprintf('Sun Angle, Step Reference at %.1f degrees', r*180/pi)...
-%     ', ' analysis_set]);
-% hold on
-% plot([Ts Ts]/3600,[0, r*1.10]*r2d,'r')
-% plot([t(1),t(end)]/3600,[1 1]*r*1.1*r2d,'r-.')
-% plot([t(1),t(end)]/3600,[1 1]*r*1.05*r2d,'r--')
-% plot([t(1),t(end)]/3600,[1 1]*r*.95*r2d,'r--')
-% legend('\alpha','T_{settle}','10% Overshoot', '5% Settling',...
-%     'Location','SouthEast')
-% print(['Report/' analysis_set '_Alpha'],'-dpng')
-% 
-% % Control torque
-% u = [];
-% for ii = 1:length(t)
-%     u(ii) = -K_Aug*y_obs_error(ii,:)';
-% end
-% ctrl1_Torque_plot = figure('Position', [0, 0, figWidth, figHeight]);
-% torque_tmax = 3600;
-% plot(t(t<torque_tmax),u(t<torque_tmax))
-% title([sprintf('Gimbal Torque, %.0f-degree Step',r*180/pi)...
-%     ', ' analysis_set])
-% ylabel('T_g (N-m)')
-% xlabel('Time (s)')
-% print(['Report/' analysis_set '_Torque'],'-dpng')
-% 
-% %Gimbal angle plot
-% ctrl1_GimbalAng_plot = figure('Position', [0, 0, figWidth, figHeight]);
-% plot(t/3600,y_obs_error(:,3)*r2d)
-% hold on
-% plot([t(1) t(end)]/3600,[1 1]*pi/6*r2d, 'r--')
-% plot([t(1) t(end)]/3600,[1 1]*-pi/6*r2d, 'r--')
-% title([sprintf('Gimbal Angle, %.0f-degree Step',r*180/pi)...
-%     ', ' analysis_set])
-% ylabel('\delta (deg)')
-% ylim([-pi/6*r2d-1, pi/6*r2d+1])
-% xlabel('Time (hr)')
-% legend('\delta','Actuator Limit',...
-%     'Location','SouthEast')
-% print(['Report/' analysis_set '_Delta'],'-dpng')
 
 
 %% LQR
@@ -361,54 +218,7 @@ analysis_set = 'CtrlLqrObs';
 y_lqr = lsim(LQR_system,repmat(r,1,length(t)),t);
 
 plotSailSysResp( analysis_set,y_lqr,t,K_LQR,r,Ts,1200 )
-% title(...
-%     sprintf('LQR lsim Results: Step reference at %.1f degrees', r*180/pi));
 
-% % Coning angle plot
-% ctrl1Obs_Alpha_plot = figure('Position', [0, 0, figWidth, figHeight]);
-% plot(t/3600,y_lqr(:,1)*r2d)
-% ylabel('\alpha (deg)')
-% xlabel('Time (hr)')
-% title(...
-%     [sprintf('Sun Angle, Step Reference at %.1f degrees', r*180/pi)...
-%     ', ' analysis_set]);
-% hold on
-% plot([Ts Ts]/3600,[0, r*1.10]*r2d,'r')
-% plot([t(1),t(end)]/3600,[1 1]*r*1.1*r2d,'r-.')
-% plot([t(1),t(end)]/3600,[1 1]*r*1.05*r2d,'r--')
-% plot([t(1),t(end)]/3600,[1 1]*r*.95*r2d,'r--')
-% legend('\alpha','T_{settle}','10% Overshoot', '5% Settling',...
-%     'Location','SouthEast')
-% print(['Report/' analysis_set '_Alpha'],'-dpng')
-% 
-% % Control torque
-% u = [];
-% for ii = 1:length(t)
-%     u(ii) = -K_LQR*y_lqr(ii,:)';
-% end
-% ctrl1Obs_Torque_plot = figure('Position', [0, 0, figWidth, figHeight]);
-% torque_tmax = 150;
-% plot(t(t<torque_tmax),u(t<torque_tmax))
-% title([sprintf('Gimbal Torque, %.0f-degree Step',r*180/pi)...
-%     ', ' analysis_set])
-% ylabel('T_g (N-m)')
-% xlabel('Time (s)')
-% print(['Report/' analysis_set '_Torque'],'-dpng')
-% 
-% %Gimbal angle plot
-% ctrl1Obs_GimbalAng_plot = figure('Position', [0, 0, figWidth, figHeight]);
-% plot(t/3600,y_lqr(:,3)*r2d)
-% hold on
-% plot([t(1) t(end)]/3600,[1 1]*pi/6*r2d, 'r--')
-% plot([t(1) t(end)]/3600,[1 1]*-pi/6*r2d, 'r--')
-% title([sprintf('Gimbal Angle, %.0f-degree Step',r*180/pi)...
-%     ', ' analysis_set])
-% ylabel('\delta (deg)')
-% ylim([-pi/6*r2d-1, pi/6*r2d+1])
-% xlabel('Time (hr)')
-% legend('\delta','Actuator Limit',...
-%     'Location','SouthEast')
-% print(['Report/' analysis_set '_Delta'],'-dpng')
 
 %%
 r=0
@@ -419,54 +229,6 @@ y_lqr_error = lsim(LQR_system,repmat(r,1,length(t)),t,...
 
 plotSailSysResp( analysis_set,y_lqr_error,t,K_LQR,r,Ts,600 )
 
-% title(...
-%     sprintf('LQR lsim Results: Step reference at %.1f degrees, initial error', r*180/pi));
-
-% % Coning angle plot
-% ctrl1Obs_Alpha_plot = figure('Position', [0, 0, figWidth, figHeight]);
-% plot(t/3600,y_lqr_error(:,1)*r2d)
-% ylabel('\alpha (deg)')
-% xlabel('Time (hr)')
-% title(...
-%     [sprintf('Sun Angle, Step Reference at %.1f degrees', r*180/pi)...
-%     ', ' analysis_set]);
-% hold on
-% plot([Ts Ts]/3600,[0, r*1.10]*r2d,'r')
-% plot([t(1),t(end)]/3600,[1 1]*r*1.1*r2d,'r-.')
-% plot([t(1),t(end)]/3600,[1 1]*r*1.05*r2d,'r--')
-% plot([t(1),t(end)]/3600,[1 1]*r*.95*r2d,'r--')
-% legend('\alpha','T_{settle}','10% Overshoot', '5% Settling',...
-%     'Location','SouthEast')
-% print(['Report/' analysis_set '_Alpha'],'-dpng')
-% 
-% % Control torque
-% u = [];
-% for ii = 1:length(t)
-%     u(ii) = -K_LQR*y_lqr_error(ii,:)';
-% end
-% ctrl1Obs_Torque_plot = figure('Position', [0, 0, figWidth, figHeight]);
-% torque_tmax = 600;
-% plot(t(t<torque_tmax),u(t<torque_tmax))
-% title([sprintf('Gimbal Torque, %.0f-degree Step',r*180/pi)...
-%     ', ' analysis_set])
-% ylabel('T_g (N-m)')
-% xlabel('Time (s)')
-% print(['Report/' analysis_set '_Torque'],'-dpng')
-% 
-% %Gimbal angle plot
-% ctrl1Obs_GimbalAng_plot = figure('Position', [0, 0, figWidth, figHeight]);
-% plot(t/3600,y_lqr_error(:,3)*r2d)
-% hold on
-% plot([t(1) t(end)]/3600,[1 1]*pi/6*r2d, 'r--')
-% plot([t(1) t(end)]/3600,[1 1]*-pi/6*r2d, 'r--')
-% title([sprintf('Gimbal Angle, %.0f-degree Step',r*180/pi)...
-%     ', ' analysis_set])
-% ylabel('\delta (deg)')
-% ylim([-pi/6*r2d-1, pi/6*r2d+1])
-% xlabel('Time (hr)')
-% legend('\delta','Actuator Limit',...
-%     'Location','SouthEast')
-% print(['Report/' analysis_set '_Delta'],'-dpng')
 
 
 
