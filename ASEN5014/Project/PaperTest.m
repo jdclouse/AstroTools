@@ -1,6 +1,9 @@
 %%
 close all
-test
+title_plots = 0; %zero for report figures.
+lw = 1; % Line Weight
+fs = 20; % Font Size
+SysModel
 
 if 0
 alpha_range = 0:0.01:pi/2;
@@ -84,7 +87,7 @@ F = inv(C*inv(-A+B*K)*B);
 A_CL = A-B*K;
 B_CL = B*F;
 CL_system = ss(A_CL, B_CL, eye(4),0);
-OL_system = ss(A,B,eye(4),0);
+OL_system = ss(A,B,C,0);
 
 A_OL_Aug = [A,zeros(4,1);-C, zeros(1)];
 B_OL_Aug = [B;zeros(1)];
@@ -97,10 +100,34 @@ B_CL_Aug = [zeros(4,1);eye(1)];
 Int_sys = ss(A_CL_Aug, B_CL_Aug, [C 0], 0);
 
 r = 35*pi/180;
-figure
-lsim(OL_system,repmat(0.01,1,length(t)),t)
+analysis_set = 'OL_Stable';
+figure('Position', [0, 0, figWidth, figHeight]);
+OL_t = 0:0.01:3600*5;
+y_ol = lsim(OL_system,repmat(0.0001,1,length(OL_t)),OL_t);
+plot(OL_t/3600,y_ol*r2d,'LineWidth',lw)
+set(gca, 'FontSize', fs)
+if title_plots
 title(...
     sprintf('OL lsim Results: Step reference at %.1f degrees', r*180/pi));
+end
+ylabel('\alpha (deg)','FontSize',fs)
+xlabel('Time (hr)','FontSize',fs)
+print(['Report/' analysis_set],'-dpng')
+
+analysis_set = 'OL_Unstable';
+figure('Position', [0, 0, figWidth, figHeight]);
+OL_t = 0:0.01:1800;
+y_ol = lsim(OL_system,repmat(0.01,1,length(OL_t)),OL_t);
+plot(OL_t,y_ol*r2d,'LineWidth',lw)
+set(gca, 'FontSize', fs)
+if title_plots
+title(...
+    sprintf('OL lsim Results: Step reference at %.1f degrees', r*180/pi));
+end
+ylabel('\alpha (deg)','FontSize',fs)
+xlabel('Time (sec)','FontSize',fs)
+print(['Report/' analysis_set],'-dpng')
+
 figure
 lsim(CL_system,repmat(r,1,length(t)),t)
 title(...
@@ -111,7 +138,7 @@ analysis_set = 'Ctrl1';
 % lsim(Int_sys,repmat(r,1,length(t)),t)
 y_int = lsim(ss(A_CL_Aug, B_CL_Aug, eye(5), 0),repmat(r,1,length(t)),t);
 
-plotSailSysResp( analysis_set,y_int,t,K_Aug,r,Ts,600 )
+plotSailSysResp( analysis_set,y_int,t,K_Aug,r,Ts,600,title_plots )
 
 
 %% Observer in loop
@@ -151,17 +178,17 @@ r = 35*pi/180;
 analysis_set = 'Ctrl1Obs';
 y_obs=lsim(Obs_system,repmat(r,1,length(t)),t);
 
-plotSailSysResp( analysis_set,y_obs(:,1:5),t,K_Aug,r,Ts,150 )
+plotSailSysResp( analysis_set,y_obs(:,1:5),t,K_Aug,r,Ts,150,title_plots )
 figure('Position', [0, 0, figWidth, figHeight]);
 colors = {'b','g','r','k'};
 for ii = 6:9
-plot(t/3600,y_obs(:,ii)*r2d,colors{ii-5})
+plot(t/3600,y_obs(:,ii)*r2d,colors{ii-5},'LineWidth',lw)
 hold on
 end
-xlabel('Time (hr)')
-ylabel('Error')
+xlabel('Time (hr)','FontSize',fs)
+ylabel('Error','FontSize',fs)
 l = legend({'\alpha error (deg)', '\alpha rate error (deg/s)', ...
-    '\delta error (deg)', '\delta rate error (deg/s)'});
+    '\delta error (deg)', '\delta rate error (deg/s)'},'FontSize',fs);
 print(['Report/' analysis_set '_ObsErr'],'-dpng')
 
 %% Observer with error
@@ -173,18 +200,18 @@ sensor_error = .05*pi/180;
 y_obs_error = ...
     lsim(Obs_system,repmat(r,1,length(t)),t,[0,0,0,0,0,sensor_error,0, 0, 0]);
 
-plotSailSysResp( analysis_set,y_obs_error(:,1:5),t,K_Aug,r,Ts,3600 )
+plotSailSysResp( analysis_set,y_obs_error(:,1:5),t,K_Aug,r,Ts,3600,title_plots )
 
 figure('Position', [0, 0, figWidth, figHeight]);
 colors = {'b','g','r','k'};
 for ii = 6:9
-plot(t/3600,y_obs_error(:,ii)*r2d,colors{ii-5})
+plot(t/3600,y_obs_error(:,ii)*r2d,colors{ii-5},'LineWidth',lw)
 hold on
 end
-xlabel('Time (hr)')
-ylabel('Error')
+xlabel('Time (hr)','FontSize',fs)
+ylabel('Error','FontSize',fs)
 l = legend({'\alpha error (deg)', '\alpha rate error (deg/s)', ...
-    '\delta error (deg)', '\delta rate error (deg/s)'});
+    '\delta error (deg)', '\delta rate error (deg/s)'},'FontSize',fs);
 print(['Report/' analysis_set '_ObsErr'],'-dpng')
 % set(l,'FontSize',12)
 
@@ -208,18 +235,18 @@ r = 35*pi/180;
 analysis_set = 'CtrlLqrObs';
 y_lqr = lsim(LQR_system,repmat(r,1,length(t)),t);
 
-plotSailSysResp( analysis_set,y_lqr(:,1:5),t,K_LQR,r,Ts,3600 )
+plotSailSysResp( analysis_set,y_lqr(:,1:5),t,K_LQR,r,Ts,3600,title_plots )
 
 figure('Position', [0, 0, figWidth, figHeight]);
 colors = {'b','g','r','k'};
 for ii = 6:9
-plot(t/3600,y_lqr(:,ii)*r2d,colors{ii-5})
+plot(t/3600,y_lqr(:,ii)*r2d,colors{ii-5},'LineWidth',lw)
 hold on
 end
-xlabel('Time (hr)')
-ylabel('Error')
+xlabel('Time (hr)','FontSize',fs)
+ylabel('Error','FontSize',fs)
 l = legend({'\alpha error (deg)', '\alpha rate error (deg/s)', ...
-    '\delta error (deg)', '\delta rate error (deg/s)'});
+    '\delta error (deg)', '\delta rate error (deg/s)'},'FontSize',fs);
 print(['Report/' analysis_set '_ObsErr'],'-dpng')
 
 
@@ -231,18 +258,18 @@ analysis_set = 'CtrlLqrObsError';
 y_lqr_error = lsim(LQR_system,repmat(r,1,length(t)),t,...
     [0,0,0,0,0,sensor_error,0, 0, 0]);
 
-plotSailSysResp( analysis_set,y_lqr_error(:,1:5),t,K_LQR,r,Ts,3600 )
+plotSailSysResp( analysis_set,y_lqr_error(:,1:5),t,K_LQR,r,Ts,3600,title_plots )
 
 figure('Position', [0, 0, figWidth, figHeight]);
 colors = {'b','g','r','k'};
 for ii = 6:9
-plot(t/3600,y_lqr_error(:,ii)*r2d,colors{ii-5})
+plot(t/3600,y_lqr_error(:,ii)*r2d,colors{ii-5},'LineWidth',lw)
 hold on
 end
-xlabel('Time (hr)')
-ylabel('Error')
+xlabel('Time (hr)','FontSize',fs)
+ylabel('Error','FontSize',fs)
 l = legend({'\alpha error (deg)', '\alpha rate error (deg/s)', ...
-    '\delta error (deg)', '\delta rate error (deg/s)'});
+    '\delta error (deg)', '\delta rate error (deg/s)'},'FontSize',fs);
 print(['Report/' analysis_set '_ObsErr'],'-dpng')
 
 %%
@@ -250,57 +277,20 @@ analysis_set = 'Ctrl1_LQR_error_diff';
 figure('Position', [0, 0, figWidth, figHeight]);
 colors = {'b','g','r','k'};
 for ii = 6:9
-plot(t/3600,(y_lqr_error(:,ii)-y_obs_error(:,ii))*r2d,colors{ii-5})
+plot(t/3600,(y_lqr_error(:,ii)-y_obs_error(:,ii))*r2d,colors{ii-5},'LineWidth',lw)
 hold on
 end
-xlabel('Time (hr)')
-ylabel('Difference in Error')
+xlabel('Time (hr)','FontSize',fs)
+ylabel('Difference in Error','FontSize',fs)
 l = legend({'\Delta \alpha error (deg)', '\Delta \alpha rate error (deg/s)', ...
-    '\Delta \delta error (deg)', '\Delta \delta rate error (deg/s)'});
+    '\Delta \delta error (deg)', '\Delta \delta rate error (deg/s)'},...
+    'FontSize',fs);
 print(['Report/' analysis_set '_ObsErr'],'-dpng')
 
 %% Monte Carlo Analysis
 % Disturbance solar torque
 if 0
-analysis_set = 'MonteCarlo';
-r = 35*pi/180;
-offset_min = -0.1;
-offset_max = 0.1;
-
-num_runs = 5;
-y_int_mc_store = [];
-y_lqr_mc_store = [];
-
-for ii = 1:num_runs
-    % Disturbed A
-    fprintf('Run %d\r',ii)
-    offset = offset_min + (offset_max-offset_min)*rand(1);
-    dist_torque_max = offset*Fn_max;
-    tmp = [zeros(1,4);
-           dist_torque_max/B(2), zeros(1,3);
-           zeros(1,4);
-           dist_torque_max/B(4), zeros(1,3)];
-    A_dist = A + tmp;
-    
-    A_OL_Aug_MC = [A_dist,zeros(4,1);-C, zeros(1)];
-    A_CL_Aug_MC = [A_dist-B*K, -B*KI; -C, zeros(1)];
-    A_Obs_Aug_MC = [A_OL_Aug_MC-B_OL_Aug*K_Aug,B_OL_Aug*K_Aug(1:4);
-        zeros(4,5),A_dist-L*C];
-    Int_sys_MC = ss(A_Obs_Aug_MC, B_Obs_Aug, C_Obs_AugFake, 0);
-    
-    A_Obs_LQR_MC = ...
-        [A_OL_Aug_MC-B_OL_Aug*K_LQR,B_OL_Aug*K_LQR(1:4);...
-         zeros(4,5),A_dist-L*C];
-    LQR_system_MC = ss(A_Obs_LQR_MC, B_Obs_LQR, C_Obs_LQRFake, 0);
-    
-    y_int_mc = lsim(Int_sys_MC,repmat(r,1,length(t)),t);
-    y_lqr_mc = lsim(LQR_system_MC,repmat(r,1,length(t)),t);
-    
-    y_int_mc_store(:,:,ii) = y_int_mc;
-    y_lqr_mc_store(:,:,ii) = y_lqr_mc;
-end
-fprintf('\n')
-plotSailSysResp( analysis_set,y_lqr_mc_store(:,1:5,:),t,K_LQR,r,Ts,3600 )
+MC;
 end
 
 %%

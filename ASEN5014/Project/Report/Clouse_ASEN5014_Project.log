@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.4.5)  13 DEC 2015 16:26
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.4.5)  13 DEC 2015 21:11
 entering extended mode
 **C:/Users/John/Documents/Astro/ASEN5014/Project/Report/Clouse_ASEN5014_Project
 .tex
@@ -523,247 +523,264 @@ out)
 (C:\Users\John\Documents\Astro\ASEN5014\Project\Report\Clouse_ASEN5014_Project.
 toc)
 \tf@toc=\write4
- [2] [3] <FT_Soln.png, id=82, 1264.725pt x 703.12688pt>
+ [2] <schematic.png, id=59, 651.18282pt x 605.26125pt>
+File: schematic.png Graphic file (type png)
+ <use schematic.png>
+Package pdftex.def Info: schematic.png used on input line 134.
+(pdftex.def)             Requested size: 213.39063pt x 198.34225pt.
+
+[3 <C:/Users/John/Documents/Astro/ASEN5014/Project/Report/schematic.png>]
+<FT_Soln.png, id=74, 1264.725pt x 703.12688pt>
 File: FT_Soln.png Graphic file (type png)
  <use FT_Soln.png>
-Package pdftex.def Info: FT_Soln.png used on input line 236.
+Package pdftex.def Info: FT_Soln.png used on input line 255.
 (pdftex.def)             Requested size: 213.37936pt x 118.62875pt.
 
-<FN_Soln.png, id=83, 1264.725pt x 703.12688pt>
+<FN_Soln.png, id=75, 1264.725pt x 703.12688pt>
 File: FN_Soln.png Graphic file (type png)
  <use FN_Soln.png>
-Package pdftex.def Info: FN_Soln.png used on input line 239.
+Package pdftex.def Info: FN_Soln.png used on input line 258.
 (pdftex.def)             Requested size: 213.37936pt x 118.62875pt.
- [4 <C:/Users/John/Documents/Astro/ASEN5014/Project/Report/FT_Soln.png (PNG cop
-y)> <C:/Users/John/Documents/Astro/ASEN5014/Project/Report/FN_Soln.png (PNG cop
-y)>]
-<StepResponse.png, id=95, 599.23875pt x 429.10312pt>
-File: StepResponse.png Graphic file (type png)
- <use StepResponse.png>
-Package pdftex.def Info: StepResponse.png used on input line 269.
-(pdftex.def)             Requested size: 284.53163pt x 203.74753pt.
+ [4]
+<OL_Stable.png, id=97, 578.16pt x 433.62pt>
+File: OL_Stable.png Graphic file (type png)
+ <use OL_Stable.png>
+Package pdftex.def Info: OL_Stable.png used on input line 277.
+(pdftex.def)             Requested size: 220.50587pt x 165.37941pt.
 
-[5 <C:/Users/John/Documents/Astro/ASEN5014/Project/Report/StepResponse.png (PNG
- copy)>] <Ctrl1_Alpha.png, id=105, 578.16pt x 433.62pt>
+<OL_Unstable.png, id=98, 578.16pt x 433.62pt>
+File: OL_Unstable.png Graphic file (type png)
+ <use OL_Unstable.png>
+Package pdftex.def Info: OL_Unstable.png used on input line 280.
+(pdftex.def)             Requested size: 220.50587pt x 165.37941pt.
+ [5 <C:/Users/John/Documents/Astro/ASEN5014/Project/Report/FT_Soln.png (PNG cop
+y)> <C:/Users/John/Documents/Astro/ASEN5014/Project/Report/FN_Soln.png (PNG cop
+y)> <C:/Users/John/Documents/Astro/ASEN5014/Project/Report/OL_Stable.png (PNG c
+opy)> <C:/Users/John/Documents/Astro/ASEN5014/Project/Report/OL_Unstable.png (P
+NG copy)>]
+<Ctrl1_Alpha.png, id=114, 578.16pt x 433.62pt>
 File: Ctrl1_Alpha.png Graphic file (type png)
  <use Ctrl1_Alpha.png>
-Package pdftex.def Info: Ctrl1_Alpha.png used on input line 330.
+Package pdftex.def Info: Ctrl1_Alpha.png used on input line 344.
 (pdftex.def)             Requested size: 220.50587pt x 165.37941pt.
 
-<Ctrl1_Delta.png, id=106, 578.16pt x 433.62pt>
+<Ctrl1_Delta.png, id=115, 578.16pt x 433.62pt>
 File: Ctrl1_Delta.png Graphic file (type png)
  <use Ctrl1_Delta.png>
-Package pdftex.def Info: Ctrl1_Delta.png used on input line 333.
+Package pdftex.def Info: Ctrl1_Delta.png used on input line 347.
 (pdftex.def)             Requested size: 220.50587pt x 165.37941pt.
 
-<Ctrl1_Torque.png, id=107, 578.16pt x 433.62pt>
+<Ctrl1_Torque.png, id=116, 578.16pt x 433.62pt>
 File: Ctrl1_Torque.png Graphic file (type png)
  <use Ctrl1_Torque.png>
-Package pdftex.def Info: Ctrl1_Torque.png used on input line 336.
+Package pdftex.def Info: Ctrl1_Torque.png used on input line 350.
 (pdftex.def)             Requested size: 220.50587pt x 165.37941pt.
- [6 <C:/Users/John/Documents/Astro/ASEN5014/Project/Report/Ctrl1_Alpha.png (PNG
- copy)> <C:/Users/John/Documents/Astro/ASEN5014/Project/Report/Ctrl1_Delta.png 
-(PNG copy)> <C:/Users/John/Documents/Astro/ASEN5014/Project/Report/Ctrl1_Torque
-.png (PNG copy)>] <Ctrl1ObsError_Alpha.png, id=120, 578.16pt x 433.62pt>
+ [6]
+<Ctrl1ObsError_Alpha.png, id=126, 578.16pt x 433.62pt>
 File: Ctrl1ObsError_Alpha.png Graphic file (type png)
 
 <use Ctrl1ObsError_Alpha.png>
-Package pdftex.def Info: Ctrl1ObsError_Alpha.png used on input line 364.
+Package pdftex.def Info: Ctrl1ObsError_Alpha.png used on input line 378.
 (pdftex.def)             Requested size: 220.50587pt x 165.37941pt.
 
-<Ctrl1ObsError_Delta.png, id=121, 578.16pt x 433.62pt>
+<Ctrl1ObsError_Delta.png, id=127, 578.16pt x 433.62pt>
 File: Ctrl1ObsError_Delta.png Graphic file (type png)
 
 <use Ctrl1ObsError_Delta.png>
-Package pdftex.def Info: Ctrl1ObsError_Delta.png used on input line 367.
+Package pdftex.def Info: Ctrl1ObsError_Delta.png used on input line 381.
 (pdftex.def)             Requested size: 220.50587pt x 165.37941pt.
 
-<Ctrl1ObsError_Torque.png, id=122, 578.16pt x 433.62pt>
+<Ctrl1ObsError_Torque.png, id=128, 578.16pt x 433.62pt>
 File: Ctrl1ObsError_Torque.png Graphic file (type png)
 
 <use Ctrl1ObsError_Torque.png>
-Package pdftex.def Info: Ctrl1ObsError_Torque.png used on input line 370.
+Package pdftex.def Info: Ctrl1ObsError_Torque.png used on input line 384.
 (pdftex.def)             Requested size: 220.50587pt x 165.37941pt.
- [7 <C:/Users/John/Documents/Astro/ASEN5014/Project/Report/Ctrl1ObsError_Alpha.
-png (PNG copy)> <C:/Users/John/Documents/Astro/ASEN5014/Project/Report/Ctrl1Obs
-Error_Delta.png (PNG copy)> <C:/Users/John/Documents/Astro/ASEN5014/Project/Rep
-ort/Ctrl1ObsError_Torque.png (PNG copy)>]
-<Ctrl1Obs_ObsErr.png, id=135, 578.16pt x 433.62pt>
+ [7 <C:/Users/John/Documents/Astro/ASEN5014/Project/Report/Ctrl1_Alpha.png (PNG
+ copy)> <C:/Users/John/Documents/Astro/ASEN5014/Project/Report/Ctrl1_Delta.png 
+(PNG copy)> <C:/Users/John/Documents/Astro/ASEN5014/Project/Report/Ctrl1_Torque
+.png (PNG copy)>]
+<Ctrl1Obs_ObsErr.png, id=141, 578.16pt x 433.62pt>
 File: Ctrl1Obs_ObsErr.png Graphic file (type png)
  <use Ctrl1Obs_ObsErr.png>
-Package pdftex.def Info: Ctrl1Obs_ObsErr.png used on input line 381.
+Package pdftex.def Info: Ctrl1Obs_ObsErr.png used on input line 395.
 (pdftex.def)             Requested size: 220.50587pt x 165.37941pt.
 
-<Ctrl1ObsError_ObsErr.png, id=136, 578.16pt x 433.62pt>
+<Ctrl1ObsError_ObsErr.png, id=142, 578.16pt x 433.62pt>
 File: Ctrl1ObsError_ObsErr.png Graphic file (type png)
 
 <use Ctrl1ObsError_ObsErr.png>
-Package pdftex.def Info: Ctrl1ObsError_ObsErr.png used on input line 384.
+Package pdftex.def Info: Ctrl1ObsError_ObsErr.png used on input line 398.
 (pdftex.def)             Requested size: 220.50587pt x 165.37941pt.
-
-<CtrlLqrObs_Alpha.png, id=138, 578.16pt x 433.62pt>
+ [8 <C:/Users/John/Documents/Astro/ASEN5014/Project/Report/Ctrl1ObsError_Alpha.
+png (PNG copy)> <C:/Users/John/Documents/Astro/ASEN5014/Project/Report/Ctrl1Obs
+Error_Delta.png (PNG copy)> <C:/Users/John/Documents/Astro/ASEN5014/Project/Rep
+ort/Ctrl1ObsError_Torque.png (PNG copy)>]
+<CtrlLqrObs_Alpha.png, id=153, 578.16pt x 433.62pt>
 File: CtrlLqrObs_Alpha.png Graphic file (type png)
  <use CtrlLqrObs_Alpha.png>
-Package pdftex.def Info: CtrlLqrObs_Alpha.png used on input line 416.
+Package pdftex.def Info: CtrlLqrObs_Alpha.png used on input line 430.
 (pdftex.def)             Requested size: 220.50587pt x 165.37941pt.
 
-<CtrlLqrObs_Delta.png, id=139, 578.16pt x 433.62pt>
+<CtrlLqrObs_Delta.png, id=154, 578.16pt x 433.62pt>
 File: CtrlLqrObs_Delta.png Graphic file (type png)
  <use CtrlLqrObs_Delta.png>
-Package pdftex.def Info: CtrlLqrObs_Delta.png used on input line 419.
+Package pdftex.def Info: CtrlLqrObs_Delta.png used on input line 433.
 (pdftex.def)             Requested size: 220.50587pt x 165.37941pt.
 
-<CtrlLqrObs_Torque.png, id=140, 578.16pt x 433.62pt>
+<CtrlLqrObs_Torque.png, id=155, 578.16pt x 433.62pt>
 File: CtrlLqrObs_Torque.png Graphic file (type png)
 
 <use CtrlLqrObs_Torque.png>
-Package pdftex.def Info: CtrlLqrObs_Torque.png used on input line 422.
+Package pdftex.def Info: CtrlLqrObs_Torque.png used on input line 436.
 (pdftex.def)             Requested size: 220.50587pt x 165.37941pt.
- [8 <C:/Users/John/Documents/Astro/ASEN5014/Project/Report/Ctrl1Obs_ObsErr.png 
+ [9 <C:/Users/John/Documents/Astro/ASEN5014/Project/Report/Ctrl1Obs_ObsErr.png 
 (PNG copy)> <C:/Users/John/Documents/Astro/ASEN5014/Project/Report/Ctrl1ObsErro
 r_ObsErr.png (PNG copy)>]
-<CtrlLqrObsError_Alpha.png, id=153, 578.16pt x 433.62pt>
+<CtrlLqrObsError_Alpha.png, id=167, 578.16pt x 433.62pt>
 File: CtrlLqrObsError_Alpha.png Graphic file (type png)
 
 <use CtrlLqrObsError_Alpha.png>
-Package pdftex.def Info: CtrlLqrObsError_Alpha.png used on input line 437.
+Package pdftex.def Info: CtrlLqrObsError_Alpha.png used on input line 451.
 (pdftex.def)             Requested size: 220.50587pt x 165.37941pt.
 
-<CtrlLqrObsError_Delta.png, id=154, 578.16pt x 433.62pt>
+<CtrlLqrObsError_Delta.png, id=168, 578.16pt x 433.62pt>
 File: CtrlLqrObsError_Delta.png Graphic file (type png)
 
 <use CtrlLqrObsError_Delta.png>
-Package pdftex.def Info: CtrlLqrObsError_Delta.png used on input line 440.
+Package pdftex.def Info: CtrlLqrObsError_Delta.png used on input line 454.
 (pdftex.def)             Requested size: 220.50587pt x 165.37941pt.
 
-<CtrlLqrObsError_Torque.png, id=155, 578.16pt x 433.62pt>
+<CtrlLqrObsError_Torque.png, id=169, 578.16pt x 433.62pt>
 File: CtrlLqrObsError_Torque.png Graphic file (type png)
 
 <use CtrlLqrObsError_Torque.png>
-Package pdftex.def Info: CtrlLqrObsError_Torque.png used on input line 443.
+Package pdftex.def Info: CtrlLqrObsError_Torque.png used on input line 457.
 (pdftex.def)             Requested size: 220.50587pt x 165.37941pt.
- [9 <C:/Users/John/Documents/Astro/ASEN5014/Project/Report/CtrlLqrObs_Alpha.png
- (PNG copy)> <C:/Users/John/Documents/Astro/ASEN5014/Project/Report/CtrlLqrObs_
-Delta.png (PNG copy)> <C:/Users/John/Documents/Astro/ASEN5014/Project/Report/Ct
-rlLqrObs_Torque.png (PNG copy)>]
-<CtrlLqrObs_ObsErr.png, id=166, 578.16pt x 433.62pt>
+ [10 <C:/Users/John/Documents/Astro/ASEN5014/Project/Report/CtrlLqrObs_Alpha.pn
+g (PNG copy)> <C:/Users/John/Documents/Astro/ASEN5014/Project/Report/CtrlLqrObs
+_Delta.png (PNG copy)> <C:/Users/John/Documents/Astro/ASEN5014/Project/Report/C
+trlLqrObs_Torque.png (PNG copy)>]
+<CtrlLqrObs_ObsErr.png, id=180, 578.16pt x 433.62pt>
 File: CtrlLqrObs_ObsErr.png Graphic file (type png)
 
 <use CtrlLqrObs_ObsErr.png>
-Package pdftex.def Info: CtrlLqrObs_ObsErr.png used on input line 454.
+Package pdftex.def Info: CtrlLqrObs_ObsErr.png used on input line 468.
 (pdftex.def)             Requested size: 220.50587pt x 165.37941pt.
 
-<CtrlLqrObsError_ObsErr.png, id=167, 578.16pt x 433.62pt>
+<CtrlLqrObsError_ObsErr.png, id=181, 578.16pt x 433.62pt>
 File: CtrlLqrObsError_ObsErr.png Graphic file (type png)
 
 <use CtrlLqrObsError_ObsErr.png>
-Package pdftex.def Info: CtrlLqrObsError_ObsErr.png used on input line 457.
+Package pdftex.def Info: CtrlLqrObsError_ObsErr.png used on input line 471.
 (pdftex.def)             Requested size: 220.50587pt x 165.37941pt.
- [10 <C:/Users/John/Documents/Astro/ASEN5014/Project/Report/CtrlLqrObsError_Alp
+ [11 <C:/Users/John/Documents/Astro/ASEN5014/Project/Report/CtrlLqrObsError_Alp
 ha.png (PNG copy)> <C:/Users/John/Documents/Astro/ASEN5014/Project/Report/CtrlL
 qrObsError_Delta.png (PNG copy)> <C:/Users/John/Documents/Astro/ASEN5014/Projec
 t/Report/CtrlLqrObsError_Torque.png (PNG copy)>] <Ctrl1_LQR_error_diff_ObsErr.p
-ng, id=178, 578.16pt x 433.62pt>
+ng, id=192, 578.16pt x 433.62pt>
 File: Ctrl1_LQR_error_diff_ObsErr.png Graphic file (type png)
 
 <use Ctrl1_LQR_error_diff_ObsErr.png>
-Package pdftex.def Info: Ctrl1_LQR_error_diff_ObsErr.png used on input line 466
+Package pdftex.def Info: Ctrl1_LQR_error_diff_ObsErr.png used on input line 480
 .
 (pdftex.def)             Requested size: 220.50587pt x 165.37941pt.
 
-<Ctrl1MonteCarlo_Alpha.png, id=180, 578.16pt x 433.62pt>
+<Ctrl1MonteCarlo_Alpha.png, id=194, 578.16pt x 433.62pt>
 File: Ctrl1MonteCarlo_Alpha.png Graphic file (type png)
 
 <use Ctrl1MonteCarlo_Alpha.png>
-Package pdftex.def Info: Ctrl1MonteCarlo_Alpha.png used on input line 479.
+Package pdftex.def Info: Ctrl1MonteCarlo_Alpha.png used on input line 493.
 (pdftex.def)             Requested size: 220.50587pt x 165.37941pt.
 
-<Ctrl1MonteCarlo_Delta.png, id=181, 578.16pt x 433.62pt>
+<Ctrl1MonteCarlo_Delta.png, id=195, 578.16pt x 433.62pt>
 File: Ctrl1MonteCarlo_Delta.png Graphic file (type png)
 
 <use Ctrl1MonteCarlo_Delta.png>
-Package pdftex.def Info: Ctrl1MonteCarlo_Delta.png used on input line 482.
+Package pdftex.def Info: Ctrl1MonteCarlo_Delta.png used on input line 496.
 (pdftex.def)             Requested size: 220.50587pt x 165.37941pt.
 
-<Ctrl1MonteCarlo_Torque.png, id=182, 578.16pt x 433.62pt>
+<Ctrl1MonteCarlo_Torque.png, id=196, 578.16pt x 433.62pt>
 File: Ctrl1MonteCarlo_Torque.png Graphic file (type png)
 
 <use Ctrl1MonteCarlo_Torque.png>
-Package pdftex.def Info: Ctrl1MonteCarlo_Torque.png used on input line 485.
+Package pdftex.def Info: Ctrl1MonteCarlo_Torque.png used on input line 499.
 (pdftex.def)             Requested size: 220.50587pt x 165.37941pt.
- [11 <C:/Users/John/Documents/Astro/ASEN5014/Project/Report/CtrlLqrObs_ObsErr.p
+ [12 <C:/Users/John/Documents/Astro/ASEN5014/Project/Report/CtrlLqrObs_ObsErr.p
 ng (PNG copy)> <C:/Users/John/Documents/Astro/ASEN5014/Project/Report/CtrlLqrOb
 sError_ObsErr.png (PNG copy)> <C:/Users/John/Documents/Astro/ASEN5014/Project/R
 eport/Ctrl1_LQR_error_diff_ObsErr.png (PNG copy)>] <LQRMonteCarlo_Alpha.png, id
-=193, 578.16pt x 433.62pt>
+=207, 578.16pt x 433.62pt>
 File: LQRMonteCarlo_Alpha.png Graphic file (type png)
 
 <use LQRMonteCarlo_Alpha.png>
-Package pdftex.def Info: LQRMonteCarlo_Alpha.png used on input line 496.
+Package pdftex.def Info: LQRMonteCarlo_Alpha.png used on input line 510.
 (pdftex.def)             Requested size: 220.50587pt x 165.37941pt.
 
-<LQRMonteCarlo_Delta.png, id=194, 578.16pt x 433.62pt>
+<LQRMonteCarlo_Delta.png, id=208, 578.16pt x 433.62pt>
 File: LQRMonteCarlo_Delta.png Graphic file (type png)
 
 <use LQRMonteCarlo_Delta.png>
-Package pdftex.def Info: LQRMonteCarlo_Delta.png used on input line 499.
+Package pdftex.def Info: LQRMonteCarlo_Delta.png used on input line 513.
 (pdftex.def)             Requested size: 220.50587pt x 165.37941pt.
 
-<LQRMonteCarlo_Torque.png, id=195, 578.16pt x 433.62pt>
+<LQRMonteCarlo_Torque.png, id=209, 578.16pt x 433.62pt>
 File: LQRMonteCarlo_Torque.png Graphic file (type png)
 
 <use LQRMonteCarlo_Torque.png>
-Package pdftex.def Info: LQRMonteCarlo_Torque.png used on input line 502.
+Package pdftex.def Info: LQRMonteCarlo_Torque.png used on input line 516.
 (pdftex.def)             Requested size: 220.50587pt x 165.37941pt.
- [12 <C:/Users/John/Documents/Astro/ASEN5014/Project/Report/Ctrl1MonteCarlo_Alp
+ [13 <C:/Users/John/Documents/Astro/ASEN5014/Project/Report/Ctrl1MonteCarlo_Alp
 ha.png (PNG copy)> <C:/Users/John/Documents/Astro/ASEN5014/Project/Report/Ctrl1
 MonteCarlo_Delta.png (PNG copy)> <C:/Users/John/Documents/Astro/ASEN5014/Projec
 t/Report/Ctrl1MonteCarlo_Torque.png (PNG copy)>]
-[13 <C:/Users/John/Documents/Astro/ASEN5014/Project/Report/LQRMonteCarlo_Alpha.
+[14 <C:/Users/John/Documents/Astro/ASEN5014/Project/Report/LQRMonteCarlo_Alpha.
 png (PNG copy)> <C:/Users/John/Documents/Astro/ASEN5014/Project/Report/LQRMonte
 Carlo_Delta.png (PNG copy)> <C:/Users/John/Documents/Astro/ASEN5014/Project/Rep
 ort/LQRMonteCarlo_Torque.png (PNG copy)>] 
 AED: lastpage setting LastPage
-[14]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 557.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 557.
+[15]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 571.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 571.
 
 (C:\Users\John\Documents\Astro\ASEN5014\Project\Report\Clouse_ASEN5014_Project.
 aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 557.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 557.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 571.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 571.
 Package rerunfilecheck Info: File `Clouse_ASEN5014_Project.out' has not changed
 .
-(rerunfilecheck)             Checksum: 322F44C09D6F7EBE0759D94BAA406D5F;444.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 557.
+(rerunfilecheck)             Checksum: 2A44D35235B4E4635280406A7C8F8D27;384.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 571.
  ) 
 Here is how much of TeX's memory you used:
- 8682 strings out of 493921
- 127898 string characters out of 3147286
- 228816 words of memory out of 3000000
- 11731 multiletter control sequences out of 15000+200000
+ 8698 strings out of 493921
+ 128135 string characters out of 3147286
+ 228848 words of memory out of 3000000
+ 11739 multiletter control sequences out of 15000+200000
  14589 words of font info for 51 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
- 42i,15n,45p,1037b,332s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 42i,15n,45p,1040b,338s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Pr
 ogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx8.pfb><C:/Program Fil
 es/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Files/MiKTe
 X 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKTeX 2.9/fo
 nts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1
-/public/amsfonts/cm/cmmi7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/a
-msfonts/cm/cmmi8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/c
-m/cmr10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.p
-fb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Pro
-gram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Program Files
-/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Program Files/MiKTeX 2.
-9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/
-type1/public/amsfonts/cm/cmsy6.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/pub
-lic/amsfonts/cm/cmsy7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfo
-nts/cm/cmsy8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cm
-ti10.pfb>
-Output written on Clouse_ASEN5014_Project.pdf (14 pages, 545407 bytes).
+/public/amsfonts/cm/cmmi6.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/a
+msfonts/cm/cmmi7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/c
+m/cmmi8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.p
+fb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Pr
+ogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Program File
+s/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Program Files/MiKTeX 2
+.9/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Program Files/MiKTeX 2.9/fonts/t
+ype1/public/amsfonts/cm/cmr8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/publi
+c/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfon
+ts/cm/cmsy5.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cms
+y6.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C
+:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Program
+ Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb>
+Output written on Clouse_ASEN5014_Project.pdf (15 pages, 758248 bytes).
 PDF statistics:
- 288 PDF objects out of 1000 (max. 8388607)
- 70 named destinations out of 1000 (max. 500000)
- 195 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 313 PDF objects out of 1000 (max. 8388607)
+ 76 named destinations out of 1000 (max. 500000)
+ 197 words of extra memory for PDF output out of 10000 (max. 10000000)
 

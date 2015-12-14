@@ -1,8 +1,7 @@
 \contentsline {section}{\numberline {I}Introduction}{3}{section.1}
-\contentsline {section}{\numberline {II}State Space Representation}{3}{section.2}
-\contentsline {section}{\numberline {III}Homework 7}{4}{section.3}
-\contentsline {section}{\numberline {IV}State Feedback from Manual Pole Placement}{6}{section.4}
-\contentsline {section}{\numberline {V}Observer Design}{7}{section.5}
-\contentsline {section}{\numberline {VI}Optimal Control}{8}{section.6}
-\contentsline {section}{\numberline {VII}Monte Carlo on Plant Errors}{11}{section.7}
-\contentsline {section}{\numberline {VIII}Conclusion}{13}{section.8}
+\contentsline {section}{\numberline {II}System Model}{3}{section.2}
+\contentsline {section}{\numberline {III}State Feedback from Manual Pole Placement}{6}{section.3}
+\contentsline {section}{\numberline {IV}Observer Design}{7}{section.4}
+\contentsline {section}{\numberline {V}Optimal Control}{9}{section.5}
+\contentsline {section}{\numberline {VI}Monte Carlo on Plant Errors}{12}{section.6}
+\contentsline {section}{\numberline {VII}Conclusion}{14}{section.7}

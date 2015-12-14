@@ -2,7 +2,7 @@
 % Disturbance solar torque
 analysis_set = 'MonteCarlo';
 r = 35*pi/180;
-offset_max = 1;
+offset_max = 0.1;
 offset_min = -offset_max;
 t = 0:1:Ts*3;
 
@@ -20,6 +20,7 @@ for ii = 1:num_runs
            dist_torque_max*B(2), zeros(1,3);
            zeros(1,4);
            dist_torque_max*B(4), zeros(1,3)];
+    tmp = [[0;1/a_dd_LHS_1;0;-BIG/d_dd_LHS] zeros(4,3)]*dist_torque_max;
     A_dist = A + tmp;
     
     A_OL_Aug_MC = [A_dist,zeros(4,1);-C, zeros(1)];
@@ -41,7 +42,9 @@ for ii = 1:num_runs
 end
 fprintf('\n')
 analysis_set = 'LQRMonteCarlo';
-plotSailSysResp( analysis_set,y_lqr_mc_store(:,1:5,:),t,K_LQR,r,Ts,3600*2 )
+plotSailSysResp( analysis_set,y_lqr_mc_store(:,1:5,:),t,K_LQR,r,Ts,3600*2,...
+    title_plots)
 analysis_set = 'Ctrl1MonteCarlo';
-plotSailSysResp( analysis_set,y_int_mc_store(:,1:5,:),t,K_Aug,r,Ts,3600*2 )
+plotSailSysResp( analysis_set,y_int_mc_store(:,1:5,:),t,K_Aug,r,Ts,3600*2,...
+    title_plots)
 t = 0:0.01:Ts*3;

@@ -127,32 +127,45 @@
 	\newpage
 
 	\section{Introduction}
-Single-axis control of a solar-sail-driven interplanetary spacecraft (sailcraft) is proposed.  The attitude control system will be responsible for ensuring that the steering angle between the force and velocity vectors is within the tolerance necessary for an interplanetary voyage.  This steering angle is dependent on the mission parameters and the orbital position of the spacecraft. It, and the sun vector, will be treated as external commands to the system. The spacecraft will perform all its thrusting in the orbit plane.
+Single-axis control of a solar-sail-driven interplanetary spacecraft (sailcraft) is proposed.  The attitude control system will be responsible for ensuring that the steering angle between the force and velocity vectors is within the tolerance necessary for an interplanetary voyage.  This steering angle is dependent on the mission parameters and the orbital position of the spacecraft. The steering angle results in a commanded angle betwee the sail normal vector and the sun vector. For orbit-raising maneuvers on a sun-orbity spacecraft, the highest sun angle commanded would be 35$^{\circ}$ [McInnes]. All torques are assumed to happen about the spacecraft yaw axis, which is parallel to the orbit normal. A diagram of the system can be seen in Figure \ref{fig:Diagram}.
+	
+	\begin{figure}[H]
+		\centering
+			\includegraphics[width = 7.5cm]{schematic.png}
+		\caption{Diagram of the spacecraft [Wie]. }
+		\label{fig:Diagram}
+	\end{figure}	
 	
 	\vspace{5 mm}
 	
-The primary actuation mechanism will be a gimbaled control boom between the sail subsystem and the spacecraft bus, which contains the majority of the spacecraft mass.  With the center of mass between the thrust point and the sun, expected disturbances will cause oscillation about some angle between the sun and the axis normal to the sail, $\alpha$, for a locked gimbal.  Changing the gimbal angle, $\delta$, will dampen this oscilation with the right conrol law. Roll and pitch angles wil be held to zero for this analysis. Star trackers will determin attitude.
+The primary actuation mechanism will be a gimbaled control boom between the sail subsystem and the spacecraft bus, which contains the majority of the spacecraft mass.  With the center of mass between the thrust point and the sun, expected disturbances will cause oscillation about some angle between the sun and the axis normal to the sail, $\alpha$, for a locked gimbal.  Changing the gimbal angle, $\delta$, will dampen this oscilation with the right conrol law. Roll and pitch angles wil be held to zero for this analysis. Sun sensors will determine spacecraft yaw, and will have a maximum error of $\pm$0.05$^{\circ}$.
 	
 	\vspace{5 mm}
 
-The state-space model is expected to have four states: the sun angle ($\alpha$), the rate of the sun angle ($\dot{\alpha}$), the gimbal angle ($\delta$), and the gimbal angle rate ($\dot{\delta}$).  Depending on the vane implementation, there may be up to two more states for vane angles.
+The state-space model has four states: the sun angle ($\alpha$), the rate of the sun angle ($\dot{\alpha}$), the gimbal angle ($\delta$), and the gimbal angle rate ($\dot{\delta}$). 
 	
 	\vspace{5 mm}
 
-The sail and boom will be modeled as rigid bodies, justified by the slow actuation of the gimbal throughout the flight. The sail will be modeled as a thin plate, rather than a billowed sail. Solar pressure torques (about the non-steered axis) will be controlled against. Disturbance torques from thruster firings may also be modeled. 
+The sail and boom will be modeled as rigid bodies, justified by the slow actuation of the gimbal throughout the flight. The sail will be modeled as a thin plate, rather than a billowed sail. Solar pressure torques (about the non-steered axis) will be controlled against. 
+	\vspace{5 mm}
+
+The state-space model was obtained in a similar manner to that presented by Wie. The equations of motion for a gimbaled thrust vector were obtained for the yaw axis. 
 	
 	\vspace{5 mm}
 
-The state-space model will be obtained in a similar manner to that presented by Wie. The equations of motion for a gimbaled thrust vector are obtained for the yaw axis. 
-	
-	\vspace{5 mm}
+System performance was judged by the response to errors, namely a step from $\alpha$=0$^{\circ}$ to $\alpha$=35$^{\circ}$. Mitigation of disturbance torques will also be examined.
 
-System performance will be judged by the response to errors, both with a step-error and a flight-like error where the steering angle constantly-but-slowly changes. Mitigation of disturbance torques will also be examined.
+	\section{System Model}
 
-	\section{State Space Representation}
+	The equations of motion were linearized about the state $\alpha = \dot{\alpha} = \delta = \dot{\delta} =0$. This state is in equilibrium, due to the the force resulting from the solar radiation pressure acting through the sailcraft's center of mass.  Any disturbance to $\alpha$ would cause oscillation about $\alpha=0$. The linearized equations are shown below [Wie]:
 
-	The equations of motion were linearized about the state $\alpha = \dot{\alpha} = \delta = \dot{\delta} =0$. This state is in equilibrium, due to the the force resulting from the solar radiation pressure acting through the sailcraft's center of mass.  Any disturbance to $\alpha$ would cause oscillation about $\alpha=0$. The linearized equations are shown below:
-
+\begin{equation}
+[J_s+(m_sm_p/m)b(b+l)]\ddot{\alpha}+(m_sm_p/m)bl\ddot{\delta}=-(m_p/m)bF_t-T_g+T_{ext}
+\end{equation}
+\begin{equation}
+[J_p+(m_sm_p/m)l(b+l)]\ddot{\alpha}+[J_p+(m_sm_p/m)l^2]\ddot{\delta}=-(m_p/m)lF_t+(m_p/m)lF_n\delta+T_g
+\end{equation}
+The state-space model form is:
 	\begin{equation}
 \begin{bmatrix}
 \dot{\alpha }\\ 
@@ -161,9 +174,9 @@ System performance will be judged by the response to errors, both with a step-er
 \ddot{\delta }
 \end{bmatrix}=\begin{bmatrix}
 0 & 1 & 0 & 0\\ 
-0 & 0 & \frac{d}{J_s}F_n & 0\\ 
+\frac{-m_pbF_{t\ max}(\frac{J_pm}{J_pm + {m_sm_p}l(l-bZ)})}{J_sm + m_sm_pb(b+l)} & 0 & \frac{-m_sm_pbl\frac{-m_plF_{n\ max}}{J_pm + {m_sm_p}l(l-bZ)}}{J_sm + m_sm_pb(b+l)} & 0\\ 
 0 & 0 & 0 & 1\\ 
-\frac{-m_pl}{m(J_p+\frac{m_sm_p}{m}l^2)}F_t & 0 & \frac{-m_pl}{m(J_p+\frac{m_sm_p}{m}l^2)}F_n & 0
+\frac{{m_p}(-l+bZ)F_{t\ max}}{J_pm + {m_sm_p}l(l-bZ)} & 0 & \frac{-m_plF_{n\ max}}{J_pm + {m_sm_p}l(l-bZ)} & 0
 \end{bmatrix}
 \begin{bmatrix}
 \alpha\\ 
@@ -186,16 +199,22 @@ y = \begin{bmatrix}
 0
 \end{bmatrix}u
 	\end{equation}
+\noindent
+where
 	\begin{equation}
-F_n=PA(1+\rho_s+\frac{2}{3}\rho_d)
+F_{n\ max}=PA(1+\rho_s+\frac{2}{3}\rho_d)
 	\end{equation}
 	\begin{equation}
-F_t=PA(1-\rho_s)
+F_{t\ max}=PA(1-\rho_s)
 	\end{equation}
+
+\begin{equation}
+Z=\frac{J_p + \frac{m_sm_p}{m}l(b+l)}{J_s + \frac{m_sm_p}{m}b(b+l)}
+\end{equation}
 	
 	\begin{table}[H]% no placement specified: defaults to here, top, bottom, page
 		\begin{center}
-			\caption{Sailcraft characteristics.}
+			\caption{Sailcraft characteristics [Wie].}
 			\label{t:Primary_variables}
 			\begin{tabular}{|c|c|}
 \hline 
@@ -216,11 +235,11 @@ $\rho_d$ &     -0.5949 \\
 		\end{center}
 	\end{table}  
 
-	Using the sailcraft characteristics in Table \ref{t:Primary_variables}, the eigenvalues are found to be:
+	Using the sailcraft characteristics in Table \ref{t:Primary_variables}, the rank of $A$ is found to be 4 and the eigenvalues are found to be:
 	
 	\vspace{5 mm}
 {\centering
- $\lambda_i = \{\pm1.1200\times10^{-2}i, \pm5.9395\times10^{-4}i\}$.\par
+ $\lambda_i = \{\pm j1.1244\times10^{-2}, \pm j2.9573\times10^{-4}\}$.\par
 }
 	
 	\vspace{5 mm}
@@ -243,45 +262,40 @@ $\rho_d$ &     -0.5949 \\
 
 	\vspace{5 mm}
 
-	The controller will be constrained to keep the sun angle less than or equal to 20$^{\circ}$ to keep the system model within the realm of linearity. It will have to dampen the oscillations induced induced by disturbances so that the sail can provide a force in the desired direction. 
-
-	\vspace{5 mm}
-	\section{Homework 7}
-
-	The system is found to be controllable since the four-row controllability matrix is full rank.
+	The gimbal angle will be kept within $\pm$30$^{\circ}$ so that large responses will not mask the dynamics and keep the sun angle slow-moving. The system model will be within the realm of linearity for the highest commanded $\alpha$. The controller will have to dampen the oscillations induced induced by disturbances so that the sail can provide a force in the desired direction. Overshoot will be permissible, but must not exceed 10\% of the maximum commanded $\alpha$. There must be zero steady-state error, since the controller would be expected to track a slowly-changing commanded $\alpha$ with no error. 
 
 	\vspace{5 mm}
 
-	For full-state feedback control, pole placement will have to be performed such that the real parts are negative. The gimbal angle cannot exceed $\pm$90$^{\circ}$, which is a physical constraint. To maintain the linearity-about-zero assumption, the sun angle $\alpha$ should not exceed $\pm$20$^{\circ}$. The controller will track the specified sun angle with zero steady-state error.  Due to the slow nature of the changing reference, a nearly-critical damped response will be sufficient.
-
-	\vspace{5 mm}
-
-	The system is found to be observable since the observability matrix is full rank.
-
-	\vspace{5 mm}
-
-	The uncontrolled step response of the system is shown in Figure \ref{fig:StepResp}. The response matches the eigenvalues: two sine waves superimposed on eachother, each corresponding to one of the complex conjugate pairs. Because the eigenvalues have no real part, the motion is undamped.
+	The uncontrolled step response of the system is shown in Figure \ref{fig:StepResp}. The response confirms the prediction from the eigenvalues: a sine-wave response for small step inputs, and unbounded response after some threshold. Because the eigenvalues have no real part, the motion is undamped.
 
 	\vspace{5 mm}
 
 	\begin{figure}[H]
 		\centering
-			\includegraphics[width = 10cm]{StepResponse.png}
-		\caption{Linear solutions of the sail forces vs. sun angle. }
+		\subfigure[Stable, $T_g=10^{-4}$ N-m]{
+			\includegraphics[width = 7.75cm]{OL_Stable.png}
+		}
+		\subfigure[Unstable, $T_g=10^{-2}$ N-m]{
+			\includegraphics[width = 7.75cm]{OL_Unstable.png}
+		}
+		\caption{Open-loop responses. }
 		\label{fig:StepResp}
 	\end{figure}	
 
 	Reachability is determined by comparing the rank of the controllability matrix with the rank of the open-loop system. The controllability matrix $P$ turns out to be 
 
 	\begin{equation}
-P=\begin{bmatrix}
+\begin{aligned}
+P&=\begin{bmatrix}
 B & AB & A^2B &A^3B 
-\end{bmatrix}=\begin{bmatrix}
+\end{bmatrix}\\
+&=\begin{bmatrix}
             0 &     -1.6564\times10^{-4} &             0 &    4.6394\times10^{-9}\\ 
   -1.6564\times10^{-4} &               0 &    4.6394\times10^{-9} &             0\\ 
             0 &      7.4412\times10^{-3} &             0 &   -9.3875\times10^{-7}\\ 
    7.4412\times10^{-3} &               0 &   -9.3875\times10^{-7} &             0
 \end{bmatrix}
+\end{aligned}
 	\end{equation}
 
 The rank of the controllability matrix is 4, as is the rank of the system matrix $A$. Thus, the system is controllable. Because A is full rank, controllability implies reachability, so the system is actually reachable.
@@ -306,7 +320,7 @@ CA^3
 The rank of the observability matrix is 4. Thus, the system is observable.
 
 	\section{State Feedback from Manual Pole Placement}
-	The design parameters were chosen to be as follows: for a state at the origin, control the sun angle to 35$^{\circ}$ in 90 minutes (within 5\%) with no more than 10\% overshoot and without violating the actuator limits defined previously. This slew is actually fairly fast compared to the nominal steering, but would be useful for attitude maneuvers needed to meet payload or communications constraints, recovering from a fault en route. An integral term was also implemented to drive the steady-state error of the sun angle to zero while being robust to disturbances and plant errors. The poles were then chosen such that the dominant poles for a damped harmonic oscilator would have these characteristics. The other complex conjugate poles were placed to the left of the dominant poles by 0.1 on the real axis. The final pole was picked to be far to the left of the dominant poles, at -100. With the poles placed, the full-state feedback gains were:
+	The design parameters were chosen to be as follows: for a state at the origin, control the sun angle to 35$^{\circ}$ in 90 minutes (within 5\%) with no more than 10\% overshoot and without violating the actuator limits defined previously. This slew is actually fairly fast compared to the nominal steering, but would be useful for attitude maneuvers needed to meet payload or communications constraints, or recovering from a fault en route. An integral term was also implemented to drive the steady-state error of the sun angle to zero while being robust to disturbances and plant errors. The poles were then chosen such that the dominant poles for a damped harmonic oscilator would have these characteristics. The other complex conjugate poles were placed to the left of the dominant poles by 0.1 on the real axis. The final pole was picked to be far to the left of the dominant poles, at -100. With the poles placed, the full-state feedback gains were:
 
 \begin{equation}
 \begin{aligned}
@@ -314,7 +328,7 @@ K &= \begin{bmatrix}
 K_{\alpha} & K_{\delta} & K_{\dot{\alpha}} & K_{\dot{\delta}} & K_i
 \end{bmatrix}\\ 
  &= \begin{bmatrix}
--3.7246\times10^5 & -5.9012\times10^7 & -5.4575\times10^3 & -1.3001\times10^6 & 1.2580\times10^3
+-7.4967\times10^4 & -6.3124\times10^7 & 1.0524\times10^3 & -1.3917\times10^6 & 59.557
 \end{bmatrix}
 \end{aligned}
 \end{equation}
