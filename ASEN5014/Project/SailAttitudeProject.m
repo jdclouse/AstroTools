@@ -185,6 +185,7 @@ for ii = 6:9
 plot(t/3600,y_obs(:,ii)*r2d,colors{ii-5},'LineWidth',lw)
 hold on
 end
+set(gca, 'FontSize', 20)
 xlabel('Time (hr)','FontSize',fs)
 ylabel('Error','FontSize',fs)
 l = legend({'\alpha error (deg)', '\alpha rate error (deg/s)', ...
@@ -208,6 +209,7 @@ for ii = 6:9
 plot(t/3600,y_obs_error(:,ii)*r2d,colors{ii-5},'LineWidth',lw)
 hold on
 end
+set(gca, 'FontSize', 20)
 xlabel('Time (hr)','FontSize',fs)
 ylabel('Error','FontSize',fs)
 l = legend({'\alpha error (deg)', '\alpha rate error (deg/s)', ...
@@ -230,6 +232,7 @@ B_Obs_LQR = [zeros(size(B));1;zeros(length(L),1)];
 C_Obs_LQR = [C, 0, zeros(1,length(L))];
 C_Obs_LQRFake = [eye(9)];
 LQR_system = ss(A_Obs_LQR, B_Obs_LQR, C_Obs_LQRFake, 0);
+eig(A_OL_Aug-B_OL_Aug*K_LQR); % Eigenvals of this CL system
 
 r = 35*pi/180;
 analysis_set = 'CtrlLqrObs';
@@ -243,6 +246,7 @@ for ii = 6:9
 plot(t/3600,y_lqr(:,ii)*r2d,colors{ii-5},'LineWidth',lw)
 hold on
 end
+set(gca, 'FontSize', 20)
 xlabel('Time (hr)','FontSize',fs)
 ylabel('Error','FontSize',fs)
 l = legend({'\alpha error (deg)', '\alpha rate error (deg/s)', ...
@@ -266,6 +270,7 @@ for ii = 6:9
 plot(t/3600,y_lqr_error(:,ii)*r2d,colors{ii-5},'LineWidth',lw)
 hold on
 end
+set(gca, 'FontSize', 20)
 xlabel('Time (hr)','FontSize',fs)
 ylabel('Error','FontSize',fs)
 l = legend({'\alpha error (deg)', '\alpha rate error (deg/s)', ...
@@ -280,6 +285,7 @@ for ii = 6:9
 plot(t/3600,(y_lqr_error(:,ii)-y_obs_error(:,ii))*r2d,colors{ii-5},'LineWidth',lw)
 hold on
 end
+set(gca, 'FontSize', 20)
 xlabel('Time (hr)','FontSize',fs)
 ylabel('Difference in Error','FontSize',fs)
 l = legend({'\Delta \alpha error (deg)', '\Delta \alpha rate error (deg/s)', ...
