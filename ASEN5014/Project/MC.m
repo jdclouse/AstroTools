@@ -1,5 +1,5 @@
 %% Monte Carlo Analysis
-% Disturbance solar torque
+%% Disturbance solar torque
 analysis_set = 'MonteCarlo';
 r = 35*pi/180;
 offset_max = 0.1;

@@ -127,7 +127,7 @@
 	\newpage
 
 	\section{Introduction}
-Single-axis control of a solar-sail-driven interplanetary spacecraft (sailcraft) is proposed.  The attitude control system is responsible for ensuring that the steering angle between the force and velocity vectors is within the tolerance necessary for an interplanetary voyage.  This steering angle is dependent on the mission parameters and the orbital position of the spacecraft. The steering angle results in a commanded angle betwee the sail normal vector and the sun vector. For orbit-raising maneuvers on a sun-orbiting spacecraft, the highest sun angle commanded would be 35$^{\circ}$\cite{McInnes}. For this effort, all torques are assumed to happen about the spacecraft yaw axis, which was parallel to the orbit normal. A diagram of the system can be seen in Figure \ref{fig:Diagram}.
+Single-axis control of a solar-sail-driven interplanetary spacecraft (sailcraft) is proposed.  The attitude control system is responsible for ensuring that the steering angle between the force and velocity vectors is within the tolerance necessary for an interplanetary voyage.  This steering angle is dependent on the mission parameters and the orbital position of the spacecraft. The steering angle results in a commanded angle between the sail normal vector and the sun vector. For orbit-raising maneuvers on a sun-orbiting spacecraft, the highest sun angle commanded would be 35$^{\circ}$\cite{McInnes}. For this effort, all torques are assumed to happen about the spacecraft yaw axis, which was parallel to the orbit normal. A diagram of the system can be seen in Figure \ref{fig:Diagram}.
 	
 	\begin{figure}[H]
 		\centering
@@ -138,19 +138,19 @@ Single-axis control of a solar-sail-driven interplanetary spacecraft (sailcraft)
 	
 	\vspace{5 mm}
 	
-The sailcraft's actuator was a gimbaled control boom between the sail subsystem and the spacecraft bus, which contained the majority of the spacecraft mass.  With the center of mass between the thrust point and the sun, expected disturbances would cause oscillation about some angle between the sun and the axis normal to the sail, $\alpha$, for a locked gimbal.  Changing the gimbal angle, $\delta$, would dampen this oscilation with the right conrol law. Roll and pitch angles were held to zero for this analysis. Sun sensors determined spacecraft yaw, and had a maximum error of $\pm$0.05$^{\circ}$.
+The sailcraft's actuator was a gimbaled control boom between the sail subsystem and the spacecraft bus, which contained the majority of the spacecraft mass.  With the center of mass between the thrust point and the sun, expected disturbances would cause oscillation about some angle between the sun and the axis normal to the sail, $\alpha$, for a locked gimbal.  Changing the gimbal angle, $\delta$, would dampen this oscillation with the right control law. Roll and pitch angles were held to zero for this analysis. Sun sensors determined spacecraft yaw, and had a maximum error of $\pm$0.05$^{\circ}$.
 	
 	\vspace{5 mm}
 
-The state-space model had four states: the sun angle ($\alpha$), the rate of the sun angle ($\dot{\alpha}$), the gimbal angle ($\delta$), and the gimbal angle rate ($\dot{\delta}$). These states were chosen due to their coupling and resulting output (sun angle), as well as being the only dynamic parameters, as seen in Equations \ref{eq:1} and \ref{eq:2}.The sail and boom was modeled as rigid bodies, justified by the slow actuation of the gimbal throughout the flight. The sail was be modeled as a thin plate, rather than a billowed sail. The state-space model was obtained in a similar manner to that presented by Wie\cite{WieSolarSail2}. The equations of motion for a gimbaled thrust vector were obtained for the yaw axis. 
+The state-space model had four states: the sun angle ($\alpha$), the rate of the sun angle ($\dot{\alpha}$), the gimbal angle ($\delta$), and the gimbal angle rate ($\dot{\delta}$). These states were chosen due to their coupling and resulting output (sun angle), as well as being the only dynamic parameters, as seen in Equations \ref{eq:1} and \ref{eq:2}.The sail and boom were modeled as rigid bodies, justified by the slow actuation of the gimbal throughout the flight. The sail was modeled as a thin plate, rather than a billowed sail. The state-space model was obtained in a similar manner to that presented by Wie\cite{WieSolarSail2}. The equations of motion for a gimbaled thrust vector were obtained for the yaw axis. 
 	
 	\vspace{5 mm}
 
-System performance was judged by the response to errors, namely a step from $\alpha$=0$^{\circ}$ to $\alpha$=35$^{\circ}$. Mitigation of disturbance torques was also be examined.
+System performance was judged by the response to errors, namely a step from $\alpha$=0$^{\circ}$ to $\alpha$=35$^{\circ}$. Mitigation of disturbance torques was also examined.
 
 	\section{System Model}
 
-	The equations of motion were linearized about the state $\alpha = \dot{\alpha} = \delta = \dot{\delta} =0$. Such a state was chosen because it is in equilibrium, due to the the force resulting from the solar radiation pressure acting through the sailcraft's center of mass. They system is also stable about this point, as any disturbance to $\alpha$ would cause oscillation about $\alpha=0$ for a locked gimbal. The linearized equations are shown below\cite{WieSolarSail2}:
+	The equations of motion were linearized about the state $\alpha = \dot{\alpha} = \delta = \dot{\delta} =0$. Such a state was chosen because it is in equilibrium, due to the force resulting from the solar radiation pressure acting through the sailcraft's center of mass. They system is also stable about this point, as any disturbance to $\alpha$ would cause oscillation about $\alpha=0$ for a locked gimbal. The linearized equations are shown below\cite{WieSolarSail2}:
 
 \begin{equation} \label{eq:1}
 [J_s+(m_sm_p/m)b(b+l)]\ddot{\alpha}+(m_sm_p/m)bl\ddot{\delta}=-(m_p/m)bF_t-T_g+T_{ext}
@@ -258,7 +258,7 @@ $\rho_d$ &     -0.5949 \\
 
 	\vspace{5 mm}
 
-	The gimbal angle was decided to be kept within $\pm$30$^{\circ}$ so that large responses would not invalidate the linearity assumption, as well as to keep the sun angle slow-moving. Thus, the system model would be within the realm of linearity for the highest commanded $\alpha$. The controller would have to dampen the oscillations induced induced by disturbances so that the sail can provide a force in the desired direction. Overshoot was permissible, but could not exceed 10\% of the maximum commanded $\alpha$. Zero steady-state error was required, since the controller would be expected to track a slowly-changing commanded $\alpha$ with no error if it were implemented on a sailcraft. 
+	The gimbal angle was decided to be kept within $\pm$30$^{\circ}$ so that large responses would not invalidate the linearity assumption, as well as to keep the sun angle slow-moving. Thus, the system model would be within the realm of linearity for the highest commanded $\alpha$. The controller would have to dampen the oscillations induced by disturbances so that the sail can provide a force in the desired direction. Overshoot was permissible, but could not exceed 10\% of the maximum commanded $\alpha$. Zero steady-state error was required, since the controller would be expected to track a slowly-changing commanded $\alpha$ with no error if it were implemented on a sailcraft. 
 
 	\vspace{5 mm}
 
@@ -562,7 +562,7 @@ The eigenvalues predicted an underdamped response, like the previous controller.
 		\label{fig:LQR_MC}
 	\end{figure}	
 
-	The LQR controller almost met the designe criteria with disturbance torques; some cases caused the gimbal angle to exceed its limit. However, the steady-state error was forced to zero due to the integral term, and gimbal angle was quite similar compared to the undisturbed case in the end. The gimbal torque showed the same range of effort as the first controller. 
+	The LQR controller almost met the design criteria with disturbance torques; some cases caused the gimbal angle to exceed its limit. However, the steady-state error was forced to zero due to the integral term, and gimbal angle was quite similar compared to the undisturbed case in the end. The gimbal torque showed the same range of effort as the first controller. 
 
 	\vspace{5 mm}
 

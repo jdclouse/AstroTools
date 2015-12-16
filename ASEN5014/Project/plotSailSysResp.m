@@ -1,7 +1,6 @@
 function  plotSailSysResp( analysis_set,y,t,K,r,Ts,torque_tmax, use_title )
-%UNTITLED2 Summary of this function goes here
-%   Detailed explanation goes here
-% Coning angle plot
+%plotSailSysResp All the controller plots
+
 
 y_size = size(y);
 if length(y_size) == 2
@@ -17,6 +16,7 @@ gimbal_angle_lim = pi/6*r2d;
 lw = 1;
 fs = 20;
 
+% Coning angle plot
 ctrl1Obs_Alpha_plot = figure('Position', [0, 0, figWidth, figHeight]);
 
 for jj = 1:num_y
@@ -49,7 +49,6 @@ u = [];
 for ii = 1:length(t)
     u(ii) = r-K*y(ii,:,jj)';
 end
-% torque_tmax = 600;
 plot(t(t<torque_tmax),u(t<torque_tmax),'LineWidth',lw)
 hold on
 end

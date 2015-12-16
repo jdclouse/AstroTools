@@ -1,4 +1,5 @@
-%%
+%% John Clouse ASEN 5014 Final project
+%% Init, sail force analysis
 close all
 title_plots = 0; %zero for report figures.
 lw = 1; % Line Weight
@@ -52,7 +53,7 @@ system = ss(A,B,[1 0 0 0;0 0 1 0],0);
 figure
 step(system,stepDataOptions('StepAmplitude',0.1));
 end
-%%
+%% Set up the first controller
 close all
 figWidth = 1120; % pixels
 figHeight = 840; % pixels
@@ -74,21 +75,20 @@ damping_ratio = -log(PO)/sqrt(pi*pi+(log(PO))^2);
 wn = damp_times_wn/damping_ratio;
 wd = wn*sqrt(1-damping_ratio^2);
 
-real_offset = -.1;
+real_offset = -.1;% use this to tune the other poles
 P = [complex(-damp_times_wn+real_offset, wd) ...
     complex(-damp_times_wn+real_offset, -wd) ...
     complex(-damp_times_wn, wd) complex(-damp_times_wn, -wd)];
-% P = [-1e-5 -2e-5 -5 -6];
-% P = [-wn -10 -11 -12]
 K = place(A,B,P);
-F = eye(1);
 
+% Try out feedforward (not used)
 F = inv(C*inv(-A+B*K)*B);
 A_CL = A-B*K;
 B_CL = B*F;
 CL_system = ss(A_CL, B_CL, eye(4),0);
 OL_system = ss(A,B,C,0);
 
+% Integral control
 A_OL_Aug = [A,zeros(4,1);-C, zeros(1)];
 B_OL_Aug = [B;zeros(1)];
 P_Aug = [-100,P];
@@ -99,6 +99,7 @@ A_CL_Aug = [A-B*K, -B*KI; -C, zeros(1)];
 B_CL_Aug = [zeros(4,1);eye(1)];
 Int_sys = ss(A_CL_Aug, B_CL_Aug, [C 0], 0);
 
+% Open-loop: stable response
 r = 35*pi/180;
 analysis_set = 'OL_Stable';
 figure('Position', [0, 0, figWidth, figHeight]);
@@ -114,6 +115,7 @@ ylabel('\alpha (deg)','FontSize',fs)
 xlabel('Time (hr)','FontSize',fs)
 print(['Report/' analysis_set],'-dpng')
 
+% Open-loop: unstable response
 analysis_set = 'OL_Unstable';
 figure('Position', [0, 0, figWidth, figHeight]);
 OL_t = 0:0.01:1800;
@@ -128,14 +130,15 @@ ylabel('\alpha (deg)','FontSize',fs)
 xlabel('Time (sec)','FontSize',fs)
 print(['Report/' analysis_set],'-dpng')
 
+% Feedforward controller (ended up opting for integral control)
 figure
 lsim(CL_system,repmat(r,1,length(t)),t)
 title(...
     sprintf('CL lsim Results: Step reference at %.1f degrees', r*180/pi));
 y = lsim(CL_system,repmat(r,1,length(t)),t);
 
+% Test out the integral controller
 analysis_set = 'Ctrl1';
-% lsim(Int_sys,repmat(r,1,length(t)),t)
 y_int = lsim(ss(A_CL_Aug, B_CL_Aug, eye(5), 0),repmat(r,1,length(t)),t);
 
 plotSailSysResp( analysis_set,y_int,t,K_Aug,r,Ts,600,title_plots )
@@ -143,25 +146,7 @@ plotSailSysResp( analysis_set,y_int,t,K_Aug,r,Ts,600,title_plots )
 
 %% Observer in loop
 
-% Ts_obs = 3600*1.5;
-% damp_times_wn = -log(PS)/Ts_obs;
-% damping_ratio = -log(PO)/sqrt(pi*pi+(log(PO))^2);
-% wn = damp_times_wn/damping_ratio;
-% wd = wn*sqrt(1-damping_ratio^2)/2;
-% 
-% L = place(A',C',P)';
-% L = place(A',C',[complex(-damp_times_wn+real_offset, wd) ...
-%     complex(-damp_times_wn+real_offset, -wd) ...
-%     complex(-damp_times_wn, wd) complex(-damp_times_wn, -wd)])';
-% L = place(A',C',[-.5,-.6,-.7,-.8]*1e-2)';
 L = place(A',C',[-5,-6,-7,-8]*1e-3)';
-% A_Obs_Aug = [A-B*K,B*K;zeros(length(L)),A-L*C];
-% B_Obs_Aug = [B*F;zeros(length(L),1)];
-% C_Obs_Aug = [C, zeros(1,length(L))];
-% C_Obs_AugFake = [1 0 0 0 0 0 0 0;...
-%     0 0 1 0 0 0 0 0;...
-%     0 0 0 0 1 0 0 0;...
-%     0 0 0 0 0 0 1 0];
 
 A_Obs_Aug = [A_OL_Aug-B_OL_Aug*K_Aug,B_OL_Aug*K_Aug(1:4);
     zeros(4,5),A-L*C];
@@ -173,7 +158,7 @@ rank(ctrb(A',C'));
 C_Obs_AugFake = [eye(9)];
 Obs_system = ss(A_Obs_Aug, B_Obs_Aug, C_Obs_AugFake, 0);
 
-%%
+%% Controller 1 + observer
 r = 35*pi/180;
 analysis_set = 'Ctrl1Obs';
 y_obs=lsim(Obs_system,repmat(r,1,length(t)),t);
@@ -192,8 +177,7 @@ l = legend({'\alpha error (deg)', '\alpha rate error (deg/s)', ...
     '\delta error (deg)', '\delta rate error (deg/s)'},'FontSize',fs);
 print(['Report/' analysis_set '_ObsErr'],'-dpng')
 
-%% Observer with error
-% lsim(Obs_system,repmat(r,1,length(t)),t,[0,0,0,0,.5*pi/180,0, 0, 0])
+%% Controller 1 + Observer with error
 % r = 0;
 r = 35*pi/180;
 analysis_set = 'Ctrl1ObsError';
@@ -240,6 +224,7 @@ y_lqr = lsim(LQR_system,repmat(r,1,length(t)),t);
 
 plotSailSysResp( analysis_set,y_lqr(:,1:5),t,K_LQR,r,Ts,3600,title_plots )
 
+% Observer error plot
 figure('Position', [0, 0, figWidth, figHeight]);
 colors = {'b','g','r','k'};
 for ii = 6:9
@@ -254,7 +239,7 @@ l = legend({'\alpha error (deg)', '\alpha rate error (deg/s)', ...
 print(['Report/' analysis_set '_ObsErr'],'-dpng')
 
 
-%%
+%% LQR, observer error
 % r=0;
 r = 35*pi/180;
 sensor_error = .05*pi/180;
@@ -264,6 +249,7 @@ y_lqr_error = lsim(LQR_system,repmat(r,1,length(t)),t,...
 
 plotSailSysResp( analysis_set,y_lqr_error(:,1:5),t,K_LQR,r,Ts,3600,title_plots )
 
+% Observer error plot
 figure('Position', [0, 0, figWidth, figHeight]);
 colors = {'b','g','r','k'};
 for ii = 6:9
@@ -277,7 +263,7 @@ l = legend({'\alpha error (deg)', '\alpha rate error (deg/s)', ...
     '\delta error (deg)', '\delta rate error (deg/s)'},'FontSize',fs);
 print(['Report/' analysis_set '_ObsErr'],'-dpng')
 
-%%
+%% Print out the diff between the two controllers' observer errors
 analysis_set = 'Ctrl1_LQR_error_diff';
 figure('Position', [0, 0, figWidth, figHeight]);
 colors = {'b','g','r','k'};
@@ -299,7 +285,7 @@ if 0
 MC;
 end
 
-%%
+%% Model verification
 % A little ODE45 verification of the system. If the gimbal torque holds the
 % boom still, there should be an oscillation of \alpha
 % Anon fcn to compute the required torque to hold the boom still wrt the

@@ -1,3 +1,6 @@
+%% SysModel
+% Set up model
+%% Constants
 L_boom = 30;
 h = L_boom*sin(pi/4)*2;
 m_s = 40;
@@ -22,6 +25,7 @@ l = 2; %m
 d = l*m_p/m;
 b = 0.5; %m
 
+%% Set up ss model
 Ft_max = P*A_sail*(1-rho_s);
 Fn_max = P*A_sail*(1+rho_s+2/3*rho_d);
 
