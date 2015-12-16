@@ -28,3 +28,12 @@ f = acos(dot(ecc_vec,r)/(norm(ecc_vec)*norm(r)));
 if dot(r,v) < 0
     f = 2*pi-f;
 end
+
+% Special case if f is imaginary
+if imag(f)
+    f = r(1)/norm(r); %use arg of latitude
+    if r(2)<0
+        f = 2*pi-f;
+    end
+    w = 0;
+end

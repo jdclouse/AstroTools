@@ -27,6 +27,21 @@ elseif strcmp(ctrl_law,'Optimal')
     if alpha > atan(1/sqrt(2))
         alpha = atan(1/sqrt(2));
     end
+elseif strcmp(ctrl_law,'RaisePeri')
+    r_i = Euler2DCM('3',X(2))*[X(1);0;0];
+    v_i = Euler2DCM('3',X(2))*[X(3); ...
+                            (X(1)*X(4));...
+                             0];
+    [a,e,~,~,~,f] = cart2OE(r_i,v_i,Sun.mu);
+    p = a*(1-e^2);
+    alpha_calc = atan2((2*e/(1+e)-1)*sin(f), 2*p/r/(1+e)-r/p*(1+cos(f))-1);
+    % The optimal angle.
+    alpha = atan2(-3+sqrt(9+8*tan(alpha_calc)^2),4*tan(alpha_calc));
+    if alpha > atan(1/sqrt(2))
+        alpha = atan(1/sqrt(2));
+    end
+elseif strcmp(ctrl_law,'Perpendicular')
+    alpha = pi/2;
 end
 
 X_dot = [rd;
