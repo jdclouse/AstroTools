@@ -34,7 +34,7 @@
 						<li><a href="#Simulation">Simulation</a></li>
 						<li><a href="#Conclusion">Conclusion</a></li>
 						<li><a href="#Bibliography">Bibliography</a></li>					
-						<li><a href="#Code">Code</a></li>
+						<li><a href="Project.zip">Code</a></li>
 					</ul>
 				</nav>
 			</header>
@@ -53,7 +53,7 @@
 									<h2>Abstract</h2>
 									<!--<p>Perspiciatis doloremque recusandae dolor</p>-->
 								</header>
-								<p>Most interplanetary spacecraft have used finite burns to escape Earth orbit and be captured by their destination's gravity. Solar sails are an attractive technology to potentially lessen propellant expenditure. Optimal control of the sail coning angle to the Sun can both reduce transit time and the mission's propulsive velocity change. This project will seek to determine the savings in hyperbolic excess velocity at departure and arrival for a baseline spacecraft and steering angle.</p>
+								<p>Most interplanetary spacecraft have used finite burns to escape Earth orbit and be captured by their destination's gravity. Solar sails are an attractive technology to potentially lessen propellant expenditure. Optimal control of the sail coning angle to the Sun can both reduce transit time and the mission's propulsive velocity change. This project sought to determine the savings in hyperbolic excess velocity at departure and arrival for a baseline spacecraft and steering angle.</p>
 					</div>
 				</section>
 				<section id="one" class="wrapper style1">
@@ -63,7 +63,7 @@
 									<h2>Introduction</h2>
 									<!--<p>Perspiciatis doloremque recusandae dolor</p>-->
 								</header>
-								<p>Most interplanetary spacecraft have used finite, propulsive burns to escape Earth orbit and be captured by their destination's gravity.  The propellant expended for these maneuvers is a large part of the mass and cost for these missions. If the hyperbolic excess velocity at departure and/or arrival could be reduced, propellant mass could be saved.  Solar sails are an attractive technology to potentially lessen propellant expenditure.  Solar sails convert solar photon momentum to spacecraft acceleration, providing a free – and potentially continuous –  propulsion source.  This propulsion system is only limited by sail size, reflective parameters, and orientation to the sun. Methods to optimize transit time and propellent expenditure with solar sails could directly translate to reduced mission cost and/or more scientific exploration of the target.</p>
+								<p>Most interplanetary spacecraft have used finite, propulsive burns to escape Earth orbit and be captured by their destination's gravity.  The propellant expended for these maneuvers is a large part of the mass and cost for these missions. If the hyperbolic excess velocity at departure and/or arrival could be reduced, propellant mass could be saved.  Solar sails are an attractive technology to potentially lessen propellant expenditure.  Solar sails convert solar photon momentum to spacecraft acceleration, providing a free, continuous propulsion source.  This propulsion system is only limited by sail size, reflective parameters, and orientation to the sun. Methods to optimize transit time and propellent expenditure with solar sails could directly translate to reduced mission cost and/or more scientific exploration of the target.</p>
 								<p>The methodology of low-thrust presented by Vallado details orbit-raising. Raising is accomplished by determining the required control angle between the thrust and velocity vectors. Unfortunately, it requires a multiple-revolution scenario for a closed-form solution<sup>1</sup>, which may be less desirable for a Mars mission. McInnes presents a method using Lagrangian variation of parameters (VOP). Additionally, optimization of the sail angle to provide the maximum force in the desired direction<sup>2</sup>. However, this technique means there will usually be a transverse force to that in the desired direction. Stevens et. al. were able to find Earth-Mars rendezvous trajectories, but did not keep the coning angle optimal<sup>3</sup>.</p>
 					</div>
 				</section>
@@ -75,7 +75,7 @@
 									<h3>Solar Sails</h3>
 									<!--<p>Perspiciatis doloremque recusandae dolor</p>-->
 								</header>
-								<p>Solar sails use solar photon momentum to accelerate the spacecraft. The solar flux has an inverse-square relationship to the distance from the sun, just like gravitation. Therefore, the maximum acceleration provided by the sail and the acceleration due to solar gravity can form the ratio β<sup>3</sup>. </p>
+								<p>Solar sails use solar photon momentum to accelerate the spacecraft. The solar flux has an inverse-square relationship to the distance from the sun, just like gravitation. Therefore, the maximum acceleration provided by the sail and the acceleration due to solar gravity can form the lightness value, the ratio β<sup>3</sup>. </p>
 
             <table>
                 <tr>
@@ -85,7 +85,7 @@
                 </tr>
 			</table>
 
-<p>The relationship in Eqn 1 provides the mission designer the ability to design trajectories without prior knowledge of spacecraft mass, sail area, and sail reflective parameters.  It also allows the acceleration due to solar radiation pressure be expressed in terms of gravitational acceleration<sup>2</sup>. </p>
+<p>The relationship in Eqn 1 provides the mission designer the ability to design trajectories without prior knowledge of spacecraft mass, sail area, and sail reflective parameters. It also allows the acceleration due to solar radiation pressure be expressed in terms of gravitational acceleration<sup>2</sup>. </p>
 
 <p>The angle between the sun vector and the sail-normal vector is called the coning angle, α. See Figure 1 for a 2D diagram of the system:</p>
 							<center>
@@ -137,7 +137,15 @@
                 </tr>
 			</table>
 
-<p>The cone angle is shown against the desired force angle in FIGURE. Due to the transverse force component being limited by the product of sinα and cosα , one can see that maximizing the force in the transverse direction (with respect to the Sun) requires a coning angle of 35.25<sup>○</sup></p>
+<p>The cone angle is shown against the desired force angle in Figure 2. Due to the transverse force component being limited by the product of sinα and cosα , one can see that maximizing the force in the transverse direction (with respect to the Sun) requires a coning angle of 35.25<sup>○</sup></p>
+							<center>
+							<div class="8u 12u$(small)">
+								<div class="image fit captioned">
+									<img src="images/AlphaOptimal.png" alt="Optimal coning" />
+									<center>Figure 2: Optimal coning angle</center>
+								</div>
+							</div>
+							</center>
 
 <p>The 2D polar equations of motion for a large gravitating body and solar radiation pressure are given by <sup>2</sup>:</p>
 
@@ -198,24 +206,24 @@ For the orbit semi-major axis to increase, the expression for α is found to be<
 									<!--<p>Perspiciatis doloremque recusandae dolor</p>-->
 								</header>
 									<h3>Raising Semi-Major Axis</h3>
-								<p>Solar sail trajectories for various values of β were generated to optimally increase the spacecraft semi-major axis to that of Mars and Jupiter. Planetary orbits were assumed to be coplanar and circular. Perturbing accelerations were not considered, just those of the Sun's gravity and solar radiation pressure. Trajectories were assumed to start outside of Earth's sphere of influence, where V<sub>infinity</sub> is zero. Thus, the only delta-V needed in these trajectories was to inject the spacecraft in the target planet's orbit. Resultant trajectories can be seen for Mars in Figures 2-4.</p>
+								<p>Solar sail trajectories for various values of β were generated to optimally increase the spacecraft semi-major axis to that of Mars and Jupiter. Planetary orbits were assumed to be coplanar and circular. Perturbing accelerations were not considered, just those of the Sun's gravity and solar radiation pressure. Trajectories were assumed to start outside of Earth's sphere of influence, where V<sub>infinity</sub> is zero. Thus, the only delta-V needed in these trajectories was to inject the spacecraft in the target planet's orbit. Resultant trajectories can be seen for Mars in Figures 3-5.</p>
 								<center>
 							<div class="10u 12u$(small)">
 								<div class="image fit captioned">
 									<img src="images/Mars1.png" alt="Mars, β=0.05" />
-									<center><h5>Figure 2: Mars, β=0.05</h5></center>
+									<center><h5>Figure 3: Mars, β=0.05</h5></center>
 								</div>
 							</div>
 							<div class="10u$ 12u$(small)">
 								<div class="image fit captioned">
 									<img src="images/Mars2.png" alt="Mars, β=0.10" />
-									<center><h5>Figure 3: Mars, β=0.10</h5></center>
+									<center><h5>Figure 4: Mars, β=0.10</h5></center>
 								</div>
 							</div>
 							<div class="10u$ 12u$(small)">
 								<div class="image fit captioned">
 									<img src="images/Mars3.png" alt="Mars, β=0.15" />
-									<center><h5>Figure 4: Mars, β=0.15</h5></center>
+									<center><h5>Figure 5: Mars, β=0.15</h5></center>
 								</div>
 							</div>
 							</center>
@@ -259,33 +267,33 @@ For the orbit semi-major axis to increase, the expression for α is found to be<
                 </tr>
             </table>
 							
-							<p>Trajectories where the semi-major axis was optimally increased provided advantages in delta-V savings over pure Hohmann transfers. For the most inefficient sail configuration simulated, more than 50% of delta-V was saved at the cost of almost tripling the transfer time. For β=0.10, the transfer time was similar, but the continuous sail thrust saves over 1.1 km/s. This was not as attractive as it seems, however, due to the greater sail area required and the challenges in implementing it. β=0.15 actually saved two months of transfer time, but the delta-V exceeded the Hohmann transfer's.</p>
-							<p>The cone angles used in each trajectory can be seen in Figure 5.</p>
+							<p>Trajectories where the semi-major axis was optimally increased provided advantages in delta-V savings over pure Hohmann transfers. For the lowest lightness value simulated, more than 50% of delta-V was saved at the cost of almost tripling the transfer time. For β=0.10, the transfer time was similar, but the continuous sail thrust saves over 1.1 km/s. This was not as attractive as it seems, however, due to the greater sail area required and the challenges in implementing it. β=0.15 actually saved two months of transfer time, but the delta-V exceeded the Hohmann transfer's.</p>
+							<p>The cone angles used in each trajectory can be seen in Figure 6.</p>
 							<div class="10u$ 12u$(small)">
 								<div class="image fit captioned">
 									<img src="images/MarsConeAngles.png" alt="Mars Cone Angles" />
-									<center><h5>Figure 5: Mars Cone Angles</h5></center>
+									<center><h5>Figure 6: Mars Cone Angles</h5></center>
 								</div>
 							</div>
-							<p>The cone angles were capped at 35.25<sup>○</sup>. Higher sail efficiencies allowed for lower cone angles, which generated higher forces.</p>
-							<p>Resultant trajectories can be seen for Jupiter in Figures 6-8.</p>
+							<p>The cone angles were capped at 35.25<sup>○</sup>. Higher lightness values allowed for lower cone angles, which generated higher forces.</p>
+							<p>Resultant trajectories can be seen for Jupiter in Figures 7-9.</p>
 							<center>
 							<div class="10u 12u$(small)">
 								<div class="image fit captioned">
 									<img src="images/Jupiter1.png" alt="Jupiter, β=0.05" />
-									<center><h5>Figure 6: Jupiter, β=0.05</h5></center>
+									<center><h5>Figure 7: Jupiter, β=0.05</h5></center>
 								</div>
 							</div>
 							<div class="10u$ 12u$(small)">
 								<div class="image fit captioned">
 									<img src="images/Jupiter2.png" alt="Jupiter, β=0.10" />
-									<center><h5>Figure 7: Jupiter, β=0.10</h5></center>
+									<center><h5>Figure 8: Jupiter, β=0.10</h5></center>
 								</div>
 							</div>
 							<div class="10u$ 12u$(small)">
 								<div class="image fit captioned">
 									<img src="images/Jupiter3.png" alt="Jupiter, β=0.15" />
-									<center><h5>Figure 8: Jupiter, β=0.15</h5></center>
+									<center><h5>Figure 9: Jupiter, β=0.15</h5></center>
 								</div>
 							</div>
 								</center>
@@ -331,16 +339,16 @@ For the orbit semi-major axis to increase, the expression for α is found to be<
             </table>
 							
 							
-							<p>Trajectories to Jupiter where semi-major-axis optimally increased showed fewer desirable qualities than those of Mars. In the case of β=0.05, the transfer time was over ten times longer, but 5.4 km/s of dV was saved. There is no case where solely optimizing semi-major axis reaches Jupiter in less time than a Hohmann transfer, and the required delta-V for planetary capture increases with sail efficiency.</p>
-							<p>The cone angles used in each trajectory can be seen in Figure 9.</p>
+							<p>Trajectories to Jupiter where semi-major-axis optimally increased showed fewer desirable qualities than those of Mars. In the case of β=0.05, the transfer time was over ten times longer, but 5.4 km/s of dV was saved. There is no case where solely optimizing semi-major axis reaches Jupiter in less time than a Hohmann transfer, and the required delta-V for planetary capture increases with lightness value.</p>
+							<p>The cone angles used in each trajectory can be seen in Figure 10.</p>
 							<center>
 							<div class="10u$ 12u$(small)">
 								<div class="image fit captioned">
 									<img src="images/JupiterConeAngles.png" alt="Jupiter Cone Angles" />
-									<center><h5>Figure 9: Jupiter Cone Angles</h5></center>
+									<center><h5>Figure 10: Jupiter Cone Angles</h5></center>
 								</div>
 							</div></center>
-							<p>The cone angles are again capped at 35.25<sup>○</sup>. Minimum cone angles decrease with the higher phasing angles for a given sail efficiency β.</p>
+							<p>The cone angles are again capped at 35.25<sup>○</sup>. Minimum cone angles decrease with the higher phasing angles for a given sail lightness β.</p>
 									<h3>Coasting After Desired Aphelion Radius Reached</h3>
 							<p>To determine the effect of intercept angle and continued thrusting, a coast phase was introduced immediately after the osculating aphelion radius was equal to the target planet's radius. The results for Mars are shown in Table 3.</p>
 							<center><h5> Table 3: Mars transfer with optimal raise to target aphelion, followed by coast</h5><br></center>
@@ -375,7 +383,7 @@ For the orbit semi-major axis to increase, the expression for α is found to be<
                     <td>0<sup>○</sup></td>
                 </tr>
             </table>
-			<p>As one would expect, the transfer time  modestly increased in all cases. However, significant changes in total dV were obtained for higher sail efficiencies. Table 4 shows the results for Jupiter transfers with the same strategy:</p>
+			<p>As one would expect, the transfer time  modestly increased in all cases. However, significant changes in total dV were obtained for higher sail lightness values. Table 4 shows the results for Jupiter transfers with the same strategy:</p>
 			
 							<center><h5> Table 4: Jupiter transfer with optimal raise to target aphelion, followed by coast</h5><br></center>
 							
@@ -423,7 +431,7 @@ For the orbit semi-major axis to increase, the expression for α is found to be<
 								<p>Increasing the semi-major axis optimally until the sailcraft reached the target radius resulted in low values of β requiring dV's at arrival. High values of β required a total dV at Mars that exceeded two Hohman burns, but sped up transfer 73 days. For all β values on a Jupiter transfer, transfer times were increased but there was much excess velocity that was trimmed.</p>
 								<p>Coasting after the desired aphelion radius was reached decreased final dV in all cases studied. While the transfer time increased dramatically for Jupiter, the highest value of β resulted in a transfer time only 1.5 years longer than the Juno mission's cruise phase.</p>
 								<p>Further study should include investigation of globally optimal solutions to increase a sailcraft's semimajor axis and decrease excess velocity as much as possible. Additionally, sails combined with gravity assists could make for missions to the outer planets and beyond on shorter time scales.</p>
-								<p>The potential savings in propellant by using solar sails is obvious in all cases studied. By using gravity assists, even faster transfers to the outer solar system may be possible. Solar sails could even prove their worth in cycling trajectories, allowing reliable transfer of equipment to other destinations in the solar system. By using globally-optimal methods, solely-sail-propelled craft.</p>
+								<p>The potential savings in propellant by using solar sails is obvious in all cases studied. By using gravity assists, even faster transfers to the outer solar system may be possible. Solar sails could even prove their worth in cycling trajectories, allowing reliable transfer of equipment to other destinations in the solar system. By using optimal methods, sailcraft can open a wide array of mission options.</p>
 					</div>
 				</section>
 				<section id="Three" class="wrapper style1">
@@ -442,11 +450,9 @@ For the orbit semi-major axis to increase, the expression for α is found to be<
 					<a name="Code"></a>
 					<div class="container 75%">
 								<header class="major">
-									<h2>Code</h2>
+								<a href="Project.zip"><h2>Matlab Code</h2></a><br>
 									<!--<p>Perspiciatis doloremque recusandae dolor</p>-->
 								</header>
-								<a href="..\Project.m">Project</a><br>
-								<a href="..\Project.m">Project</a>
 					</div>
 				</section>
 
