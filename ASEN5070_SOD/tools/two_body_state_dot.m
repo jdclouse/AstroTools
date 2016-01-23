@@ -16,8 +16,9 @@ end
 
 r_vec = (state(1:3));
 r = norm(r_vec);
-state_dot(4:6) = -mu * r_vec/(r*r*r);
+state_dot(4:6) = -mu * r_vec/(r*r*r); % Simple 2-body
 
+% Use J2
 if isfield(opts, 'J2') && isfield(opts.J2, 'use')
     if opts.J2.use == 1
         if isfield(opts.J2, 'params')
@@ -27,12 +28,26 @@ if isfield(opts, 'J2') && isfield(opts.J2, 'use')
         end
     end
 end
+
+% Use J3
+if isfield(opts, 'J3') && isfield(opts.J3, 'use')
+    if opts.J3.use == 1
+        if isfield(opts.J3, 'params')
+            state_dot(4:6) = state_dot(4:6) + J3_accel(state(1:3), opts.J3.params);
+        else
+            state_dot(4:6) = state_dot(4:6) + J3_accel( state(1:3) );
+        end
+    end
+end
+
+% Use drag
 if isfield(opts, 'drag') && isfield(opts.drag, 'use')
     if opts.drag.use == 1
         state_dot(4:6) = state_dot(4:6) + drag_accel( state, opts.drag );
     end
 end
 
+% For orbit determination application
 if isfield(opts, 'OD')
     if opts.OD.use == 1
         opts.OD.state_len;
