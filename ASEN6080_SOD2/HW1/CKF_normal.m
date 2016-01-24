@@ -47,7 +47,6 @@ times = 0:meas_dt:prop_time;
 ode_opts = odeset('RelTol', 1e-12, 'AbsTol', 1e-20);
 
 % for iter = 1:3
-[T,X] = ode45(@two_body_state_dot, times, state, ode_opts, propagator_opts);
 
 % % Store off every 20 seconds of data
 % X_store = X(mod(times,20) == 0,:);
@@ -62,32 +61,14 @@ norm_mat = P0_inv*x0_ap;
 % Obs. deviation
 y1 = zeros(num_obs,1);
 y2 = zeros(num_obs,1);
-for ii = 1:num_obs
-    site_num = 0;
-    for jj = 1:3
-        if ObsData(ii, obs_site_idx) == site(jj).id
-            site_num = jj;
-            break
-        end
-    end
-    t_obs = ObsData(ii,obs_t_idx);
-    ostate = X(T(:,1)==t_obs,1:6);
-    
-    r_comp = compute_range_ECFsite(ostate(1:3),...
-        site(site_num).r*1e3,theta_dot*t_obs);
-    rr_comp = compute_range_rate_ECFsite(ostate(1:6),...
-        site(site_num).r*1e3,theta_dot*t_obs, theta_dot);
-    
-    y1(ii) = (ObsData(ii,obs_r_idx)-r_comp);
-    y2(ii) = (ObsData(ii,obs_rr_idx)-rr_comp);
-
-end
 
 % CKF init
 x_est = x0_ap;
 P = P0;
 obs_time_last = ObsData(ii,obs_t_idx);
 
+use_EKF = 0;
+EKF_switchover = 400;
 use_joseph = 1;
 if use_joseph
     P_joseph_store = zeros(num_obs,1);
@@ -98,30 +79,50 @@ STM_accum = eye(consts.state_len);
 pfr_store = zeros(2,num_obs);
 % Run CKF
 for ii = 1:num_obs
+    site_num = 0;
+    for jj = 1:3
+        if ObsData(ii, obs_site_idx) == site(jj).id
+            site_num = jj;
+            break
+        end
+    end
+    
     obs_time = ObsData(ii,obs_t_idx);
     obs_site = ObsData(ii,obs_site_idx);    
     
-    % STM from last obs to this one.
-    % Not very efficient, since I'm running the integrator again.
+    % Propagate
+    % Get the state on the reference trajectory at this obs time.
+    % Get STM from last obs to this one.
     if ii == 1 || obs_time - obs_time_last == 0
         STM_obs2obs = eye(consts.state_len);
+        X = state';
     else
-        times_temp = obs_time_last:meas_dt:obs_time;
-        last_state = X(T == ObsData(ii-1,obs_t_idx),:)';
-        STM_obs2obs = eye(consts.state_len);
+        times = obs_time_last:meas_dt:obs_time;
         % Make the STM reflect an epoch time == the last msmnt time
+        STM_obs2obs = eye(consts.state_len);
+        last_state = state;
         last_state(consts.state_len+1:end) = ...
             reshape(STM_obs2obs(1:important_block(1),1:important_block(2)),...
             important_block(1)*important_block(2),1);
         
-        [T_temp,X_temp] = ...
-            ode45(@two_body_state_dot, times_temp, last_state, ...
-            ode_opts, propagator_opts);
+        [T,X] = ode45(@two_body_state_dot, times, last_state, ode_opts, ...
+            propagator_opts);
         STM_obs2obs(1:important_block(1),1:important_block(2)) = ...
-            reshape(X_temp(end,consts.state_len+1:end), ...
+            reshape(X(end,consts.state_len+1:end), ...
             important_block(1), important_block(2));
     end
-    obs_time_last = obs_time;    
+    state_at_obs = X(end,1:consts.state_len)';
+        
+    % Calculate measurement deviation y
+    t_obs = ObsData(ii,obs_t_idx);
+    
+    r_comp = compute_range_ECFsite(state_at_obs(1:3),...
+        site(site_num).r*1e3,theta_dot*t_obs);
+    rr_comp = compute_range_rate_ECFsite(state_at_obs(1:6),...
+        site(site_num).r*1e3,theta_dot*t_obs, theta_dot);
+    
+    y1(ii) = (ObsData(ii,obs_r_idx)-r_comp);
+    y2(ii) = (ObsData(ii,obs_rr_idx)-rr_comp);
     
     % Time update
     STM_accum = STM_obs2obs*STM_accum;
@@ -136,7 +137,6 @@ for ii = 1:num_obs
             break
         end
     end
-    state_at_obs = X(T == obs_time,1:consts.state_len);
     H_tilda = stat_od_proj_H_tilda(state_at_obs, consts);
     
     % Kalman gain
@@ -154,6 +154,16 @@ for ii = 1:num_obs
         P_trace_store(ii) = trace(P(1:6,1:6));
     end
     
+    % Set up ref state for next pass
+    state = X(end,:)';
+    if use_EKF && ii > EKF_switchover
+        state = state + x_est;
+        x_est = zeros(consts.state_len,1);
+    end
+    
+    % Track the last time
+    obs_time_last = obs_time;    
+        
     if ii == 1
         x_est_CKF = x_est;
     end
