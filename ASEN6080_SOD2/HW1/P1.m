@@ -87,7 +87,8 @@ for t_i = 1:num_pts
     end
     r_store(t_i) = norm(X(t_i,1:3));
 end
-meas_store(:,3) = meas_store(:,3) + normrnd(0,10);
+% meas_store(:,3) = meas_store(:,3) + normrnd(0,10);
+meas_store(:,3) = meas_store(:,3) + normrnd(0,0.01);
 
 figure
 plot3(X(:,1),X(:,2),X(:,3))

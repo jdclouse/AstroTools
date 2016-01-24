@@ -44,6 +44,7 @@ propagator_opts.J2.use = 1;
 propagator_opts.J2.params.J2 = J2;
 propagator_opts.J2.params.mu = mu; 
 propagator_opts.J2.params.Re = Re;
+propagator_opts.J3.use = 0;
 
 propagator_opts.OD.use = 1;
 propagator_opts.OD.state_len = 17;
@@ -58,5 +59,5 @@ important_block = [8 8]; %rows, cols
 propagator_opts.OD.A_params.important_block = important_block;
 propagator_opts.OD.A_params.state_len = propagator_opts.OD.state_len;
 STM_i = eye(propagator_opts.OD.state_len);
-state = [state; reshape(STM_i(1:important_block(1),1:important_block(2)),...
-    important_block(1)*important_block(2),1)];
+% state = [state; reshape(STM_i(1:important_block(1),1:important_block(2)),...
+%     important_block(1)*important_block(2),1)];

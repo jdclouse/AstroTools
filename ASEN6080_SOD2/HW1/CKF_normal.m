@@ -65,10 +65,10 @@ y2 = zeros(num_obs,1);
 % CKF init
 x_est = x0_ap;
 P = P0;
-obs_time_last = ObsData(ii,obs_t_idx);
+obs_time_last = ObsData(1,obs_t_idx);
 
 use_EKF = 0;
-EKF_switchover = 400;
+EKF_switchover = 100;
 use_joseph = 1;
 if use_joseph
     P_joseph_store = zeros(num_obs,1);
@@ -100,10 +100,17 @@ for ii = 1:num_obs
         times = obs_time_last:meas_dt:obs_time;
         % Make the STM reflect an epoch time == the last msmnt time
         STM_obs2obs = eye(consts.state_len);
-        last_state = state;
-        last_state(consts.state_len+1:end) = ...
+        last_state = [state;...
             reshape(STM_obs2obs(1:important_block(1),1:important_block(2)),...
-            important_block(1)*important_block(2),1);
+            important_block(1)*important_block(2),1)];
+        
+        % Make sure we propagate with the reference values!
+        % If a member of the state is in the propagator_opts, set it here.
+        % This is especially important for the EKF, since the reference
+        % state changes with the estimated deviation.
+        propagator_opts.mu = state(7);
+        propagator_opts.J2.params.J2 = state(8);
+        propagator_opts.J2.params.mu = state(7);
         
         [T,X] = ode45(@two_body_state_dot, times, last_state, ode_opts, ...
             propagator_opts);
@@ -154,13 +161,6 @@ for ii = 1:num_obs
         P_trace_store(ii) = trace(P(1:6,1:6));
     end
     
-    % Set up ref state for next pass
-    state = X(end,:)';
-    if use_EKF && ii > EKF_switchover
-        state = state + x_est;
-        x_est = zeros(consts.state_len,1);
-    end
-    
     % Track the last time
     obs_time_last = obs_time;    
         
@@ -169,6 +169,13 @@ for ii = 1:num_obs
     end
     pfr = y-H_tilda*x_est;
     pfr_store(:,ii) = pfr;
+    
+    % Set up ref state for next pass
+    state = state_at_obs;
+    if use_EKF && ii > EKF_switchover
+        state = state + x_est;
+        x_est = zeros(consts.state_len,1);
+    end
 
 end
 
