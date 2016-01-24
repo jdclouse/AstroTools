@@ -5,7 +5,7 @@ function r = ellipsoidal2cart(geod_latitude, geod_longitude, h)
 % fcnPrintQueue(mfilename('fullpath')); % Add this code to code app
 
 %Misra & Enge, Ch 4
-a = 6378.1370e3; % km
+a = 6378.1370;%e3; % km
 f = 1/298.257223563; %flattening
 e = 2*f + f*f;
 

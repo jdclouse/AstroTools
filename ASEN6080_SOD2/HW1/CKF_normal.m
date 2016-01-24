@@ -1,36 +1,38 @@
 %% HW 1 Problem 2: Sequential Processor 
 %% Initialize
-clearvars -except function_list 
+% clearvars -except function_list 
 global function_list;
 function_list = {};
 % close all
 
-% stat_od_proj_init
+stat_od_proj_init
 % ObsData = load('ObsData.txt');
 ObsData = meas_store;
 obs_r_idx = 3;
 obs_rr_idx = 4;
 obs_t_idx = 2;
 obs_site_idx = 1;
+% ObsData(:,obs_r_idx) = ObsData(:,obs_r_idx)*1e3;
+% ObsData(:,obs_rr_idx) = ObsData(:,obs_rr_idx)*1e3;
 
 % consts.Re = Re;
 % consts.area = drag.A;
 % consts.rho = compute_density(ri);
-% consts.theta_dot = theta_dot;
+consts.theta_dot = theta_dot;
 % consts.m = drag.m;
 consts.state_len = 17;
 
 % Initial covariance: no initial correlation between states.
+% P0 = eye(consts.state_len)*1e6;
+% P0(7,7) = 1e20;
+% P0(9:11,9:11) = eye(3)*1e-10;
 P0 = eye(consts.state_len)*1e6;
-P0(7,7) = 1e20;
-P0(10:12,10:12) = eye(3)*1e-10;
+P0(7,7) = 1e10;
+P0(9:17,9:17) = eye(9)*1e-10;
 
 % A priori state
 % state is composed of [r;v;mu;j2;site1;site2;site3]
-% x0_ap = zeros(consts.state_len,1);
-x0_ap = [state_i*1e3; mu; J2; site(1).r*1e3; site(2).r*1e3; site(3).r*1e3];
-% x0_ap(1:3) = x0_ap(1:3) - 1000; %m
-% x0_ap(4:6) = x0_ap(4:6) + 15; %m/s
+x0_ap = zeros(consts.state_len,1);
 
 sig_range = 0.01; % m
 sig_rangerate = 0.001; %m/s
@@ -40,8 +42,8 @@ R = [(sig_range*sig_range) 0; 0 (sig_rangerate*sig_rangerate)];
 %% Sequential Processor
 % dt = 0.1;
 % times = 0:dt:18340;
-dt = 0.1;
-times = 0:dt:18340;
+meas_dt = 10; %sec
+times = 0:meas_dt:prop_time;
 ode_opts = odeset('RelTol', 1e-12, 'AbsTol', 1e-20);
 
 % for iter = 1:3
@@ -72,9 +74,9 @@ for ii = 1:num_obs
     ostate = X(T(:,1)==t_obs,1:6);
     
     r_comp = compute_range_ECFsite(ostate(1:3),...
-        site(site_num).r,theta_dot*t_obs);
+        site(site_num).r*1e3,theta_dot*t_obs);
     rr_comp = compute_range_rate_ECFsite(ostate(1:6),...
-        site(site_num).r,theta_dot*t_obs, theta_dot);
+        site(site_num).r*1e3,theta_dot*t_obs, theta_dot);
     
     y1(ii) = (ObsData(ii,obs_r_idx)-r_comp);
     y2(ii) = (ObsData(ii,obs_rr_idx)-rr_comp);
@@ -101,11 +103,11 @@ for ii = 1:num_obs
     
     % STM from last obs to this one.
     % Not very efficient, since I'm running the integrator again.
-    if ii == 1
+    if ii == 1 || obs_time - obs_time_last == 0
         STM_obs2obs = eye(consts.state_len);
     else
-        times_temp = obs_time_last:dt:obs_time;
-        last_state = X_store(T_store == ObsData(ii-1,obs_t_idx),:)';
+        times_temp = obs_time_last:meas_dt:obs_time;
+        last_state = X(T == ObsData(ii-1,obs_t_idx),:)';
         STM_obs2obs = eye(consts.state_len);
         % Make the STM reflect an epoch time == the last msmnt time
         last_state(consts.state_len+1:end) = ...
@@ -134,7 +136,7 @@ for ii = 1:num_obs
             break
         end
     end
-    state_at_obs = X_store(T_store == obs_time,1:consts.state_len);
+    state_at_obs = X(T == obs_time,1:consts.state_len);
     H_tilda = stat_od_proj_H_tilda(state_at_obs, consts);
     
     % Kalman gain
@@ -186,23 +188,23 @@ plot(1:num_obs,-3*sig_rangerate*ones(1,num_obs),'r--')
 title(sprintf('Range-Rate RMS = %.4e m/s',range_RMS))
 ylabel('m/s'),xlabel('Observation')
 
-%% Covariance Matrix Traces
-% The Joseph formulation follows the same basic shape of the regular Kalman
-% P formulation, but is generally slightly larger. The Joseph formulation
-% will better consider measurements because of this.
-figure
-semilogy(ObsData(:,1)/3600,abs(P_trace_store))
-hold on
-semilogy(ObsData(:,1)/3600,abs(P_joseph_store),'r')
-legend('Kalman P trace', 'Joseph P trace')
-title('Traces of Covariance Matrix')
-xlabel('Time (hr)'), ylabel('S/C Position/Velocity Trace')
-
-if use_joseph
-    CKF_joseph_init_state = x_est_CKF+state(1:consts.state_len);
-    CKF_joseph_final_state = x_est+X_store(end,1:consts.state_len)';
-else
-    CKF_init_state = x_est_CKF+state(1:consts.state_len);
-    CKF_final_state = x_est+X_store(end,1:consts.state_len)';
-    conv_P_trace_store = P_trace_store;
-end
+% %% Covariance Matrix Traces
+% % The Joseph formulation follows the same basic shape of the regular Kalman
+% % P formulation, but is generally slightly larger. The Joseph formulation
+% % will better consider measurements because of this.
+% figure
+% semilogy(ObsData(:,1)/3600,abs(P_trace_store))
+% hold on
+% semilogy(ObsData(:,1)/3600,abs(P_joseph_store),'r')
+% legend('Kalman P trace', 'Joseph P trace')
+% title('Traces of Covariance Matrix')
+% xlabel('Time (hr)'), ylabel('S/C Position/Velocity Trace')
+% 
+% if use_joseph
+%     CKF_joseph_init_state = x_est_CKF+state(1:consts.state_len);
+%     CKF_joseph_final_state = x_est+X_store(end,1:consts.state_len)';
+% else
+%     CKF_init_state = x_est_CKF+state(1:consts.state_len);
+%     CKF_final_state = x_est+X_store(end,1:consts.state_len)';
+%     conv_P_trace_store = P_trace_store;
+% end
