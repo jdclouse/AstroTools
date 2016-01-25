@@ -2,6 +2,7 @@ fcnPrintQueue(mfilename('fullpath'))
 %% Initial data for stat OD project
 mu = 3.986004415e14; %m3/s2
 J2 = 1.082626925638815e-3;
+J3 =  -2.5327e-6;
 Re = 6378136.3; %m
 
 theta_dot = 7.2921158553e-5; %rad/s
@@ -45,6 +46,9 @@ propagator_opts.J2.params.J2 = J2;
 propagator_opts.J2.params.mu = mu; 
 propagator_opts.J2.params.Re = Re;
 propagator_opts.J3.use = 0;
+propagator_opts.J3.params.J3 = J3;
+propagator_opts.J3.params.mu = mu; 
+propagator_opts.J3.params.Re = Re;
 
 propagator_opts.OD.use = 1;
 propagator_opts.OD.state_len = 17;

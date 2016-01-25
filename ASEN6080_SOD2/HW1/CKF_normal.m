@@ -40,17 +40,9 @@ W = [1/(sig_range*sig_range) 0; 0 1/(sig_rangerate*sig_rangerate)];
 R = [(sig_range*sig_range) 0; 0 (sig_rangerate*sig_rangerate)];
 
 %% Sequential Processor
-% dt = 0.1;
-% times = 0:dt:18340;
 meas_dt = 10; %sec
 times = 0:meas_dt:prop_time;
 ode_opts = odeset('RelTol', 1e-12, 'AbsTol', 1e-20);
-
-% for iter = 1:3
-
-% % Store off every 20 seconds of data
-% X_store = X(mod(times,20) == 0,:);
-% T_store = T(mod(times,20) == 0);
 
 [num_obs, ~] = size(ObsData);
 chol_P0 = chol(P0,'lower');
