@@ -5,7 +5,7 @@
 clear
 global function_list;
 function_list = {};
-close all
+% close all
 
 mu = 3.986004418e5; %km3/s2
 Re = 6378.137; %km
@@ -41,7 +41,7 @@ propagator_opts.J3.params.Re = Re;
 % Orbit characteristics
 a = 10000; %km
 e = 0.05;
-i = 45*pi/180; %rad
+i = 25*pi/180; %rad
 RAAN = 210*pi/180; %rad
 w = 35*pi/180; %rad
 f = 0;
@@ -77,9 +77,11 @@ for t_i = 1:num_pts
             site(site_num).lat_lon_alt(2))*r_rel_ECEF;
         if asin(r_rel_ENU(3)/norm(r_rel_ENU)) > el_mask
             meas_store = [meas_store; [site_num, T(t_i), ...
-                1e3*norm(r_rel_ENU), ...
-                1e3*compute_range_rate_ECFsite(X(t_i,1:6),site(site_num).r,...
+                1e3*compute_range_ECFsite(X(t_i,1:3)',site(site_num).r, ...
+                theta_dot*T(t_i)),...
+                1e3*compute_range_rate_ECFsite(X(t_i,1:6),site(site_num).r,... % m/s
                 theta_dot*T(t_i), theta_dot), t_i]];
+%                 1e3*norm(r_rel_ENU), ... % m
 %                 compute_range_ECFsite(X(t_i,1:3)',site(site_num).r, ...
 %                 theta_dot*T(t_i))]]; 
 
@@ -88,7 +90,8 @@ for t_i = 1:num_pts
     r_store(t_i) = norm(X(t_i,1:3));
 end
 % meas_store(:,3) = meas_store(:,3) + normrnd(0,10);
-meas_store(:,3) = meas_store(:,3) + normrnd(0,0.01);
+meas_store(:,3) = meas_store(:,3) + normrnd(0,0.1,length(meas_store),1);
+meas_store(:,4) = meas_store(:,4) + normrnd(0,0.01,length(meas_store),1);
 
 figure
 plot3(X(:,1),X(:,2),X(:,3))

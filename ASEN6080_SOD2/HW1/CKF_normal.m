@@ -20,15 +20,14 @@ obs_site_idx = 1;
 % consts.rho = compute_density(ri);
 consts.theta_dot = theta_dot;
 % consts.m = drag.m;
-consts.state_len = 17;
+consts.state_len = propagator_opts.OD.state_len;
 
 % Initial covariance: no initial correlation between states.
-% P0 = eye(consts.state_len)*1e6;
+P0 = eye(consts.state_len)*1e6;
 % P0(7,7) = 1e20;
 % P0(9:11,9:11) = eye(3)*1e-10;
-P0 = eye(consts.state_len)*1e6;
-P0(7,7) = 1e10;
-P0(9:17,9:17) = eye(9)*1e-10;
+% P0 = eye(consts.state_len)*10;
+P0(4:6,4:6) = eye(3)*1e1;
 
 % A priori state
 % state is composed of [r;v;mu;j2;site1;site2;site3]
@@ -36,6 +35,8 @@ x0_ap = zeros(consts.state_len,1);
 
 sig_range = 0.01; % m
 sig_rangerate = 0.001; %m/s
+sig_range = 1; % m
+sig_rangerate = 0.1; %m/s
 W = [1/(sig_range*sig_range) 0; 0 1/(sig_rangerate*sig_rangerate)];
 R = [(sig_range*sig_range) 0; 0 (sig_rangerate*sig_rangerate)];
 
@@ -59,13 +60,18 @@ x_est = x0_ap;
 P = P0;
 obs_time_last = ObsData(1,obs_t_idx);
 
-use_EKF = 0;
-EKF_switchover = 100;
+use_EKF = 1;
+EKF_switchover = 190;
 use_joseph = 1;
 if use_joseph
     P_joseph_store = zeros(num_obs,1);
 else
     P_trace_store = zeros(num_obs,1);
+end
+if use_EKF
+    EKF_x_est_store = zeros(num_obs,1);
+else
+    CKF_x_est_store = zeros(num_obs,1);
 end
 STM_accum = eye(consts.state_len);
 pfr_store = zeros(2,num_obs);
@@ -100,9 +106,34 @@ for ii = 1:num_obs
         % If a member of the state is in the propagator_opts, set it here.
         % This is especially important for the EKF, since the reference
         % state changes with the estimated deviation.
-        propagator_opts.mu = state(7);
-        propagator_opts.J2.params.J2 = state(8);
-        propagator_opts.J2.params.mu = state(7);
+        % Mu
+        if propatagor_opts.param_in_state.mu_idx > 0
+            propagator_opts.mu = ...
+                state(propatagor_opts.param_in_state.mu_idx);
+        end
+        % J2
+        if propatagor_opts.param_in_state.J2_idx > 0
+            propagator_opts.J2.params.J2 = ...
+                state(propatagor_opts.param_in_state.J2_idx);
+            if propatagor_opts.param_in_state.mu_idx > 0
+                propagator_opts.J2.params.mu = ...
+                    state(propatagor_opts.param_in_state.mu_idx);
+            end
+        end
+        % J3
+        if propatagor_opts.param_in_state.J3_idx > 0
+            propagator_opts.J3.params.J3 = ...
+                state(propatagor_opts.param_in_state.J3_idx);
+            if propatagor_opts.param_in_state.mu_idx > 0
+                propagator_opts.J3.params.mu = ...
+                    state(propatagor_opts.param_in_state.mu_idx);
+            end
+        end
+        % Cd
+        if propatagor_opts.param_in_state.Cd_idx > 0
+            propagator_opts.drag.Cd = ...
+                state(propatagor_opts.param_in_state.Cd_idx);
+        end
         
         [T,X] = ode45(@two_body_state_dot, times, last_state, ode_opts, ...
             propagator_opts);
@@ -133,6 +164,7 @@ for ii = 1:num_obs
     for xx = 1:3
         if site(xx).id == obs_site
             consts.site = xx;
+            consts.site_r = site(xx).r*1e3;
             break
         end
     end
@@ -165,8 +197,15 @@ for ii = 1:num_obs
     % Set up ref state for next pass
     state = state_at_obs;
     if use_EKF && ii > EKF_switchover
+        EKF_x_est_store(ii) = norm(x_est(1:3));
         state = state + x_est;
         x_est = zeros(consts.state_len,1);
+    elseif ~use_EKF && ii > EKF_switchover
+        state;
+        CKF_x_est_store(ii) = norm(x_est(1:3));
+    end
+    if ii > num_obs/2
+        state;
     end
 
 end
@@ -183,14 +222,14 @@ range_RMS = sqrt(sum(pfr_store(1,:).*pfr_store(1,:))/num_obs)
 
 figure
 subplot(2,1,1)
-plot(1:num_obs, pfr_store(1,:))
+plot(1:num_obs, pfr_store(1,:),'.','LineWidth',1)
 hold on
 plot(1:num_obs,3*sig_range*ones(1,num_obs),'r--')
 plot(1:num_obs,-3*sig_range*ones(1,num_obs),'r--')
 title(sprintf('Range RMS = %.4e m',range_RMS))
 ylabel('m')
 subplot(2,1,2)
-plot(1:num_obs, pfr_store(2,:))
+plot(1:num_obs, pfr_store(2,:),'.','LineWidth',1)
 hold on
 plot(1:num_obs,3*sig_rangerate*ones(1,num_obs),'r--')
 plot(1:num_obs,-3*sig_rangerate*ones(1,num_obs),'r--')
@@ -204,7 +243,7 @@ ylabel('m/s'),xlabel('Observation')
 % figure
 % semilogy(ObsData(:,1)/3600,abs(P_trace_store))
 % hold on
-% semilogy(ObsData(:,1)/3600,abs(P_joseph_store),'r')
+% semilogy(ObsData(:,2)/3600,abs(P_joseph_store),'r')
 % legend('Kalman P trace', 'Joseph P trace')
 % title('Traces of Covariance Matrix')
 % xlabel('Time (hr)'), ylabel('S/C Position/Velocity Trace')
@@ -217,3 +256,7 @@ ylabel('m/s'),xlabel('Observation')
 %     CKF_final_state = x_est+X_store(end,1:consts.state_len)';
 %     conv_P_trace_store = P_trace_store;
 % end
+
+% Sound when done
+[y_sound,Fs,NBITS] = wavread('C:\Users\John\Documents\StarCraft_Sound_Pack\Protoss\Units\Artanis\patpss00');
+sound(y_sound,Fs,NBITS);
