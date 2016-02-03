@@ -14,22 +14,12 @@ obs_r_idx = 3;
 obs_rr_idx = 4;
 obs_t_idx = 2;
 obs_site_idx = 1;
-% ObsData(:,obs_r_idx) = ObsData(:,obs_r_idx)*1e3;
-% ObsData(:,obs_rr_idx) = ObsData(:,obs_rr_idx)*1e3;
 
-% consts.Re = Re;
-% consts.area = drag.A;
-% consts.rho = compute_density(ri);
 consts.theta_dot = theta_dot;
-% consts.m = drag.m;
 consts.state_len = propagator_opts.OD.state_len;
 
 % Initial covariance: no initial correlation between states.
 P0 = eye(consts.state_len)*1e8;
-% P0(7,7) = 1e20;
-% P0(9:11,9:11) = eye(3)*1e-10;
-% P0 = eye(consts.state_len)*10;
-% P0(4:6,4:6) = eye(3)*1e1;
 W0 = sqrt(P0);
 
 % A priori state
@@ -38,15 +28,13 @@ x0_ap = zeros(consts.state_len,1);
 
 sig_range = 0.01; % m
 sig_rangerate = 0.001; %m/s
-% sig_range = 0.001; % m
-% sig_rangerate = 0.0001; %m/s
 % W = [1/(sig_range*sig_range) 0; 0 1/(sig_rangerate*sig_rangerate)];
 R = [(sig_range*sig_range) 0; 0 (sig_rangerate*sig_rangerate)];
 
 %% Sequential Processor
 meas_dt = 10; %sec
 times = 0:meas_dt:prop_time;
-ode_opts = odeset('RelTol', 1e-12, 'AbsTol', 1e-20);
+filter_opts.ode_opts = odeset('RelTol', 1e-12, 'AbsTol', 1e-20);
 
 [num_obs, ~] = size(ObsData);
 chol_P0 = chol(P0,'lower');
@@ -64,17 +52,12 @@ P = P0;
 W = W0;
 obs_time_last = ObsData(1,obs_t_idx);
 
-use_EKF = 1;
-use_SNC = 1;
-EKF_switchover = 200;
-use_joseph = 1;
-use_potter = 0;
-if use_joseph
+if filter_opts.use_joseph
     P_joseph_store = zeros(num_obs,1);
 else
     P_trace_store = zeros(num_obs,1);
 end
-if use_EKF
+if filter_opts.use_EKF
     EKF_x_est_store = zeros(num_obs,1);
     EKF_prefit_range_store = zeros(num_obs,1);
     EKF_postfit_range_store = zeros(num_obs,1);
@@ -87,6 +70,7 @@ else
 end
 STM_accum = eye(consts.state_len);
 pfr_store = zeros(2,num_obs);
+
 % Run CKF
 for ii = 1:num_obs
     site_num = 0;
@@ -147,8 +131,8 @@ for ii = 1:num_obs
                 state(propatagor_opts.param_in_state.Cd_idx);
         end
         
-        [T,X] = ode45(@two_body_state_dot, times, last_state, ode_opts, ...
-            propagator_opts);
+        [T,X] = ode45(@two_body_state_dot, times, last_state, ...
+            filter_opts.ode_opts, propagator_opts);
         STM_obs2obs(1:important_block(1),1:important_block(2)) = ...
             reshape(X(end,consts.state_len+1:end), ...
             important_block(1), important_block(2));
@@ -171,7 +155,7 @@ for ii = 1:num_obs
     x_ap = STM_obs2obs*x_est;
     P_ap = STM_obs2obs*P*STM_obs2obs';
     
-    if use_SNC && obs_time - obs_time_last < 3600
+    if filter_opts.use_SNC && obs_time - obs_time_last < 3600
         Q = eye(3)*1e-9;
         dt = obs_time - obs_time_last;
         Gamma = [dt*dt/2 0 0;
@@ -202,7 +186,7 @@ for ii = 1:num_obs
     y = [y1(ii);y2(ii)];
     x_est = x_ap + K*(y - H_tilda*x_ap);
     I = eye(consts.state_len);
-    if use_joseph
+    if filter_opts.use_joseph
         P = (I-K*H_tilda)*P_ap*(I-K*H_tilda)' + K*R*K';
         P_joseph_store(ii) = trace(P(1:6,1:6));
     else
@@ -221,13 +205,13 @@ for ii = 1:num_obs
     
     % Set up ref state for next pass
     state = ref_state_at_obs;
-    if use_EKF && ii > EKF_switchover
+    if filter_opts.use_EKF && ii > filter_opts.EKF_switchover
         EKF_x_est_store(ii) = norm(x_est(1:3));
         state = state + x_est;
         x_est = zeros(consts.state_len,1);
         EKF_state_store(:,ii) = state(1:3);
         EKF_cov_store(:,ii) = diag(P(1:3,1:3));
-    elseif ~use_EKF && ii > EKF_switchover
+    elseif ~filter_opts.use_EKF && ii > filter_opts.EKF_switchover
         state;
         CKF_x_est_store(ii) = norm(x_est(1:3));
         CKF_prefit_range_store(ii) = y1(ii);
@@ -255,7 +239,7 @@ rangerate_RMS = sqrt(sum(pfr_store(2,:).*pfr_store(2,:))/num_obs)
 range_RMS = sqrt(sum(pfr_store(1,:).*pfr_store(1,:))/num_obs)
 
 
-if use_EKF
+if filter_opts.use_EKF
     EKF_postfit_range_store = pfr_store;
     EKF_prefit_range_store = y1;
     for diff_idx = 1:num_obs
@@ -323,7 +307,7 @@ ylabel('m/s'),xlabel('Observation')
 % title('Traces of Covariance Matrix')
 % xlabel('Time (hr)'), ylabel('S/C Position/Velocity Trace')
 % 
-% if use_joseph
+% if filter_opts.use_joseph
 %     CKF_joseph_init_state = x_est_CKF+state(1:consts.state_len);
 %     CKF_joseph_final_state = x_est+X_store(end,1:consts.state_len)';
 % else

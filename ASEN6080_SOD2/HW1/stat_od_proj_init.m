@@ -17,7 +17,7 @@ state = [state_i*1e3];
 state(1:3) = state(1:3) + 50;
 state(4:6) = state(4:6) - 0.01;
 
-% Set up propagator options
+% Set up propagator options for the filter
 propatagor_opts.param_in_state.mu_idx = 0;
 propatagor_opts.param_in_state.J2_idx = 0;
 propatagor_opts.param_in_state.J3_idx = 0;
@@ -58,3 +58,10 @@ propagator_opts.OD.A_params.state_len = propagator_opts.OD.state_len;
 STM_i = eye(propagator_opts.OD.state_len);
 % state = [state; reshape(STM_i(1:important_block(1),1:important_block(2)),...
 %     important_block(1)*important_block(2),1)];
+
+% Filter Options
+filter_opts.use_EKF = 1;
+filter_opts.use_SNC = 1;
+filter_opts.EKF_switchover = 200;
+filter_opts.use_joseph = 1;
+filter_opts.use_potter = 0;
