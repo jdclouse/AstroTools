@@ -7,7 +7,7 @@ addpath('C:\Users\John\Documents\Astro\ASEN5070_SOD\tools\')
 addpath('C:\Users\John\Documents\Astro\ASEN5050\tools\')
 % close all
 
-stat_od_proj_init
+filter_params; % load filter params
 % ObsData = load('ObsData.txt');
 ObsData = meas_store;
 obs_r_idx = 3;
@@ -177,7 +177,7 @@ for ii = 1:num_obs
             break
         end
     end
-    H_tilda = stat_od_proj_H_tilda(ref_state_at_obs, consts);
+    H_tilda = filter_opts.H_tilda_handle(ref_state_at_obs, consts);
     
     % Kalman gain
     K = P_ap*H_tilda'/(H_tilda*P_ap*H_tilda'+R);

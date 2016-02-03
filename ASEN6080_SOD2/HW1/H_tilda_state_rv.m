@@ -1,4 +1,4 @@
-function H_tilda = stat_od_proj_H_tilda(state, consts)
+function H_tilda = H_tilda_state_rv(state, consts)
 %stat_od_proj_H_tilda Calculate H_tilda matrix for Stat OD project
 fcnPrintQueue(mfilename('fullpath')) % Add this code to code app 
 

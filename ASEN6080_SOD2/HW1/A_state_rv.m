@@ -1,4 +1,4 @@
-function A = stat_od_proj_A(state, consts)
+function A = A_state_rv(state, consts)
 %stat_od_proj_A Calculate A matrix for Stat OD project
 fcnPrintQueue(mfilename('fullpath')) % Add this code to code app 
 

@@ -42,7 +42,7 @@ propagator_opts.J3.params.Re = Re;
 
 propagator_opts.OD.use = 1;
 propagator_opts.OD.state_len = 6;
-propagator_opts.OD.A_mat_handle = @stat_od_proj_A;
+propagator_opts.OD.A_mat_handle = @A_state_rv;
 propagator_opts.OD.A_params.mu = propagator_opts.mu;
 propagator_opts.OD.A_params.J2 = propagator_opts.J2;
 propagator_opts.OD.A_params.J3 = propagator_opts.J3;
@@ -65,3 +65,4 @@ filter_opts.use_SNC = 1;
 filter_opts.EKF_switchover = 200;
 filter_opts.use_joseph = 1;
 filter_opts.use_potter = 0;
+filter_opts.H_tilda_handle = @H_tilda_state_rv;
