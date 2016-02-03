@@ -1,0 +1,220 @@
+stk.v.10.0
+WrittenBy    STK_v10.1.3
+
+BEGIN Sensor
+
+    Name            Track
+
+BEGIN Pattern
+
+    BEGIN SimpleCone
+
+        ConeAngle              1.750000000000e+001
+        AngularPatternResolution     4.000000000000e+000
+
+    END SimpleCone
+
+    DetailedTerrainHorizon     Yes
+
+
+END Pattern
+
+BEGIN Pointing
+
+    BEGIN Targeted
+
+    TargetMode              Tracking
+    Sequence                323
+    TrackingMode            Both
+    AberrationType           Annual
+    TimeDelayConvergence     5.000000e-005
+    MaxTimeStep              3.600000e+002
+    MinTimeStep              1.000000e-002
+    TimeConvergence          5.000000e-003
+    AbsValueConvergence      1.000000e-014
+    RelValueConvergence      1.000000e-008
+    DetectEventsUsingSamplesOnly No
+
+    BEGIN AssignedTargets
+
+    Facility/DSN_Aus
+    Facility/DSN_Cal
+    Facility/DSN_Spa
+
+    END AssignedTargets
+
+    BEGIN TargetInviews
+
+    Facility/DSN_Spa  2000-01-01T00:06:10.796607430  2000-01-01T00:14:43.625643611
+    Facility/DSN_Spa  2000-01-01T01:41:21.339703587  2000-01-01T01:54:31.236971012
+    Facility/DSN_Aus  2000-01-01T02:28:22.021235945  2000-01-01T02:40:11.536142589
+    Facility/DSN_Spa  2000-01-01T03:21:54.884448862  2000-01-01T03:31:48.593416661
+    Facility/DSN_Aus  2000-01-01T04:06:10.818374835  2000-01-01T04:18:34.794948774
+    Facility/DSN_Cal  2000-01-01T08:06:51.437436088  2000-01-01T08:18:26.902451100
+    Facility/DSN_Cal  2000-01-01T09:44:25.275857261  2000-01-01T09:56:57.963578243
+    Facility/DSN_Spa  2000-01-01T10:10:07.541388197  2000-01-01T10:19:12.659436826
+    Facility/DSN_Spa  2000-01-01T11:47:10.393456924  2000-01-01T12:00:19.828147453
+    Facility/DSN_Aus  2000-01-01T12:36:40.573908003  2000-01-01T12:47:31.918635491
+    Facility/DSN_Spa  2000-01-01T13:26:34.869532298  2000-01-01T13:36:09.617341549
+    Facility/DSN_Aus  2000-01-01T14:14:11.614069668  2000-01-01T14:27:05.337123008
+    Facility/DSN_Cal  2000-01-01T18:15:07.057875426  2000-01-01T18:25:39.984009411
+    Facility/DSN_Cal  2000-01-01T19:52:30.378231886  2000-01-01T20:05:28.954647224
+    Facility/DSN_Cal  2000-01-01T21:34:28.835065349  2000-01-01T21:37:59.842066676
+
+    END TargetInviews
+
+    SaveTargetAccesses Yes
+
+    UseTargetSchedule  No
+
+    Begin Stable
+        Use          No
+        Mode         NorthStable
+    End Stable
+    AdjustPointingToTargetsDuringAccessToTargets   No
+    UseTrackControl            No
+
+    END Targeted
+
+END Pointing
+
+BEGIN Optics
+
+    FocalLength             1.000000000000e+002
+    DetectorPitch           1.000000000000e-003
+    IQConstant              0.000000000000e+000
+    GsdCoefficient          0.000000000000e+000
+
+END Optics
+
+BEGIN Extensions
+    
+    BEGIN Graphics
+
+		BEGIN Attributes
+
+			Inherit             Yes
+			Show                Yes
+			LineStyle           0
+			LineWidth           1.000000
+			PatternColor        #7fff00
+
+		END Attributes
+
+		BEGIN Display
+
+			NumberOfPatterns        1
+			PersistenceDuration     0.000000000000e+000
+			PersistenceIgnoreDefChg No
+			UpdatesDefnOften        No
+			MinDisplayAltitude      0.000000000000e+000
+			MaxDisplayAltitude      1.000000000000e+007
+			AltitudeIntersectSense           Either
+			ShowBothAltCrossings           No
+			IntersectType           CentralBody
+			ShowGround          Yes
+			UseProjectionRadii          No
+			ExcludeHorizonArcs           No
+			ForwardPersist          No
+			FillPersist             No
+			DsplyTmHidesPersist     No
+			SpaceLength             5.000000000000e+007
+			TgtExtLength            0.000000000000e+000
+			FOVHalfAngle            No
+			HalfAngle               0.000000000000e+000
+			ProjDisplay             Sphere
+			DisplayType             ConstantRadius
+			DisplayFOVWithConstraints           No
+			ShowBoresight           No
+			BoresightMarker         4
+			BoresightColor          #ffffff
+			ShowFill                Yes
+			FillTranslucency        0.500000
+			ShowOn2DMap             Yes
+
+		END Display
+
+		BEGIN    Swath
+
+			MaxStep            6.000000000000e+001
+			MinStep            1.000000000000e-001
+			CloseSwath    Yes
+			Tolerance          4.000000000000e+000
+			MatchTolerance     9.000000000000e+001
+			ShowSwath    No
+			ComputationalMethod    Numerical
+			Color        #f0ffff
+			LineStyle    0
+			LineWidth    1.000000
+    SwathIntervalPtr
+	BEGIN	EVENTINTERVAL
+			BEGIN Interval
+				Start	1 Jan 2000 00:00:00.000000000
+				Stop	2 Jan 2000 00:00:00.000000000
+			END Interval
+			IntervalState	Explicit
+	END	EVENTINTERVAL
+
+
+		END    Swath
+
+        BEGIN DisplayTimes
+            DisplayType	AlwaysOn
+        END DisplayTimes
+    END Graphics
+    
+    BEGIN Swath
+    END Swath
+    
+    BEGIN ExternData
+    END ExternData
+    
+    BEGIN ADFFileData
+    END ADFFileData
+    
+    BEGIN AccessConstraints
+		AtFieldOfView   IncludeIntervals 
+		FieldOfView   IncludeIntervals 
+		LineOfSight   IncludeIntervals 
+    END AccessConstraints
+    
+    BEGIN ObjectCoverage
+    END ObjectCoverage
+    
+    BEGIN Desc
+        ShortText    0
+
+        LongText    0
+
+    END Desc
+    
+    BEGIN Refraction
+		RefractionModel	Effective Radius Method
+
+		UseRefractionInAccess		No
+
+		BEGIN ModelData
+			RefractionCeiling	5.00000000000000e+003
+			MaxTargetAltitude	1.00000000000000e+004
+			EffectiveRadius		1.33333333333333e+000
+
+			UseExtrapolation	 Yes
+
+
+		END ModelData
+    END Refraction
+    
+    BEGIN Crdn
+    END Crdn
+    
+    BEGIN VO
+    END VO
+
+END Extensions
+
+BEGIN SubObjects
+
+END SubObjects
+
+END Sensor
+

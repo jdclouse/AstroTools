@@ -5,7 +5,7 @@
 clear
 global function_list;
 function_list = {};
-% close all
+close all
 
 mu = 3.986004418e5; %km3/s2
 Re = 6378.137; %km
@@ -28,6 +28,22 @@ site(3).id = 3;
 site(3).lat_lon_alt = [-7*pi/180;72.5*pi/180;.010]; % geodetic, rad, km
 site(3).r = ellipsoidal2cart(site(3).lat_lon_alt(1),...
     site(3).lat_lon_alt(2),site(3).lat_lon_alt(3)); % km
+site(4).name = 'KSC';
+site(4).id = 4;
+site(4).lat_lon_alt = [28.5*pi/180;-80.5*pi/180;.010]; % geodetic, rad, km
+site(4).r = ellipsoidal2cart(site(4).lat_lon_alt(1),...
+    site(4).lat_lon_alt(2),site(4).lat_lon_alt(3)); % km
+site(5).name = 'Singapore';
+site(5).id = 5;
+site(5).lat_lon_alt = [(1+17/60)*pi/180;(103+50/60)*pi/180;.010]; % geodetic, rad, km
+site(5).r = ellipsoidal2cart(site(5).lat_lon_alt(1),...
+    site(5).lat_lon_alt(2),site(5).lat_lon_alt(3)); % km
+site(6).name = 'Johannesburg, South Africa';
+site(6).id = 6;
+site(6).lat_lon_alt = [-26*pi/180;28*pi/180;.010]; % geodetic, rad, km
+site(6).r = ellipsoidal2cart(site(6).lat_lon_alt(1),...
+    site(6).lat_lon_alt(2),site(6).lat_lon_alt(3)); % km
+num_sites = 6;
 
 propagator_opts.J2.use = 1;
 propagator_opts.J2.params.J2 = 0.0010826267;
@@ -37,6 +53,7 @@ propagator_opts.J3.use = 1;
 propagator_opts.J3.params.J3 = -2.5327e-6;
 propagator_opts.J3.params.mu = mu; 
 propagator_opts.J3.params.Re = Re;
+propagator_opts.mu = mu; 
 
 % Orbit characteristics
 a = 10000; %km
@@ -61,8 +78,8 @@ ode_opts = odeset('RelTol', 1e-12, 'AbsTol', 1e-20);
 J3_accel_store = zeros(3,num_pts);
 %%
 for ii = 1:num_pts
-    J3_accel_store(:,ii) = J2_accel( X(ii,1:3)', propagator_opts.J2.params );
-%     J3_accel_store(:,ii) = J3_accel( X(ii,1:3)', propagator_opts.J3.params );
+%     J3_accel_store(:,ii) = J2_accel( X(ii,1:3)', propagator_opts.J2.params );
+    J3_accel_store(:,ii) = J3_accel( X(ii,1:3)', propagator_opts.J3.params );
 end
 figure
 plot(times, J3_accel_store)
@@ -70,8 +87,9 @@ plot(times, J3_accel_store)
 meas_store = []; % site, time, measurement
 r_store = [];
 el_mask = 10*pi/180; %rad
+true_state = [];
 for t_i = 1:num_pts
-    for site_num = 1:3
+    for site_num = 1:6
         r_rel_ECEF = Euler2DCM('3',theta_dot*T(t_i))*X(t_i,1:3)' - site(site_num).r;
         r_rel_ENU = R_ECEF2ENU(site(site_num).lat_lon_alt(1),...
             site(site_num).lat_lon_alt(2))*r_rel_ECEF;
@@ -84,15 +102,19 @@ for t_i = 1:num_pts
 %                 1e3*norm(r_rel_ENU), ... % m
 %                 compute_range_ECFsite(X(t_i,1:3)',site(site_num).r, ...
 %                 theta_dot*T(t_i))]]; 
+            true_state = [true_state, X(t_i,1:3)'];
 
         end
     end
     r_store(t_i) = norm(X(t_i,1:3));
 end
 % meas_store(:,3) = meas_store(:,3) + normrnd(0,10);
-meas_store(:,3) = meas_store(:,3) + normrnd(0,0.1,length(meas_store),1);
-meas_store(:,4) = meas_store(:,4) + normrnd(0,0.01,length(meas_store),1);
+clean_meas_store(:,1) = meas_store(:,3);
+clean_meas_store(:,2) = meas_store(:,4);
+meas_store(:,3) = clean_meas_store(:,1) + normrnd(0,0.01,length(meas_store),1);
+meas_store(:,4) = clean_meas_store(:,2) + normrnd(0,0.001,length(meas_store),1);
 
+% Find 
 figure
 plot3(X(:,1),X(:,2),X(:,3))
 hold on
@@ -101,27 +123,59 @@ plot3(zeros(length(0:0.1:2*pi)), cos(0:0.1:2*pi)*6378,sin(0:0.1:2*pi)*6378,'r')
 plot3(state_i(1),state_i(2),state_i(3),'ro')
 axis equal
 % 
-plot3(X(meas_store(meas_store(:,1)==2,5),1),...
-    X(meas_store(meas_store(:,1)==2,5),2),...
-    X(meas_store(meas_store(:,1)==2,5),3),'r*')
+plot_arc_site = 2;
+plot3(X(meas_store(meas_store(:,1)==plot_arc_site,5),1),...
+    X(meas_store(meas_store(:,1)==plot_arc_site,5),2),...
+    X(meas_store(meas_store(:,1)==plot_arc_site,5),3),'r*')
 xlabel('X')
 ylabel('Y')
 zlabel('Z')
 
-figure
-% plot(r_store)
-subplot(3,1,1)
-for selected_site = 1:3;
-subplot(3,1,selected_site)
-plot(meas_store(meas_store(:,1)==selected_site,2)/3600, ...
-    meas_store(meas_store(:,1)==selected_site,3))
+hold on
+plot_arc_site = 1;
+all_idx = 1:length(meas_store);
+error = [];
+for pass_idx = all_idx(meas_store(:,1)==plot_arc_site);
+derp = X(meas_store(pass_idx,5),1:3)'/norm(X(meas_store(pass_idx,5),1:3))...
+    *meas_store(pass_idx,3)*1e-3;
+pos_inrtl = X(meas_store(pass_idx,5),1:3)';
+site_inrtl = Euler2DCM('3',-theta_dot*meas_store(pass_idx,2))*site(meas_store(pass_idx,1)).r;
+rel_vec = pos_inrtl - site_inrtl;
+rel_vec = rel_vec/norm(rel_vec)*meas_store(pass_idx,3)*1e-3;
+plot3([site_inrtl(1)],...
+    [site_inrtl(2)],...
+    [site_inrtl(3)],...
+    'ko')
+plot3([site_inrtl(1), site_inrtl(1)+rel_vec(1)],...
+    [site_inrtl(2), site_inrtl(2)+rel_vec(2)],...
+    [site_inrtl(3), site_inrtl(3)+rel_vec(3)],...
+    'k')
+error = [error; meas_store(pass_idx,3)*1e-3 - norm(pos_inrtl - site_inrtl)];
 end
+figure
+plot(error)
+
 
 figure
 % plot(r_store)
-subplot(3,1,1)
-for selected_site = 1:3;
-subplot(3,1,selected_site)
+subplot(6,1,1)
+for selected_site = 1:6;
+subplot(6,1,selected_site)
+plot(meas_store(meas_store(:,1)==selected_site,2)/3600, ...
+    meas_store(meas_store(:,1)==selected_site,3))
+title([site(selected_site).name ' Range'])
+ylabel('m')
+end
+xlabel('hr')
+
+figure
+% plot(r_store)
+subplot(6,1,1)
+for selected_site = 1:6;
+subplot(6,1,selected_site)
 plot(meas_store(meas_store(:,1)==selected_site,2)/3600, ...
     meas_store(meas_store(:,1)==selected_site,4))
+title([site(selected_site).name ' Range Rate'])
+ylabel('m/s')
 end
+xlabel('hr')

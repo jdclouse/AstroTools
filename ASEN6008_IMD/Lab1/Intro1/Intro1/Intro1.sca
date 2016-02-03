@@ -1,0 +1,33 @@
+stk.v.10.0
+WrittenBy    STK_v10.1.3
+BEGIN Access 
+        Scenario/Intro1/Facility/DSN_Cal
+        Scenario/Intro1/Satellite/LEO
+
+    IsComputed               Yes
+    UpdateOnReference        Yes
+    DupIsDifferent           No
+    UIOrderReversed          No
+    UITimePeriod             Object
+    UseLightTimeDelay        Yes
+    ClockHost                Base
+    TimeSense                Transmit
+    AberrationType           Annual
+    TimeDelayConvergence     5.000000e-005
+    MaxTimeStep              3.600000e+002
+    MinTimeStep              1.000000e-002
+    TimeConvergence          5.000000e-003
+    AbsValueConvergence      1.000000e-014
+    RelValueConvergence      1.000000e-008
+    DetectEventsUsingSamplesOnly No
+    Show                     Yes
+    Inherit                  Yes
+    ShowIV                   Yes
+    ShowLineGfx              Yes
+    ShowHiliteGfx            Yes
+    LineWidth                1.000000e+000
+    BEGIN  Crdn
+    END  Crdn
+
+END Access
+

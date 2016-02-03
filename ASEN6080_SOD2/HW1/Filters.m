@@ -3,8 +3,6 @@
 % clearvars -except function_list 
 global function_list;
 function_list = {};
-addpath('C:\Users\John\Documents\Astro\ASEN5070_SOD\tools\')
-addpath('C:\Users\John\Documents\Astro\ASEN5050\tools\')
 % close all
 
 stat_od_proj_init
@@ -38,8 +36,8 @@ x0_ap = zeros(consts.state_len,1);
 
 sig_range = 0.01; % m
 sig_rangerate = 0.001; %m/s
-% sig_range = 0.001; % m
-% sig_rangerate = 0.0001; %m/s
+sig_range = 10; % m
+sig_rangerate = 1; %m/s
 % W = [1/(sig_range*sig_range) 0; 0 1/(sig_rangerate*sig_rangerate)];
 R = [(sig_range*sig_range) 0; 0 (sig_rangerate*sig_rangerate)];
 
@@ -64,8 +62,7 @@ P = P0;
 W = W0;
 obs_time_last = ObsData(1,obs_t_idx);
 
-use_EKF = 1;
-use_SNC = 1;
+use_EKF = 0;
 EKF_switchover = 200;
 use_joseph = 1;
 use_potter = 0;
@@ -170,18 +167,8 @@ for ii = 1:num_obs
     STM_accum = STM_obs2obs*STM_accum;
     x_ap = STM_obs2obs*x_est;
     P_ap = STM_obs2obs*P*STM_obs2obs';
-    
-    if use_SNC && obs_time - obs_time_last < 3600
-        Q = eye(3)*1e-9;
-        dt = obs_time - obs_time_last;
-        Gamma = [dt*dt/2 0 0;
-            0 dt*dt/2 0;
-            0 0 dt*dt/2;
-            dt 0 0;
-            0 dt 0;
-            0 0 dt];
-
-        P_ap = P_ap + Gamma*Q*Gamma';
+    if use_potter
+        W_ap = STM_obs2obs*W;
     end
     
     % H~
@@ -194,6 +181,49 @@ for ii = 1:num_obs
         end
     end
     H_tilda = stat_od_proj_H_tilda(ref_state_at_obs, consts);
+    
+    if use_potter
+        % Process measurements individually
+    for meas = 1:2
+    
+        F = W_ap'*H_tilda(meas,:)';
+        alpha = 1/(F'*F+R(meas,meas));
+        gamma = 1/(1+sqrt(R(meas,meas)*alpha));
+
+        % Kalman gain
+        K = alpha*W_ap*F;
+
+        % Measurement Update
+        if meas ==1
+            y = y1(ii);
+        else
+            y = y2(ii);
+        end
+    %     x_est = x_ap + K*(y - Hx(meas));
+        x_est = x_ap + K*(y - H_tilda(meas,:)*x_ap);
+
+        % sqrt of the covariance:
+        W = W_ap - gamma*K*F';
+
+        x_ap = x_est; % for the next round
+        W_ap = W;
+%             % Set up ref state for next pass
+%         state = ref_state_at_obs;
+%         if use_EKF && ii > EKF_switchover
+%             EKF_x_est_store(ii) = norm(x_est(1:3));
+%             state = state + x_est;
+%             x_est = zeros(consts.state_len,1);
+%             EKF_state_store(:,ii) = state(1:3);
+%         elseif ~use_EKF && ii > EKF_switchover
+%             state;
+%             CKF_x_est_store(ii) = norm(x_est(1:3));
+%             CKF_prefit_range_store(ii) = y1(ii);
+%         else
+%             EKF_state_store(:,ii) = state(1:3) + x_est(1:3);
+%             CKF_state_store(:,ii) = state(1:3) + x_est(1:3);
+%         end
+    end
+    end
     
     % Kalman gain
     K = P_ap*H_tilda'/(H_tilda*P_ap*H_tilda'+R);
