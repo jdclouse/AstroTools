@@ -23,7 +23,7 @@ P0 = eye(consts.state_len)*1e8;
 W0 = sqrt(P0);
 
 % A priori state
-% state is composed of [r;v;mu;j2;site1;site2;site3]
+% Start with zero deviation
 x0_ap = zeros(consts.state_len,1);
 
 sig_range = 0.01; % m
@@ -33,7 +33,6 @@ R = [(sig_range*sig_range) 0; 0 (sig_rangerate*sig_rangerate)];
 
 %% Sequential Processor
 meas_dt = 10; %sec
-times = 0:meas_dt:prop_time;
 filter_opts.ode_opts = odeset('RelTol', 1e-12, 'AbsTol', 1e-20);
 
 [num_obs, ~] = size(ObsData);
@@ -155,17 +154,13 @@ for ii = 1:num_obs
     x_ap = STM_obs2obs*x_est;
     P_ap = STM_obs2obs*P*STM_obs2obs';
     
-    if filter_opts.use_SNC && obs_time - obs_time_last < 3600
-        Q = eye(3)*1e-9;
-        dt = obs_time - obs_time_last;
-        Gamma = [dt*dt/2 0 0;
-            0 dt*dt/2 0;
-            0 0 dt*dt/2;
-            dt 0 0;
-            0 dt 0;
-            0 0 dt];
+    dt = obs_time - obs_time_last;
+    if filter_opts.use_SNC ...
+            && dt < filter_opts.SNC_meas_separation_threshold
+        Q = filter_opts.SNC_Q;
+        Gamma = filter_opts.SNC_Gamma(dt);
 
-        P_ap = P_ap + Gamma*Q*Gamma';
+        P_ap = P_ap + Gamma*Q*Gamma'; % Add the process noise
     end
     
     % H~

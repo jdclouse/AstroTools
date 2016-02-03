@@ -13,7 +13,7 @@ drag.Cd = 0.0;
 drag.A = 3.0; % m
 drag.m = 970; %kg
 
-state = [state_i*1e3];
+state = state_i*1e3;
 state(1:3) = state(1:3) + 50;
 state(4:6) = state(4:6) - 0.01;
 
@@ -66,3 +66,12 @@ filter_opts.EKF_switchover = 200;
 filter_opts.use_joseph = 1;
 filter_opts.use_potter = 0;
 filter_opts.H_tilda_handle = @H_tilda_state_rv;
+filter_opts.SNC_Q = eye(3)*1e-9;
+filter_opts.SNC_Gamma = @(dt) [dt*dt/2 0 0;...
+            0 dt*dt/2 0;...
+            0 0 dt*dt/2;...
+            dt 0 0;...
+            0 dt 0;...
+            0 0 dt];
+filter_opts.SNC_meas_separation_threshold = 3600;
+% Eventually add storage options for analysis
