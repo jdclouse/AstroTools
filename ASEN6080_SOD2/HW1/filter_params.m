@@ -7,7 +7,9 @@ J2 = 0.0010826267;
 J3 =  -2.5327e-6;
 Re = 6378136.3; %m
 
-theta_dot = 7.2921158553e-5; %rad/s
+filter_opts.theta_dot = 7.2921158553e-5; %rad/s % TODO clean this!
+filter_opts.num_sites = num_sites;
+filter_opts.site = site;
 
 drag.Cd = 0.0;
 drag.A = 3.0; % m
@@ -18,10 +20,10 @@ state(1:3) = state(1:3) + 50;
 state(4:6) = state(4:6) - 0.01;
 
 % Set up propagator options for the filter
-propatagor_opts.param_in_state.mu_idx = 0;
-propatagor_opts.param_in_state.J2_idx = 0;
-propatagor_opts.param_in_state.J3_idx = 0;
-propatagor_opts.param_in_state.Cd_idx = 0;
+propagator_opts.param_in_state.mu_idx = 0;
+propagator_opts.param_in_state.J2_idx = 0;
+propagator_opts.param_in_state.J3_idx = 0;
+propagator_opts.param_in_state.Cd_idx = 0;
 propagator_opts.mu = mu; 
 
 propagator_opts.drag = drag;
@@ -52,7 +54,7 @@ propagator_opts.OD.A_params.rho = propagator_opts.drag.model_params.rho0;
 propagator_opts.OD.A_params.theta_dot = theta_dot;
 propagator_opts.OD.A_params.m = drag.m;
 propagator_opts.OD.A_params.H = propagator_opts.drag.model_params.H;
-important_block = [6 6]; %rows, cols
+filter_opts.important_block = [6 6]; %rows, cols
 propagator_opts.OD.A_params.important_block = important_block;
 propagator_opts.OD.A_params.state_len = propagator_opts.OD.state_len;
 STM_i = eye(propagator_opts.OD.state_len);
@@ -60,6 +62,7 @@ STM_i = eye(propagator_opts.OD.state_len);
 %     important_block(1)*important_block(2),1)];
 
 % Filter Options
+filter_opts.propagator_opts = propagator_opts;
 filter_opts.use_EKF = 1;
 filter_opts.use_SNC = 1;
 filter_opts.EKF_switchover = 200;
