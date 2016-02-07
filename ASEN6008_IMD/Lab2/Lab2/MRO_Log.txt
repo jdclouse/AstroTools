@@ -9,9 +9,9 @@ Initial control parameters:
 
 Unscaled Controls:
 Name                              Current Value            Last Update        Total Correction
-DV1 : ImpulsiveMnvr.Cartesian.X  2.737995338529 km/sec  0.000000000000 km/sec  -0.000004661471 km/sec
-DV1 : ImpulsiveMnvr.Cartesian.Y  2.782828291300 km/sec  0.000000000000 km/sec  -0.000171708700 km/sec
-DV1 : ImpulsiveMnvr.Cartesian.Z  1.040997327324 km/sec  0.000000000000 km/sec  -0.000002672676 km/sec
+DV1 : ImpulsiveMnvr.Cartesian.X  2.343497542425 km/sec  0.000000000000 km/sec  -0.066502457575 km/sec
+DV1 : ImpulsiveMnvr.Cartesian.Y  2.221072087834 km/sec  0.000000000000 km/sec  -0.058927912166 km/sec
+DV1 : ImpulsiveMnvr.Cartesian.Z  4.750166439759 km/sec  0.000000000000 km/sec   0.950166439759 km/sec
 
 
 Homotopy step   1 of   1
@@ -27,7 +27,7 @@ Mars_Transfer : R_Mag  0.000000000000 km
 Iteration =   1
 Unscaled Intermediate Constraints:
 Name                       Current Value            Desired            Difference             Tolerance
-Mars_Transfer : R_Mag  2073.612237335435 km  0.000000000000 km  2073.612237335435 km  1000.000000000000 km
+Mars_Transfer : R_Mag  4139.195361723823 km  0.000000000000 km  4139.195361723823 km  1000.000000000000 km
 
 
 
@@ -36,73 +36,109 @@ Performing one Newton-Raphson Step...
 Perturbation evaluation +1
 Controls:
 Name                                      Value           Perturbation        Scaled Perturbation
-DV1 : ImpulsiveMnvr.Cartesian.X  2.738005338529 km/sec  0.000010000000 km/sec      0.000003652301
-DV1 : ImpulsiveMnvr.Cartesian.Y  2.782828291300 km/sec  0.000000000000 km/sec      0.000000000000
-DV1 : ImpulsiveMnvr.Cartesian.Z  1.040997327324 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.X  2.343597542425 km/sec  0.000100000000 km/sec      0.000041493776
+DV1 : ImpulsiveMnvr.Cartesian.Y  2.221072087834 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Z  4.750166439759 km/sec  0.000000000000 km/sec      0.000000000000
 
 Constraints:
 Name                               Value               Change          Scaled Change
-Mars_Transfer : R_Mag  1841.255163308412 km -232.357074027023 km      -232357.074027
+Mars_Transfer : R_Mag  4475.018330594447 km  335.822968870623 km       335822.968871
+
+
+Perturbation evaluation -1
+Controls:
+Name                                      Value           Perturbation        Scaled Perturbation
+DV1 : ImpulsiveMnvr.Cartesian.X  2.343397542425 km/sec -0.000100000000 km/sec     -0.000041493776
+DV1 : ImpulsiveMnvr.Cartesian.Y  2.221072087834 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Z  4.750166439759 km/sec  0.000000000000 km/sec      0.000000000000
+
+Constraints:
+Name                               Value                Change          Scaled Change
+Mars_Transfer : R_Mag  9375.594971586017 km  5236.399609862194 km       5236399.60986
 
 
 Perturbation evaluation +2
 Controls:
 Name                                      Value           Perturbation        Scaled Perturbation
-DV1 : ImpulsiveMnvr.Cartesian.X  2.737995338529 km/sec  0.000000000000 km/sec      0.000000000000
-DV1 : ImpulsiveMnvr.Cartesian.Y  2.782928291300 km/sec  0.000100000000 km/sec      0.000035932447
-DV1 : ImpulsiveMnvr.Cartesian.Z  1.040997327324 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.X  2.343497542425 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Y  2.221172087834 km/sec  0.000100000000 km/sec      0.000043859649
+DV1 : ImpulsiveMnvr.Cartesian.Z  4.750166439759 km/sec  0.000000000000 km/sec      0.000000000000
 
 Constraints:
 Name                               Value               Change          Scaled Change
-Mars_Transfer : R_Mag  2531.546982918128 km  457.934745582693 km       457934.745583
+Mars_Transfer : R_Mag  4301.020702130398 km  161.825340406574 km       161825.340407
+
+
+Perturbation evaluation -2
+Controls:
+Name                                      Value           Perturbation        Scaled Perturbation
+DV1 : ImpulsiveMnvr.Cartesian.X  2.343497542425 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Y  2.220972087834 km/sec -0.000100000000 km/sec     -0.000043859649
+DV1 : ImpulsiveMnvr.Cartesian.Z  4.750166439759 km/sec  0.000000000000 km/sec      0.000000000000
+
+Constraints:
+Name                               Value                Change          Scaled Change
+Mars_Transfer : R_Mag  6473.426526810034 km  2334.231165086211 km       2334231.16509
 
 
 Perturbation evaluation +3
 Controls:
 Name                                      Value           Perturbation        Scaled Perturbation
-DV1 : ImpulsiveMnvr.Cartesian.X  2.737995338529 km/sec  0.000000000000 km/sec      0.000000000000
-DV1 : ImpulsiveMnvr.Cartesian.Y  2.782828291300 km/sec  0.000000000000 km/sec      0.000000000000
-DV1 : ImpulsiveMnvr.Cartesian.Z  1.041097327324 km/sec  0.000100000000 km/sec      0.000096061479
+DV1 : ImpulsiveMnvr.Cartesian.X  2.343497542425 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Y  2.221072087834 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Z  4.750266439759 km/sec  0.000100000000 km/sec      0.000026315789
 
 Constraints:
-Name                               Value              Change          Scaled Change
-Mars_Transfer : R_Mag  2105.270812080641 km  31.658574745206 km       31658.5747452
+Name                               Value               Change          Scaled Change
+Mars_Transfer : R_Mag  3637.223222551322 km -501.972139172502 km      -501972.139173
+
+
+Perturbation evaluation -3
+Controls:
+Name                                      Value           Perturbation        Scaled Perturbation
+DV1 : ImpulsiveMnvr.Cartesian.X  2.343497542425 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Y  2.221072087834 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Z  4.750066439759 km/sec -0.000100000000 km/sec     -0.000026315789
+
+Constraints:
+Name                               Value               Change          Scaled Change
+Mars_Transfer : R_Mag  4792.367571107758 km  653.172209383934 km       653172.209384
 
 
 Partial derivative matrix (scaled) :
 
-       -63619366868.6
-        12744323969.6
-        329565763.098
+       -59051948523.9
+       -24765426401.3
+       -21947742622.6
 
 Newton Step Done...
 
 DC proposed step:
 Name                                     Scaled        Unscaled
-DV1 : ImpulsiveMnvr.Cartesian.X  0.000031335738  0.000085797250 km/sec
-DV1 : ImpulsiveMnvr.Cartesian.Y -0.000006277221 -0.000017469505 km/sec
-DV1 : ImpulsiveMnvr.Cartesian.Z -0.000000162328 -0.000000168983 km/sec
+DV1 : ImpulsiveMnvr.Cartesian.X  0.000053343276  0.000128557295 km/sec
+DV1 : ImpulsiveMnvr.Cartesian.Y  0.000022371302  0.000051006568 km/sec
+DV1 : ImpulsiveMnvr.Cartesian.Z  0.000019826009  0.000075338836 km/sec
 
 
 Step with Max Step limits applied:
 Name                                     Scaled        Unscaled
-DV1 : ImpulsiveMnvr.Cartesian.X  0.000031335738  0.000085797250 km/sec
-DV1 : ImpulsiveMnvr.Cartesian.Y -0.000006277221 -0.000017469505 km/sec
-DV1 : ImpulsiveMnvr.Cartesian.Z -0.000000162328 -0.000000168983 km/sec
+DV1 : ImpulsiveMnvr.Cartesian.X  0.000053343276  0.000128557295 km/sec
+DV1 : ImpulsiveMnvr.Cartesian.Y  0.000022371302  0.000051006568 km/sec
+DV1 : ImpulsiveMnvr.Cartesian.Z  0.000019826009  0.000075338836 km/sec
 
 
 Step final values:
 
 Unscaled Controls:
 Name                              Current Value            Last Update        Total Correction
-DV1 : ImpulsiveMnvr.Cartesian.X  2.738081135779 km/sec  0.000085797250 km/sec   0.000081135779 km/sec
-DV1 : ImpulsiveMnvr.Cartesian.Y  2.782810821796 km/sec -0.000017469505 km/sec  -0.000189178204 km/sec
-DV1 : ImpulsiveMnvr.Cartesian.Z  1.040997158341 km/sec -0.000000168983 km/sec  -0.000002841659 km/sec
+DV1 : ImpulsiveMnvr.Cartesian.X  2.343626099720 km/sec  0.000128557295 km/sec  -0.066373900280 km/sec
+DV1 : ImpulsiveMnvr.Cartesian.Y  2.221123094403 km/sec  0.000051006568 km/sec  -0.058876905597 km/sec
+DV1 : ImpulsiveMnvr.Cartesian.Z  4.750241778595 km/sec  0.000075338836 km/sec   0.950241778595 km/sec
 
 
 Unscaled Intermediate Constraints:
 Name                       Current Value            Desired            Difference             Tolerance
-Mars_Transfer : R_Mag  2063.101913933141 km  0.000000000000 km  2063.101913933141 km  1000.000000000000 km
+Mars_Transfer : R_Mag  8343.285504030971 km  0.000000000000 km  8343.285504030971 km  1000.000000000000 km
 
 
 
@@ -110,55 +146,7 @@ Mars_Transfer : R_Mag  2063.101913933141 km  0.000000000000 km  2063.10191393314
 Iteration =   2
 Unscaled Intermediate Constraints:
 Name                       Current Value            Desired            Difference             Tolerance
-Mars_Transfer : R_Mag  2063.101913933141 km  0.000000000000 km  2063.101913933141 km  1000.000000000000 km
-
-
-
-Updating partials with Secant method...
-
-Partial derivative matrix (scaled) :
-
-       -322461503.843
-        64595956.7811
-        1670439.00017
-
-Secant Update Done...
-
-DC proposed step:
-Name                                     Scaled        Unscaled
-DV1 : ImpulsiveMnvr.Cartesian.X  0.006150983031  0.016841391540 km/sec
-DV1 : ImpulsiveMnvr.Cartesian.Y -0.001232173854 -0.003429139837 km/sec
-DV1 : ImpulsiveMnvr.Cartesian.Z -0.000031863779 -0.000033170193 km/sec
-
-
-Step with Max Step limits applied:
-Name                                     Scaled        Unscaled
-DV1 : ImpulsiveMnvr.Cartesian.X  0.006150983031  0.016841391540 km/sec
-DV1 : ImpulsiveMnvr.Cartesian.Y -0.001232173854 -0.003429139837 km/sec
-DV1 : ImpulsiveMnvr.Cartesian.Z -0.000031863779 -0.000033170193 km/sec
-
-
-Step final values:
-
-Unscaled Controls:
-Name                              Current Value            Last Update        Total Correction
-DV1 : ImpulsiveMnvr.Cartesian.X  2.754922527319 km/sec  0.016841391540 km/sec   0.016922527319 km/sec
-DV1 : ImpulsiveMnvr.Cartesian.Y  2.779381681959 km/sec -0.003429139837 km/sec  -0.003618318041 km/sec
-DV1 : ImpulsiveMnvr.Cartesian.Z  1.040963988147 km/sec -0.000033170193 km/sec  -0.000036011853 km/sec
-
-
-Unscaled Intermediate Constraints:
-Name                         Current Value            Desired              Difference             Tolerance
-Mars_Transfer : R_Mag  584939.935067327690 km  0.000000000000 km  584939.935067327690 km  1000.000000000000 km
-
-
-Secant method diverging, re-running step with perturbations.
-
--------------------------------------------------------------
-Iteration =   2
-Unscaled Intermediate Constraints:
-Name                       Current Value            Desired            Difference             Tolerance
-Mars_Transfer : R_Mag  2063.101913933141 km  0.000000000000 km  2063.101913933141 km  1000.000000000000 km
+Mars_Transfer : R_Mag  8343.285504030971 km  0.000000000000 km  8343.285504030971 km  1000.000000000000 km
 
 
 
@@ -167,73 +155,109 @@ Performing one Newton-Raphson Step...
 Perturbation evaluation +1
 Controls:
 Name                                      Value           Perturbation        Scaled Perturbation
-DV1 : ImpulsiveMnvr.Cartesian.X  2.738091135779 km/sec  0.000010000000 km/sec      0.000003652301
-DV1 : ImpulsiveMnvr.Cartesian.Y  2.782810821796 km/sec  0.000000000000 km/sec      0.000000000000
-DV1 : ImpulsiveMnvr.Cartesian.Z  1.040997158341 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.X  2.343726099720 km/sec  0.000100000000 km/sec      0.000041493776
+DV1 : ImpulsiveMnvr.Cartesian.Y  2.221123094403 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Z  4.750241778595 km/sec  0.000000000000 km/sec      0.000000000000
 
 Constraints:
-Name                               Value               Change          Scaled Change
-Mars_Transfer : R_Mag  2357.939328206508 km  294.837414273368 km       294837.414273
+Name                                Value                Change          Scaled Change
+Mars_Transfer : R_Mag  14035.229658569197 km  5691.944154538224 km       5691944.15454
+
+
+Perturbation evaluation -1
+Controls:
+Name                                      Value           Perturbation        Scaled Perturbation
+DV1 : ImpulsiveMnvr.Cartesian.X  2.343526099720 km/sec -0.000100000000 km/sec     -0.000041493776
+DV1 : ImpulsiveMnvr.Cartesian.Y  2.221123094403 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Z  4.750241778595 km/sec  0.000000000000 km/sec      0.000000000000
+
+Constraints:
+Name                               Value                Change          Scaled Change
+Mars_Transfer : R_Mag  3986.606197203069 km -4356.679306827903 km      -4356679.30683
 
 
 Perturbation evaluation +2
 Controls:
 Name                                      Value           Perturbation        Scaled Perturbation
-DV1 : ImpulsiveMnvr.Cartesian.X  2.738081135779 km/sec  0.000000000000 km/sec      0.000000000000
-DV1 : ImpulsiveMnvr.Cartesian.Y  2.782910821796 km/sec  0.000100000000 km/sec      0.000035932447
-DV1 : ImpulsiveMnvr.Cartesian.Z  1.040997158341 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.X  2.343626099720 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Y  2.221223094403 km/sec  0.000100000000 km/sec      0.000043859649
+DV1 : ImpulsiveMnvr.Cartesian.Z  4.750241778595 km/sec  0.000000000000 km/sec      0.000000000000
+
+Constraints:
+Name                                Value                Change          Scaled Change
+Mars_Transfer : R_Mag  11934.441428651418 km  3591.155924620447 km       3591155.92462
+
+
+Perturbation evaluation -2
+Controls:
+Name                                      Value           Perturbation        Scaled Perturbation
+DV1 : ImpulsiveMnvr.Cartesian.X  2.343626099720 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Y  2.221023094403 km/sec -0.000100000000 km/sec     -0.000043859649
+DV1 : ImpulsiveMnvr.Cartesian.Z  4.750241778595 km/sec  0.000000000000 km/sec      0.000000000000
 
 Constraints:
 Name                               Value                Change          Scaled Change
-Mars_Transfer : R_Mag  3721.911599181096 km  1658.809685247956 km       1658809.68525
+Mars_Transfer : R_Mag  4788.187067841586 km -3555.098436189385 km      -3555098.43619
 
 
 Perturbation evaluation +3
 Controls:
 Name                                      Value           Perturbation        Scaled Perturbation
-DV1 : ImpulsiveMnvr.Cartesian.X  2.738081135779 km/sec  0.000000000000 km/sec      0.000000000000
-DV1 : ImpulsiveMnvr.Cartesian.Y  2.782810821796 km/sec  0.000000000000 km/sec      0.000000000000
-DV1 : ImpulsiveMnvr.Cartesian.Z  1.041097158341 km/sec  0.000100000000 km/sec      0.000096061479
+DV1 : ImpulsiveMnvr.Cartesian.X  2.343626099720 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Y  2.221123094403 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Z  4.750341778595 km/sec  0.000100000000 km/sec      0.000026315789
 
 Constraints:
 Name                               Value               Change          Scaled Change
-Mars_Transfer : R_Mag  2240.375469055923 km  177.273555122783 km       177273.555123
+Mars_Transfer : R_Mag  9253.382572009323 km  910.097067978351 km       910097.067978
+
+
+Perturbation evaluation -3
+Controls:
+Name                                      Value           Perturbation        Scaled Perturbation
+DV1 : ImpulsiveMnvr.Cartesian.X  2.343626099720 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Y  2.221123094403 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Z  4.750141778595 km/sec -0.000100000000 km/sec     -0.000026315789
+
+Constraints:
+Name                               Value               Change          Scaled Change
+Mars_Transfer : R_Mag  7451.605790552463 km -891.679713478508 km      -891679.713479
 
 
 Partial derivative matrix (scaled) :
 
-          80726484028
-        46164673540.5
-        1845417708.83
+         121085912709
+        81467299713.2
+        34233758847.7
 
 Newton Step Done...
 
 DC proposed step:
 Name                                     Scaled        Unscaled
-DV1 : ImpulsiveMnvr.Cartesian.X -0.000019250984 -0.000052709196 km/sec
-DV1 : ImpulsiveMnvr.Cartesian.Y -0.000011008970 -0.000030637963 km/sec
-DV1 : ImpulsiveMnvr.Cartesian.Z -0.000000440080 -0.000000458123 km/sec
+DV1 : ImpulsiveMnvr.Cartesian.X -0.000044958800 -0.000108350709 km/sec
+DV1 : ImpulsiveMnvr.Cartesian.Y -0.000030248540 -0.000068966671 km/sec
+DV1 : ImpulsiveMnvr.Cartesian.Z -0.000012710882 -0.000048301351 km/sec
 
 
 Step with Max Step limits applied:
 Name                                     Scaled        Unscaled
-DV1 : ImpulsiveMnvr.Cartesian.X -0.000019250984 -0.000052709196 km/sec
-DV1 : ImpulsiveMnvr.Cartesian.Y -0.000011008970 -0.000030637963 km/sec
-DV1 : ImpulsiveMnvr.Cartesian.Z -0.000000440080 -0.000000458123 km/sec
+DV1 : ImpulsiveMnvr.Cartesian.X -0.000044958800 -0.000108350709 km/sec
+DV1 : ImpulsiveMnvr.Cartesian.Y -0.000030248540 -0.000068966671 km/sec
+DV1 : ImpulsiveMnvr.Cartesian.Z -0.000012710882 -0.000048301351 km/sec
 
 
 Step final values:
 
 Unscaled Controls:
 Name                              Current Value            Last Update        Total Correction
-DV1 : ImpulsiveMnvr.Cartesian.X  2.738028426584 km/sec -0.000052709196 km/sec   0.000028426584 km/sec
-DV1 : ImpulsiveMnvr.Cartesian.Y  2.782780183833 km/sec -0.000030637963 km/sec  -0.000219816167 km/sec
-DV1 : ImpulsiveMnvr.Cartesian.Z  1.040996700217 km/sec -0.000000458123 km/sec  -0.000003299783 km/sec
+DV1 : ImpulsiveMnvr.Cartesian.X  2.343517749011 km/sec -0.000108350709 km/sec  -0.066482250989 km/sec
+DV1 : ImpulsiveMnvr.Cartesian.Y  2.221054127732 km/sec -0.000068966671 km/sec  -0.058945872268 km/sec
+DV1 : ImpulsiveMnvr.Cartesian.Z  4.750193477244 km/sec -0.000048301351 km/sec   0.950193477244 km/sec
 
 
 Unscaled Intermediate Constraints:
 Name                       Current Value            Desired            Difference             Tolerance
-Mars_Transfer : R_Mag  1317.914562153626 km  0.000000000000 km  1317.914562153626 km  1000.000000000000 km
+Mars_Transfer : R_Mag  3444.608768594520 km  0.000000000000 km  3444.608768594520 km  1000.000000000000 km
 
 
 
@@ -241,55 +265,7 @@ Mars_Transfer : R_Mag  1317.914562153626 km  0.000000000000 km  1317.91456215362
 Iteration =   3
 Unscaled Intermediate Constraints:
 Name                       Current Value            Desired            Difference             Tolerance
-Mars_Transfer : R_Mag  1317.914562153626 km  0.000000000000 km  1317.914562153626 km  1000.000000000000 km
-
-
-
-Updating partials with Secant method...
-
-Partial derivative matrix (scaled) :
-
-          29158208058
-          16674566869
-        666560350.742
-
-Secant Update Done...
-
-DC proposed step:
-Name                                     Scaled        Unscaled
-DV1 : ImpulsiveMnvr.Cartesian.X -0.000034046677 -0.000093219801 km/sec
-DV1 : ImpulsiveMnvr.Cartesian.Y -0.000019470112 -0.000054185323 km/sec
-DV1 : ImpulsiveMnvr.Cartesian.Z -0.000000778311 -0.000000810222 km/sec
-
-
-Step with Max Step limits applied:
-Name                                     Scaled        Unscaled
-DV1 : ImpulsiveMnvr.Cartesian.X -0.000034046677 -0.000093219801 km/sec
-DV1 : ImpulsiveMnvr.Cartesian.Y -0.000019470112 -0.000054185323 km/sec
-DV1 : ImpulsiveMnvr.Cartesian.Z -0.000000778311 -0.000000810222 km/sec
-
-
-Step final values:
-
-Unscaled Controls:
-Name                              Current Value            Last Update        Total Correction
-DV1 : ImpulsiveMnvr.Cartesian.X  2.737935206783 km/sec -0.000093219801 km/sec  -0.000064793217 km/sec
-DV1 : ImpulsiveMnvr.Cartesian.Y  2.782725998510 km/sec -0.000054185323 km/sec  -0.000274001490 km/sec
-DV1 : ImpulsiveMnvr.Cartesian.Z  1.040995889995 km/sec -0.000000810222 km/sec  -0.000004110005 km/sec
-
-
-Unscaled Intermediate Constraints:
-Name                       Current Value            Desired            Difference             Tolerance
-Mars_Transfer : R_Mag  5026.226084310546 km  0.000000000000 km  5026.226084310546 km  1000.000000000000 km
-
-
-Secant method diverging, re-running step with perturbations.
-
--------------------------------------------------------------
-Iteration =   3
-Unscaled Intermediate Constraints:
-Name                       Current Value            Desired            Difference             Tolerance
-Mars_Transfer : R_Mag  1317.914562153626 km  0.000000000000 km  1317.914562153626 km  1000.000000000000 km
+Mars_Transfer : R_Mag  3444.608768594520 km  0.000000000000 km  3444.608768594520 km  1000.000000000000 km
 
 
 
@@ -298,204 +274,1656 @@ Performing one Newton-Raphson Step...
 Perturbation evaluation +1
 Controls:
 Name                                      Value           Perturbation        Scaled Perturbation
-DV1 : ImpulsiveMnvr.Cartesian.X  2.738038426584 km/sec  0.000010000000 km/sec      0.000003652301
-DV1 : ImpulsiveMnvr.Cartesian.Y  2.782780183833 km/sec  0.000000000000 km/sec      0.000000000000
-DV1 : ImpulsiveMnvr.Cartesian.Z  1.040996700217 km/sec  0.000000000000 km/sec      0.000000000000
-
-Constraints:
-Name                               Value               Change          Scaled Change
-Mars_Transfer : R_Mag  1128.151313779969 km -189.763248373657 km      -189763.248374
-
-
-Perturbation evaluation +2
-Controls:
-Name                                      Value           Perturbation        Scaled Perturbation
-DV1 : ImpulsiveMnvr.Cartesian.X  2.738028426584 km/sec  0.000000000000 km/sec      0.000000000000
-DV1 : ImpulsiveMnvr.Cartesian.Y  2.782880183833 km/sec  0.000100000000 km/sec      0.000035932447
-DV1 : ImpulsiveMnvr.Cartesian.Z  1.040996700217 km/sec  0.000000000000 km/sec      0.000000000000
-
-Constraints:
-Name                               Value               Change          Scaled Change
-Mars_Transfer : R_Mag  2108.724299950589 km  790.809737796964 km       790809.737797
-
-
-Perturbation evaluation +3
-Controls:
-Name                                      Value           Perturbation        Scaled Perturbation
-DV1 : ImpulsiveMnvr.Cartesian.X  2.738028426584 km/sec  0.000000000000 km/sec      0.000000000000
-DV1 : ImpulsiveMnvr.Cartesian.Y  2.782780183833 km/sec  0.000000000000 km/sec      0.000000000000
-DV1 : ImpulsiveMnvr.Cartesian.Z  1.041096700217 km/sec  0.000100000000 km/sec      0.000096061479
-
-Constraints:
-Name                               Value              Change          Scaled Change
-Mars_Transfer : R_Mag  1405.576791836876 km  87.662229683250 km       87662.2296833
-
-
-Partial derivative matrix (scaled) :
-
-       -51957177404.7
-        22008235002.9
-        912563811.003
-
-Newton Step Done...
-
-DC proposed step:
-Name                                     Scaled        Unscaled
-DV1 : ImpulsiveMnvr.Cartesian.X  0.000021500985  0.000058869696 km/sec
-DV1 : ImpulsiveMnvr.Cartesian.Y -0.000009107476 -0.000025346105 km/sec
-DV1 : ImpulsiveMnvr.Cartesian.Z -0.000000377638 -0.000000393121 km/sec
-
-
-Step with Max Step limits applied:
-Name                                     Scaled        Unscaled
-DV1 : ImpulsiveMnvr.Cartesian.X  0.000021500985  0.000058869696 km/sec
-DV1 : ImpulsiveMnvr.Cartesian.Y -0.000009107476 -0.000025346105 km/sec
-DV1 : ImpulsiveMnvr.Cartesian.Z -0.000000377638 -0.000000393121 km/sec
-
-
-Step final values:
-
-Unscaled Controls:
-Name                              Current Value            Last Update        Total Correction
-DV1 : ImpulsiveMnvr.Cartesian.X  2.738087296280 km/sec  0.000058869696 km/sec   0.000087296280 km/sec
-DV1 : ImpulsiveMnvr.Cartesian.Y  2.782754837728 km/sec -0.000025346105 km/sec  -0.000245162272 km/sec
-DV1 : ImpulsiveMnvr.Cartesian.Z  1.040996307096 km/sec -0.000000393121 km/sec  -0.000003692904 km/sec
-
-
-Unscaled Intermediate Constraints:
-Name                       Current Value            Desired            Difference             Tolerance
-Mars_Transfer : R_Mag  1312.498314782649 km  0.000000000000 km  1312.498314782649 km  1000.000000000000 km
-
-
-
--------------------------------------------------------------
-Iteration =   4
-Unscaled Intermediate Constraints:
-Name                       Current Value            Desired            Difference             Tolerance
-Mars_Transfer : R_Mag  1312.498314782649 km  0.000000000000 km  1312.498314782649 km  1000.000000000000 km
-
-
-
-Updating partials with Secant method...
-
-Partial derivative matrix (scaled) :
-
-       -213528959.769
-        90447475.4262
-        3750373.11532
-
-Secant Update Done...
-
-DC proposed step:
-Name                                     Scaled        Unscaled
-DV1 : ImpulsiveMnvr.Cartesian.X  0.005210250629  0.014265666221 km/sec
-DV1 : ImpulsiveMnvr.Cartesian.Y -0.002206979401 -0.006142023673 km/sec
-DV1 : ImpulsiveMnvr.Cartesian.Z -0.000091511633 -0.000095263610 km/sec
-
-
-Step with Max Step limits applied:
-Name                                     Scaled        Unscaled
-DV1 : ImpulsiveMnvr.Cartesian.X  0.005210250629  0.014265666221 km/sec
-DV1 : ImpulsiveMnvr.Cartesian.Y -0.002206979401 -0.006142023673 km/sec
-DV1 : ImpulsiveMnvr.Cartesian.Z -0.000091511633 -0.000095263610 km/sec
-
-
-Step final values:
-
-Unscaled Controls:
-Name                              Current Value            Last Update        Total Correction
-DV1 : ImpulsiveMnvr.Cartesian.X  2.752352962501 km/sec  0.014265666221 km/sec   0.014352962501 km/sec
-DV1 : ImpulsiveMnvr.Cartesian.Y  2.776612814056 km/sec -0.006142023673 km/sec  -0.006387185944 km/sec
-DV1 : ImpulsiveMnvr.Cartesian.Z  1.040901043485 km/sec -0.000095263610 km/sec  -0.000098956515 km/sec
-
-
-Unscaled Intermediate Constraints:
-Name                         Current Value            Desired              Difference             Tolerance
-Mars_Transfer : R_Mag  455779.213425839320 km  0.000000000000 km  455779.213425839320 km  1000.000000000000 km
-
-
-Secant method diverging, re-running step with perturbations.
-
--------------------------------------------------------------
-Iteration =   4
-Unscaled Intermediate Constraints:
-Name                       Current Value            Desired            Difference             Tolerance
-Mars_Transfer : R_Mag  1312.498314782649 km  0.000000000000 km  1312.498314782649 km  1000.000000000000 km
-
-
-
-Performing one Newton-Raphson Step...
-
-Perturbation evaluation +1
-Controls:
-Name                                      Value           Perturbation        Scaled Perturbation
-DV1 : ImpulsiveMnvr.Cartesian.X  2.738097296280 km/sec  0.000010000000 km/sec      0.000003652301
-DV1 : ImpulsiveMnvr.Cartesian.Y  2.782754837728 km/sec  0.000000000000 km/sec      0.000000000000
-DV1 : ImpulsiveMnvr.Cartesian.Z  1.040996307096 km/sec  0.000000000000 km/sec      0.000000000000
-
-Constraints:
-Name                               Value               Change          Scaled Change
-Mars_Transfer : R_Mag  1626.402352509914 km  313.904037727266 km       313904.037727
-
-
-Perturbation evaluation +2
-Controls:
-Name                                      Value           Perturbation        Scaled Perturbation
-DV1 : ImpulsiveMnvr.Cartesian.X  2.738087296280 km/sec  0.000000000000 km/sec      0.000000000000
-DV1 : ImpulsiveMnvr.Cartesian.Y  2.782854837728 km/sec  0.000100000000 km/sec      0.000035932447
-DV1 : ImpulsiveMnvr.Cartesian.Z  1.040996307096 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.X  2.343617749011 km/sec  0.000100000000 km/sec      0.000041493776
+DV1 : ImpulsiveMnvr.Cartesian.Y  2.221054127732 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Z  4.750193477244 km/sec  0.000000000000 km/sec      0.000000000000
 
 Constraints:
 Name                               Value                Change          Scaled Change
-Mars_Transfer : R_Mag  2971.737749401769 km  1659.239434619120 km       1659239.43462
+Mars_Transfer : R_Mag  5039.021140182814 km  1594.412371588294 km       1594412.37159
+
+
+Perturbation evaluation -1
+Controls:
+Name                                      Value           Perturbation        Scaled Perturbation
+DV1 : ImpulsiveMnvr.Cartesian.X  2.343417749011 km/sec -0.000100000000 km/sec     -0.000041493776
+DV1 : ImpulsiveMnvr.Cartesian.Y  2.221054127732 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Z  4.750193477244 km/sec  0.000000000000 km/sec      0.000000000000
+
+Constraints:
+Name                               Value                Change          Scaled Change
+Mars_Transfer : R_Mag  8485.316112299683 km  5040.707343705162 km       5040707.34371
+
+
+Perturbation evaluation +2
+Controls:
+Name                                      Value           Perturbation        Scaled Perturbation
+DV1 : ImpulsiveMnvr.Cartesian.X  2.343517749011 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Y  2.221154127732 km/sec  0.000100000000 km/sec      0.000043859649
+DV1 : ImpulsiveMnvr.Cartesian.Z  4.750193477244 km/sec  0.000000000000 km/sec      0.000000000000
+
+Constraints:
+Name                               Value               Change          Scaled Change
+Mars_Transfer : R_Mag  4325.847883372642 km  881.239114778122 km       881239.114778
+
+
+Perturbation evaluation -2
+Controls:
+Name                                      Value           Perturbation        Scaled Perturbation
+DV1 : ImpulsiveMnvr.Cartesian.X  2.343517749011 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Y  2.220954127732 km/sec -0.000100000000 km/sec     -0.000043859649
+DV1 : ImpulsiveMnvr.Cartesian.Z  4.750193477244 km/sec  0.000000000000 km/sec      0.000000000000
+
+Constraints:
+Name                               Value                Change          Scaled Change
+Mars_Transfer : R_Mag  5581.730905595884 km  2137.122137001364 km         2137122.137
 
 
 Perturbation evaluation +3
 Controls:
 Name                                      Value           Perturbation        Scaled Perturbation
-DV1 : ImpulsiveMnvr.Cartesian.X  2.738087296280 km/sec  0.000000000000 km/sec      0.000000000000
-DV1 : ImpulsiveMnvr.Cartesian.Y  2.782754837728 km/sec  0.000000000000 km/sec      0.000000000000
-DV1 : ImpulsiveMnvr.Cartesian.Z  1.041096307096 km/sec  0.000100000000 km/sec      0.000096061479
+DV1 : ImpulsiveMnvr.Cartesian.X  2.343517749011 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Y  2.221054127732 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Z  4.750293477244 km/sec  0.000100000000 km/sec      0.000026315789
 
 Constraints:
 Name                               Value               Change          Scaled Change
-Mars_Transfer : R_Mag  1532.782104616329 km  220.283789833680 km       220283.789834
+Mars_Transfer : R_Mag  3099.606827961933 km -345.001940632587 km      -345001.940633
+
+
+Perturbation evaluation -3
+Controls:
+Name                                      Value           Perturbation        Scaled Perturbation
+DV1 : ImpulsiveMnvr.Cartesian.X  2.343517749011 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Y  2.221054127732 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Z  4.750093477244 km/sec -0.000100000000 km/sec     -0.000026315789
+
+Constraints:
+Name                               Value               Change          Scaled Change
+Mars_Transfer : R_Mag  4006.675824081547 km  562.067055487027 km       562067.055487
 
 
 Partial derivative matrix (scaled) :
 
-        85946925529.7
-        46176633465.5
-        2293154252.17
+         -41527854414
+       -14317066453.3
+       -17234310926.3
 
 Newton Step Done...
 
 DC proposed step:
 Name                                     Scaled        Unscaled
-DV1 : ImpulsiveMnvr.Cartesian.X -0.000011843794 -0.000032428307 km/sec
-DV1 : ImpulsiveMnvr.Cartesian.Y -0.000006363305 -0.000017709078 km/sec
-DV1 : ImpulsiveMnvr.Cartesian.Z -0.000000316005 -0.000000328961 km/sec
+DV1 : ImpulsiveMnvr.Cartesian.X  0.000064245763  0.000154832290 km/sec
+DV1 : ImpulsiveMnvr.Cartesian.Y  0.000022149251  0.000050500292 km/sec
+DV1 : ImpulsiveMnvr.Cartesian.Z  0.000026662381  0.000101317047 km/sec
 
 
 Step with Max Step limits applied:
 Name                                     Scaled        Unscaled
-DV1 : ImpulsiveMnvr.Cartesian.X -0.000011843794 -0.000032428307 km/sec
-DV1 : ImpulsiveMnvr.Cartesian.Y -0.000006363305 -0.000017709078 km/sec
-DV1 : ImpulsiveMnvr.Cartesian.Z -0.000000316005 -0.000000328961 km/sec
+DV1 : ImpulsiveMnvr.Cartesian.X  0.000064245763  0.000154832290 km/sec
+DV1 : ImpulsiveMnvr.Cartesian.Y  0.000022149251  0.000050500292 km/sec
+DV1 : ImpulsiveMnvr.Cartesian.Z  0.000026662381  0.000101317047 km/sec
 
 
 Step final values:
 
 Unscaled Controls:
 Name                              Current Value            Last Update        Total Correction
-DV1 : ImpulsiveMnvr.Cartesian.X  2.738054867973 km/sec -0.000032428307 km/sec   0.000054867973 km/sec
-DV1 : ImpulsiveMnvr.Cartesian.Y  2.782737128650 km/sec -0.000017709078 km/sec  -0.000262871350 km/sec
-DV1 : ImpulsiveMnvr.Cartesian.Z  1.040995978135 km/sec -0.000000328961 km/sec  -0.000004021865 km/sec
+DV1 : ImpulsiveMnvr.Cartesian.X  2.343672581301 km/sec  0.000154832290 km/sec  -0.066327418699 km/sec
+DV1 : ImpulsiveMnvr.Cartesian.Y  2.221104628024 km/sec  0.000050500292 km/sec  -0.058895371976 km/sec
+DV1 : ImpulsiveMnvr.Cartesian.Z  4.750294794290 km/sec  0.000101317047 km/sec   0.950294794290 km/sec
+
+
+Unscaled Intermediate Constraints:
+Name                        Current Value            Desired             Difference             Tolerance
+Mars_Transfer : R_Mag  10769.416691687611 km  0.000000000000 km  10769.416691687611 km  1000.000000000000 km
+
+
+
+-------------------------------------------------------------
+Iteration =   4
+Unscaled Intermediate Constraints:
+Name                        Current Value            Desired             Difference             Tolerance
+Mars_Transfer : R_Mag  10769.416691687611 km  0.000000000000 km  10769.416691687611 km  1000.000000000000 km
+
+
+
+Performing one Newton-Raphson Step...
+
+Perturbation evaluation +1
+Controls:
+Name                                      Value           Perturbation        Scaled Perturbation
+DV1 : ImpulsiveMnvr.Cartesian.X  2.343772581301 km/sec  0.000100000000 km/sec      0.000041493776
+DV1 : ImpulsiveMnvr.Cartesian.Y  2.221104628024 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Z  4.750294794290 km/sec  0.000000000000 km/sec      0.000000000000
+
+Constraints:
+Name                                Value                Change          Scaled Change
+Mars_Transfer : R_Mag  16618.118619234232 km  5848.701927546620 km       5848701.92755
+
+
+Perturbation evaluation -1
+Controls:
+Name                                      Value           Perturbation        Scaled Perturbation
+DV1 : ImpulsiveMnvr.Cartesian.X  2.343572581301 km/sec -0.000100000000 km/sec     -0.000041493776
+DV1 : ImpulsiveMnvr.Cartesian.Y  2.221104628024 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Z  4.750294794290 km/sec  0.000000000000 km/sec      0.000000000000
+
+Constraints:
+Name                               Value                Change          Scaled Change
+Mars_Transfer : R_Mag  5427.557123338917 km -5341.859568348695 km      -5341859.56835
+
+
+Perturbation evaluation +2
+Controls:
+Name                                      Value           Perturbation        Scaled Perturbation
+DV1 : ImpulsiveMnvr.Cartesian.X  2.343672581301 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Y  2.221204628024 km/sec  0.000100000000 km/sec      0.000043859649
+DV1 : ImpulsiveMnvr.Cartesian.Z  4.750294794290 km/sec  0.000000000000 km/sec      0.000000000000
+
+Constraints:
+Name                                Value                Change          Scaled Change
+Mars_Transfer : R_Mag  14378.916912923354 km  3609.500221235743 km       3609500.22124
+
+
+Perturbation evaluation -2
+Controls:
+Name                                      Value           Perturbation        Scaled Perturbation
+DV1 : ImpulsiveMnvr.Cartesian.X  2.343672581301 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Y  2.221004628024 km/sec -0.000100000000 km/sec     -0.000043859649
+DV1 : ImpulsiveMnvr.Cartesian.Z  4.750294794290 km/sec  0.000000000000 km/sec      0.000000000000
+
+Constraints:
+Name                               Value                Change          Scaled Change
+Mars_Transfer : R_Mag  7165.461583870369 km -3603.955107817243 km      -3603955.10782
+
+
+Perturbation evaluation +3
+Controls:
+Name                                      Value           Perturbation        Scaled Perturbation
+DV1 : ImpulsiveMnvr.Cartesian.X  2.343672581301 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Y  2.221104628024 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Z  4.750394794290 km/sec  0.000100000000 km/sec      0.000026315789
+
+Constraints:
+Name                                Value               Change          Scaled Change
+Mars_Transfer : R_Mag  11711.868029053614 km  942.451337366002 km       942451.337366
+
+
+Perturbation evaluation -3
+Controls:
+Name                                      Value           Perturbation        Scaled Perturbation
+DV1 : ImpulsiveMnvr.Cartesian.X  2.343672581301 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Y  2.221104628024 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Z  4.750194794290 km/sec -0.000100000000 km/sec     -0.000026315789
+
+Constraints:
+Name                               Value               Change          Scaled Change
+Mars_Transfer : R_Mag  9834.817852443766 km -934.598839243846 km      -934598.839244
+
+
+Partial derivative matrix (scaled) :
+
+         134846266026
+        82233390751.2
+        35663953355.6
+
+Newton Step Done...
+
+DC proposed step:
+Name                                     Scaled        Unscaled
+DV1 : ImpulsiveMnvr.Cartesian.X -0.000055390523 -0.000133491160 km/sec
+DV1 : ImpulsiveMnvr.Cartesian.Y -0.000033778840 -0.000077015756 km/sec
+DV1 : ImpulsiveMnvr.Cartesian.Z -0.000014649609 -0.000055668513 km/sec
+
+
+Step with Max Step limits applied:
+Name                                     Scaled        Unscaled
+DV1 : ImpulsiveMnvr.Cartesian.X -0.000055390523 -0.000133491160 km/sec
+DV1 : ImpulsiveMnvr.Cartesian.Y -0.000033778840 -0.000077015756 km/sec
+DV1 : ImpulsiveMnvr.Cartesian.Z -0.000014649609 -0.000055668513 km/sec
+
+
+Step final values:
+
+Unscaled Controls:
+Name                              Current Value            Last Update        Total Correction
+DV1 : ImpulsiveMnvr.Cartesian.X  2.343539090141 km/sec -0.000133491160 km/sec  -0.066460909859 km/sec
+DV1 : ImpulsiveMnvr.Cartesian.Y  2.221027612267 km/sec -0.000077015756 km/sec  -0.058972387733 km/sec
+DV1 : ImpulsiveMnvr.Cartesian.Z  4.750239125778 km/sec -0.000055668513 km/sec   0.950239125778 km/sec
+
+
+Unscaled Intermediate Constraints:
+Name                       Current Value            Desired            Difference             Tolerance
+Mars_Transfer : R_Mag  2800.399954823784 km  0.000000000000 km  2800.399954823784 km  1000.000000000000 km
+
+
+
+-------------------------------------------------------------
+Iteration =   5
+Unscaled Intermediate Constraints:
+Name                       Current Value            Desired            Difference             Tolerance
+Mars_Transfer : R_Mag  2800.399954823784 km  0.000000000000 km  2800.399954823784 km  1000.000000000000 km
+
+
+
+Performing one Newton-Raphson Step...
+
+Perturbation evaluation +1
+Controls:
+Name                                      Value           Perturbation        Scaled Perturbation
+DV1 : ImpulsiveMnvr.Cartesian.X  2.343639090141 km/sec  0.000100000000 km/sec      0.000041493776
+DV1 : ImpulsiveMnvr.Cartesian.Y  2.221027612267 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Z  4.750239125778 km/sec  0.000000000000 km/sec      0.000000000000
+
+Constraints:
+Name                               Value                Change          Scaled Change
+Mars_Transfer : R_Mag  5610.756250748584 km  2810.356295924800 km       2810356.29592
+
+
+Perturbation evaluation -1
+Controls:
+Name                                      Value           Perturbation        Scaled Perturbation
+DV1 : ImpulsiveMnvr.Cartesian.X  2.343439090141 km/sec -0.000100000000 km/sec     -0.000041493776
+DV1 : ImpulsiveMnvr.Cartesian.Y  2.221027612267 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Z  4.750239125778 km/sec  0.000000000000 km/sec      0.000000000000
+
+Constraints:
+Name                               Value                Change          Scaled Change
+Mars_Transfer : R_Mag  7606.942249062671 km  4806.542294238888 km       4806542.29424
+
+
+Perturbation evaluation +2
+Controls:
+Name                                      Value           Perturbation        Scaled Perturbation
+DV1 : ImpulsiveMnvr.Cartesian.X  2.343539090141 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Y  2.221127612267 km/sec  0.000100000000 km/sec      0.000043859649
+DV1 : ImpulsiveMnvr.Cartesian.Z  4.750239125778 km/sec  0.000000000000 km/sec      0.000000000000
+
+Constraints:
+Name                               Value                Change          Scaled Change
+Mars_Transfer : R_Mag  4435.871658830562 km  1635.471704006778 km       1635471.70401
+
+
+Perturbation evaluation -2
+Controls:
+Name                                      Value           Perturbation        Scaled Perturbation
+DV1 : ImpulsiveMnvr.Cartesian.X  2.343539090141 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Y  2.220927612267 km/sec -0.000100000000 km/sec     -0.000043859649
+DV1 : ImpulsiveMnvr.Cartesian.Z  4.750239125778 km/sec  0.000000000000 km/sec      0.000000000000
+
+Constraints:
+Name                               Value                Change          Scaled Change
+Mars_Transfer : R_Mag  4705.890612955124 km  1905.490658131340 km       1905490.65813
+
+
+Perturbation evaluation +3
+Controls:
+Name                                      Value           Perturbation        Scaled Perturbation
+DV1 : ImpulsiveMnvr.Cartesian.X  2.343539090141 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Y  2.221027612267 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Z  4.750339125778 km/sec  0.000100000000 km/sec      0.000026315789
+
+Constraints:
+Name                               Value               Change          Scaled Change
+Mars_Transfer : R_Mag  2671.331696881578 km -129.068257942206 km      -129068.257942
+
+
+Perturbation evaluation -3
+Controls:
+Name                                      Value           Perturbation        Scaled Perturbation
+DV1 : ImpulsiveMnvr.Cartesian.X  2.343539090141 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Y  2.221027612267 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Z  4.750139125778 km/sec -0.000100000000 km/sec     -0.000026315789
+
+Constraints:
+Name                               Value               Change          Scaled Change
+Mars_Transfer : R_Mag  3237.110857686059 km  436.710902862275 km       436710.902862
+
+
+Partial derivative matrix (scaled) :
+
+       -24054041279.7
+       -3078216077.02
+       -10749804055.3
+
+Newton Step Done...
+
+DC proposed step:
+Name                                     Scaled        Unscaled
+DV1 : ImpulsiveMnvr.Cartesian.X  0.000095733380  0.000230717446 km/sec
+DV1 : ImpulsiveMnvr.Cartesian.Y  0.000012251082  0.000027932467 km/sec
+DV1 : ImpulsiveMnvr.Cartesian.Z  0.000042783459  0.000162577143 km/sec
+
+
+Step with Max Step limits applied:
+Name                                     Scaled        Unscaled
+DV1 : ImpulsiveMnvr.Cartesian.X  0.000095733380  0.000230717446 km/sec
+DV1 : ImpulsiveMnvr.Cartesian.Y  0.000012251082  0.000027932467 km/sec
+DV1 : ImpulsiveMnvr.Cartesian.Z  0.000042783459  0.000162577143 km/sec
+
+
+Step final values:
+
+Unscaled Controls:
+Name                              Current Value            Last Update        Total Correction
+DV1 : ImpulsiveMnvr.Cartesian.X  2.343769807588 km/sec  0.000230717446 km/sec  -0.066230192412 km/sec
+DV1 : ImpulsiveMnvr.Cartesian.Y  2.221055544734 km/sec  0.000027932467 km/sec  -0.058944455266 km/sec
+DV1 : ImpulsiveMnvr.Cartesian.Z  4.750401702920 km/sec  0.000162577143 km/sec   0.950401702920 km/sec
+
+
+Unscaled Intermediate Constraints:
+Name                        Current Value            Desired             Difference             Tolerance
+Mars_Transfer : R_Mag  15726.066171858351 km  0.000000000000 km  15726.066171858351 km  1000.000000000000 km
+
+
+
+-------------------------------------------------------------
+Iteration =   6
+Unscaled Intermediate Constraints:
+Name                        Current Value            Desired             Difference             Tolerance
+Mars_Transfer : R_Mag  15726.066171858351 km  0.000000000000 km  15726.066171858351 km  1000.000000000000 km
+
+
+
+Performing one Newton-Raphson Step...
+
+Perturbation evaluation +1
+Controls:
+Name                                      Value           Perturbation        Scaled Perturbation
+DV1 : ImpulsiveMnvr.Cartesian.X  2.343869807588 km/sec  0.000100000000 km/sec      0.000041493776
+DV1 : ImpulsiveMnvr.Cartesian.Y  2.221055544734 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Z  4.750401702920 km/sec  0.000000000000 km/sec      0.000000000000
+
+Constraints:
+Name                                Value                Change          Scaled Change
+Mars_Transfer : R_Mag  21710.268573994716 km  5984.202402136365 km       5984202.40214
+
+
+Perturbation evaluation -1
+Controls:
+Name                                      Value           Perturbation        Scaled Perturbation
+DV1 : ImpulsiveMnvr.Cartesian.X  2.343669807588 km/sec -0.000100000000 km/sec     -0.000041493776
+DV1 : ImpulsiveMnvr.Cartesian.Y  2.221055544734 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Z  4.750401702920 km/sec  0.000000000000 km/sec      0.000000000000
+
+Constraints:
+Name                               Value                Change          Scaled Change
+Mars_Transfer : R_Mag  9845.893441696027 km -5880.172730162322 km      -5880172.73016
+
+
+Perturbation evaluation +2
+Controls:
+Name                                      Value           Perturbation        Scaled Perturbation
+DV1 : ImpulsiveMnvr.Cartesian.X  2.343769807588 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Y  2.221155544734 km/sec  0.000100000000 km/sec      0.000043859649
+DV1 : ImpulsiveMnvr.Cartesian.Z  4.750401702920 km/sec  0.000000000000 km/sec      0.000000000000
+
+Constraints:
+Name                                Value                Change          Scaled Change
+Mars_Transfer : R_Mag  19303.553015818139 km  3577.486843959788 km       3577486.84396
+
+
+Perturbation evaluation -2
+Controls:
+Name                                      Value           Perturbation        Scaled Perturbation
+DV1 : ImpulsiveMnvr.Cartesian.X  2.343769807588 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Y  2.220955544734 km/sec -0.000100000000 km/sec     -0.000043859649
+DV1 : ImpulsiveMnvr.Cartesian.Z  4.750401702920 km/sec  0.000000000000 km/sec      0.000000000000
+
+Constraints:
+Name                                Value                Change          Scaled Change
+Mars_Transfer : R_Mag  12170.736345639853 km -3555.329826218497 km      -3555329.82622
+
+
+Perturbation evaluation +3
+Controls:
+Name                                      Value           Perturbation        Scaled Perturbation
+DV1 : ImpulsiveMnvr.Cartesian.X  2.343769807588 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Y  2.221055544734 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Z  4.750501702920 km/sec  0.000100000000 km/sec      0.000026315789
+
+Constraints:
+Name                                Value               Change          Scaled Change
+Mars_Transfer : R_Mag  16689.047832577671 km  962.981660719320 km       962981.660719
+
+
+Perturbation evaluation -3
+Controls:
+Name                                      Value           Perturbation        Scaled Perturbation
+DV1 : ImpulsiveMnvr.Cartesian.X  2.343769807588 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Y  2.221055544734 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Z  4.750301702920 km/sec -0.000100000000 km/sec     -0.000026315789
+
+Constraints:
+Name                                Value               Change          Scaled Change
+Mars_Transfer : R_Mag  14765.672335032830 km -960.393836825520 km      -960393.836826
+
+
+Partial derivative matrix (scaled) :
+
+         142965720344
+          81314110040
+        36544134453.4
+
+Newton Step Done...
+
+DC proposed step:
+Name                                     Scaled        Unscaled
+DV1 : ImpulsiveMnvr.Cartesian.X -0.000079202299 -0.000190877541 km/sec
+DV1 : ImpulsiveMnvr.Cartesian.Y -0.000045047613 -0.000102708558 km/sec
+DV1 : ImpulsiveMnvr.Cartesian.Z -0.000020245269 -0.000076932022 km/sec
+
+
+Step with Max Step limits applied:
+Name                                     Scaled        Unscaled
+DV1 : ImpulsiveMnvr.Cartesian.X -0.000079202299 -0.000190877541 km/sec
+DV1 : ImpulsiveMnvr.Cartesian.Y -0.000045047613 -0.000102708558 km/sec
+DV1 : ImpulsiveMnvr.Cartesian.Z -0.000020245269 -0.000076932022 km/sec
+
+
+Step final values:
+
+Unscaled Controls:
+Name                              Current Value            Last Update        Total Correction
+DV1 : ImpulsiveMnvr.Cartesian.X  2.343578930047 km/sec -0.000190877541 km/sec  -0.066421069953 km/sec
+DV1 : ImpulsiveMnvr.Cartesian.Y  2.220952836176 km/sec -0.000102708558 km/sec  -0.059047163824 km/sec
+DV1 : ImpulsiveMnvr.Cartesian.Z  4.750324770898 km/sec -0.000076932022 km/sec   0.950324770898 km/sec
+
+
+Unscaled Intermediate Constraints:
+Name                       Current Value            Desired            Difference             Tolerance
+Mars_Transfer : R_Mag  1804.078565112957 km  0.000000000000 km  1804.078565112957 km  1000.000000000000 km
+
+
+
+-------------------------------------------------------------
+Iteration =   7
+Unscaled Intermediate Constraints:
+Name                       Current Value            Desired            Difference             Tolerance
+Mars_Transfer : R_Mag  1804.078565112957 km  0.000000000000 km  1804.078565112957 km  1000.000000000000 km
+
+
+
+Performing one Newton-Raphson Step...
+
+Perturbation evaluation +1
+Controls:
+Name                                      Value           Perturbation        Scaled Perturbation
+DV1 : ImpulsiveMnvr.Cartesian.X  2.343678930047 km/sec  0.000100000000 km/sec      0.000041493776
+DV1 : ImpulsiveMnvr.Cartesian.Y  2.220952836176 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Z  4.750324770898 km/sec  0.000000000000 km/sec      0.000000000000
+
+Constraints:
+Name                               Value                Change          Scaled Change
+Mars_Transfer : R_Mag  5950.302523430224 km  4146.223958317266 km       4146223.95832
+
+
+Perturbation evaluation -1
+Controls:
+Name                                      Value           Perturbation        Scaled Perturbation
+DV1 : ImpulsiveMnvr.Cartesian.X  2.343478930047 km/sec -0.000100000000 km/sec     -0.000041493776
+DV1 : ImpulsiveMnvr.Cartesian.Y  2.220952836176 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Z  4.750324770898 km/sec  0.000000000000 km/sec      0.000000000000
+
+Constraints:
+Name                               Value                Change          Scaled Change
+Mars_Transfer : R_Mag  6690.686294305076 km  4886.607729192119 km       4886607.72919
+
+
+Perturbation evaluation +2
+Controls:
+Name                                      Value           Perturbation        Scaled Perturbation
+DV1 : ImpulsiveMnvr.Cartesian.X  2.343578930047 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Y  2.221052836176 km/sec  0.000100000000 km/sec      0.000043859649
+DV1 : ImpulsiveMnvr.Cartesian.Z  4.750324770898 km/sec  0.000000000000 km/sec      0.000000000000
+
+Constraints:
+Name                               Value                Change          Scaled Change
+Mars_Transfer : R_Mag  4221.616133686137 km  2417.537568573179 km       2417537.56857
+
+
+Perturbation evaluation -2
+Controls:
+Name                                      Value           Perturbation        Scaled Perturbation
+DV1 : ImpulsiveMnvr.Cartesian.X  2.343578930047 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Y  2.220852836176 km/sec -0.000100000000 km/sec     -0.000043859649
+DV1 : ImpulsiveMnvr.Cartesian.Z  4.750324770898 km/sec  0.000000000000 km/sec      0.000000000000
+
+Constraints:
+Name                               Value                Change          Scaled Change
+Mars_Transfer : R_Mag  3850.335633200388 km  2046.257068087431 km       2046257.06809
+
+
+Perturbation evaluation +3
+Controls:
+Name                                      Value           Perturbation        Scaled Perturbation
+DV1 : ImpulsiveMnvr.Cartesian.X  2.343578930047 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Y  2.220952836176 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Z  4.750424770898 km/sec  0.000100000000 km/sec      0.000026315789
+
+Constraints:
+Name                               Value               Change          Scaled Change
+Mars_Transfer : R_Mag  1929.478041318218 km  125.399476205261 km       125399.476205
+
+
+Perturbation evaluation -3
+Controls:
+Name                                      Value           Perturbation        Scaled Perturbation
+DV1 : ImpulsiveMnvr.Cartesian.X  2.343578930047 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Y  2.220952836176 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Z  4.750224770898 km/sec -0.000100000000 km/sec     -0.000026315789
+
+Constraints:
+Name                               Value               Change          Scaled Change
+Mars_Transfer : R_Mag  2171.872464636780 km  367.793899523823 km       367793.899524
+
+
+Partial derivative matrix (scaled) :
+
+       -8921624439.04
+        4232597705.54
+       -4605494043.05
+
+Newton Step Done...
+
+DC proposed step:
+Name                                     Scaled        Unscaled
+DV1 : ImpulsiveMnvr.Cartesian.X  0.000135572754  0.000326730337 km/sec
+DV1 : ImpulsiveMnvr.Cartesian.Y -0.000064318436 -0.000146646033 km/sec
+DV1 : ImpulsiveMnvr.Cartesian.Z  0.000069984958  0.000265942840 km/sec
+
+
+Step with Max Step limits applied:
+Name                                     Scaled        Unscaled
+DV1 : ImpulsiveMnvr.Cartesian.X  0.000135572754  0.000326730337 km/sec
+DV1 : ImpulsiveMnvr.Cartesian.Y -0.000064318436 -0.000146646033 km/sec
+DV1 : ImpulsiveMnvr.Cartesian.Z  0.000069984958  0.000265942840 km/sec
+
+
+Step final values:
+
+Unscaled Controls:
+Name                              Current Value            Last Update        Total Correction
+DV1 : ImpulsiveMnvr.Cartesian.X  2.343905660384 km/sec  0.000326730337 km/sec  -0.066094339616 km/sec
+DV1 : ImpulsiveMnvr.Cartesian.Y  2.220806190143 km/sec -0.000146646033 km/sec  -0.059193809857 km/sec
+DV1 : ImpulsiveMnvr.Cartesian.Z  4.750590713738 km/sec  0.000265942840 km/sec   0.950590713738 km/sec
+
+
+Unscaled Intermediate Constraints:
+Name                        Current Value            Desired             Difference             Tolerance
+Mars_Transfer : R_Mag  17019.189441135044 km  0.000000000000 km  17019.189441135044 km  1000.000000000000 km
+
+
+
+-------------------------------------------------------------
+Iteration =   8
+Unscaled Intermediate Constraints:
+Name                        Current Value            Desired             Difference             Tolerance
+Mars_Transfer : R_Mag  17019.189441135044 km  0.000000000000 km  17019.189441135044 km  1000.000000000000 km
+
+
+
+Performing one Newton-Raphson Step...
+
+Perturbation evaluation +1
+Controls:
+Name                                      Value           Perturbation        Scaled Perturbation
+DV1 : ImpulsiveMnvr.Cartesian.X  2.344005660384 km/sec  0.000100000000 km/sec      0.000041493776
+DV1 : ImpulsiveMnvr.Cartesian.Y  2.220806190143 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Z  4.750590713738 km/sec  0.000000000000 km/sec      0.000000000000
+
+Constraints:
+Name                                Value                Change          Scaled Change
+Mars_Transfer : R_Mag  23087.502765221001 km  6068.313324085954 km       6068313.32409
+
+
+Perturbation evaluation -1
+Controls:
+Name                                      Value           Perturbation        Scaled Perturbation
+DV1 : ImpulsiveMnvr.Cartesian.X  2.343805660384 km/sec -0.000100000000 km/sec     -0.000041493776
+DV1 : ImpulsiveMnvr.Cartesian.Y  2.220806190143 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Z  4.750590713738 km/sec  0.000000000000 km/sec      0.000000000000
+
+Constraints:
+Name                                Value                Change          Scaled Change
+Mars_Transfer : R_Mag  10951.399205906890 km -6067.790235228154 km      -6067790.23523
+
+
+Perturbation evaluation +2
+Controls:
+Name                                      Value           Perturbation        Scaled Perturbation
+DV1 : ImpulsiveMnvr.Cartesian.X  2.343905660384 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Y  2.220906190143 km/sec  0.000100000000 km/sec      0.000043859649
+DV1 : ImpulsiveMnvr.Cartesian.Z  4.750590713738 km/sec  0.000000000000 km/sec      0.000000000000
+
+Constraints:
+Name                                Value                Change          Scaled Change
+Mars_Transfer : R_Mag  20462.348052864607 km  3443.158611729562 km       3443158.61173
+
+
+Perturbation evaluation -2
+Controls:
+Name                                      Value           Perturbation        Scaled Perturbation
+DV1 : ImpulsiveMnvr.Cartesian.X  2.343905660384 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Y  2.220706190143 km/sec -0.000100000000 km/sec     -0.000043859649
+DV1 : ImpulsiveMnvr.Cartesian.Z  4.750590713738 km/sec  0.000000000000 km/sec      0.000000000000
+
+Constraints:
+Name                                Value                Change          Scaled Change
+Mars_Transfer : R_Mag  13665.035784839190 km -3354.153656295855 km       -3354153.6563
+
+
+Perturbation evaluation +3
+Controls:
+Name                                      Value           Perturbation        Scaled Perturbation
+DV1 : ImpulsiveMnvr.Cartesian.X  2.343905660384 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Y  2.220806190143 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Z  4.750690713738 km/sec  0.000100000000 km/sec      0.000026315789
+
+Constraints:
+Name                                Value               Change          Scaled Change
+Mars_Transfer : R_Mag  17979.738363904533 km  960.548922769487 km       960548.922769
+
+
+Perturbation evaluation -3
+Controls:
+Name                                      Value           Perturbation        Scaled Perturbation
+DV1 : ImpulsiveMnvr.Cartesian.X  2.343905660384 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Y  2.220806190143 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Z  4.750490713738 km/sec -0.000100000000 km/sec     -0.000026315789
+
+Constraints:
+Name                                Value               Change          Scaled Change
+Mars_Transfer : R_Mag  16061.317821892373 km -957.871619242672 km      -957871.619243
+
+
+Partial derivative matrix (scaled) :
+
+         146240047890
+        77489359855.5
+        36449990298.2
+
+Newton Step Done...
+
+DC proposed step:
+Name                                     Scaled        Unscaled
+DV1 : ImpulsiveMnvr.Cartesian.X -0.000086662362 -0.000208856293 km/sec
+DV1 : ImpulsiveMnvr.Cartesian.Y -0.000045920465 -0.000104698660 km/sec
+DV1 : ImpulsiveMnvr.Cartesian.Z -0.000021600391 -0.000082081487 km/sec
+
+
+Step with Max Step limits applied:
+Name                                     Scaled        Unscaled
+DV1 : ImpulsiveMnvr.Cartesian.X -0.000086662362 -0.000208856293 km/sec
+DV1 : ImpulsiveMnvr.Cartesian.Y -0.000045920465 -0.000104698660 km/sec
+DV1 : ImpulsiveMnvr.Cartesian.Z -0.000021600391 -0.000082081487 km/sec
+
+
+Step final values:
+
+Unscaled Controls:
+Name                              Current Value            Last Update        Total Correction
+DV1 : ImpulsiveMnvr.Cartesian.X  2.343696804091 km/sec -0.000208856293 km/sec  -0.066303195909 km/sec
+DV1 : ImpulsiveMnvr.Cartesian.Y  2.220701491483 km/sec -0.000104698660 km/sec  -0.059298508517 km/sec
+DV1 : ImpulsiveMnvr.Cartesian.Z  4.750508632251 km/sec -0.000082081487 km/sec   0.950508632251 km/sec
+
+
+Unscaled Intermediate Constraints:
+Name                       Current Value            Desired            Difference             Tolerance
+Mars_Transfer : R_Mag  1263.084160856977 km  0.000000000000 km  1263.084160856977 km  1000.000000000000 km
+
+
+
+-------------------------------------------------------------
+Iteration =   9
+Unscaled Intermediate Constraints:
+Name                       Current Value            Desired            Difference             Tolerance
+Mars_Transfer : R_Mag  1263.084160856977 km  0.000000000000 km  1263.084160856977 km  1000.000000000000 km
+
+
+
+Performing one Newton-Raphson Step...
+
+Perturbation evaluation +1
+Controls:
+Name                                      Value           Perturbation        Scaled Perturbation
+DV1 : ImpulsiveMnvr.Cartesian.X  2.343796804091 km/sec  0.000100000000 km/sec      0.000041493776
+DV1 : ImpulsiveMnvr.Cartesian.Y  2.220701491483 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Z  4.750508632251 km/sec  0.000000000000 km/sec      0.000000000000
+
+Constraints:
+Name                               Value                Change          Scaled Change
+Mars_Transfer : R_Mag  6199.508480597595 km  4936.424319740618 km       4936424.31974
+
+
+Perturbation evaluation -1
+Controls:
+Name                                      Value           Perturbation        Scaled Perturbation
+DV1 : ImpulsiveMnvr.Cartesian.X  2.343596804091 km/sec -0.000100000000 km/sec     -0.000041493776
+DV1 : ImpulsiveMnvr.Cartesian.Y  2.220701491483 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Z  4.750508632251 km/sec  0.000000000000 km/sec      0.000000000000
+
+Constraints:
+Name                               Value                Change          Scaled Change
+Mars_Transfer : R_Mag  6198.408674171506 km  4935.324513314528 km       4935324.51331
+
+
+Perturbation evaluation +2
+Controls:
+Name                                      Value           Perturbation        Scaled Perturbation
+DV1 : ImpulsiveMnvr.Cartesian.X  2.343696804091 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Y  2.220801491483 km/sec  0.000100000000 km/sec      0.000043859649
+DV1 : ImpulsiveMnvr.Cartesian.Z  4.750508632251 km/sec  0.000000000000 km/sec      0.000000000000
+
+Constraints:
+Name                               Value                Change          Scaled Change
+Mars_Transfer : R_Mag  3408.768869045483 km  2145.684708188507 km       2145684.70819
+
+
+Perturbation evaluation -2
+Controls:
+Name                                      Value           Perturbation        Scaled Perturbation
+DV1 : ImpulsiveMnvr.Cartesian.X  2.343696804091 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Y  2.220601491483 km/sec -0.000100000000 km/sec     -0.000043859649
+DV1 : ImpulsiveMnvr.Cartesian.Z  4.750508632251 km/sec  0.000000000000 km/sec      0.000000000000
+
+Constraints:
+Name                               Value                Change          Scaled Change
+Mars_Transfer : R_Mag  4208.152974207384 km  2945.068813350406 km       2945068.81335
+
+
+Perturbation evaluation +3
+Controls:
+Name                                      Value           Perturbation        Scaled Perturbation
+DV1 : ImpulsiveMnvr.Cartesian.X  2.343696804091 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Y  2.220701491483 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Z  4.750608632251 km/sec  0.000100000000 km/sec      0.000026315789
+
+Constraints:
+Name                               Value               Change          Scaled Change
+Mars_Transfer : R_Mag  1461.244228683394 km  198.160067826417 km       198160.067826
+
+
+Perturbation evaluation -3
+Controls:
+Name                                      Value           Perturbation        Scaled Perturbation
+DV1 : ImpulsiveMnvr.Cartesian.X  2.343696804091 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Y  2.220701491483 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Z  4.750408632251 km/sec -0.000100000000 km/sec     -0.000026315789
+
+Constraints:
+Name                               Value               Change          Scaled Change
+Mars_Transfer : R_Mag  1728.069109794303 km  464.984948937326 km       464984.948937
+
+
+Partial derivative matrix (scaled) :
+
+        13252667.4344
+       -9112978798.85
+       -5069672741.11
+
+Newton Step Done...
+
+DC proposed step:
+Name                                     Scaled        Unscaled
+DV1 : ImpulsiveMnvr.Cartesian.X -0.000000153927 -0.000000370963 km/sec
+DV1 : ImpulsiveMnvr.Cartesian.Y  0.000105845113  0.000241326858 km/sec
+DV1 : ImpulsiveMnvr.Cartesian.Z  0.000058883061  0.000223755631 km/sec
+
+
+Step with Max Step limits applied:
+Name                                     Scaled        Unscaled
+DV1 : ImpulsiveMnvr.Cartesian.X -0.000000153927 -0.000000370963 km/sec
+DV1 : ImpulsiveMnvr.Cartesian.Y  0.000105845113  0.000241326858 km/sec
+DV1 : ImpulsiveMnvr.Cartesian.Z  0.000058883061  0.000223755631 km/sec
+
+
+Step final values:
+
+Unscaled Controls:
+Name                              Current Value            Last Update        Total Correction
+DV1 : ImpulsiveMnvr.Cartesian.X  2.343696433128 km/sec -0.000000370963 km/sec  -0.066303566872 km/sec
+DV1 : ImpulsiveMnvr.Cartesian.Y  2.220942818341 km/sec  0.000241326858 km/sec  -0.059057181659 km/sec
+DV1 : ImpulsiveMnvr.Cartesian.Z  4.750732387882 km/sec  0.000223755631 km/sec   0.950732387883 km/sec
+
+
+Unscaled Intermediate Constraints:
+Name                        Current Value            Desired             Difference             Tolerance
+Mars_Transfer : R_Mag  10523.386329726362 km  0.000000000000 km  10523.386329726362 km  1000.000000000000 km
+
+
+
+-------------------------------------------------------------
+Iteration =  10
+Unscaled Intermediate Constraints:
+Name                        Current Value            Desired             Difference             Tolerance
+Mars_Transfer : R_Mag  10523.386329726362 km  0.000000000000 km  10523.386329726362 km  1000.000000000000 km
+
+
+
+Performing one Newton-Raphson Step...
+
+Perturbation evaluation +1
+Controls:
+Name                                      Value           Perturbation        Scaled Perturbation
+DV1 : ImpulsiveMnvr.Cartesian.X  2.343796433128 km/sec  0.000100000000 km/sec      0.000041493776
+DV1 : ImpulsiveMnvr.Cartesian.Y  2.220942818341 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Z  4.750732387882 km/sec  0.000000000000 km/sec      0.000000000000
+
+Constraints:
+Name                                Value                Change          Scaled Change
+Mars_Transfer : R_Mag  16516.468400758975 km  5993.082071032615 km       5993082.07103
+
+
+Perturbation evaluation -1
+Controls:
+Name                                      Value           Perturbation        Scaled Perturbation
+DV1 : ImpulsiveMnvr.Cartesian.X  2.343596433128 km/sec -0.000100000000 km/sec     -0.000041493776
+DV1 : ImpulsiveMnvr.Cartesian.Y  2.220942818341 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Z  4.750732387882 km/sec  0.000000000000 km/sec      0.000000000000
+
+Constraints:
+Name                               Value                Change          Scaled Change
+Mars_Transfer : R_Mag  4727.547292755382 km -5795.839036970979 km      -5795839.03697
+
+
+Perturbation evaluation +2
+Controls:
+Name                                      Value           Perturbation        Scaled Perturbation
+DV1 : ImpulsiveMnvr.Cartesian.X  2.343696433128 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Y  2.221042818341 km/sec  0.000100000000 km/sec      0.000043859649
+DV1 : ImpulsiveMnvr.Cartesian.Z  4.750732387882 km/sec  0.000000000000 km/sec      0.000000000000
+
+Constraints:
+Name                                Value                Change          Scaled Change
+Mars_Transfer : R_Mag  14106.950179912315 km  3583.563850185955 km       3583563.85019
+
+
+Perturbation evaluation -2
+Controls:
+Name                                      Value           Perturbation        Scaled Perturbation
+DV1 : ImpulsiveMnvr.Cartesian.X  2.343696433128 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Y  2.220842818341 km/sec -0.000100000000 km/sec     -0.000043859649
+DV1 : ImpulsiveMnvr.Cartesian.Z  4.750732387882 km/sec  0.000000000000 km/sec      0.000000000000
+
+Constraints:
+Name                               Value                Change          Scaled Change
+Mars_Transfer : R_Mag  6972.336349002801 km -3551.049980723559 km      -3551049.98072
+
+
+Perturbation evaluation +3
+Controls:
+Name                                      Value           Perturbation        Scaled Perturbation
+DV1 : ImpulsiveMnvr.Cartesian.X  2.343696433128 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Y  2.220942818341 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Z  4.750832387883 km/sec  0.000100000000 km/sec      0.000026315789
+
+Constraints:
+Name                                Value               Change          Scaled Change
+Mars_Transfer : R_Mag  11492.623239216884 km  969.236909490524 km       969236.909491
+
+
+Perturbation evaluation -3
+Controls:
+Name                                      Value           Perturbation        Scaled Perturbation
+DV1 : ImpulsiveMnvr.Cartesian.X  2.343696433128 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Y  2.220942818341 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Z  4.750632387882 km/sec -0.000100000000 km/sec     -0.000026315789
+
+Constraints:
+Name                               Value               Change          Scaled Change
+Mars_Transfer : R_Mag  9556.888656067533 km -966.497673658827 km      -966497.673659
+
+
+Partial derivative matrix (scaled) :
+
+         142056499351
+        81334597672.4
+        36778957079.8
+
+Newton Step Done...
+
+DC proposed step:
+Name                                     Scaled        Unscaled
+DV1 : ImpulsiveMnvr.Cartesian.X -0.000053109008 -0.000127992710 km/sec
+DV1 : ImpulsiveMnvr.Cartesian.Y -0.000030407619 -0.000069329370 km/sec
+DV1 : ImpulsiveMnvr.Cartesian.Z -0.000013750120 -0.000052250457 km/sec
+
+
+Step with Max Step limits applied:
+Name                                     Scaled        Unscaled
+DV1 : ImpulsiveMnvr.Cartesian.X -0.000053109008 -0.000127992710 km/sec
+DV1 : ImpulsiveMnvr.Cartesian.Y -0.000030407619 -0.000069329370 km/sec
+DV1 : ImpulsiveMnvr.Cartesian.Z -0.000013750120 -0.000052250457 km/sec
+
+
+Step final values:
+
+Unscaled Controls:
+Name                              Current Value            Last Update        Total Correction
+DV1 : ImpulsiveMnvr.Cartesian.X  2.343568440418 km/sec -0.000127992710 km/sec  -0.066431559582 km/sec
+DV1 : ImpulsiveMnvr.Cartesian.Y  2.220873488971 km/sec -0.000069329370 km/sec  -0.059126511029 km/sec
+DV1 : ImpulsiveMnvr.Cartesian.Z  4.750680137426 km/sec -0.000052250457 km/sec   0.950680137426 km/sec
+
+
+Unscaled Intermediate Constraints:
+Name                       Current Value            Desired            Difference             Tolerance
+Mars_Transfer : R_Mag  1182.240679750686 km  0.000000000000 km  1182.240679750686 km  1000.000000000000 km
+
+
+
+-------------------------------------------------------------
+Iteration =  11
+Unscaled Intermediate Constraints:
+Name                       Current Value            Desired            Difference             Tolerance
+Mars_Transfer : R_Mag  1182.240679750686 km  0.000000000000 km  1182.240679750686 km  1000.000000000000 km
+
+
+
+Performing one Newton-Raphson Step...
+
+Perturbation evaluation +1
+Controls:
+Name                                      Value           Perturbation        Scaled Perturbation
+DV1 : ImpulsiveMnvr.Cartesian.X  2.343668440418 km/sec  0.000100000000 km/sec      0.000041493776
+DV1 : ImpulsiveMnvr.Cartesian.Y  2.220873488971 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Z  4.750680137426 km/sec  0.000000000000 km/sec      0.000000000000
+
+Constraints:
+Name                               Value                Change          Scaled Change
+Mars_Transfer : R_Mag  5875.407156276149 km  4693.166476525463 km       4693166.47653
+
+
+Perturbation evaluation -1
+Controls:
+Name                                      Value           Perturbation        Scaled Perturbation
+DV1 : ImpulsiveMnvr.Cartesian.X  2.343468440418 km/sec -0.000100000000 km/sec     -0.000041493776
+DV1 : ImpulsiveMnvr.Cartesian.Y  2.220873488971 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Z  4.750680137426 km/sec  0.000000000000 km/sec      0.000000000000
+
+Constraints:
+Name                               Value                Change          Scaled Change
+Mars_Transfer : R_Mag  6475.882451905432 km  5293.641772154745 km       5293641.77215
+
+
+Perturbation evaluation +2
+Controls:
+Name                                      Value           Perturbation        Scaled Perturbation
+DV1 : ImpulsiveMnvr.Cartesian.X  2.343568440418 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Y  2.220973488971 km/sec  0.000100000000 km/sec      0.000043859649
+DV1 : ImpulsiveMnvr.Cartesian.Z  4.750680137426 km/sec  0.000000000000 km/sec      0.000000000000
+
+Constraints:
+Name                               Value                Change          Scaled Change
+Mars_Transfer : R_Mag  3902.838106290555 km  2720.597426539869 km       2720597.42654
+
+
+Perturbation evaluation -2
+Controls:
+Name                                      Value           Perturbation        Scaled Perturbation
+DV1 : ImpulsiveMnvr.Cartesian.X  2.343568440418 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Y  2.220773488971 km/sec -0.000100000000 km/sec     -0.000043859649
+DV1 : ImpulsiveMnvr.Cartesian.Z  4.750680137426 km/sec  0.000000000000 km/sec      0.000000000000
+
+Constraints:
+Name                               Value                Change          Scaled Change
+Mars_Transfer : R_Mag  3701.462305593899 km  2519.221625843213 km       2519221.62584
+
+
+Perturbation evaluation +3
+Controls:
+Name                                      Value           Perturbation        Scaled Perturbation
+DV1 : ImpulsiveMnvr.Cartesian.X  2.343568440418 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Y  2.220873488971 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Z  4.750780137426 km/sec  0.000100000000 km/sec      0.000026315789
+
+Constraints:
+Name                               Value               Change          Scaled Change
+Mars_Transfer : R_Mag  1439.817600330969 km  257.576920580283 km        257576.92058
+
+
+Perturbation evaluation -3
+Controls:
+Name                                      Value           Perturbation        Scaled Perturbation
+DV1 : ImpulsiveMnvr.Cartesian.X  2.343568440418 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Y  2.220873488971 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Z  4.750580137426 km/sec -0.000100000000 km/sec     -0.000026315789
+
+Constraints:
+Name                               Value               Change          Scaled Change
+Mars_Transfer : R_Mag  1628.840295135631 km  446.599615384944 km       446599.615385
+
+
+Partial derivative matrix (scaled) :
+
+       -7235727312.33
+        2295684127.94
+       -3591431201.29
+
+Newton Step Done...
+
+DC proposed step:
+Name                                     Scaled        Unscaled
+DV1 : ImpulsiveMnvr.Cartesian.X  0.000121296801  0.000292325290 km/sec
+DV1 : ImpulsiveMnvr.Cartesian.Y -0.000038483919 -0.000087743334 km/sec
+DV1 : ImpulsiveMnvr.Cartesian.Z  0.000060205297  0.000228780130 km/sec
+
+
+Step with Max Step limits applied:
+Name                                     Scaled        Unscaled
+DV1 : ImpulsiveMnvr.Cartesian.X  0.000121296801  0.000292325290 km/sec
+DV1 : ImpulsiveMnvr.Cartesian.Y -0.000038483919 -0.000087743334 km/sec
+DV1 : ImpulsiveMnvr.Cartesian.Z  0.000060205297  0.000228780130 km/sec
+
+
+Step final values:
+
+Unscaled Controls:
+Name                              Current Value            Last Update        Total Correction
+DV1 : ImpulsiveMnvr.Cartesian.X  2.343860765708 km/sec  0.000292325290 km/sec  -0.066139234292 km/sec
+DV1 : ImpulsiveMnvr.Cartesian.Y  2.220785745637 km/sec -0.000087743334 km/sec  -0.059214254363 km/sec
+DV1 : ImpulsiveMnvr.Cartesian.Z  4.750908917556 km/sec  0.000228780130 km/sec   0.950908917556 km/sec
+
+
+Unscaled Intermediate Constraints:
+Name                        Current Value            Desired             Difference             Tolerance
+Mars_Transfer : R_Mag  16659.777702201667 km  0.000000000000 km  16659.777702201667 km  1000.000000000000 km
+
+
+
+-------------------------------------------------------------
+Iteration =  12
+Unscaled Intermediate Constraints:
+Name                        Current Value            Desired             Difference             Tolerance
+Mars_Transfer : R_Mag  16659.777702201667 km  0.000000000000 km  16659.777702201667 km  1000.000000000000 km
+
+
+
+Performing one Newton-Raphson Step...
+
+Perturbation evaluation +1
+Controls:
+Name                                      Value           Perturbation        Scaled Perturbation
+DV1 : ImpulsiveMnvr.Cartesian.X  2.343960765708 km/sec  0.000100000000 km/sec      0.000041493776
+DV1 : ImpulsiveMnvr.Cartesian.Y  2.220785745637 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Z  4.750908917556 km/sec  0.000000000000 km/sec      0.000000000000
+
+Constraints:
+Name                                Value                Change          Scaled Change
+Mars_Transfer : R_Mag  22726.580507344785 km  6066.802805143120 km       6066802.80514
+
+
+Perturbation evaluation -1
+Controls:
+Name                                      Value           Perturbation        Scaled Perturbation
+DV1 : ImpulsiveMnvr.Cartesian.X  2.343760765708 km/sec -0.000100000000 km/sec     -0.000041493776
+DV1 : ImpulsiveMnvr.Cartesian.Y  2.220785745637 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Z  4.750908917556 km/sec  0.000000000000 km/sec      0.000000000000
+
+Constraints:
+Name                                Value                Change          Scaled Change
+Mars_Transfer : R_Mag  10595.236341173268 km -6064.541361028400 km      -6064541.36103
+
+
+Perturbation evaluation +2
+Controls:
+Name                                      Value           Perturbation        Scaled Perturbation
+DV1 : ImpulsiveMnvr.Cartesian.X  2.343860765708 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Y  2.220885745637 km/sec  0.000100000000 km/sec      0.000043859649
+DV1 : ImpulsiveMnvr.Cartesian.Z  4.750908917556 km/sec  0.000000000000 km/sec      0.000000000000
+
+Constraints:
+Name                                Value                Change          Scaled Change
+Mars_Transfer : R_Mag  20113.366803575791 km  3453.589101374125 km       3453589.10137
+
+
+Perturbation evaluation -2
+Controls:
+Name                                      Value           Perturbation        Scaled Perturbation
+DV1 : ImpulsiveMnvr.Cartesian.X  2.343860765708 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Y  2.220685745637 km/sec -0.000100000000 km/sec     -0.000043859649
+DV1 : ImpulsiveMnvr.Cartesian.Z  4.750908917556 km/sec  0.000000000000 km/sec      0.000000000000
+
+Constraints:
+Name                                Value                Change          Scaled Change
+Mars_Transfer : R_Mag  13292.256732575437 km -3367.520969626229 km      -3367520.96963
+
+
+Perturbation evaluation +3
+Controls:
+Name                                      Value           Perturbation        Scaled Perturbation
+DV1 : ImpulsiveMnvr.Cartesian.X  2.343860765708 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Y  2.220785745637 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Z  4.751008917556 km/sec  0.000100000000 km/sec      0.000026315789
+
+Constraints:
+Name                                Value               Change          Scaled Change
+Mars_Transfer : R_Mag  17626.226206086289 km  966.448503884623 km       966448.503885
+
+
+Perturbation evaluation -3
+Controls:
+Name                                      Value           Perturbation        Scaled Perturbation
+DV1 : ImpulsiveMnvr.Cartesian.X  2.343860765708 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Y  2.220785745637 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Z  4.750808917556 km/sec -0.000100000000 km/sec     -0.000026315789
+
+Constraints:
+Name                                Value               Change          Scaled Change
+Mars_Transfer : R_Mag  15695.352298639848 km -964.425403561819 km      -964425.403562
+
+
+Partial derivative matrix (scaled) :
+
+         146182697202
+        77760654809.4
+        36686604241.5
+
+Newton Step Done...
+
+DC proposed step:
+Name                                     Scaled        Unscaled
+DV1 : ImpulsiveMnvr.Cartesian.X -0.000084673201 -0.000204062415 km/sec
+DV1 : ImpulsiveMnvr.Cartesian.Y -0.000045041196 -0.000102693928 km/sec
+DV1 : ImpulsiveMnvr.Cartesian.Z -0.000021249931 -0.000080749738 km/sec
+
+
+Step with Max Step limits applied:
+Name                                     Scaled        Unscaled
+DV1 : ImpulsiveMnvr.Cartesian.X -0.000084673201 -0.000204062415 km/sec
+DV1 : ImpulsiveMnvr.Cartesian.Y -0.000045041196 -0.000102693928 km/sec
+DV1 : ImpulsiveMnvr.Cartesian.Z -0.000021249931 -0.000080749738 km/sec
+
+
+Step final values:
+
+Unscaled Controls:
+Name                              Current Value            Last Update        Total Correction
+DV1 : ImpulsiveMnvr.Cartesian.X  2.343656703292 km/sec -0.000204062415 km/sec  -0.066343296708 km/sec
+DV1 : ImpulsiveMnvr.Cartesian.Y  2.220683051709 km/sec -0.000102693928 km/sec  -0.059316948291 km/sec
+DV1 : ImpulsiveMnvr.Cartesian.Z  4.750828167818 km/sec -0.000080749738 km/sec   0.950828167818 km/sec
+
+
+Unscaled Intermediate Constraints:
+Name                       Current Value            Desired            Difference             Tolerance
+Mars_Transfer : R_Mag  1051.807891651665 km  0.000000000000 km  1051.807891651665 km  1000.000000000000 km
+
+
+
+-------------------------------------------------------------
+Iteration =  13
+Unscaled Intermediate Constraints:
+Name                       Current Value            Desired            Difference             Tolerance
+Mars_Transfer : R_Mag  1051.807891651665 km  0.000000000000 km  1051.807891651665 km  1000.000000000000 km
+
+
+
+Performing one Newton-Raphson Step...
+
+Perturbation evaluation +1
+Controls:
+Name                                      Value           Perturbation        Scaled Perturbation
+DV1 : ImpulsiveMnvr.Cartesian.X  2.343756703292 km/sec  0.000100000000 km/sec      0.000041493776
+DV1 : ImpulsiveMnvr.Cartesian.Y  2.220683051709 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Z  4.750828167818 km/sec  0.000000000000 km/sec      0.000000000000
+
+Constraints:
+Name                               Value                Change          Scaled Change
+Mars_Transfer : R_Mag  6166.552700470348 km  5114.744808818683 km       5114744.80882
+
+
+Perturbation evaluation -1
+Controls:
+Name                                      Value           Perturbation        Scaled Perturbation
+DV1 : ImpulsiveMnvr.Cartesian.X  2.343556703292 km/sec -0.000100000000 km/sec     -0.000041493776
+DV1 : ImpulsiveMnvr.Cartesian.Y  2.220683051709 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Z  4.750828167818 km/sec  0.000000000000 km/sec      0.000000000000
+
+Constraints:
+Name                               Value                Change          Scaled Change
+Mars_Transfer : R_Mag  6152.184388864935 km  5100.376497213269 km       5100376.49721
+
+
+Perturbation evaluation +2
+Controls:
+Name                                      Value           Perturbation        Scaled Perturbation
+DV1 : ImpulsiveMnvr.Cartesian.X  2.343656703292 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Y  2.220783051709 km/sec  0.000100000000 km/sec      0.000043859649
+DV1 : ImpulsiveMnvr.Cartesian.Z  4.750828167818 km/sec  0.000000000000 km/sec      0.000000000000
+
+Constraints:
+Name                               Value                Change          Scaled Change
+Mars_Transfer : R_Mag  3415.435715119559 km  2363.627823467893 km       2363627.82347
+
+
+Perturbation evaluation -2
+Controls:
+Name                                      Value           Perturbation        Scaled Perturbation
+DV1 : ImpulsiveMnvr.Cartesian.X  2.343656703292 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Y  2.220583051709 km/sec -0.000100000000 km/sec     -0.000043859649
+DV1 : ImpulsiveMnvr.Cartesian.Z  4.750828167818 km/sec  0.000000000000 km/sec      0.000000000000
+
+Constraints:
+Name                               Value                Change          Scaled Change
+Mars_Transfer : R_Mag  4084.702938412505 km  3032.895046760839 km       3032895.04676
+
+
+Perturbation evaluation +3
+Controls:
+Name                                      Value           Perturbation        Scaled Perturbation
+DV1 : ImpulsiveMnvr.Cartesian.X  2.343656703292 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Y  2.220683051709 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Z  4.750928167818 km/sec  0.000100000000 km/sec      0.000026315789
+
+Constraints:
+Name                               Value               Change          Scaled Change
+Mars_Transfer : R_Mag  1372.103969358429 km  320.296077706763 km       320296.077707
+
+
+Perturbation evaluation -3
+Controls:
+Name                                      Value           Perturbation        Scaled Perturbation
+DV1 : ImpulsiveMnvr.Cartesian.X  2.343656703292 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Y  2.220683051709 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Z  4.750728167818 km/sec -0.000100000000 km/sec     -0.000026315789
+
+Constraints:
+Name                               Value               Change          Scaled Change
+Mars_Transfer : R_Mag  1503.622994420064 km  451.815102768399 km       451815.102768
+
+
+Partial derivative matrix (scaled) :
+
+        173138154.845
+       -7629646345.54
+       -2498861476.17
+
+Newton Step Done...
+
+DC proposed step:
+Name                                     Scaled        Unscaled
+DV1 : ImpulsiveMnvr.Cartesian.X -0.000002824003 -0.000006805848 km/sec
+DV1 : ImpulsiveMnvr.Cartesian.Y  0.000124444818  0.000283734184 km/sec
+DV1 : ImpulsiveMnvr.Cartesian.Z  0.000040758162  0.000154881015 km/sec
+
+
+Step with Max Step limits applied:
+Name                                     Scaled        Unscaled
+DV1 : ImpulsiveMnvr.Cartesian.X -0.000002824003 -0.000006805848 km/sec
+DV1 : ImpulsiveMnvr.Cartesian.Y  0.000124444818  0.000283734184 km/sec
+DV1 : ImpulsiveMnvr.Cartesian.Z  0.000040758162  0.000154881015 km/sec
+
+
+Step final values:
+
+Unscaled Controls:
+Name                              Current Value            Last Update        Total Correction
+DV1 : ImpulsiveMnvr.Cartesian.X  2.343649897444 km/sec -0.000006805848 km/sec  -0.066350102556 km/sec
+DV1 : ImpulsiveMnvr.Cartesian.Y  2.220966785893 km/sec  0.000283734184 km/sec  -0.059033214107 km/sec
+DV1 : ImpulsiveMnvr.Cartesian.Z  4.750983048833 km/sec  0.000154881015 km/sec   0.950983048833 km/sec
+
+
+Unscaled Intermediate Constraints:
+Name                        Current Value            Desired             Difference             Tolerance
+Mars_Transfer : R_Mag  11058.208243833558 km  0.000000000000 km  11058.208243833558 km  1000.000000000000 km
+
+
+
+-------------------------------------------------------------
+Iteration =  14
+Unscaled Intermediate Constraints:
+Name                        Current Value            Desired             Difference             Tolerance
+Mars_Transfer : R_Mag  11058.208243833558 km  0.000000000000 km  11058.208243833558 km  1000.000000000000 km
+
+
+
+Performing one Newton-Raphson Step...
+
+Perturbation evaluation +1
+Controls:
+Name                                      Value           Perturbation        Scaled Perturbation
+DV1 : ImpulsiveMnvr.Cartesian.X  2.343749897444 km/sec  0.000100000000 km/sec      0.000041493776
+DV1 : ImpulsiveMnvr.Cartesian.Y  2.220966785893 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Z  4.750983048833 km/sec  0.000000000000 km/sec      0.000000000000
+
+Constraints:
+Name                                Value                Change          Scaled Change
+Mars_Transfer : R_Mag  17003.755827933175 km  5945.547584099615 km        5945547.5841
+
+
+Perturbation evaluation -1
+Controls:
+Name                                      Value           Perturbation        Scaled Perturbation
+DV1 : ImpulsiveMnvr.Cartesian.X  2.343549897444 km/sec -0.000100000000 km/sec     -0.000041493776
+DV1 : ImpulsiveMnvr.Cartesian.Y  2.220966785893 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Z  4.750983048833 km/sec  0.000000000000 km/sec      0.000000000000
+
+Constraints:
+Name                               Value                Change          Scaled Change
+Mars_Transfer : R_Mag  5394.424579477338 km -5663.783664356221 km      -5663783.66436
+
+
+Perturbation evaluation +2
+Controls:
+Name                                      Value           Perturbation        Scaled Perturbation
+DV1 : ImpulsiveMnvr.Cartesian.X  2.343649897444 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Y  2.221066785893 km/sec  0.000100000000 km/sec      0.000043859649
+DV1 : ImpulsiveMnvr.Cartesian.Z  4.750983048833 km/sec  0.000000000000 km/sec      0.000000000000
+
+Constraints:
+Name                                Value                Change          Scaled Change
+Mars_Transfer : R_Mag  14656.086240611183 km  3597.877996777624 km       3597877.99678
+
+
+Perturbation evaluation -2
+Controls:
+Name                                      Value           Perturbation        Scaled Perturbation
+DV1 : ImpulsiveMnvr.Cartesian.X  2.343649897444 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Y  2.220866785893 km/sec -0.000100000000 km/sec     -0.000043859649
+DV1 : ImpulsiveMnvr.Cartesian.Z  4.750983048833 km/sec  0.000000000000 km/sec      0.000000000000
+
+Constraints:
+Name                               Value                Change          Scaled Change
+Mars_Transfer : R_Mag  7476.842153761962 km -3581.366090071597 km      -3581366.09007
+
+
+Perturbation evaluation +3
+Controls:
+Name                                      Value           Perturbation        Scaled Perturbation
+DV1 : ImpulsiveMnvr.Cartesian.X  2.343649897444 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Y  2.220966785893 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Z  4.751083048833 km/sec  0.000100000000 km/sec      0.000026315789
+
+Constraints:
+Name                                Value               Change          Scaled Change
+Mars_Transfer : R_Mag  12028.483352720385 km  970.275108886827 km       970275.108887
+
+
+Perturbation evaluation -3
+Controls:
+Name                                      Value           Perturbation        Scaled Perturbation
+DV1 : ImpulsiveMnvr.Cartesian.X  2.343649897444 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Y  2.220966785893 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Z  4.750883048833 km/sec -0.000100000000 km/sec     -0.000026315789
+
+Constraints:
+Name                                Value               Change          Scaled Change
+Mars_Transfer : R_Mag  10090.338412593648 km -967.869831239911 km       -967869.83124
+
+
+Partial derivative matrix (scaled) :
+
+         139892441544
+        81843382590.1
+        36824753862.4
+
+Newton Step Done...
+
+DC proposed step:
+Name                                     Scaled        Unscaled
+DV1 : ImpulsiveMnvr.Cartesian.X -0.000055999968 -0.000134959923 km/sec
+DV1 : ImpulsiveMnvr.Cartesian.Y -0.000032762505 -0.000074698511 km/sec
+DV1 : ImpulsiveMnvr.Cartesian.Z -0.000014741218 -0.000056016630 km/sec
+
+
+Step with Max Step limits applied:
+Name                                     Scaled        Unscaled
+DV1 : ImpulsiveMnvr.Cartesian.X -0.000055999968 -0.000134959923 km/sec
+DV1 : ImpulsiveMnvr.Cartesian.Y -0.000032762505 -0.000074698511 km/sec
+DV1 : ImpulsiveMnvr.Cartesian.Z -0.000014741218 -0.000056016630 km/sec
+
+
+Step final values:
+
+Unscaled Controls:
+Name                              Current Value            Last Update        Total Correction
+DV1 : ImpulsiveMnvr.Cartesian.X  2.343514937521 km/sec -0.000134959923 km/sec  -0.066485062479 km/sec
+DV1 : ImpulsiveMnvr.Cartesian.Y  2.220892087382 km/sec -0.000074698511 km/sec  -0.059107912618 km/sec
+DV1 : ImpulsiveMnvr.Cartesian.Z  4.750927032203 km/sec -0.000056016630 km/sec   0.950927032203 km/sec
+
+
+Unscaled Intermediate Constraints:
+Name                       Current Value            Desired            Difference             Tolerance
+Mars_Transfer : R_Mag  1829.174407721216 km  0.000000000000 km  1829.174407721216 km  1000.000000000000 km
+
+
+
+-------------------------------------------------------------
+Iteration =  15
+Unscaled Intermediate Constraints:
+Name                       Current Value            Desired            Difference             Tolerance
+Mars_Transfer : R_Mag  1829.174407721216 km  0.000000000000 km  1829.174407721216 km  1000.000000000000 km
+
+
+
+Performing one Newton-Raphson Step...
+
+Perturbation evaluation +1
+Controls:
+Name                                      Value           Perturbation        Scaled Perturbation
+DV1 : ImpulsiveMnvr.Cartesian.X  2.343614937521 km/sec  0.000100000000 km/sec      0.000041493776
+DV1 : ImpulsiveMnvr.Cartesian.Y  2.220892087382 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Z  4.750927032203 km/sec  0.000000000000 km/sec      0.000000000000
+
+Constraints:
+Name                               Value                Change          Scaled Change
+Mars_Transfer : R_Mag  5786.010193319125 km  3956.835785597909 km        3956835.7856
+
+
+Perturbation evaluation -1
+Controls:
+Name                                      Value           Perturbation        Scaled Perturbation
+DV1 : ImpulsiveMnvr.Cartesian.X  2.343414937521 km/sec -0.000100000000 km/sec     -0.000041493776
+DV1 : ImpulsiveMnvr.Cartesian.Y  2.220892087382 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Z  4.750927032203 km/sec  0.000000000000 km/sec      0.000000000000
+
+Constraints:
+Name                               Value                Change          Scaled Change
+Mars_Transfer : R_Mag  6846.570348758724 km  5017.395941037508 km       5017395.94104
+
+
+Perturbation evaluation +2
+Controls:
+Name                                      Value           Perturbation        Scaled Perturbation
+DV1 : ImpulsiveMnvr.Cartesian.X  2.343514937521 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Y  2.220992087382 km/sec  0.000100000000 km/sec      0.000043859649
+DV1 : ImpulsiveMnvr.Cartesian.Z  4.750927032203 km/sec  0.000000000000 km/sec      0.000000000000
+
+Constraints:
+Name                               Value                Change          Scaled Change
+Mars_Transfer : R_Mag  4111.125735285860 km  2281.951327564644 km       2281951.32756
+
+
+Perturbation evaluation -2
+Controls:
+Name                                      Value           Perturbation        Scaled Perturbation
+DV1 : ImpulsiveMnvr.Cartesian.X  2.343514937521 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Y  2.220792087382 km/sec -0.000100000000 km/sec     -0.000043859649
+DV1 : ImpulsiveMnvr.Cartesian.Z  4.750927032203 km/sec  0.000000000000 km/sec      0.000000000000
+
+Constraints:
+Name                               Value                Change          Scaled Change
+Mars_Transfer : R_Mag  3990.985365378099 km  2161.810957656883 km       2161810.95766
+
+
+Perturbation evaluation +3
+Controls:
+Name                                      Value           Perturbation        Scaled Perturbation
+DV1 : ImpulsiveMnvr.Cartesian.X  2.343514937521 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Y  2.220892087382 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Z  4.751027032203 km/sec  0.000100000000 km/sec      0.000026315789
+
+Constraints:
+Name                               Value               Change          Scaled Change
+Mars_Transfer : R_Mag  1957.046594531543 km  127.872186810327 km        127872.18681
+
+
+Perturbation evaluation -3
+Controls:
+Name                                      Value           Perturbation        Scaled Perturbation
+DV1 : ImpulsiveMnvr.Cartesian.X  2.343514937521 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Y  2.220892087382 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Z  4.750827032203 km/sec -0.000100000000 km/sec     -0.000026315789
+
+Constraints:
+Name                               Value               Change          Scaled Change
+Mars_Transfer : R_Mag  2189.229180091336 km  360.054772370120 km        360054.77237
+
+
+Partial derivative matrix (scaled) :
+
+         -12779749873
+        1369600216.95
+       -4411469125.64
+
+Newton Step Done...
+
+DC proposed step:
+Name                                     Scaled        Unscaled
+DV1 : ImpulsiveMnvr.Cartesian.X  0.000126592301  0.000305087445 km/sec
+DV1 : ImpulsiveMnvr.Cartesian.Y -0.000013566842 -0.000030932399 km/sec
+DV1 : ImpulsiveMnvr.Cartesian.Z  0.000043698666  0.000166054932 km/sec
+
+
+Step with Max Step limits applied:
+Name                                     Scaled        Unscaled
+DV1 : ImpulsiveMnvr.Cartesian.X  0.000126592301  0.000305087445 km/sec
+DV1 : ImpulsiveMnvr.Cartesian.Y -0.000013566842 -0.000030932399 km/sec
+DV1 : ImpulsiveMnvr.Cartesian.Z  0.000043698666  0.000166054932 km/sec
+
+
+Step final values:
+
+Unscaled Controls:
+Name                              Current Value            Last Update        Total Correction
+DV1 : ImpulsiveMnvr.Cartesian.X  2.343820024966 km/sec  0.000305087445 km/sec  -0.066179975034 km/sec
+DV1 : ImpulsiveMnvr.Cartesian.Y  2.220861154983 km/sec -0.000030932399 km/sec  -0.059138845017 km/sec
+DV1 : ImpulsiveMnvr.Cartesian.Z  4.751093087136 km/sec  0.000166054932 km/sec   0.951093087136 km/sec
+
+
+Unscaled Intermediate Constraints:
+Name                        Current Value            Desired             Difference             Tolerance
+Mars_Transfer : R_Mag  18582.167971150255 km  0.000000000000 km  18582.167971150255 km  1000.000000000000 km
+
+
+
+-------------------------------------------------------------
+Iteration =  16
+Unscaled Intermediate Constraints:
+Name                        Current Value            Desired             Difference             Tolerance
+Mars_Transfer : R_Mag  18582.167971150255 km  0.000000000000 km  18582.167971150255 km  1000.000000000000 km
+
+
+
+Performing one Newton-Raphson Step...
+
+Perturbation evaluation +1
+Controls:
+Name                                      Value           Perturbation        Scaled Perturbation
+DV1 : ImpulsiveMnvr.Cartesian.X  2.343920024966 km/sec  0.000100000000 km/sec      0.000041493776
+DV1 : ImpulsiveMnvr.Cartesian.Y  2.220861154983 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Z  4.751093087136 km/sec  0.000000000000 km/sec      0.000000000000
+
+Constraints:
+Name                                Value                Change          Scaled Change
+Mars_Transfer : R_Mag  24632.388365040970 km  6050.220393890716 km       6050220.39389
+
+
+Perturbation evaluation -1
+Controls:
+Name                                      Value           Perturbation        Scaled Perturbation
+DV1 : ImpulsiveMnvr.Cartesian.X  2.343720024966 km/sec -0.000100000000 km/sec     -0.000041493776
+DV1 : ImpulsiveMnvr.Cartesian.Y  2.220861154983 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Z  4.751093087136 km/sec  0.000000000000 km/sec      0.000000000000
+
+Constraints:
+Name                                Value                Change          Scaled Change
+Mars_Transfer : R_Mag  12549.840575794822 km -6032.327395355432 km      -6032327.39536
+
+
+Perturbation evaluation +2
+Controls:
+Name                                      Value           Perturbation        Scaled Perturbation
+DV1 : ImpulsiveMnvr.Cartesian.X  2.343820024966 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Y  2.220961154983 km/sec  0.000100000000 km/sec      0.000043859649
+DV1 : ImpulsiveMnvr.Cartesian.Z  4.751093087136 km/sec  0.000000000000 km/sec      0.000000000000
+
+Constraints:
+Name                                Value                Change          Scaled Change
+Mars_Transfer : R_Mag  22086.842574900631 km  3504.674603750378 km       3504674.60375
+
+
+Perturbation evaluation -2
+Controls:
+Name                                      Value           Perturbation        Scaled Perturbation
+DV1 : ImpulsiveMnvr.Cartesian.X  2.343820024966 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Y  2.220761154983 km/sec -0.000100000000 km/sec     -0.000043859649
+DV1 : ImpulsiveMnvr.Cartesian.Z  4.751093087136 km/sec  0.000000000000 km/sec      0.000000000000
+
+Constraints:
+Name                                Value                Change          Scaled Change
+Mars_Transfer : R_Mag  15129.451157852847 km -3452.716813297406 km       -3452716.8133
+
+
+Perturbation evaluation +3
+Controls:
+Name                                      Value           Perturbation        Scaled Perturbation
+DV1 : ImpulsiveMnvr.Cartesian.X  2.343820024966 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Y  2.220861154983 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Z  4.751193087136 km/sec  0.000100000000 km/sec      0.000026315789
+
+Constraints:
+Name                                Value               Change          Scaled Change
+Mars_Transfer : R_Mag  19555.240930352378 km  973.072959202126 km       973072.959202
+
+
+Perturbation evaluation -3
+Controls:
+Name                                      Value           Perturbation        Scaled Perturbation
+DV1 : ImpulsiveMnvr.Cartesian.X  2.343820024966 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Y  2.220861154983 km/sec  0.000000000000 km/sec      0.000000000000
+DV1 : ImpulsiveMnvr.Cartesian.Z  4.750993087136 km/sec -0.000100000000 km/sec     -0.000026315789
+
+Constraints:
+Name                                Value               Change          Scaled Change
+Mars_Transfer : R_Mag  17610.174196998545 km -971.993774151709 km      -971993.774152
+
+
+Partial derivative matrix (scaled) :
+
+         145594700860
+        79314262154.3
+        36956267933.7
+
+Newton Step Done...
+
+DC proposed step:
+Name                                     Scaled        Unscaled
+DV1 : ImpulsiveMnvr.Cartesian.X -0.000093762868 -0.000225968512 km/sec
+DV1 : ImpulsiveMnvr.Cartesian.Y -0.000051078320 -0.000116458569 km/sec
+DV1 : ImpulsiveMnvr.Cartesian.Z -0.000023799806 -0.000090439264 km/sec
+
+
+Step with Max Step limits applied:
+Name                                     Scaled        Unscaled
+DV1 : ImpulsiveMnvr.Cartesian.X -0.000093762868 -0.000225968512 km/sec
+DV1 : ImpulsiveMnvr.Cartesian.Y -0.000051078320 -0.000116458569 km/sec
+DV1 : ImpulsiveMnvr.Cartesian.Z -0.000023799806 -0.000090439264 km/sec
+
+
+Step final values:
+
+Unscaled Controls:
+Name                              Current Value            Last Update        Total Correction
+DV1 : ImpulsiveMnvr.Cartesian.X  2.343594056454 km/sec -0.000225968512 km/sec  -0.066405943546 km/sec
+DV1 : ImpulsiveMnvr.Cartesian.Y  2.220744696414 km/sec -0.000116458569 km/sec  -0.059255303586 km/sec
+DV1 : ImpulsiveMnvr.Cartesian.Z  4.751002647872 km/sec -0.000090439264 km/sec   0.951002647872 km/sec
 
 
 Unscaled Intermediate Constraints:
 Name                      Current Value            Desired           Difference             Tolerance
-Mars_Transfer : R_Mag  725.298585069118 km  0.000000000000 km  725.298585069118 km  1000.000000000000 km
+Mars_Transfer : R_Mag  504.659167830953 km  0.000000000000 km  504.659167830953 km  1000.000000000000 km
 
 
 
@@ -513,14 +1941,14 @@ Params from single diff corr
 
 Unscaled Controls:
 Name                              Current Value            Last Update        Total Correction
-DV1 : ImpulsiveMnvr.Cartesian.X  2.738054867973 km/sec -0.000032428307 km/sec   0.000054867973 km/sec
-DV1 : ImpulsiveMnvr.Cartesian.Y  2.782737128650 km/sec -0.000017709078 km/sec  -0.000262871350 km/sec
-DV1 : ImpulsiveMnvr.Cartesian.Z  1.040995978135 km/sec -0.000000328961 km/sec  -0.000004021865 km/sec
+DV1 : ImpulsiveMnvr.Cartesian.X  2.343594056454 km/sec -0.000225968512 km/sec  -0.066405943546 km/sec
+DV1 : ImpulsiveMnvr.Cartesian.Y  2.220744696414 km/sec -0.000116458569 km/sec  -0.059255303586 km/sec
+DV1 : ImpulsiveMnvr.Cartesian.Z  4.751002647872 km/sec -0.000090439264 km/sec   0.951002647872 km/sec
 
 
 Unscaled Intermediate Constraints:
 Name                      Current Value            Desired           Difference             Tolerance
-Mars_Transfer : R_Mag  725.298585069118 km  0.000000000000 km  725.298585069118 km  1000.000000000000 km
+Mars_Transfer : R_Mag  504.659167830953 km  0.000000000000 km  504.659167830953 km  1000.000000000000 km
 
 
 
@@ -529,14 +1957,14 @@ Final Params from Homotopy Diff Corr
 
 Unscaled Controls:
 Name                              Current Value            Last Update        Total Correction
-DV1 : ImpulsiveMnvr.Cartesian.X  2.738054867973 km/sec -0.000032428307 km/sec   0.000054867973 km/sec
-DV1 : ImpulsiveMnvr.Cartesian.Y  2.782737128650 km/sec -0.000017709078 km/sec  -0.000262871350 km/sec
-DV1 : ImpulsiveMnvr.Cartesian.Z  1.040995978135 km/sec -0.000000328961 km/sec  -0.000004021865 km/sec
+DV1 : ImpulsiveMnvr.Cartesian.X  2.343594056454 km/sec -0.000225968512 km/sec  -0.066405943546 km/sec
+DV1 : ImpulsiveMnvr.Cartesian.Y  2.220744696414 km/sec -0.000116458569 km/sec  -0.059255303586 km/sec
+DV1 : ImpulsiveMnvr.Cartesian.Z  4.751002647872 km/sec -0.000090439264 km/sec   0.951002647872 km/sec
 
 
 Unscaled Intermediate Constraints:
 Name                      Current Value            Desired           Difference             Tolerance
-Mars_Transfer : R_Mag  725.298585069118 km  0.000000000000 km  725.298585069118 km  1000.000000000000 km
+Mars_Transfer : R_Mag  504.659167830953 km  0.000000000000 km  504.659167830953 km  1000.000000000000 km
 
 
 
