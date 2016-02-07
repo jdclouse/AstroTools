@@ -102,7 +102,7 @@ for t_i = 1:num_pts
 %                 1e3*norm(r_rel_ENU), ... % m
 %                 compute_range_ECFsite(X(t_i,1:3)',site(site_num).r, ...
 %                 theta_dot*T(t_i))]]; 
-            true_state = [true_state, X(t_i,1:3)'];
+            true_state = [true_state, X(t_i,1:6)'];
 
         end
     end

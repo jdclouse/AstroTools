@@ -55,7 +55,7 @@ propagator_opts.OD.A_params.theta_dot = theta_dot;
 propagator_opts.OD.A_params.m = drag.m;
 propagator_opts.OD.A_params.H = propagator_opts.drag.model_params.H;
 filter_opts.important_block = [6 6]; %rows, cols
-propagator_opts.OD.A_params.important_block = important_block;
+propagator_opts.OD.A_params.important_block = filter_opts.important_block;
 propagator_opts.OD.A_params.state_len = propagator_opts.OD.state_len;
 STM_i = eye(propagator_opts.OD.state_len);
 % state = [state; reshape(STM_i(1:important_block(1),1:important_block(2)),...
@@ -77,4 +77,5 @@ filter_opts.SNC_Gamma = @(dt) [dt*dt/2 0 0;...
             0 dt 0;...
             0 0 dt];
 filter_opts.SNC_meas_separation_threshold = 3600;
+filter_opts.SNC_use_RIC = 0;
 % Eventually add storage options for analysis

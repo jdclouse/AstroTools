@@ -61,18 +61,24 @@ if fo.use_EKF
     EKF_x_est_store = zeros(num_obs,1);
     EKF_prefit_range_store = zeros(num_obs,1);
     EKF_postfit_range_store = zeros(num_obs,1);
-    EKF_state_store = zeros(3,num_obs);
+    EKF_state_store = zeros(6,num_obs);
 else
     CKF_x_est_store = zeros(num_obs,1);
     CKF_prefit_range_store = zeros(num_obs,1);
     CKF_postfit_range_store = zeros(num_obs,1);
-    CKF_state_store = zeros(3,num_obs);
+    CKF_state_store = zeros(6,num_obs);
 end
 STM_accum = eye(consts.state_len);
 pfr_store = zeros(2,num_obs);
 
+mystr = '';
+fprintf('Observation ');
+
 % Run CKF
 for ii = 1:num_obs
+    fprintf(repmat('\b',size(mystr)))
+    mystr = sprintf('%d', ii);
+    fprintf(mystr);
     site_num = 0;
     for jj = 1:fo.num_sites
         if ObsData(ii, obs_site_idx) == site(jj).id
@@ -131,11 +137,19 @@ for ii = 1:num_obs
                 state(propatagor_opts.param_in_state.Cd_idx);
         end
         
-        [~,X] = ode45(@two_body_state_dot, times, last_state, ...
+        try
+            [~,X] = ode45(@two_body_state_dot, times, last_state, ...
             fo.ode_opts, propagator_opts);
         STM_obs2obs(1:fo.important_block(1),1:fo.important_block(2)) = ...
             reshape(X(end,consts.state_len+1:end), ...
             fo.important_block(1), fo.important_block(2));
+        catch
+            fprintf('Got that error.\n');
+            times
+            last_state
+            ii
+            return
+        end
     end
     ref_state_at_obs = X(end,1:consts.state_len)';
         
@@ -158,7 +172,9 @@ for ii = 1:num_obs
     dt = obs_time - obs_time_last;
     if fo.use_SNC ...
             && dt < fo.SNC_meas_separation_threshold
-        Q = fo.SNC_Q;
+        
+        % Compute Q. Use the state from last obs for any transformations.
+        Q = compute_SNC_Q(fo, X(1,1:consts.state_len)');
         Gamma = fo.SNC_Gamma(dt);
 
         P_ap = P_ap + Gamma*Q*Gamma'; % Add the process noise
@@ -205,17 +221,17 @@ for ii = 1:num_obs
         EKF_x_est_store(ii) = norm(x_est(1:3));
         state = state + x_est;
         x_est = zeros(consts.state_len,1);
-        EKF_state_store(:,ii) = state(1:3);
+        EKF_state_store(:,ii) = state(1:6);
         EKF_cov_store(:,ii) = diag(P(1:3,1:3));
     elseif ~fo.use_EKF && ii > fo.EKF_switchover
         state;
         CKF_x_est_store(ii) = norm(x_est(1:3));
         CKF_prefit_range_store(ii) = y1(ii);
-        CKF_state_store(:,ii) = state(1:3) + x_est(1:3);
+        CKF_state_store(:,ii) = state(1:6) + x_est(1:6);
         CKF_cov_store(:,ii) = diag(P(1:3,1:3));
     else
-        EKF_state_store(:,ii) = state(1:3) + x_est(1:3);
-        CKF_state_store(:,ii) = state(1:3) + x_est(1:3);
+        EKF_state_store(:,ii) = state(1:6) + x_est(1:6);
+        CKF_state_store(:,ii) = state(1:6) + x_est(1:6);
         EKF_cov_store(:,ii) = diag(P(1:3,1:3));
         CKF_cov_store(:,ii) = diag(P(1:3,1:3));
     end
@@ -224,6 +240,7 @@ for ii = 1:num_obs
     end
 
 end
+fprintf('\n');
 
 RMS_accum = 0;
 for ii = 1:num_obs
@@ -318,4 +335,20 @@ ylabel('m/s'),xlabel('Observation')
 % Sound when done
 [y_sound,Fs,NBITS] = wavread('C:\Users\John\Documents\StarCraft_Sound_Pack\Protoss\Units\Artanis\patpss00');
 sound(y_sound,Fs,NBITS);
+end
+
+function Q = compute_SNC_Q(fo, X)
+    if fo.SNC_use_RIC
+        % Find the rotation matrix RIC->Inertial
+        r_inrtl = X(1:3)/norm(X(1:3));
+        h = cross(X(1:3),X(4:6));
+        cross_track_inrtl = h/norm(h);
+        in_track = cross(cross_track_inrtl, r_inrtl);
+        
+        R_eci_ric = [r_inrtl in_track cross_track_inrtl];
+        Q = R_eci_ric'*fo.SNC_Q*R_eci_ric;
+    else
+        Q = fo.SNC_Q;
+    end
+
 end
