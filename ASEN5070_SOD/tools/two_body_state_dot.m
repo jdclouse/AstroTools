@@ -54,8 +54,8 @@ if isfield(opts, 'OD')
         aug_len = 0;
         % Dynamic Model Compensation
         if isfield(opts.OD, 'DMC') && opts.OD.DMC.use == 1
-            state_dot(7:9) = -opts.OD.DMC.B*state(7:9); % expected u = 0
-            state_dot(4:6) = state_dot(4:6)+state(7:9);
+%             state_dot(7:9) = -opts.OD.DMC.B*state(7:9); % expected u = 0
+%             state_dot(4:6) = state_dot(4:6)+state(7:9);
             aug_len = 3;
         end
         
@@ -68,23 +68,23 @@ if isfield(opts, 'OD')
 %         long_dim = 9;
 %         STM = zeros(long_dim);
         STM = reshape(state(opts.OD.state_len+aug_len+1:end),...
-            opts.OD.A_params.important_block(1)+aug_len,...
-            opts.OD.A_params.important_block(2)+aug_len);
+            opts.OD.A_params.important_block(1)+0,...
+            opts.OD.A_params.important_block(2)+0);
         
-        if isfield(opts.OD, 'DMC') && opts.OD.DMC.use == 1
-            % Just assume A is 6x6 for now. Not true when estimating more
-            % than the cartesian state!
-            A_prime = [A, opts.OD.DMC.D; ...
-                zeros(3,opts.OD.state_len), opts.OD.DMC.B];
-            STM_dot = A_prime*STM;
-        else
+%         if isfield(opts.OD, 'DMC') && opts.OD.DMC.use == 1
+%             % Just assume A is 6x6 for now. Not true when estimating more
+%             % than the cartesian state!
+%             A_prime = [A, opts.OD.DMC.D; ...
+%                 zeros(3,opts.OD.state_len), opts.OD.DMC.B];
+%             STM_dot = A_prime*STM;
+%         else
         STM_dot = ...
             A(1:opts.OD.A_params.important_block(1),1:opts.OD.A_params.important_block(2))...
             *STM;
-        end
+%         end
         % Pack up the important stuff
         state_dot(opts.OD.state_len+aug_len+1:end) = reshape(STM_dot,...
-            (opts.OD.A_params.important_block(1)+aug_len)...
-            *(opts.OD.A_params.important_block(2)+aug_len),1);
+            (opts.OD.A_params.important_block(1)+0)...
+            *(opts.OD.A_params.important_block(2)+0),1);
     end
 end

@@ -47,7 +47,7 @@ if fo.use_DMC
     x0_ap = zeros(9,1);
     P0 = [P0 zeros(6,3); zeros(3,6) fo.DMC.w_P0]; %tried q but that doesn't seem like a good idea now.
     consts.state_len = 9;
-    fo.important_block = fo.important_block + 3;
+%     fo.important_block = fo.important_block + 3;
     
     propagator_opts.OD.aug_len = 3;
     propagator_opts.OD.DMC.use = 1;
@@ -164,6 +164,9 @@ for ii = 1:num_obs
         STM_obs2obs(1:fo.important_block(1),1:fo.important_block(2)) = ...
             reshape(X(end,consts.state_len+1:end), ...
             fo.important_block(1), fo.important_block(2));
+        if fo.use_DMC
+            STM_obs2obs = compute_DMC_STM(fo, dt, STM_obs2obs(1:fo.important_block(1),1:fo.important_block(2)));
+        end
         catch
             fprintf('Got that error.\n');
             times
@@ -282,36 +285,6 @@ output.prefit_range_store = EKF_prefit_range_store;
 output.cov_store = EKF_cov_store;
 output.state_store = EKF_state_store;
 
-% if fo.use_EKF
-%     EKF_postfit_range_store = pfr_store;
-%     EKF_prefit_range_store = y1;
-%     for diff_idx = 1:num_obs
-%         cov(diff_idx) = 3*norm(EKF_cov_store(:,diff_idx));
-%         diff(diff_idx) = norm(EKF_state_store(:,diff_idx)) - norm(true_state(:,diff_idx)*1e3);
-%     end
-%     figure; plot(diff);
-%     hold on
-%     plot(cov,'r')
-%     plot(-cov,'r')
-%     title('EKF State error, with covariance envelope')
-%     xlabel('m')
-%     ylabel('Observation')
-% else
-%     CKF_postfit_range_store = pfr_store;
-%     CKF_prefit_range_store = y1;
-%     for diff_idx = 1:num_obs
-%         cov(diff_idx) = 3*norm(CKF_cov_store(:,diff_idx));
-%         diff(diff_idx) = norm(CKF_state_store(:,diff_idx)) - norm(true_state(:,diff_idx)*1e3);
-%     end
-%     figure; plot(diff);
-%     hold on
-%     plot(cov,'r')
-%     plot(-cov,'r')
-%     title('CKF State error, with covariance envelope')
-%     xlabel('m')
-%     ylabel('Observation')
-% end
-
 % figure
 %     for diff_idx = 1:num_obs
 %         diff(diff_idx) = norm(CKF_state_store(:,diff_idx)) - norm(EKF_state_store(:,diff_idx));
@@ -421,4 +394,16 @@ function Q = compute_DMC_Q(fo,dt)
     Q = [Q_rr Q_rv Q_rw;
          Q_rv Q_vv Q_vw;
          Q_rw Q_vw Q_ww];
+end
+
+function STM = compute_DMC_STM(fo, dt, STM_non_aug)
+    % Set up some vars for faster computation
+    beta = diag(fo.DMC.B);
+    beta_2 = beta.*beta;
+    exp_term = exp(-beta*dt);
+    M = diag(exp_term);
+    PhiWM = [diag((1-exp_term)./beta); ...
+        diag((exp_term-1)./beta_2 + dt./beta)];
+    STM = [STM_non_aug PhiWM; zeros(3,6) M];
+        
 end
