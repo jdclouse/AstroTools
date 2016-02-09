@@ -79,3 +79,10 @@ filter_opts.SNC_Gamma = @(dt) [dt*dt/2 0 0;...
 filter_opts.SNC_meas_separation_threshold = 3600;
 filter_opts.SNC_use_RIC = 0;
 % Eventually add storage options for analysis
+
+filter_opts.use_DMC = 0;
+filter_opts.DMC.tau = [1 1 1]'*3/orb_period; % Actually this is 1/tau
+filter_opts.DMC.B = diag(filter_opts.DMC.tau);
+filter_opts.DMC.sigma = [1 1 1]*1e-7;
+filter_opts.DMC.q_u = diag(filter_opts.DMC.sigma.*filter_opts.DMC.sigma);
+filter_opts.DMC.w_P0 = eye(3)*1e-5; % a priori covariance

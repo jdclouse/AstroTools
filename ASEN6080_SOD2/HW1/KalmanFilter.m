@@ -36,11 +36,32 @@ sig_rangerate = 0.001; %m/s
 % W = [1/(sig_range*sig_range) 0; 0 1/(sig_rangerate*sig_rangerate)];
 R = [(sig_range*sig_range) 0; 0 (sig_rangerate*sig_rangerate)];
 
+% DMC setup
+if fo.use_DMC
+    B = diag(fo.DMC.tau);
+    C = [zeros(6,3);eye(3)];
+    D = [zeros(3);eye(3)];
+%     q_u;
+    w = [0 0 0]';
+    state = [state; w];
+    x0_ap = zeros(9,1);
+    P0 = [P0 zeros(6,3); zeros(3,6) fo.DMC.w_P0]; %tried q but that doesn't seem like a good idea now.
+    consts.state_len = 9;
+    fo.important_block = fo.important_block + 3;
+    
+    propagator_opts.OD.aug_len = 3;
+    propagator_opts.OD.DMC.use = 1;
+    propagator_opts.OD.DMC.B = fo.DMC.B;
+    propagator_opts.OD.DMC.C = C;
+    propagator_opts.OD.DMC.D = D;
+end
+
 %% Sequential Processor
 meas_dt = 10; %sec
 fo.ode_opts = odeset('RelTol', 1e-12, 'AbsTol', 1e-20);
 
 [num_obs, ~] = size(ObsData);
+% num_obs = 1000; % Just do a subset
 
 % Obs. deviation
 y1 = zeros(num_obs,1);
@@ -178,6 +199,9 @@ for ii = 1:num_obs
         Gamma = fo.SNC_Gamma(dt);
 
         P_ap = P_ap + Gamma*Q*Gamma'; % Add the process noise
+    elseif fo.use_DMC
+        Q = compute_DMC_Q(fo,dt);
+        P_ap = P_ap + Q; % DMC process noise
     end
     
     % H~
@@ -190,6 +214,9 @@ for ii = 1:num_obs
         end
     end
     H_tilda = fo.H_tilda_handle(ref_state_at_obs, consts);
+    if fo.use_DMC
+        H_tilda = [H_tilda zeros(2,3)]; %#ok<AGROW>
+    end
     
     % Kalman gain
     K = P_ap*H_tilda'/(H_tilda*P_ap*H_tilda'+R);
@@ -351,4 +378,47 @@ function Q = compute_SNC_Q(fo, X)
         Q = fo.SNC_Q;
     end
 
+end
+
+function Q = compute_DMC_Q(fo,dt)
+    % Set up some vars for faster computation
+    beta = diag(fo.DMC.B);
+    beta_2 = beta.*beta;
+    beta_3 = beta.*beta_2;
+    beta_4 = beta.*beta_3;
+    beta_5 = beta.*beta_4;
+    sig_sq = diag(fo.DMC.q_u);
+    dt_2 = dt*dt;
+    dt_3 = dt*dt_2;
+    exp_term = exp(-beta*dt);
+    exp_sq_term = exp(-2*beta*dt);
+    
+    % Fill out all the sub-matrices
+    Q_rr = diag(sig_sq.*...
+        (dt_3./(3.*beta_2) - dt_2./beta_3 ...
+        + dt./beta_4 - 2*exp_term*dt./beta_4 ...
+        + (1-exp_sq_term)./(2.*beta_5)));
+    
+    % Q_rv = Q_vr
+    Q_rv = diag(sig_sq.*...
+        (dt_2./(2.*beta_2) - dt./beta_3 + exp_term*dt./beta_3 ...
+        +(1-exp_term)./beta_4 - (1-exp_sq_term)./(2.*beta_4)));
+    
+    %Q_rw = Q_wr
+    Q_rw = diag(sig_sq.*...
+        ((1-exp_sq_term)./(2.*beta_3) - exp_term*dt./beta_2));
+    
+    Q_vv = diag(sig_sq.*...
+        (dt./beta_2 ...
+        - 2*(1-exp_term)./beta_3 + (1-exp_sq_term)./(2*beta_3)));
+    
+    %Q_vw = Q_wv
+    Q_vw = diag(sig_sq.*...
+        ((1+exp_sq_term)./(2*beta_2) - exp_term./beta_2));
+    
+    Q_ww = diag(sig_sq.*(1-exp_sq_term)./(2*beta));
+    
+    Q = [Q_rr Q_rv Q_rw;
+         Q_rv Q_vv Q_vw;
+         Q_rw Q_vw Q_ww];
 end
