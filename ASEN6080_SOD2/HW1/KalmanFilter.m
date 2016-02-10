@@ -79,10 +79,15 @@ else
     P_trace_store = zeros(num_obs,1);
 end
 if fo.use_EKF
+    num_state_store = 6;
+    if fo.use_DMC
+        num_state_store = 9;
+    end
+    
     EKF_x_est_store = zeros(num_obs,1);
     EKF_prefit_range_store = zeros(num_obs,1);
     EKF_postfit_range_store = zeros(num_obs,1);
-    EKF_state_store = zeros(6,num_obs);
+    EKF_state_store = zeros(num_state_store,num_obs);
 else
     CKF_x_est_store = zeros(num_obs,1);
     CKF_prefit_range_store = zeros(num_obs,1);
@@ -251,7 +256,7 @@ for ii = 1:num_obs
         EKF_x_est_store(ii) = norm(x_est(1:3));
         state = state + x_est;
         x_est = zeros(consts.state_len,1);
-        EKF_state_store(:,ii) = state(1:6);
+        EKF_state_store(:,ii) = state(1:num_state_store);
         EKF_cov_store(:,ii) = diag(P(1:3,1:3));
     elseif ~fo.use_EKF && ii > fo.EKF_switchover
         state;
@@ -260,7 +265,7 @@ for ii = 1:num_obs
         CKF_state_store(:,ii) = state(1:6) + x_est(1:6);
         CKF_cov_store(:,ii) = diag(P(1:3,1:3));
     else
-        EKF_state_store(:,ii) = state(1:6) + x_est(1:6);
+        EKF_state_store(:,ii) = state(1:num_state_store) + x_est(1:num_state_store);
         CKF_state_store(:,ii) = state(1:6) + x_est(1:6);
         EKF_cov_store(:,ii) = diag(P(1:3,1:3));
         CKF_cov_store(:,ii) = diag(P(1:3,1:3));

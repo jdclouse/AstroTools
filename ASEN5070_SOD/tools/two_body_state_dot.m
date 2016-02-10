@@ -54,8 +54,8 @@ if isfield(opts, 'OD')
         aug_len = 0;
         % Dynamic Model Compensation
         if isfield(opts.OD, 'DMC') && opts.OD.DMC.use == 1
-%             state_dot(7:9) = -opts.OD.DMC.B*state(7:9); % expected u = 0
-%             state_dot(4:6) = state_dot(4:6)+state(7:9);
+            state_dot(7:9) = -opts.OD.DMC.B*state(7:9); % expected u = 0
+            state_dot(4:6) = state_dot(4:6)+state(7:9);
             aug_len = 3;
         end
         

@@ -44,7 +44,7 @@ end
 end
 % SNC in RIC
 if run_SNC_in_RIC
-    filter_opts.SNC_Q = eye(3)*1e-8;
+    filter_opts.SNC_Q = eye(3)*1e-7;
     filter_opts.SNC_use_RIC = 1;
     storage = KalmanFilter(state, meas_store, filter_opts);
 end
@@ -59,6 +59,8 @@ filter_opts.use_DMC = 1;
 cnt = 1;
 % sig_cases = [1e-2 1e-5 1e-7 1e-9 1e-10 1e-11 1e-12 1e-13 1e-15];
 sig_cases = [1e-7 1e-7 1e-9 1e-10 1e-11 1e-12 1e-13 1e-15];
+run_dmc_cases = 0;
+if run_dmc_cases
 for DMC_sig = sig_cases
     cnt = cnt+1;
     filter_opts.DMC.sigma = [1 1 1]*DMC_sig;
@@ -77,3 +79,15 @@ for DMC_sig = sig_cases
     vel_RMS(cnt) = sqrt(sum(vel_errors.*vel_errors)/len);
     fprintf('Finished sigma = %.0e\n', DMC_sig);
 end
+end
+storage = KalmanFilter(state, meas_store, filter_opts);
+plot_cov_err_envelope(storage.cov_store, storage.state_store(1:6,:) - true_state*1e3)
+w = storage.state_store(7:9,:);
+figure
+for ii = 1:3
+    subplot(3,1,ii)
+    plot(times, J3_accel_store(ii,:)*1e3)
+    hold on
+    plot(meas_store(:,2),w(ii),'r.')
+end
+return
