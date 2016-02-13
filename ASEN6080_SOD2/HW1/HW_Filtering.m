@@ -80,6 +80,8 @@ for DMC_sig = sig_cases
     fprintf('Finished sigma = %.0e\n', DMC_sig);
 end
 end
+filter_opts.DMC.sigma = [1 1 1]*1e-8;
+filter_opts.DMC.q_u = diag(filter_opts.DMC.sigma.*filter_opts.DMC.sigma);
 storage = KalmanFilter(state, meas_store, filter_opts);
 plot_cov_err_envelope(storage.cov_store, storage.state_store(1:6,:) - true_state*1e3)
 w = storage.state_store(7:9,:);
@@ -88,6 +90,6 @@ for ii = 1:3
     subplot(3,1,ii)
     plot(times, J3_accel_store(ii,:)*1e3)
     hold on
-    plot(meas_store(:,2),w(ii),'r.')
+    plot(meas_store(:,2),w(ii,:),'r.')
 end
 return
