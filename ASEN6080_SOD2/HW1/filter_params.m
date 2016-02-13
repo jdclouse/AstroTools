@@ -86,3 +86,6 @@ filter_opts.DMC.B = diag(filter_opts.DMC.tau);
 filter_opts.DMC.sigma = [1 1 1]*1e-7;
 filter_opts.DMC.q_u = diag(filter_opts.DMC.sigma.*filter_opts.DMC.sigma);
 filter_opts.DMC.w_P0 = eye(3)*1e-5; % a priori covariance
+
+% Smoothing
+filter_opts.use_smoother = false;

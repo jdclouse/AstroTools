@@ -56,6 +56,11 @@ if fo.use_DMC
     propagator_opts.OD.DMC.D = D;
 end
 
+% Smoother
+if fo.use_smoother
+    % Store
+end
+
 %% Sequential Processor
 meas_dt = 10; %sec
 fo.ode_opts = odeset('RelTol', 1e-12, 'AbsTol', 1e-20);
@@ -78,22 +83,20 @@ if fo.use_joseph
 else
     P_trace_store = zeros(num_obs,1);
 end
+num_state_store = 6;
 if fo.use_EKF
-    num_state_store = 6;
     if fo.use_DMC
         num_state_store = 9;
     end
-    
-    EKF_x_est_store = zeros(num_obs,1);
-    EKF_prefit_range_store = zeros(num_obs,1);
-    EKF_postfit_range_store = zeros(num_obs,1);
-    EKF_state_store = zeros(num_state_store,num_obs);
-else
-    CKF_x_est_store = zeros(num_obs,1);
-    CKF_prefit_range_store = zeros(num_obs,1);
-    CKF_postfit_range_store = zeros(num_obs,1);
-    CKF_state_store = zeros(6,num_obs);
 end
+
+% Set up storage
+x_est_store = zeros(num_obs,1);
+prefit_range_store = zeros(num_obs,1);
+state_store = zeros(num_state_store,num_obs);
+num_variance_store = 3;
+EKF_cov_store = zeros(num_variance_store,num_obs);
+
 STM_accum = eye(consts.state_len);
 pfr_store = zeros(2,num_obs);
 
@@ -253,27 +256,21 @@ for ii = 1:num_obs
     % Set up ref state for next pass
     state = ref_state_at_obs;
     if fo.use_EKF && ii > fo.EKF_switchover
-        EKF_x_est_store(ii) = norm(x_est(1:3));
+        x_est_store(ii) = norm(x_est(1:3));
         state = state + x_est;
         x_est = zeros(consts.state_len,1);
-        EKF_state_store(:,ii) = state(1:num_state_store);
+        % Store things
+        state_store(:,ii) = state(1:num_state_store);
         EKF_cov_store(:,ii) = diag(P(1:3,1:3));
     elseif ~fo.use_EKF && ii > fo.EKF_switchover
-        state;
-        CKF_x_est_store(ii) = norm(x_est(1:3));
-        CKF_prefit_range_store(ii) = y1(ii);
-        CKF_state_store(:,ii) = state(1:6) + x_est(1:6);
-        CKF_cov_store(:,ii) = diag(P(1:3,1:3));
-    else
-        EKF_state_store(:,ii) = state(1:num_state_store) + x_est(1:num_state_store);
-        CKF_state_store(:,ii) = state(1:6) + x_est(1:6);
-        EKF_cov_store(:,ii) = diag(P(1:3,1:3));
-        CKF_cov_store(:,ii) = diag(P(1:3,1:3));
+        % Nothing to calculate, just store.
+        x_est_store(ii) = norm(x_est(1:3));
+        prefit_range_store(ii) = y1(ii);
+        state_store(:,ii) = ...
+            state(1:num_state_store) + x_est(1:num_state_store);
+        EKF_cov_store(:,ii) = ...
+            diag(P(1:num_variance_store,1:num_variance_store));
     end
-    if ii > num_obs/2
-        state;
-    end
-
 end
 fprintf('\n');
 
@@ -286,18 +283,10 @@ output.RMS = sqrt(RMS_accum/num_obs)
 output.rangerate_RMS = sqrt(sum(pfr_store(2,:).*pfr_store(2,:))/num_obs)
 output.range_RMS = sqrt(sum(pfr_store(1,:).*pfr_store(1,:))/num_obs)
 output.pfr_store = pfr_store;
-output.prefit_range_store = EKF_prefit_range_store;
+output.prefit_range_store = prefit_range_store;
 output.cov_store = EKF_cov_store;
-output.state_store = EKF_state_store;
+output.state_store = state_store;
 
-% figure
-%     for diff_idx = 1:num_obs
-%         diff(diff_idx) = norm(CKF_state_store(:,diff_idx)) - norm(EKF_state_store(:,diff_idx));
-%     end
-% plot(diff)
-% title('Error between CKF and EKF')
-% xlabel('Observation')
-% ylabel('m')
 %%
 
 figure
@@ -338,8 +327,8 @@ ylabel('m/s'),xlabel('Observation')
 % end
 
 % Sound when done
-[y_sound,Fs,NBITS] = wavread('C:\Users\John\Documents\StarCraft_Sound_Pack\Protoss\Units\Artanis\patpss00');
-sound(y_sound,Fs,NBITS);
+[y_sound,Fs] = audioread('C:\Users\John\Documents\StarCraft_Sound_Pack\Protoss\Units\Artanis\patpss00.wav');
+sound(y_sound,Fs);
 end
 
 function Q = compute_SNC_Q(fo, X)
