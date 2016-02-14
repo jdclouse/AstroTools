@@ -24,6 +24,6 @@ filter_opts.use_smoother = true;
 
 storage = KalmanFilter(state, meas_store, filter_opts);
 plot_cov_err_envelope(storage.cov_store, storage.state_store - true_state*1e3)
-plot_cov_err_envelope(storage.cov_store, storage.smoothed_state_store - true_state*1e3)
+plot_cov_err_envelope(storage.P_smoothed_diag, storage.smoothed_state_store - true_state*1e3)
 % return
     

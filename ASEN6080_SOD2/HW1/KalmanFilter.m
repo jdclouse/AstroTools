@@ -103,6 +103,7 @@ if fo.use_smoother
     P_smooth_store = zeros(consts.state_len,consts.state_len,num_obs);
     P_ap_smooth_store = zeros(consts.state_len,consts.state_len,num_obs);
     x_l_k_store = zeros(consts.state_len,num_obs);
+    P_smoothed_diag = zeros(consts.state_len,num_obs);
 end
 
 STM_accum = eye(consts.state_len);
@@ -309,6 +310,7 @@ if fo.use_smoother
     x_l_k = x_est_store(:,end);
     x_l_k_store(:,end) = x_l_k;
     P_l_k = P_smooth_store(:,:,end);
+    P_smoothed_diag(:,end) = diag(P_l_k);
     for ii = 1:(num_obs-1) %-1?
         Sk = P_smooth_store(:,:,end-ii) * STM_smooth_store(:,:,end-ii+1)' ...
             /P_ap_smooth_store(:,:,end-ii+1);
@@ -316,11 +318,12 @@ if fo.use_smoother
             + Sk*(x_l_k - STM_smooth_store(:,:,end-ii+1)*x_est_store(:,end-ii));
         x_l_k_store(:,end-ii) = x_l_k;
         P_l_k = P_smooth_store(:,:,end-ii) + Sk*(P_l_k - P_ap_smooth_store(:,:,end-ii+1))*Sk';
+        P_smoothed_diag(:,end-ii) = diag(P_l_k);
     end
     smoothed_state_store = state_store - x_est_store + x_l_k_store;
     output.x_l_k_store = x_l_k_store;
     output.smoothed_state_store = smoothed_state_store;
-    
+    output.P_smoothed_diag = P_smoothed_diag;
 end
 
 %%
