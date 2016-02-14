@@ -56,11 +56,6 @@ if fo.use_DMC
     propagator_opts.OD.DMC.D = D;
 end
 
-% Smoother
-if fo.use_smoother
-    % Store
-end
-
 %% Sequential Processor
 meas_dt = 10; %sec
 fo.ode_opts = odeset('RelTol', 1e-12, 'AbsTol', 1e-20);
@@ -91,11 +86,24 @@ if fo.use_EKF
 end
 
 % Set up storage
-x_est_store = zeros(num_obs,1);
+x_est_store = zeros(num_state_store,num_obs);
 prefit_range_store = zeros(num_obs,1);
 state_store = zeros(num_state_store,num_obs);
 num_variance_store = 3;
 EKF_cov_store = zeros(num_variance_store,num_obs);
+
+% Smoother
+% Set up all the storage mechanisms for good memory managements
+if fo.use_smoother
+    % Store
+    % Deviation estimates are already stored
+    % STM between observations
+    STM_smooth_store = zeros(consts.state_len,consts.state_len,num_obs);
+    % Probably a smarter way to store these since they are symmetric.
+    P_smooth_store = zeros(consts.state_len,consts.state_len,num_obs);
+    P_ap_smooth_store = zeros(consts.state_len,consts.state_len,num_obs);
+    x_l_k_store = zeros(consts.state_len,num_obs);
+end
 
 STM_accum = eye(consts.state_len);
 pfr_store = zeros(2,num_obs);
@@ -256,20 +264,27 @@ for ii = 1:num_obs
     % Set up ref state for next pass
     state = ref_state_at_obs;
     if fo.use_EKF && ii > fo.EKF_switchover
-        x_est_store(ii) = norm(x_est(1:3));
+        x_est_store(:,ii) = x_est;
         state = state + x_est;
         x_est = zeros(consts.state_len,1);
         % Store things
         state_store(:,ii) = state(1:num_state_store);
         EKF_cov_store(:,ii) = diag(P(1:3,1:3));
-    elseif ~fo.use_EKF && ii > fo.EKF_switchover
+    else%if ~fo.use_EKF && ii > fo.EKF_switchover
         % Nothing to calculate, just store.
-        x_est_store(ii) = norm(x_est(1:3));
+        x_est_store(:,ii) = x_est;
         prefit_range_store(ii) = y1(ii);
         state_store(:,ii) = ...
             state(1:num_state_store) + x_est(1:num_state_store);
         EKF_cov_store(:,ii) = ...
             diag(P(1:num_variance_store,1:num_variance_store));
+    end
+    
+    if fo.use_smoother
+        % Store
+        STM_smooth_store(:,:,ii) = STM_obs2obs;
+        P_smooth_store(:,:,ii) = P;
+        P_ap_smooth_store(:,:,ii) = P_ap;
     end
 end
 fprintf('\n');
@@ -286,6 +301,25 @@ output.pfr_store = pfr_store;
 output.prefit_range_store = prefit_range_store;
 output.cov_store = EKF_cov_store;
 output.state_store = state_store;
+output.x_est_store = x_est_store;
+
+%% Smoothed state
+if fo.use_smoother
+    % deviation at time k with information up to l (the end)
+    x_l_k = x_est_store(:,end);
+    x_l_k_store(:,end) = x_l_k;
+    P_l_k = P_smooth_store(:,:,end);
+    for ii = 1:(num_obs-1) %-1?
+        Sk = P_smooth_store(:,:,end-ii) * STM_smooth_store(:,:,end-ii+1)' ...
+            /P_ap_smooth_store(:,:,end-ii+1);
+        x_l_k = x_est_store(:,end-ii) ...
+            + Sk*(x_l_k - STM_smooth_store(:,:,end-ii+1)*x_est_store(:,end-ii));
+        x_l_k_store(:,end-ii) = x_l_k;
+    end
+    smoothed_state_store = state_store - x_est_store + x_l_k_store;
+    output.x_l_k_store = x_l_k_store;
+    output.smoothed_state_store = smoothed_state_store;
+end
 
 %%
 
@@ -331,6 +365,7 @@ ylabel('m/s'),xlabel('Observation')
 sound(y_sound,Fs);
 end
 
+%% SNC process noise
 function Q = compute_SNC_Q(fo, X)
     if fo.SNC_use_RIC
         % Find the rotation matrix RIC->Inertial
@@ -347,6 +382,7 @@ function Q = compute_SNC_Q(fo, X)
 
 end
 
+%% DMC process noise
 function Q = compute_DMC_Q(fo,dt)
     % Set up some vars for faster computation
     beta = diag(fo.DMC.B);
@@ -390,6 +426,7 @@ function Q = compute_DMC_Q(fo,dt)
          Q_rw Q_vw Q_ww];
 end
 
+%% DMC STM calculation.
 function STM = compute_DMC_STM(fo, dt, STM_non_aug)
     % Set up some vars for faster computation
     beta = diag(fo.DMC.B);
