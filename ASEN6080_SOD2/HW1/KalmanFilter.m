@@ -315,10 +315,12 @@ if fo.use_smoother
         x_l_k = x_est_store(:,end-ii) ...
             + Sk*(x_l_k - STM_smooth_store(:,:,end-ii+1)*x_est_store(:,end-ii));
         x_l_k_store(:,end-ii) = x_l_k;
+        P_l_k = P_smooth_store(:,:,end-ii) + Sk*(P_l_k - P_ap_smooth_store(:,:,end-ii+1))*Sk';
     end
     smoothed_state_store = state_store - x_est_store + x_l_k_store;
     output.x_l_k_store = x_l_k_store;
     output.smoothed_state_store = smoothed_state_store;
+    
 end
 
 %%
