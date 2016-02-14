@@ -24,7 +24,9 @@ filter_opts.use_smoother = true;
 
 storage = KalmanFilter(state, meas_store, filter_opts);
 plot_cov_err_envelope(storage.cov_store, storage.state_store - true_state*1e3)
+title('CKF State Error, with covariance envelope')
 plot_cov_err_envelope(storage.P_smoothed_diag, storage.smoothed_state_store - true_state*1e3)
+title('CKF Smoothed State Error, with smoothed covariance envelope')
 % return
     
 batch_store = BatchLeastSquares(state, meas_store, filter_opts);
@@ -42,3 +44,12 @@ plot(arrayfun(@(idx) norm(batch_state(1:6,idx) - unique_true_state(1:6,idx)), 1:
 figure
 plot(arrayfun(@(idx) norm(diag(batch_store.STM_store(:,:,idx))-diag(storage.STM_accum_store(:,:,idx))),1:len))
 % pos_errors = arrayfun(@(idx) norm(state_err(1:3,idx)), 1:len);
+
+%% EKF smoothing
+filter_opts.use_EKF = 1;
+filter_opts.use_SNC = 1;
+filter_opts.use_smoother = true;
+
+EKF_storage = KalmanFilter(state, meas_store, filter_opts);
+plot_cov_err_envelope(EKF_storage.cov_store, EKF_storage.state_store - true_state*1e3)
+title('EKF Smoothed State Error, with smoothed covariance envelope')

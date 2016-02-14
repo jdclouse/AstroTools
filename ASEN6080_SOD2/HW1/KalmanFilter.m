@@ -105,6 +105,10 @@ if fo.use_smoother
     x_l_k_store = zeros(consts.state_len,num_obs);
     P_smoothed_diag = zeros(consts.state_len,num_obs);
     STM_accum_store = zeros(consts.state_len,consts.state_len,num_obs);
+    b_store = zeros(consts.state_len,num_obs);
+    b_last = zeros(consts.state_len,1);
+    smoother_propagator_opts = propagator_opts;
+    smoother_propagator_opts.OD.use = 0;
 end
 
 STM_accum = eye(consts.state_len);
@@ -268,6 +272,18 @@ for ii = 1:num_obs
     if fo.use_EKF && ii > fo.EKF_switchover
         x_est_store(:,ii) = x_est;
         state = state + x_est;
+        if fo.use_smoother
+            if ii == 1 || obs_time - obs_time_last == 0
+                b_store(:,ii) = b_last;
+            else
+                A = propagator_opts.OD.A_mat_handle(x_est(1:propagator_opts.OD.state_len),propagator_opts.OD.A_params);
+                tbs_dot = two_body_state_dot(t, state, smoother_propagator_opts);
+                b_dot = @(t, state, opts) A*state + tbs_dot - A*x_est;
+                [~,b_int] = ode45(b_dot, times, b_last, fo.ode_opts);
+                b_store(:,ii) = b_int(end,:)';
+                b_last = b_int(end,:)';
+            end
+        end
         x_est = zeros(consts.state_len,1);
         % Store things
         state_store(:,ii) = state(1:num_state_store);
@@ -275,6 +291,18 @@ for ii = 1:num_obs
     else%if ~fo.use_EKF && ii > fo.EKF_switchover
         % Nothing to calculate, just store.
         x_est_store(:,ii) = x_est;
+        if fo.use_smoother && fo.use_EKF
+            if ii == 1 || obs_time - obs_time_last == 0
+                b_store(:,ii) = b_last;
+            else
+                A = propagator_opts.OD.A_mat_handle(x_est(1:propagator_opts.OD.state_len),propagator_opts.OD.A_params);
+                tbs_dot = two_body_state_dot(t, state, smoother_propagator_opts);
+                b_dot = @(t, state, opts) A*state + tbs_dot - A*x_est;
+                [~,b_int] = ode45(b_dot, times, b_last, fo.ode_opts);
+                b_store(:,ii) = b_int(end,:)';
+                b_last = b_int(end,:)';
+            end
+        end
         prefit_range_store(ii) = y1(ii);
         state_store(:,ii) = ...
             state(1:num_state_store) + x_est(1:num_state_store);
@@ -314,11 +342,20 @@ if fo.use_smoother
     x_l_k_store(:,end) = x_l_k;
     P_l_k = P_smooth_store(:,:,end);
     P_smoothed_diag(:,end) = diag(P_l_k);
+    if fo.use_EKF
+        bk = zeros(consts.state_len,1);
+    end
     for ii = 1:(num_obs-1) %-1?
         Sk = P_smooth_store(:,:,end-ii) * STM_smooth_store(:,:,end-ii+1)' ...
             /P_ap_smooth_store(:,:,end-ii+1);
         x_l_k = x_est_store(:,end-ii) ...
             + Sk*(x_l_k - STM_smooth_store(:,:,end-ii+1)*x_est_store(:,end-ii));
+        if fo.use_EKF
+            if ObsData(end-ii, obs_t_idx) ~= ObsData(end-ii+1, obs_t_idx)
+                bk = b_store(:,end-ii+1);
+            end
+            x_l_k = x_l_k - Sk*bk;
+        end
         x_l_k_store(:,end-ii) = x_l_k;
         P_l_k = P_smooth_store(:,:,end-ii) + Sk*(P_l_k - P_ap_smooth_store(:,:,end-ii+1))*Sk';
         P_smoothed_diag(:,end-ii) = diag(P_l_k);
