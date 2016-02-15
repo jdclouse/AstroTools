@@ -52,4 +52,5 @@ filter_opts.use_smoother = true;
 
 EKF_storage = KalmanFilter(state, meas_store, filter_opts);
 plot_cov_err_envelope(EKF_storage.cov_store, EKF_storage.state_store - true_state*1e3)
+plot_cov_err_envelope(EKF_storage.P_smoothed_diag, EKF_storage.x_l_k_store - true_state*1e3)
 title('EKF Smoothed State Error, with smoothed covariance envelope')
