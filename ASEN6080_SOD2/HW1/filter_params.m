@@ -89,3 +89,6 @@ filter_opts.DMC.w_P0 = eye(3)*1e-5; % a priori covariance
 
 % Smoothing
 filter_opts.use_smoother = false;
+
+% UKF
+filter_opts.propagator_opts.UKF.L = 6;

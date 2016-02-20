@@ -19,8 +19,8 @@ vel_RMS = [];
 num_obs = length(meas_store);
 
 % Using UKF
-
-storage = UnscentedKalmanFilter(state, meas_store, filter_opts);
+P = eye(6)*1e2;
+storage = UnscentedKalmanFilter(state, P, meas_store, filter_opts);
 
 plot_cov_err_envelope(storage.cov_store, storage.state_store - true_state*1e3)
 title('CKF State Error, with covariance envelope')
