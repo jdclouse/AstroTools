@@ -6,14 +6,16 @@ obs_rr_idx = 4;
 obs_t_idx = 2;
 obs_site_idx = 1;
 
-L = 6;
-alpha = 1;
-beta = 2;
-K = 3-L;
+L = 6; %FIXME
+alpha = 1; %FIXME options
+beta = 2; %FIXME options
+K = 3-L; %FIXME options
 lambda = alpha*alpha*(L+K)-L;
 w_0_m = lambda/(L+lambda);
 w_0_c = w_0_m + 1-alpha*alpha+beta;
 w_i = 1/(2*(L+lambda));
+
+num_sig_pts = (2*L+1);
 
 P;
 X_est = state_ap;
@@ -25,6 +27,7 @@ gamma = alpha*sqrt(3);
 % Storage
 X_est_store = zeros(num_state_store,num_obs);
 Pt_store = zeros(num_state_store,num_obs);
+pfr_store = zeros(2,num_obs);
 
 for ii = 1:num_obs
     
@@ -42,25 +45,25 @@ for ii = 1:num_obs
             repmat(X_est,1,L) - gamma*sqrtP];
 
         % Propagate
-        prop_state_last = reshape(sig_pts, L*(2*L+1), 1);
+        prop_state_last = reshape(sig_pts, L*num_sig_pts, 1);
         times = [0 dt];
 
         [~,X] = ode45(@two_body, times, prop_state_last, fo.ode_opts, ...
             fo.ukf_prop_opts);
 
-        sig_pts_new = reshape(X(end,:)',L,(2*L+1));
+        sig_pts_new = reshape(X(end,:)',L,num_sig_pts);
     else
         sig_pts_new = sig_pts;
     end
     
     % Time update
     X_ap = w_0_m*sig_pts_new(1,:);
-    for jj = 2:(2*L+1)
+    for jj = 2:num_sig_pts
         X_ap = X_ap + w_i*sig_pts_new(jj,:);
     end
     
     Pbar_t = w_0_c*(sig_pts_new(:,1) - X_ap)*(sig_pts_new(:,1) - X_ap)';
-    for jj = 2:(2*L+1)
+    for jj = 2:num_sig_pts
         Pbar_t = Pbar_t + ...
             w_i*(sig_pts_new(:,jj) - X_ap)*(sig_pts_new(:,jj) - X_ap)';
     end
@@ -73,7 +76,7 @@ for ii = 1:num_obs
     % Computed measurements and weighted averages
     y_mean = zeros(2,1);
     y_meas = zeros(2,2*L+1);
-    for jj = 1:(2*L+1)
+    for jj = 1:num_sig_pts
         r_comp = compute_range_ECFsite(sig_pts(1:3,jj),...
             site(site_num).r*1e3,theta_dot*t_obs);
         rr_comp = compute_range_rate_ECFsite(ref_state_at_obs(1:6,jj),...
@@ -95,12 +98,32 @@ for ii = 1:num_obs
     X_est = X_ap + Kt*(y_obs - y_mean);
     Pt = Pbar_t - Kt*Pyy*Kt';
     
+    % Post-fit residuals
+    y_mean = zeros(2,1);
+    sig_pts = [X_est, repmat(X_est,1,L) + gamma*sqrtP, ...
+        repmat(X_est,1,L) - gamma*sqrtP];
+    for jj = 1:num_sig_pts
+        r_comp = compute_range_ECFsite(sig_pts(1:3,jj),...
+            site(site_num).r*1e3,theta_dot*t_obs);
+        rr_comp = compute_range_rate_ECFsite(ref_state_at_obs(1:6,jj),...
+            site(site_num).r*1e3,theta_dot*t_obs, theta_dot);
+        y_meas = [r_comp; rr_comp];
+        if jj == 1
+            y_mean = y_mean + w_0_m*y_meas;
+        else
+            y_mean = y_mean + w_i*y_meas;
+        end
+    end
+    pfr = y_obs - y_mean;
+    
     % Store everything
     X_est_store(:,ii) = X_est;
     Pt_store(:,ii) = diag(Pt);
+    pfr_store(:,ii) = pfr;
 end
 
 output.X_est_store = X_est_store;
 output.Pt_store = Pt_store;
+output.pfr_store = pfr_store;
 
 end
