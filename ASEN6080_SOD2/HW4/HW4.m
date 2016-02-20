@@ -20,15 +20,20 @@ num_obs = length(meas_store);
 
 % Using UKF
 P = eye(6)*1e2;
+filter_opts.use_SNC = 0;
 storage = UnscentedKalmanFilter(state, P, meas_store, filter_opts);
 
 pos_cov = arrayfun(@(ii) norm(storage.Pt_store(:,ii)), 1:num_obs);
 plot_cov_err_envelope(pos_cov, storage.X_est_store - true_state*1e3)
 title('UKF State Error, with covariance envelope')
-% state_error = storage.smoothed_state_store - true_state*1e3;
-% plot_cov_err_envelope(storage.P_smoothed_diag, state_error)
-% title('CKF Smoothed State Error, with smoothed covariance envelope')
 
+%% Adding process noise
+filter_opts.use_SNC = 1;
+storage_withQ = UnscentedKalmanFilter(state, P, meas_store, filter_opts);
+
+pos_cov = arrayfun(@(ii) norm(storage_withQ.Pt_store(:,ii)), 1:num_obs);
+plot_cov_err_envelope(pos_cov, storage_withQ.X_est_store - true_state*1e3)
+title('UKF State Error, with covariance envelope')
 
 sig_range = 0.01; % m
 sig_rangerate = 0.001; %m/s

@@ -87,6 +87,19 @@ for ii = 1:num_obs
             w_i*(sig_pts_new(:,jj) - X_ap)*(sig_pts_new(:,jj) - X_ap)';
     end
     
+    if fo.use_SNC ...
+            && dt < fo.SNC_meas_separation_threshold
+        
+        % Compute Q. Use the state from last obs for any transformations.
+        Q = compute_SNC_Q(fo, X_est(1:L));
+        Gamma = fo.SNC_Gamma(dt);
+
+        Pbar_t = Pbar_t + Gamma*Q*Gamma'; % Add the process noise
+%     elseif fo.use_DMC
+%         Q = compute_DMC_Q(fo,dt);
+%         P_ap = P_ap + Q; % DMC process noise
+    end
+    
     % Recompute sig-pts
     sqrt_Pbar = sqrtm(Pbar_t);
     sig_pts = [X_ap, repmat(X_ap,1,L) + gamma*sqrt_Pbar, ...
