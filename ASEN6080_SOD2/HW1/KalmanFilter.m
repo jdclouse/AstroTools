@@ -273,45 +273,24 @@ for ii = 1:num_obs
     if fo.use_EKF && ii > fo.EKF_switchover
         state = state + x_est;
         x_est_store(:,ii) = state;
-        if fo.use_smoother
-            if ii == 1 || dt == 0
-                b_store(:,ii) = b_last;
-            else
-                A = propagator_opts.OD.A_mat_handle(state(1:propagator_opts.OD.state_len),propagator_opts.OD.A_params);
-                tbs_dot = two_body_state_dot(dt, state, smoother_propagator_opts);
-                b_dot = @(t, b_state, opts) A*last_state(1:propagator_opts.OD.state_len) + tbs_dot - A*state;
-%                 b_dot = @(t, b_state, opts) tbs_dot - A*state;
-                [~,b_int] = ode45(b_dot, times, b_last, fo.ode_opts);
-                b_store(:,ii) = b_int(end,:)';
-                b_last = b_int(end,:)';
-            end
+        if fo.use_smoother && ii ~= fo.EKF_switchover + 1
+            state_ap_store(:,ii) = ref_state_at_obs(1:num_state_store);
+        else
+            state_ap_store(:,ii) = ref_state_at_obs(1:num_state_store)+x_ap;
         end
         x_est = zeros(consts.state_len,1);
         % Store things
         state_store(:,ii) = state(1:num_state_store);
-        state_ap_store(:,ii) = ref_state_at_obs(1:num_state_store);
         EKF_cov_store(:,ii) = diag(P(1:3,1:3));
     else%if ~fo.use_EKF && ii > fo.EKF_switchover
         % Nothing to calculate, just store.
         x_est_store(:,ii) = x_est;
         if fo.use_smoother && fo.use_EKF
-            x_est_store(:,ii) = state + x_est;
-            if ii == 1 || dt == 0
-                b_store(:,ii) = b_last;
-            else
-                A = propagator_opts.OD.A_mat_handle(state(1:propagator_opts.OD.state_len),propagator_opts.OD.A_params);
-                tbs_dot = two_body_state_dot(dt, state, smoother_propagator_opts);
-                b_dot = @(t, b_state, opts) A*last_state(1:propagator_opts.OD.state_len) + tbs_dot - A*state;
-%                 b_dot = @(t, b_state, opts) tbs_dot - A*state;
-                [~,b_int] = ode45(b_dot, times, b_last, fo.ode_opts);
-                b_store(:,ii) = b_int(end,:)';
-                b_last = b_int(end,:)';
-            end
+            state_ap_store(:,ii) = ref_state_at_obs(1:num_state_store)+x_ap;
         end
         prefit_range_store(ii) = y1(ii);
         state_store(:,ii) = ...
             state(1:num_state_store) + x_est(1:num_state_store);
-        state_ap_store(:,ii) = ref_state_at_obs(1:num_state_store)+x_ap;
         EKF_cov_store(:,ii) = ...
             diag(P(1:num_variance_store,1:num_variance_store));
     end
@@ -340,35 +319,27 @@ output.cov_store = EKF_cov_store;
 output.state_store = state_store;
 output.x_est_store = x_est_store;
 output.STM_accum_store = STM_accum_store;
+output.state_ap_store = state_ap_store;
 
 %% Smoothed state
 if fo.use_smoother
     % deviation at time k with information up to l (the end)
     x_l_k = x_est_store(:,end);
+    if fo.use_EKF
+        x_l_k = state_store(:,end);
+    end
     x_l_k_store(:,end) = x_l_k;
     P_l_k = P_smooth_store(:,:,end);
     P_smoothed_diag(:,end) = diag(P_l_k);
     if fo.use_EKF
         bk = zeros(consts.state_len,1);
     end
-    for ii = 1:(num_obs-1) %-1?
+    for ii = 1:(num_obs-1) 
         Sk = P_smooth_store(:,:,end-ii) * STM_smooth_store(:,:,end-ii+1)' ...
             /P_ap_smooth_store(:,:,end-ii+1);
         if fo.use_EKF
-            if ObsData(end-ii, obs_t_idx) ~= ObsData(end-ii+1, obs_t_idx)
-                bk = b_store(:,end-ii+1);
-                x_l_k = x_est_store(:,end-ii) ...
-                    + Sk*(x_l_k ...
-                    - STM_smooth_store(:,:,end-ii+1)*x_est_store(:,end-ii)...
-                    - bk);
-            else
-                % If the observations are the same, the smoothed estimate
-                % will be the same!
-                
-            end
-            x_l_k = x_est_store(:,end-ii) ...
-                    + Sk*(x_l_k ...
-                    - STM_smooth_store(:,:,end-ii+1)*x_est_store(:,end-ii));
+            x_l_k = state_store(:,end-ii) ...
+                    + Sk*(x_l_k - state_ap_store(:,end-ii+1));
         else
             x_l_k = x_est_store(:,end-ii) ...
                 + Sk*(x_l_k - STM_smooth_store(:,:,end-ii+1)*x_est_store(:,end-ii));
