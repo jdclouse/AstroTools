@@ -22,9 +22,28 @@ num_obs = length(meas_store);
 P = eye(6)*1e2;
 storage = UnscentedKalmanFilter(state, P, meas_store, filter_opts);
 
-plot_cov_err_envelope(storage.cov_store, storage.state_store - true_state*1e3)
-title('CKF State Error, with covariance envelope')
-state_error = storage.smoothed_state_store - true_state*1e3;
-plot_cov_err_envelope(storage.P_smoothed_diag, state_error)
-title('CKF Smoothed State Error, with smoothed covariance envelope')
+pos_cov = arrayfun(@(ii) norm(storage.Pt_store(:,ii)), 1:num_obs);
+plot_cov_err_envelope(pos_cov, storage.X_est_store - true_state*1e3)
+title('UKF State Error, with covariance envelope')
+% state_error = storage.smoothed_state_store - true_state*1e3;
+% plot_cov_err_envelope(storage.P_smoothed_diag, state_error)
+% title('CKF Smoothed State Error, with smoothed covariance envelope')
 
+
+sig_range = 0.01; % m
+sig_rangerate = 0.001; %m/s
+figure
+subplot(2,1,1)
+plot(1:num_obs, storage.pfr_store(1,:),'.','LineWidth',1)
+hold on
+plot(1:num_obs,3*sig_range*ones(1,num_obs),'r--')
+plot(1:num_obs,-3*sig_range*ones(1,num_obs),'r--')
+% title(sprintf('Range RMS = %.4e m',output.range_RMS))
+ylabel('m')
+subplot(2,1,2)
+plot(1:num_obs, storage.pfr_store(2,:),'.','LineWidth',1)
+hold on
+plot(1:num_obs,3*sig_rangerate*ones(1,num_obs),'r--')
+plot(1:num_obs,-3*sig_rangerate*ones(1,num_obs),'r--')
+% title(sprintf('Range-Rate RMS = %.4e m/s',output.rangerate_RMS))
+ylabel('m/s'),xlabel('Observation')

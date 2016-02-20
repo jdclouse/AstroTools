@@ -111,18 +111,20 @@ for ii = 1:num_obs
     % Innovation and cross-correlation
     Pyy = R + w_0_c*w_0_c*(y_meas(:,1)-y_mean)*(y_meas(:,1)-y_mean)';
     Pxy = w_0_c*w_0_c*(sig_pts_new(:,1) - X_ap)*(y_meas(:,1)-y_mean)';
-    for jj = 1:num_sig_pts
+    for jj = 2:num_sig_pts
         Pyy = Pyy + w_i*w_i*(y_meas(:,jj)-y_mean)*(y_meas(:,jj)-y_mean)';
-        Pxy = w_i*w_i*(sig_pts_new(:,jj) - X_ap)*(y_meas(:,jj)-y_mean)';
+        Pxy = Pxy + ...
+            w_i*w_i*(sig_pts_new(:,jj) - X_ap)*(y_meas(:,jj)-y_mean)';
     end
     
     % Measurement update
     Kt = Pxy/Pyy;
     X_est = X_ap + Kt*(y_obs - y_mean);
-    Pt = Pbar_t - Kt*Pyy*Kt';
+    P = Pbar_t - Kt*Pyy*Kt';
     
     % Post-fit residuals
     y_mean = zeros(2,1);
+    sqrtP = sqrtm(P);
     sig_pts = [X_est, repmat(X_est,1,L) + gamma*sqrtP, ...
         repmat(X_est,1,L) - gamma*sqrtP];
     for jj = 1:num_sig_pts
@@ -139,9 +141,12 @@ for ii = 1:num_obs
     end
     pfr = y_obs - y_mean;
     
+    % Reset
+    last_obs_time = t_obs;
+    
     % Store everything
     X_est_store(:,ii) = X_est;
-    Pt_store(:,ii) = diag(Pt);
+    Pt_store(:,ii) = diag(P);
     pfr_store(:,ii) = pfr;
 end
 

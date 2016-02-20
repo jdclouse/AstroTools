@@ -8,7 +8,7 @@ opts.OD.use = 0; % Don't use this
 % The incoming state is 2L+1 separate states of length L
 state_dot = zeros(length(state),1);
 L = opts.UKF.L;
-for ii = 1:L
+for ii = 1:(2*L+1)
     idx_1 = L*(ii-1)+1;
     idx_L = idx_1 + L - 1;
     state_dot(idx_1:idx_L) = ...
