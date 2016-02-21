@@ -11,9 +11,10 @@ site = fo.site;
 theta_dot = fo.theta_dot;
 fo.ode_opts = odeset('RelTol', 1e-12, 'AbsTol', 1e-20);
 
-L = 6; %FIXME
-alpha = 1; %FIXME options
-beta = 2; %FIXME options
+L = fo.UKF.L; 
+alpha = fo.UKF.alpha; 
+beta = fo.UKF.beta; 
+
 K = 3-L; %FIXME options
 lambda = alpha*alpha*(L+K)-L;
 w_0_m = lambda/(L+lambda);
@@ -131,11 +132,14 @@ for ii = 1:num_obs
     end
     
     % Measurement update
+%     chol_Pyy = chol(Pyy,'lower');
+%     Pyy_inv = eye(2)/(chol_Pyy')/(chol_Pyy);
     Kt = Pxy/Pyy;
     X_est = X_ap + Kt*(y_obs - y_mean);
     P = Pbar_t - Kt*Pyy*Kt';
     
     % Post-fit residuals
+    if alpha == 1
     y_mean = zeros(2,1);
     sqrtP = sqrtm(P);
     sig_pts = [X_est, repmat(X_est,1,L) + gamma*sqrtP, ...
@@ -152,6 +156,7 @@ for ii = 1:num_obs
             y_mean = y_mean + w_i*y_meas;
         end
     end
+    end
     pfr = y_obs - y_mean;
     
     % Reset
@@ -167,5 +172,7 @@ end
 output.X_est_store = X_est_store;
 output.Pt_store = Pt_store;
 output.pfr_store = pfr_store;
+output.range_RMS = sqrt(sum(pfr_store(1,:).*pfr_store(1,:))/num_obs);
+output.rangerate_RMS = sqrt(sum(pfr_store(2,:).*pfr_store(2,:))/num_obs);
 
 end

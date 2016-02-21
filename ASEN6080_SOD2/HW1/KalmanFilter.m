@@ -23,7 +23,7 @@ consts.theta_dot = fo.theta_dot;
 consts.state_len = propagator_opts.OD.state_len;
 
 % Initial covariance: no initial correlation between states.
-P0 = eye(consts.state_len)*1e8;
+P0 = eye(consts.state_len)*500;
 W0 = sqrt(P0);
 
 % A priori state
@@ -318,7 +318,6 @@ output.prefit_range_store = prefit_range_store;
 output.cov_store = EKF_cov_store;
 output.state_store = state_store;
 output.x_est_store = x_est_store;
-output.STM_accum_store = STM_accum_store;
 output.state_ap_store = state_ap_store;
 
 %% Smoothed state
@@ -357,6 +356,7 @@ if fo.use_smoother
     output.smoothed_state_store = smoothed_state_store;
     output.P_smoothed_diag = P_smoothed_diag;
     output.STM_smooth_store = STM_smooth_store;
+    output.STM_accum_store = STM_accum_store;
 end
 
 %%

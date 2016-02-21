@@ -92,3 +92,6 @@ filter_opts.use_smoother = false;
 
 % UKF
 filter_opts.propagator_opts.UKF.L = 6;
+filter_opts.UKF.L = 6; 
+filter_opts.UKF.alpha = 1; 
+filter_opts.UKF.beta = 2; 
