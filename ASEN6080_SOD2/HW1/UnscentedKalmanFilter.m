@@ -123,12 +123,12 @@ for ii = 1:num_obs
     end
     
     % Innovation and cross-correlation
-    Pyy = R + w_0_c*w_0_c*(y_meas(:,1)-y_mean)*(y_meas(:,1)-y_mean)';
-    Pxy = w_0_c*w_0_c*(sig_pts_new(:,1) - X_ap)*(y_meas(:,1)-y_mean)';
+    Pyy = R + w_0_c*(y_meas(:,1)-y_mean)*(y_meas(:,1)-y_mean)';
+    Pxy = w_0_c*(sig_pts_new(:,1) - X_ap)*(y_meas(:,1)-y_mean)';
     for jj = 2:num_sig_pts
-        Pyy = Pyy + w_i*w_i*(y_meas(:,jj)-y_mean)*(y_meas(:,jj)-y_mean)';
+        Pyy = Pyy + w_i*(y_meas(:,jj)-y_mean)*(y_meas(:,jj)-y_mean)';
         Pxy = Pxy + ...
-            w_i*w_i*(sig_pts_new(:,jj) - X_ap)*(y_meas(:,jj)-y_mean)';
+            w_i*(sig_pts_new(:,jj) - X_ap)*(y_meas(:,jj)-y_mean)';
     end
     
     % Measurement update
