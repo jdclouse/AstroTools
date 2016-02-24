@@ -6,7 +6,16 @@ fcnPrintQueue(mfilename('fullpath')) % Add this code to code app
 
 T = (JD - 2451545)/36525;
 
-a = planet.Meeus.J200.a;%*au2km;
+if length(planet.Meeus.J200.a) == 1
+    a = planet.Meeus.J200.a;%*au2km;
+else
+    T_pow = 1;
+    a = 0;
+    for ii = 1:length(planet.Meeus.J200.a) 
+        a = a + planet.Meeus.J200.a(ii)*T_pow;
+        T_pow = T_pow*T;
+    end
+end
 
 L = planet.Meeus.J200.L(1) ...
     + planet.Meeus.J200.L(2)*T ...

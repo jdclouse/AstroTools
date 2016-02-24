@@ -1,4 +1,4 @@
-function [vi, vf] = lambert(ri_vec, rf_vec, dt, DM, Sun)
+function [vi, vf, psi] = lambert(ri_vec, rf_vec, dt, DM, Sun, psi_in)
 %lambert Solve lambert problem using universal variables method
 %   Output initial and final velocities given respective position vectors
 %   Inputs in km, Results in km/s
@@ -15,10 +15,14 @@ cos_df = dot(ri_vec, rf_vec)/(ri*rf);
 
 A = DM*sqrt(ri * rf * (1+cos_df));
 
-psi = 0;
+if nargin < 6
+    psi = 0;
+else
+    psi = psi_in;
+end
 c2 = 1/2;
 c3 = 1/6;
-psi_up_i = 4*pi*pi; % Doubled from Vallado for higher TOF
+psi_up_i = 4*pi*pi + psi; % Doubled from Vallado for higher TOF
 psi_low_i = -4*pi; % Doubled from Vallado for lower TOF
 
 dt_calc = 0;
@@ -79,6 +83,13 @@ first_pass = true;
             c3 = 1/6;
         end
 
+        if (psi_up-psi_low) < 1e-10 && abs(dt_calc-dt) > 100
+            %Get out of here! fell into a bad minimum.
+            psi = 0;
+            vi = zeros(3,1);
+            vf = zeros(3,1);
+            return
+        end
     end
 
     f = 1-y/ri;

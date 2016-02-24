@@ -86,6 +86,13 @@ Jupiter.P_years = 11.856525; %days
 Jupiter.P_days = Jupiter.P_years/Earth.P_years*Earth.P_days; %days
 Jupiter.mu = 1.268e8; %km3/s2
 Jupiter.m = 1.8988e27; %kg
+Jupiter.Meeus.J200.L = [34.351484 3034.9056746 -0.00008501 0.000000004 ];
+Jupiter.Meeus.J200.a = [5.202603191 0.0000001913 ]*au2km;
+Jupiter.Meeus.J200.e = [0.04849485 0.000163244 -0.0000004719 -0.00000000197 ];
+Jupiter.Meeus.J200.i = [1.303270 -0.0019872 0.00003318 0.000000092 ];
+Jupiter.Meeus.J200.RAAN = [100.464441 0.1766828 0.00090387 -0.000007032 ];
+Jupiter.Meeus.J200.Pi = [14.331309 0.2155525 0.00072252 -0.000004590 ];
+
 
 %% Saturn
 Saturn.name = 'Saturn';
