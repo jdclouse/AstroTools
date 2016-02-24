@@ -76,6 +76,7 @@ for ii = 1:num_obs
 
         sig_pts_new = reshape(X(end,:)',L,num_sig_pts);
     else
+        
         sig_pts_new = sig_pts;
 %         X_ap = X_est;
 %         Pbar_t = P;
@@ -142,7 +143,7 @@ for ii = 1:num_obs
     P = Pbar_t - Pxy*Kt'; % this removes an inversion
     
     % Post-fit residuals
-    if alpha == 1
+%     if alpha == 1
     y_mean = zeros(2,1);
     sqrtP = sqrtm(P);
     sig_pts = [X_est, repmat(X_est,1,L) + gamma*sqrtP, ...
@@ -159,7 +160,7 @@ for ii = 1:num_obs
             y_mean = y_mean + w_i*y_sig_comp;
         end
     end
-    end
+%     end
     pfr = y_obs - y_mean;
     
     % Reset

@@ -1,6 +1,6 @@
 function accel = J2_accel( pos, params )
 %J2_accel Acceleration due to J2
-fcnPrintQueue(mfilename('fullpath')) % Add this code to code app 
+% fcnPrintQueue(mfilename('fullpath')) % Add this code to code app 
 
 % Defaults (earth)
 J2 = 0.00108248;
@@ -9,15 +9,15 @@ Re = 6378.145; %km
 
 % Use input params if desired
 if nargin > 1 % There are params
-    if isfield(params, 'J2')
+%     if isfield(params, 'J2')
         J2 = params.J2;
-    end
-    if isfield(params, 'mu')
+%     end
+%     if isfield(params, 'mu')
         mu = params.mu;
-    end
-    if isfield(params, 'Re')
+%     end
+%     if isfield(params, 'Re')
         Re = params.Re;
-    end
+%     end
 end
 
 %Calculate accel

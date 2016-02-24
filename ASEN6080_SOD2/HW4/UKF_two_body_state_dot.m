@@ -1,6 +1,6 @@
 function state_dot = UKF_two_body_state_dot(t, state, opts)
 %UKF_two_body_state_dot Calculate state derivative for UKF sigma points
-fcnPrintQueue(mfilename('fullpath')) % Add this code to code app 
+% fcnPrintQueue(mfilename('fullpath')) % Add this code to code app 
 
 opts.OD.use = 0; % Don't use this
 
