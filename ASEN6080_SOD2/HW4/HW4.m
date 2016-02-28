@@ -35,8 +35,8 @@ toc
 plot_cov_err_envelope(storage.Pt_store(1:3,:), storage.X_est_store - true_state*1e3)
 title('UKF State Error, with covariance envelope')
 
-residual_plot(storage.pfr_store, sigs)
-title('UKF, No Q')
+residual_plot(storage.pfr_store, sigs,'Q=0')
+% title('UKF, No Q')
 storage.range_RMS = sqrt(sum(storage.pfr_store(1,:).*storage.pfr_store(1,:))/num_obs);
 storage.rangerate_RMS = sqrt(sum(storage.pfr_store(2,:).*storage.pfr_store(2,:))/num_obs);
 
@@ -61,8 +61,8 @@ storage_withQ2 = UnscentedKalmanFilter(state, P, meas_store, filter_opts);
 plot_cov_err_envelope(storage_withQ2.Pt_store(1:3,:), storage_withQ2.X_est_store - true_state*1e3)
 title('UKF State Error, with covariance envelope')
 
-residual_plot(storage_withQ2.pfr_store, sigs)
-title('UKF, Q = 1e-6')
+residual_plot(storage_withQ2.pfr_store, sigs, 'UKF Q=1e-6')
+% title('UKF, Q = 1e-6')
 storage_withQ2.range_RMS = sqrt(sum(storage_withQ2.pfr_store(1,:).*storage_withQ2.pfr_store(1,:))/num_obs);
 storage_withQ2.rangerate_RMS = sqrt(sum(storage_withQ2.pfr_store(2,:).*storage_withQ2.pfr_store(2,:))/num_obs);
 
@@ -70,17 +70,17 @@ storage_withQ2.rangerate_RMS = sqrt(sum(storage_withQ2.pfr_store(2,:).*storage_w
 P = eye(6)*1e2;
 filter_opts.propagator_opts.J3.use = 0;
 filter_opts.use_SNC = 1;
-filter_opts.UKF.alpha = 1e-3; 
+filter_opts.UKF.alpha = 1e-2; 
 
 filter_opts.SNC_Q = eye(3)*1e-6;
 storage_reduced_alpha = UnscentedKalmanFilter(state, P, meas_store, filter_opts);
 
 pos_cov = arrayfun(@(ii) norm(storage_reduced_alpha.Pt_store(:,ii)), 1:num_obs);
 plot_cov_err_envelope(storage_reduced_alpha.Pt_store(1:3,:), storage_reduced_alpha.X_est_store - true_state*1e3)
-title('UKF State Error, with covariance envelope')
+% title('UKF State Error, with covariance envelope')
 
-residual_plot(storage_reduced_alpha.pfr_store, sigs)
-title('UKF, alpha = 1e-4')
+residual_plot(storage_reduced_alpha.pfr_store, sigs, '\alpha=1e-2')
+% title('UKF, alpha = 1e-4')
 storage_reduced_alpha.range_RMS = sqrt(sum(storage_reduced_alpha.pfr_store(1,:).*storage_reduced_alpha.pfr_store(1,:))/num_obs);
 storage_reduced_alpha.rangerate_RMS = sqrt(sum(storage_reduced_alpha.pfr_store(2,:).*storage_reduced_alpha.pfr_store(2,:))/num_obs);
 
@@ -95,19 +95,19 @@ storage_big_ap = UnscentedKalmanFilter(state_big_ap_error, P, meas_store, filter
 
 pos_cov = arrayfun(@(ii) norm(storage_big_ap.Pt_store(:,ii)), 1:num_obs);
 plot_cov_err_envelope(storage_big_ap.Pt_store(1:3,:), storage_big_ap.X_est_store - true_state*1e3)
-title('UKF State Error, with covariance envelope')
+% title('UKF State Error, with covariance envelope')
 
-residual_plot(storage_big_ap.pfr_store, sigs)
-title('UKF, large a priori error')
+residual_plot(storage_big_ap.pfr_store, sigs,'UKF large a priori')
+% title('UKF, large a priori error')
 storage_big_ap.range_RMS = sqrt(sum(storage_big_ap.pfr_store(1,:).*storage_big_ap.pfr_store(1,:))/num_obs);
 storage_big_ap.rangerate_RMS = sqrt(sum(storage_big_ap.pfr_store(2,:).*storage_big_ap.pfr_store(2,:))/num_obs);
 
 
 storage_EKFbig_ap = KalmanFilter(state_big_ap_error, meas_store, filter_opts);
-plot_cov_err_envelope(pos_cov, storage_EKFbig_ap.state_store - true_state*1e3)
+plot_cov_err_envelope(storage_EKFbig_ap.cov_store, storage_EKFbig_ap.state_store - true_state*1e3)
 title('EKF State Error, with covariance envelope')
 
-residual_plot(storage_EKFbig_ap.pfr_store, sigs)
+residual_plot(storage_EKFbig_ap.pfr_store, sigs,'EKF large a priori')
 title('EKF, large a priori error')
 
 %% Add J3
@@ -122,10 +122,10 @@ plot_cov_err_envelope(storage_J3.Pt_store(1:3,:), storage_J3.X_est_store - true_
 % plot_cov_err_envelope(storage_J3.Pt_store(1,:), storage_J3.X_est_store(1,:) - true_state(1,:)*1e3)
 % pos_cov = arrayfun(@(ii) norm(storage_J3.Pt_store(:,ii)), 1:500);
 % plot_cov_err_envelope(pos_cov, storage_J3.X_est_store - true_state(:,1:500)*1e3)
-title('UKF State Error, with covariance envelope')
+% title('UKF State Error, with covariance envelope')
 
 state_error = storage_J3.X_est_store - true_state*1e3;
 J3_RMS = sqrt(sum(state_error.*state_error,2)./num_obs)
 
-residual_plot(storage_J3.pfr_store, sigs)
+residual_plot(storage_J3.pfr_store, sigs, 'UKF with J3')
 title('UKF, with J3')

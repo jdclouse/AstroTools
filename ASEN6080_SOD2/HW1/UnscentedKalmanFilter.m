@@ -162,6 +162,9 @@ for ii = 1:num_obs
     end
 %     end
     pfr = y_obs - y_mean;
+    if ~isreal(pfr)
+        zzzzz = 1;
+    end
     
     % Reset
     last_obs_time = t_obs;
