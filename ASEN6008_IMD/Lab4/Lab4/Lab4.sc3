@@ -189,29 +189,6 @@ VO_V100
 
             Begin Globe
                 AA Yes
-                BeginCentralBody "Moon"
-                    Show Yes
-                    Textured Yes
-                    AltOffset 0.000000
-                    Color #ffffff
-                    SpecularColor #545454
-                    Shininess 40.000000
-                    ShowWater No
-                    _AGI_PIBEGINTERRAINIMAGECALLDATA "SRC"
-                        BlendMode Value
-                        BlendFactor 1.000000
-                        BlendAltitudeLowerFactor 1.000000
-                        BlendAltitudeUpperFactor 0.000000
-                        BlendAltitudeLowerAltitude 500000.000000
-                        BlendAltitudeUpperAltitude 2500000.000000
-                        TextureRole Day
-                        URI "file:///Moon.jp2"
-                        BeginImageSetDefOn
-                        End
-                        InBase Yes
-                        BaseOn Yes
-                    End
-                EndCentralBody
                 BeginCentralBody "Sun"
                     Show Yes
                     Textured No
@@ -229,6 +206,29 @@ VO_V100
                         BlendAltitudeUpperAltitude 2500000.000000
                         TextureRole Day
                         URI "file:///Sun.jp2"
+                        BeginImageSetDefOn
+                        End
+                        InBase Yes
+                        BaseOn Yes
+                    End
+                EndCentralBody
+                BeginCentralBody "Moon"
+                    Show Yes
+                    Textured Yes
+                    AltOffset 0.000000
+                    Color #ffffff
+                    SpecularColor #545454
+                    Shininess 40.000000
+                    ShowWater No
+                    _AGI_PIBEGINTERRAINIMAGECALLDATA "SRC"
+                        BlendMode Value
+                        BlendFactor 1.000000
+                        BlendAltitudeLowerFactor 1.000000
+                        BlendAltitudeUpperFactor 0.000000
+                        BlendAltitudeLowerAltitude 500000.000000
+                        BlendAltitudeUpperAltitude 2500000.000000
+                        TextureRole Day
+                        URI "file:///Moon.jp2"
                         BeginImageSetDefOn
                         End
                         InBase Yes
@@ -376,15 +376,19 @@ VO_V100
             End
             Begin CentralBodyOpts
                 BeginCentralBody
-                    Name "Moon"
-                    ShowLabel Yes
-                EndCentralBody
-                BeginCentralBody
                     Name "Sun"
                     ShowLabel No
                 EndCentralBody
                 BeginCentralBody
+                    Name "Moon"
+                    ShowLabel Yes
+                EndCentralBody
+                BeginCentralBody
                     Name "Earth"
+                    ShowLabel No
+                EndCentralBody
+                BeginCentralBody
+                    Name "Mars"
                     ShowLabel No
                 EndCentralBody
             End CentralBodyOpts
@@ -743,19 +747,19 @@ VO_V100
                 UseLayer                Yes
                 FromName                "Mars"
                 FromRegPosAttView       "Point"
-                FromPosition            166724183.282178160000000000  62679940.315775327000000000  51955679.449774571000000000
-                FromOffset              166724183.282178160000000000  62679940.315767698000000000  51955679.449774571000000000
-                FromOffsetLLR           0.283819134157269560  0.359603200612459100  185540078.786728080000000000
+                FromPosition            14416177.287909901000000000  -15245764.719319593000000000  139749767.633874830000000000
+                FromOffset              14416177.287909901000000000  -15245764.719334852000000000  139749767.633859570000000000
+                FromOffsetLLR           1.421767141106437400  -0.813358949913892460  141316159.950628100000000000
                 ToName                  "Mars"
                 ToRegPosAttView         "Point"
-                ToPosition              0.000000000000000000  0.000007629394531250  0.000000000000000000
+                ToPosition              0.000000000000000000  0.000015258789062500  0.000015258789062500
                 ToOffset                0.000000000000000000  0.000000000000000000  0.000000000000000000
                 ToOffsetLLR             0.000000000000000000  0.000000000000000000  0.000000000000000000
                 ConstantDistanceType    None
                 ConstantDistanceValue   1.000000
-                UpVector                -0.262112716228555980  -0.098541249900162692  0.959992992713697980
-                ViewRad                 185540078.786728080000000000
-                ViewQuat                0.1770367 0.1391537 0.0252932 -0.9739890
+                UpVector                -0.679446097695818980  0.718545224442261990  0.148478149089833950
+                ViewRad                 141316159.950628160000000000
+                ViewQuat                0.2997511 -0.5992850 0.2581055 0.6959802
                 ViewCoordSystem         From
                 ViewFromToMode          FromTo
                 ViewToCBIMtx            1.000000000000000000 0.000000000000000000 0.000000000000000000 0.000000000000000000 1.000000000000000000 0.000000000000000000  0.000000000000000000 0.000000000000000000 1.000000000000000000
@@ -769,7 +773,7 @@ VO_V100
                 MinAngleToUpAxis        0.0087266
                 InitUpAxisUp            Yes
                 TempUpAxisUp            Yes
-                CrossAxis               0.3519028 -0.9360365 0.0000000
+                CrossAxis               -0.7265991 -0.6870617 0.0000000
                 DefaultOffset           18679045.0000000
                 BaseDefaultOffset       3396190.0000000
             End View

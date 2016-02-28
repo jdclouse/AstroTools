@@ -105,9 +105,9 @@ BEGIN Animation
 
     StartTime          21 Sep 2007 12:00:00.000000000
     EndTime            30 Sep 2008 12:00:00.000000000
-    CurrentTime        21 Sep 2007 12:00:00.000000000
+    CurrentTime        30 Sep 2008 14:00:00.000000000
     Direction          Forward
-    UpdateDelta        60.000000
+    UpdateDelta        1800.000000
     RefreshDelta       0.010000
     XRealTimeMult      1.000000
     RealTimeOffset     0.000000
@@ -188,9 +188,9 @@ BEGIN MapData
         BEGIN MapAttributes
             PrimaryBody          Sun
             SecondaryBody        Earth
-            CenterLatitude       89.999999
-            CenterLongitude      0.000000
-            ProjectionAltitude   63621860.206063
+            CenterLatitude       89.604338
+            CenterLongitude      66.626959
+            ProjectionAltitude   63621860.206065
             FieldOfView          35.000000
             OrthoDisplayDistance 500000000000.000000
             TransformTrajectory  On
@@ -212,7 +212,7 @@ BEGIN MapData
             ShowImageNames       Off
             ImageNameFont        0
             Projection           Orthographic
-            Resolution           VeryLow
+            Resolution           None
             CoordinateSys        ECI
             UseBackgroundImage   On
             UseBingForBackground Off
@@ -225,8 +225,8 @@ BEGIN MapData
             UseCloudsFile        Off
             BEGIN ZoomLocations
                 BEGIN ZoomLocation
-                    CenterLat    -15.476393
-                    CenterLon    91.008522
+                    CenterLat    89.604338
+                    CenterLon    66.626959
                     ZoomWidth    360.000000
                     ZoomHeight   180.000000
                 End ZoomLocation
@@ -790,8 +790,8 @@ END MapData
 		LaunchWindowUseEntireTraj               Yes
 		LaunchWindowTrajMETStart                0.000
 		LaunchWindowTrajMETStop                 900.000
-		LaunchWindowStart                       0.000
-		LaunchWindowStop                        0.000
+		LaunchWindowStart                       265791602.000
+		LaunchWindowStop                        233478002.000
 		LaunchMETOffset                         0.000
 		LaunchWindowUseSecEphem                 No 
 		LaunchWindowUseScenFolderForSecEphem    Yes

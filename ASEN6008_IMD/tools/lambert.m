@@ -85,6 +85,8 @@ first_pass = true;
 
         if (psi_up-psi_low) < 1e-10 && abs(dt_calc-dt) > 100
             %Get out of here! fell into a bad minimum.
+            fprintf('Lamber solver fell into a bad minimum, returning.\n')
+            fprintf('psi = %.3f\n',psi)
             psi = 0;
             vi = zeros(3,1);
             vf = zeros(3,1);

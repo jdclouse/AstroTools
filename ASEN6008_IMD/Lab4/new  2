@@ -1,0 +1,11 @@
+State Vector in Coordinate System: Mars ICRF                                                   
+                                                                                               
+Parameter Set Type:  Cartesian                                                                 
+         X:     2135.3943692016601000 km              Vx:       -2.2248911739714838 km/sec     
+         Y:     2884.8433790283202000 km              Vy:        2.0202161388453153 km/sec     
+         Z:     -224.4495659484863400 km              Vz:        4.7983476786506198 km/sec     
+                                                                                               
+Parameter Set Type:  Keplerian                                                                 
+       sma:    -5199.6184050768979000 km            RAAN:         55.71374730650864 deg        
+       ecc:        1.6916264365467866                  w:         355.7881295309361 deg        
+       inc:         58.18946207088499 deg             TA:    6.101001533716404e-008 deg  
