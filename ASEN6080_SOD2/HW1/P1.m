@@ -45,6 +45,8 @@ site(6).r = ellipsoidal2cart(site(6).lat_lon_alt(1),...
     site(6).lat_lon_alt(2),site(6).lat_lon_alt(3)); % km
 num_sites = 6;
 
+propagator_opts.OD.use = 0;
+propagator_opts.drag.use = 0;
 propagator_opts.J2.use = 1;
 propagator_opts.J2.params.J2 = 0.0010826267;
 propagator_opts.J2.params.mu = mu; 
@@ -63,7 +65,7 @@ RAAN = 210*pi/180; %rad
 w = 35*pi/180; %rad
 f = 0;
 orb_period = 2*pi*sqrt(a*a*a/3.986e5);
-state_i = oe2cart([a,e,i,RAAN,w,f]);
+% state_i = oe2cart([a,e,i,RAAN,w,f]);
 [state_i(1:3),state_i(4:6)] = OE2cart(a,e,i,RAAN,w,f,mu);
 
 % Prop time
