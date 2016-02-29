@@ -1,5 +1,5 @@
 function x = cholesky_linear_solver(Y,N)
-fcnPrintQueue(mfilename('fullpath')) % Add this code to code app 
+% fcnPrintQueue(mfilename('fullpath')) % Add this code to code app 
 
 vlen = length(N);
 z = zeros(vlen,1);

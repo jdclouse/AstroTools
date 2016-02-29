@@ -20,6 +20,6 @@ sigs = [sig_range; sig_rangerate];
 % filter_opts.use_SNC = 0;
 filter_opts.propagator_opts.J3.use = 0;
 tic
-storage = UnscentedKalmanFilter(state, P, meas_store, filter_opts);
+storage = SRIF(state, P, meas_store, filter_opts);
 toc
 
