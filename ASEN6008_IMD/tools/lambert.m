@@ -6,7 +6,7 @@ function [vi, vf, psi] = lambert(ri_vec, rf_vec, dt, DM, Sun, psi_in)
 
 fcnPrintQueue(mfilename('fullpath')) % Add this code to code app 
 
-tol = 1e-6;
+tol = 1e-3;
 
 ri = norm(ri_vec);
 rf = norm(rf_vec);
@@ -23,7 +23,7 @@ end
 c2 = 1/2;
 c3 = 1/6;
 psi_up_i = 4*pi*pi + psi; % Doubled from Vallado for higher TOF
-psi_low_i = -4*pi; % Doubled from Vallado for lower TOF
+psi_low_i = -4*pi*8; % Doubled from Vallado for lower TOF
 
 dt_calc = 0;
 
@@ -85,8 +85,8 @@ first_pass = true;
 
         if (psi_up-psi_low) < 1e-10 && abs(dt_calc-dt) > 100
             %Get out of here! fell into a bad minimum.
-            fprintf('Lamber solver fell into a bad minimum, returning.\n')
-            fprintf('psi = %.3f\n',psi)
+%             fprintf('Lamber solver fell into a bad minimum, returning.\n')
+%             fprintf('psi = %.3f\n',psi)
             psi = 0;
             vi = zeros(3,1);
             vf = zeros(3,1);

@@ -125,3 +125,12 @@ Neptune.J2 = 0.004;
 Neptune.P_years = 163.7232045; %days
 Neptune.P_days = Neptune.P_years/Earth.P_years*Earth.P_days; %days
 Neptune.mu = 6.809e6; %km3/s2
+
+%% Pluto
+Pluto.name = 'Pluto';
+Pluto.Meeus.J200.L = [238.92903833 145.20780515 0 0]; %deg
+Pluto.Meeus.J200.a = [39.48211675 -0.00031596 0 0]*au2km; %km
+Pluto.Meeus.J200.e = [0.24882730 0.00005170 0 0];
+Pluto.Meeus.J200.i = [17.14001206 0.00004818 0 0]; %deg
+Pluto.Meeus.J200.RAAN = [110.30393684 -0.01183482 0 0];%deg
+Pluto.Meeus.J200.Pi = [224.06891629 -0.04062942 0 0];%deg
