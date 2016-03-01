@@ -1,6 +1,6 @@
 %% SRIF
 
-function output = SRIF(state_ap, P0, meas_store, fo)
+function output = SRIF(x0_ap, P0, meas_store, fo)
 % filter_params; % load filter params
 % ObsData = load('ObsData.txt');
 ObsData = meas_store;
@@ -30,6 +30,7 @@ y2 = zeros(num_obs,1);
 % init
 x_est = x0_ap;
 R_bar = inv(chol(P0,'upper'));
+R = R_bar;
 obs_time_last = ObsData(1,obs_t_idx);
 
 num_state_store = 6;
@@ -128,6 +129,8 @@ for ii = 1:num_obs
     % Time update
     STM_accum = STM_obs2obs*STM_accum;
     x_ap = STM_obs2obs*x_est;
+    R_bar = R/STM_obs2obs;
+    b_bar = R_bar*x_ap;
     
     % H~
     consts.t = obs_time;
@@ -139,7 +142,7 @@ for ii = 1:num_obs
     % Measurement Update
     y = [y1(ii);y2(ii)];
     
-    xformed = householder([R_bar B_bar; H y]);
+    xformed = householder([R_bar b_bar; H y]);
     Rj = xformed(1:6,1:6);
     bj = xformed(1:6,end);
     

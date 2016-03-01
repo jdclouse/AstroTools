@@ -4,7 +4,7 @@
 % clearvars -except function_list 
 global function_list;
 function_list = {};
-addpath('C:\Users\John\Documents\Astro\ASEN6080_SOD\tools\')
+addpath('C:\Users\John\Documents\Astro\ASEN6080_SOD2\tools\')
 
 % Load the params file
 filter_params;

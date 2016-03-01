@@ -66,6 +66,7 @@ w = 35*pi/180; %rad
 f = 0;
 orb_period = 2*pi*sqrt(a*a*a/3.986e5);
 % state_i = oe2cart([a,e,i,RAAN,w,f]);
+state_i = zeros(6,1);
 [state_i(1:3),state_i(4:6)] = OE2cart(a,e,i,RAAN,w,f,mu);
 
 % Prop time
