@@ -125,9 +125,9 @@ for ii = 1:num_obs
     t_obs = ObsData(ii,obs_t_idx);
     
     r_comp = compute_range_ECFsite(ref_state_at_obs(1:3),...
-        site(site_num).r*1e3,theta_dot*t_obs);
+        site(site_num).r,theta_dot*t_obs);
     rr_comp = compute_range_rate_ECFsite(ref_state_at_obs(1:6),...
-        site(site_num).r*1e3,theta_dot*t_obs, theta_dot);
+        site(site_num).r,theta_dot*t_obs, theta_dot);
     
     y1(ii) = (ObsData(ii,obs_r_idx)-r_comp);
     y2(ii) = (ObsData(ii,obs_rr_idx)-rr_comp);
@@ -142,7 +142,7 @@ for ii = 1:num_obs
     % H~
     consts.t = obs_time;
     consts.site = site_num;
-    consts.site_r = site(site_num).r*1e3;
+    consts.site_r = site(site_num).r;
     H_tilda = fo.H_tilda_handle(ref_state_at_obs, consts);
 %     H = H_tilda*STM_accum;
     H = H_tilda;

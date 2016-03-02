@@ -1,3 +1,5 @@
+clear
+
 theta0 = 0;
 theta_dot = 7.29211585275553e-005;
 JD_init = 2456296.25;
