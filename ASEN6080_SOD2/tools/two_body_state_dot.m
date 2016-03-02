@@ -62,7 +62,8 @@ state_dot(4:6) = -mu * r_vec/(r*r*r); % Simple 2-body
         opts.OD.state_len;
         % The OD.state_len is the length of the estimation state. The rest
         % is the STM, numerically propagated with the A-Matrix
-        A = opts.OD.A_mat_handle(state(1:opts.OD.state_len),opts.OD.A_params);
+%         A = opts.OD.A_mat_handle(state(1:opts.OD.state_len),opts.OD.A_params);
+        A = A_state_rv(state(1:opts.OD.state_len),opts.OD.A_params);
         
         % Block matrix multiplication
 %         long_dim = 9;

@@ -1,9 +1,9 @@
 function A = A_state_rv(state, consts)
 %stat_od_proj_A Calculate A matrix for Stat OD project
-fcnPrintQueue(mfilename('fullpath')) % Add this code to code app 
+% fcnPrintQueue(mfilename('fullpath')) % Add this code to code app 
 
 % Init A, set up local vars
-A = zeros(consts.state_len);
+% A = zeros(consts.state_len);
 x = state(1);
 y = state(2);
 z = state(3);
@@ -64,3 +64,4 @@ A(3,:) = A3;
 A(4,:) = A4;
 A(5,:) = A5;
 A(6,:) = A6;
+A = [ A1; A2; A3; A4; A5; A6];
