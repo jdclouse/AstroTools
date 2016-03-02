@@ -1,9 +1,10 @@
-function [ out_A ] = householder( A )
+function [ out_A ] = householder( A, rows, cols)
 %householder Transformation for StatOD
 %   This only householders out to cols-1!
 
-[rows, cols] = size(A);
+% [rows, cols] = size(A);
 n = cols - 1;
+% n = cols;
 for kk = 1:n
     sig = sign(A(kk,kk))*sqrt(sum(A(kk:end,kk).*A(kk:end,kk)));
     uk = A(kk,kk) + sig;

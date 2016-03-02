@@ -23,3 +23,15 @@ tic
 storage = SRIF(state, P, meas_store, filter_opts);
 toc
 
+plot_cov_err_envelope(storage.cov_store(1:3,:), storage.state_store - true_state*1e3)
+residual_plot(storage.pfr_store, sigs,'Q=0')
+
+
+%% CKF
+
+filter_opts.use_EKF = 0;
+filter_opts.use_SNC = 0;
+
+CKF_storage = KalmanFilter(state, meas_store, filter_opts);
+plot_cov_err_envelope(CKF_storage.cov_store(1:3,:), CKF_storage.state_store - true_state*1e3)
+residual_plot(CKF_storage.pfr_store, sigs,'Q=0')

@@ -27,11 +27,16 @@ fo.ode_opts = odeset('RelTol', 1e-12, 'AbsTol', 1e-20);
 y1 = zeros(num_obs,1);
 y2 = zeros(num_obs,1);
 
+sig_range = 0.01; % m
+sig_rangerate = 0.001; %m/s
+% W = [1/(sig_range*sig_range) 0; 0 1/(sig_rangerate*sig_rangerate)];
+meas_noise_cov = [(sig_range*sig_range) 0; 0 (sig_rangerate*sig_rangerate)];
+
 % init
 state = X0_ap;
 x_est = zeros(consts.state_len,1);
 R_bar = inv(chol(P0,'upper'));
-R = R_bar;
+Rj = R_bar;
 obs_time_last = ObsData(1,obs_t_idx);
 
 num_state_store = 6;
@@ -130,7 +135,8 @@ for ii = 1:num_obs
     % Time update
     STM_accum = STM_obs2obs*STM_accum;
     x_ap = STM_obs2obs*x_est;
-    R_bar = R/STM_obs2obs;
+%     R_bar = householder( R/STM_obs2obs, 6, 6);
+    R_bar = Rj/STM_obs2obs;
     b_bar = R_bar*x_ap;
     
     % H~
@@ -138,12 +144,13 @@ for ii = 1:num_obs
     consts.site = site_num;
     consts.site_r = site(site_num).r*1e3;
     H_tilda = fo.H_tilda_handle(ref_state_at_obs, consts);
-    H = H_tilda*STM_accum;
+%     H = H_tilda*STM_accum;
+    H = H_tilda;
     
     % Measurement Update
     y = [y1(ii);y2(ii)];
     
-    xformed = householder([R_bar b_bar; H y]);
+    xformed = householder([R_bar b_bar; H  y],8,7);
     Rj = xformed(1:6,1:6);
     bj = xformed(1:6,end);
     
@@ -151,6 +158,9 @@ for ii = 1:num_obs
     
     % Track the last time
     obs_time_last = obs_time;    
+    
+    % Set up ref state for next pass
+    state = ref_state_at_obs;
 
     pfr = y-H_tilda*x_est;
     pfr_store(:,ii) = pfr;
@@ -160,7 +170,7 @@ for ii = 1:num_obs
     prefit_range_store(ii) = y1(ii);
     state_store(:,ii) = ...
         state(1:num_state_store) + x_est(1:num_state_store);
-    Rinv = inv(R);
+    Rinv = inv(Rj);
     P = Rinv*Rinv';
     cov_store(:,ii) = ...
         diag(P(1:num_variance_store,1:num_variance_store));
@@ -170,7 +180,7 @@ fprintf('\n');
 
 RMS_accum = 0;
 for ii = 1:num_obs
-    RMS_accum = RMS_accum + pfr_store(:,ii)'/R*pfr_store(:,ii);
+    RMS_accum = RMS_accum + pfr_store(:,ii)'/meas_noise_cov*pfr_store(:,ii);
 end
 output.RMS = sqrt(RMS_accum/num_obs);
 
@@ -178,7 +188,7 @@ output.rangerate_RMS = sqrt(sum(pfr_store(2,:).*pfr_store(2,:))/num_obs);
 output.range_RMS = sqrt(sum(pfr_store(1,:).*pfr_store(1,:))/num_obs);
 output.pfr_store = pfr_store;
 output.prefit_range_store = prefit_range_store;
-output.cov_store = EKF_cov_store;
+output.cov_store = cov_store;
 output.state_store = state_store;
 output.x_est_store = x_est_store;
-output.state_ap_store = state_ap_store;
+% output.state_ap_store = state_ap_store;
