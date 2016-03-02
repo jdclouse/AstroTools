@@ -147,7 +147,7 @@ for ii = 1:num_obs
     Rj = xformed(1:6,1:6);
     bj = xformed(1:6,end);
     
-    x_est = cholesky_linear_solver(Rj,bj);
+    x_est = backsub( Rj, bj, 6);
     
     % Track the last time
     obs_time_last = obs_time;    
@@ -160,6 +160,8 @@ for ii = 1:num_obs
     prefit_range_store(ii) = y1(ii);
     state_store(:,ii) = ...
         state(1:num_state_store) + x_est(1:num_state_store);
+    Rinv = inv(R);
+    P = Rinv*Rinv';
     cov_store(:,ii) = ...
         diag(P(1:num_variance_store,1:num_variance_store));
     
