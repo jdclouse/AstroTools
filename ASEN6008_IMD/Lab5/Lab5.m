@@ -46,7 +46,7 @@ params1.Sun = Sun;
 params1.planet1 = Earth;
 params1.planet2 = Jupiter;
 params1.c3_countours = [16 17 19 21];
-params1.v_inf_arr_countours = 11:0.2:23;
+params1.v_inf_arr_countours = 11:0.5:23;
 params1.v_inf_dep_countours = 11:1:23;
 params1.TOF_countours = 50:50:500;
 params1.day2sec = day2sec;
@@ -69,7 +69,7 @@ params2.TOF_countours = 50:50:4000;
 params2.v_inf_arr_countours = 11:1:23;
 params2.v_inf_dep_countours = 11:0.2:23;
 [plot2, out2] = PorkchopPlot( Jupiter_arr_dates, Pluto_arr_dates, ...
-    params);
+    params2);
 
 %% 
 % Initialize desired constraints
