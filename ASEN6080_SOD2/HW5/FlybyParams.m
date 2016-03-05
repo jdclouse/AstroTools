@@ -174,8 +174,22 @@ f = acosh(1+ v_inf*v_inf/mu_earth* norm(X_to_SOI(end,1:3)));
 
 LTOF = mu_earth/v_inf/v_inf/v_inf*(sinh(f)-f);
 
+S_hat = X_to_SOI(end,4:6)/v_inf;
+% T_hat
+% The B Plane. note that without a V_out, this isn't very correct except
+% the B Plane definition (so keep only that).
+[~, ~, B_plane, ~, ~] = ...
+    BPlaneTarget(X_to_SOI(end,4:6)', X_to_SOI(end,4:6)', mu_earth);
 
+ode_opts = odeset('RelTol', 1e-12, 'AbsTol', 1e-20);
+[~, X_to_BPlane] = ode45(@flyby_two_body_state_dot, ...
+    [ObsMassaged(end,2), T(end)+LTOF], ...
+    [output_3.state_store(:,end); reshape(eye(7),49,1)], ...
+        ode_opts, filter_opts.propagator_opts);
 
+% aim point: r_inf projected on the B plane
+BT = dot(X_to_SOI(end,1:3)',B_plane(:,2));
+BR = dot(X_to_SOI(end,1:3)',B_plane(:,3));
 %% plots
 for ii = 1:7
 figure
