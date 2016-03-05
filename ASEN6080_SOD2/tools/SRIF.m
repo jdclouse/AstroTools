@@ -31,6 +31,7 @@ sig_range = 0.01; % m
 sig_rangerate = 0.001; %m/s
 % W = [1/(sig_range*sig_range) 0; 0 1/(sig_rangerate*sig_rangerate)];
 meas_noise_cov = [(sig_range*sig_range) 0; 0 (sig_rangerate*sig_rangerate)];
+V = chol(meas_noise_cov);
 
 % init
 state = X0_ap;
@@ -150,7 +151,7 @@ for ii = 1:num_obs
     % Measurement Update
     y = [y1(ii);y2(ii)];
     
-    xformed = householder([R_bar b_bar; H  y],8,7);
+    xformed = householder([R_bar b_bar; V\H  V\y],8,7);
     Rj = xformed(1:6,1:6);
     bj = xformed(1:6,end);
     

@@ -17,32 +17,32 @@ site(1).name = 'Boulder, CO';
 site(1).id = 1;
 site(1).lat_lon_alt = [40*pi/180;-105*pi/180;1.655]; % geodetic, rad, km
 site(1).r = ellipsoidal2cart(site(1).lat_lon_alt(1),...
-    site(1).lat_lon_alt(2),site(1).lat_lon_alt(3)); % km
+    site(1).lat_lon_alt(2),site(1).lat_lon_alt(3)) * 1e3; % m
 site(2).name = 'Perth, Australia';
 site(2).id = 2;
 site(2).lat_lon_alt = [-32*pi/180;116*pi/180;.020]; % geodetic, rad, km
 site(2).r = ellipsoidal2cart(site(2).lat_lon_alt(1),...
-    site(2).lat_lon_alt(2),site(2).lat_lon_alt(3)); % km
+    site(2).lat_lon_alt(2),site(2).lat_lon_alt(3)) * 1e3; % m
 site(3).name = 'Diego Garcia';
 site(3).id = 3;
 site(3).lat_lon_alt = [-7*pi/180;72.5*pi/180;.010]; % geodetic, rad, km
 site(3).r = ellipsoidal2cart(site(3).lat_lon_alt(1),...
-    site(3).lat_lon_alt(2),site(3).lat_lon_alt(3)); % km
+    site(3).lat_lon_alt(2),site(3).lat_lon_alt(3)) * 1e3; % m
 site(4).name = 'KSC';
 site(4).id = 4;
 site(4).lat_lon_alt = [28.5*pi/180;-80.5*pi/180;.010]; % geodetic, rad, km
 site(4).r = ellipsoidal2cart(site(4).lat_lon_alt(1),...
-    site(4).lat_lon_alt(2),site(4).lat_lon_alt(3)); % km
+    site(4).lat_lon_alt(2),site(4).lat_lon_alt(3)) * 1e3; % m
 site(5).name = 'Singapore';
 site(5).id = 5;
 site(5).lat_lon_alt = [(1+17/60)*pi/180;(103+50/60)*pi/180;.010]; % geodetic, rad, km
 site(5).r = ellipsoidal2cart(site(5).lat_lon_alt(1),...
-    site(5).lat_lon_alt(2),site(5).lat_lon_alt(3)); % km
+    site(5).lat_lon_alt(2),site(5).lat_lon_alt(3)) * 1e3; % m
 site(6).name = 'Johannesburg, South Africa';
 site(6).id = 6;
 site(6).lat_lon_alt = [-26*pi/180;28*pi/180;.010]; % geodetic, rad, km
 site(6).r = ellipsoidal2cart(site(6).lat_lon_alt(1),...
-    site(6).lat_lon_alt(2),site(6).lat_lon_alt(3)); % km
+    site(6).lat_lon_alt(2),site(6).lat_lon_alt(3)) * 1e3; % m
 num_sites = 6;
 
 propagator_opts.OD.use = 0;
