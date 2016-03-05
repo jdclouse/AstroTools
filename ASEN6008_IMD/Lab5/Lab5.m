@@ -153,6 +153,7 @@ viable_Vinf_pluto(viable_Vinf_pluto == 0) = NaN;
 Launch_date_idx
 JGA_date_idx=JGA_date_idx(Launch_date_idx)
 PFB_date_idx=PFB_date_idx(Launch_date_idx,JGA_date_idx)
+C3_X(Launch_date_idx, JGA_date_idx, PFB_date_idx)
 
 % Earliest to Pluto
 for ii = 1:length(Pluto_arr_dates)
@@ -174,6 +175,7 @@ getDate(Earliest_Pluto)
 Launch_date_idx
 JGA_date_idx=JGA_date_idx(Launch_date_idx)
 PFB_date_idx=PFB_date_idx(Launch_date_idx,JGA_date_idx)
+viable_Vinf_pluto(Launch_date_idx, JGA_date_idx, PFB_date_idx)
 
 % best trajectory
 % I'll do it to minimize the error in the V_infinities
@@ -190,6 +192,10 @@ getDate(Earth_dep_dates(Launch_date_idx))
 C3_X(Launch_date_idx, JGA_date_idx, PFB_date_idx)
 viable_Vinf_pluto(Launch_date_idx, JGA_date_idx, PFB_date_idx)
 GA_vel_err_3d(Launch_date_idx, JGA_date_idx, PFB_date_idx)
+
+
+out2.short_way_dv1_store(JGA_date_idx,PFB_date_idx)
+out1.short_way_dv2_store(Launch_date_idx,JGA_date_idx)
 
 %%
 [r_earth ,v_earth] = MeeusEphemeris(Earth, Earth_dep_dates(Launch_date_idx), Sun);
