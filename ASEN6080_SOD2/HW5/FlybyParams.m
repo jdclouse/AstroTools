@@ -94,6 +94,7 @@ STM_i = eye(propagator_opts.OD.state_len);
 
 % Filter Options
 filter_opts.propagator_opts = propagator_opts;
+filter_opts.ode_opts = odeset('RelTol', 1e-12, 'AbsTol', 1e-20);
 
 state_ap = [-274096790.0 ; %km
             -92859240.0 ;
@@ -104,3 +105,6 @@ state_ap = [-274096790.0 ; %km
             1.2];
 
 P = diag([100 100 100 0.1 0.1 0.1 0.1]);
+
+[~,X] = ode45(@flyby_two_body_state_dot, ObsMassaged(:,2), [state_ap; reshape(eye(7),49,1)], ...
+        filter_opts.ode_opts, filter_opts.propagator_opts);
