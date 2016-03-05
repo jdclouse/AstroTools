@@ -131,7 +131,7 @@ iter2_P = STM_accum\output_1.final_P/(STM_accum');
         filter_opts.ode_opts, filter_opts.propagator_opts);
   
 filter_opts.ref_state = X;  
-output_2 = SRIF(iter2_state_ap, iter2_P, ObsMassaged, filter_opts);
+output_2 = SRIF(iter2_state_ap, P, ObsMassaged, filter_opts);
 
 %% 3rd iteration
 STM_accum = reshape(filter_opts.ref_state(end,7+1:end),...
@@ -145,7 +145,7 @@ iter3_P = STM_accum\output_2.final_P/(STM_accum');
         filter_opts.ode_opts, filter_opts.propagator_opts);
   
 filter_opts.ref_state = X;  
-output_3 = SRIF(iter3_state_ap, iter3_P, ObsMassaged, filter_opts);
+output_3 = SRIF(iter3_state_ap, P, ObsMassaged, filter_opts);
 %% plots
 for ii = 1:7
 figure
@@ -153,4 +153,14 @@ hold on
 plot(output_1.state_store(ii,:))
 plot(output_2.state_store(ii,:), 'r')
 plot(output_3.state_store(ii,:), 'g')
+end
+
+fprintf('iter 1 x_est\n')
+for ii = 1:7
+    fprintf('%.5f\n',output_1.x_est_store(ii,end))
+end
+fprintf('\n')
+fprintf('iter 1 x0_est\n')
+for ii = 1:7
+    fprintf('%.5f\n',x0_est(ii))
 end
