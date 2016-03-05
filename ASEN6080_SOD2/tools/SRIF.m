@@ -40,13 +40,13 @@ R_bar = inv(chol(P0,'upper'));
 Rj = R_bar;
 obs_time_last = ObsData(1,obs_t_idx);
 
-num_state_store = 6;
+num_state_store = 7;
 
 % Set up storage
 x_est_store = zeros(num_state_store,num_obs);
 prefit_range_store = zeros(num_obs,1);
 state_store = zeros(num_state_store,num_obs);
-num_variance_store = 6;
+num_variance_store = 7;
 cov_store = zeros(num_variance_store,num_obs);
 
 STM_accum = eye(consts.state_len);
@@ -69,6 +69,7 @@ for ii = 1:num_obs
     % Get the state on the reference trajectory at this obs time.
     % Get STM from last obs to this one.
     dt = obs_time - obs_time_last;
+    if fo.integrate_ref_state
     if ii == 1 || dt == 0
         STM_obs2obs = eye(consts.state_len);
         X = state';
@@ -121,6 +122,13 @@ for ii = 1:num_obs
 
     end
     ref_state_at_obs = X(end,1:consts.state_len)';
+    else
+        ref_state_at_obs = fo.ref_state(ii,1:consts.state_len)';
+        STM_accum_last = STM_accum;
+        STM_accum = reshape(fo.ref_state(ii,consts.state_len+1:end),...
+            fo.important_block(1), fo.important_block(2));
+        STM_obs2obs = STM_accum_last/STM_accum;
+    end
         
     % Calculate measurement deviation y
     t_obs = ObsData(ii,obs_t_idx);
@@ -151,11 +159,12 @@ for ii = 1:num_obs
     % Measurement Update
     y = [y1(ii);y2(ii)];
     
-    xformed = householder([R_bar b_bar; V\H  V\y],8,7);
-    Rj = xformed(1:6,1:6);
-    bj = xformed(1:6,end);
+%     xformed = householder([R_bar b_bar; V\H  V\y],8,7);
+    xformed = householder([R_bar b_bar; V\H  V\y],9,8);
+    Rj = xformed(1:consts.state_len,1:consts.state_len);
+    bj = xformed(1:consts.state_len,end);
     
-    x_est = backsub( Rj, bj, 6);
+    x_est = backsub( Rj, bj, consts.state_len);
     
     % Track the last time
     obs_time_last = obs_time;    

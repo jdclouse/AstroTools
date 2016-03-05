@@ -108,3 +108,8 @@ P = diag([100 100 100 0.1 0.1 0.1 0.1]);
 
 [~,X] = ode45(@flyby_two_body_state_dot, ObsMassaged(:,2), [state_ap; reshape(eye(7),49,1)], ...
         filter_opts.ode_opts, filter_opts.propagator_opts);
+    
+filter_opts.integrate_ref_state = 0;
+filter_opts.ref_state = X;
+filter_opts.H_tilda_handle = @H_tilda_state_rvCr;
+output_1 = SRIF(state_ap, P, ObsMassaged, filter_opts);
