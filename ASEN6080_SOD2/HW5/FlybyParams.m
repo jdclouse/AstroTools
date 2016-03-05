@@ -118,6 +118,12 @@ P = P.*P;
     
 filter_opts.ref_state = X;
 output_1 = SRIF(state_ap, P, ObsMassaged, filter_opts);
+% figure
+% plot3(X(:,1),X(:,2),X(:,3))
+% xlabel('x (km)')
+% ylabel('y (km)')
+% zlabel('z (km)')
+% axis equal
 
 %% 2nd iteration
 STM_accum = reshape(filter_opts.ref_state(end,7+1:end),...

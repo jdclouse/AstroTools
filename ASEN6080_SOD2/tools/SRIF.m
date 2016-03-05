@@ -42,6 +42,7 @@ state = X0_ap;
 x_est = zeros(consts.state_len,1);
 R_bar = inv(chol(P0,'upper'));
 Rj = R_bar;
+bj = x_est;
 obs_time_last = ObsData(1,obs_t_idx);
 
 num_state_store = 7;
@@ -125,6 +126,7 @@ for ii = 1:num_obs
             fo.important_block(1), fo.important_block(2));
 
     end
+    STM_accum = STM_obs2obs*STM_accum;
     ref_state_at_obs = X(end,1:consts.state_len)';
     else
         ref_state_at_obs = fo.ref_state(ii,1:consts.state_len)';
@@ -146,11 +148,10 @@ for ii = 1:num_obs
     y2(ii) = (ObsData(ii,obs_rr_idx)-rr_comp);
     
     % Time update
-    STM_accum = STM_obs2obs*STM_accum;
     x_ap = STM_obs2obs*x_est;
 %     R_bar = householder( R/STM_obs2obs, 6, 6);
     R_bar = Rj/STM_obs2obs;
-    b_bar = R_bar*x_ap;
+    b_bar = bj;%R_bar*x_ap;
     
     % H~
     consts.t = obs_time;
