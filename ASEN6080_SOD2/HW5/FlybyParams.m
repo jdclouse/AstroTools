@@ -8,6 +8,8 @@ solar_flux = 1357; %W/m2 @ 1 AU
 A_m_ratio =  0.01; % m2/kg
 Re = 6378.1363;
 
+SOI = 925000; %km
+
 c = 299792.458; %k/s
 mu_earth = 3.98600432896939e5; %km3/s2
 
@@ -152,6 +154,28 @@ iter3_P = STM_accum\output_2.final_P/(STM_accum');
   
 filter_opts.ref_state = X;  
 output_3 = SRIF(iter3_state_ap, P, ObsMassaged, filter_opts);
+
+%% B-plane target
+
+ode_opts = odeset('RelTol', 1e-12, 'AbsTol', 1e-20,...
+    'Events',@stop_int);
+
+[T, X_to_SOI] = ode45(@flyby_two_body_state_dot, ...
+    [ObsMassaged(end,2), ObsMassaged(end,2)+100*86400], ...
+    [output_3.state_store(:,end); reshape(eye(7),49,1)], ...
+        ode_opts, filter_opts.propagator_opts);
+    
+% [~,~,~,~,~,~] = ...
+%     cart2OE(X_to_SOI(end,1:3),...
+%     X_to_SOI(end,4:6),mu_earth);
+v_inf = norm(X_to_SOI(end,4:6));
+
+f = acosh(1+ v_inf*v_inf/mu_earth* norm(X_to_SOI(end,1:3)));
+
+LTOF = mu_earth/v_inf/v_inf/v_inf*(sinh(f)-f);
+
+
+
 %% plots
 for ii = 1:7
 figure
@@ -169,4 +193,9 @@ fprintf('\n')
 fprintf('iter 1 x0_est\n')
 for ii = 1:7
     fprintf('%.5f\n',x0_est(ii))
+end
+fprintf('\n')
+fprintf('iter 3 X_final\n')
+for ii = 1:7
+    fprintf('%.5f\n',output_3.state_store(ii,end))
 end

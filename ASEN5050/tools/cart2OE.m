@@ -13,6 +13,9 @@ a = 0;
 if e < 1.0
     specific_energy = norm(v)*norm(v)/2-mu/norm(r);
     a = -mu/2/specific_energy;
+elseif e > 1.0    
+    specific_energy = norm(v)*norm(v)/2-mu/norm(r);
+    a = -mu/2/specific_energy;
 end
 
 i = acos(h(3)/norm(h));
