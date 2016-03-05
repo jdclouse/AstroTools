@@ -85,16 +85,20 @@ propagator_opts.EMO2EME = EMO2EME;
 propagator_opts.OD.use = 1;
 propagator_opts.OD.state_len = 7;
 propagator_opts.OD.A_mat_handle = @A_state_rvCr;
+filter_opts.H_tilda_handle = @H_tilda_state_rvCr;
 propagator_opts.OD.A_params.mu = propagator_opts.mu;
 propagator_opts.OD.A_params.Re = Re;
 filter_opts.important_block = [7 7]; %rows, cols
 propagator_opts.OD.A_params.important_block = filter_opts.important_block;
 propagator_opts.OD.A_params.state_len = propagator_opts.OD.state_len;
 STM_i = eye(propagator_opts.OD.state_len);
+filter_opts.integrate_ref_state = 0;
 
 % Filter Options
 filter_opts.propagator_opts = propagator_opts;
 filter_opts.ode_opts = odeset('RelTol', 1e-12, 'AbsTol', 1e-20);
+
+filter_opts.theta_dot = theta_dot; %rad/s % TODO clean this!
 
 state_ap = [-274096790.0 ; %km
             -92859240.0 ;
@@ -105,11 +109,48 @@ state_ap = [-274096790.0 ; %km
             1.2];
 
 P = diag([100 100 100 0.1 0.1 0.1 0.1]);
+P = P.*P;
 
+%% First iteration
+% ref state
 [~,X] = ode45(@flyby_two_body_state_dot, ObsMassaged(:,2), [state_ap; reshape(eye(7),49,1)], ...
         filter_opts.ode_opts, filter_opts.propagator_opts);
     
-filter_opts.integrate_ref_state = 0;
 filter_opts.ref_state = X;
-filter_opts.H_tilda_handle = @H_tilda_state_rvCr;
 output_1 = SRIF(state_ap, P, ObsMassaged, filter_opts);
+
+%% 2nd iteration
+STM_accum = reshape(filter_opts.ref_state(end,7+1:end),...
+    filter_opts.important_block(1), filter_opts.important_block(2));
+x0_est = STM_accum\output_1.x_est_store(:,end);
+iter2_state_ap = X(1,1:7)'+x0_est;
+iter2_P = STM_accum\output_1.final_P/(STM_accum');
+
+% ref state
+[~,X] = ode45(@flyby_two_body_state_dot, ObsMassaged(:,2), [iter2_state_ap; reshape(eye(7),49,1)], ...
+        filter_opts.ode_opts, filter_opts.propagator_opts);
+  
+filter_opts.ref_state = X;  
+output_2 = SRIF(iter2_state_ap, iter2_P, ObsMassaged, filter_opts);
+
+%% 3rd iteration
+STM_accum = reshape(filter_opts.ref_state(end,7+1:end),...
+    filter_opts.important_block(1), filter_opts.important_block(2));
+x0_est = STM_accum\output_2.x_est_store(:,end);
+iter3_state_ap = X(1,1:7)'+x0_est;
+iter3_P = STM_accum\output_2.final_P/(STM_accum');
+
+% ref state
+[~,X] = ode45(@flyby_two_body_state_dot, ObsMassaged(:,2), [iter3_state_ap; reshape(eye(7),49,1)], ...
+        filter_opts.ode_opts, filter_opts.propagator_opts);
+  
+filter_opts.ref_state = X;  
+output_3 = SRIF(iter3_state_ap, iter3_P, ObsMassaged, filter_opts);
+%% plots
+for ii = 1:7
+figure
+hold on
+plot(output_1.state_store(ii,:))
+plot(output_2.state_store(ii,:), 'r')
+plot(output_3.state_store(ii,:), 'g')
+end

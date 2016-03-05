@@ -16,6 +16,8 @@ theta_dot = fo.theta_dot;
 consts.theta_dot = fo.theta_dot;
 consts.state_len = propagator_opts.OD.state_len;
 
+num_meas = 2;
+
 %% Sequential Processor
 meas_dt = 10; %sec
 fo.ode_opts = odeset('RelTol', 1e-12, 'AbsTol', 1e-20);
@@ -27,8 +29,10 @@ fo.ode_opts = odeset('RelTol', 1e-12, 'AbsTol', 1e-20);
 y1 = zeros(num_obs,1);
 y2 = zeros(num_obs,1);
 
-sig_range = 0.01; % m
-sig_rangerate = 0.001; %m/s
+% sig_range = 0.01; % m
+% sig_rangerate = 0.001; %m/s
+sig_range = 0.005; % km
+sig_rangerate = 0.5*1e-6; %m/s
 % W = [1/(sig_range*sig_range) 0; 0 1/(sig_rangerate*sig_rangerate)];
 meas_noise_cov = [(sig_range*sig_range) 0; 0 (sig_rangerate*sig_rangerate)];
 V = chol(meas_noise_cov);
@@ -127,7 +131,7 @@ for ii = 1:num_obs
         STM_accum_last = STM_accum;
         STM_accum = reshape(fo.ref_state(ii,consts.state_len+1:end),...
             fo.important_block(1), fo.important_block(2));
-        STM_obs2obs = STM_accum_last/STM_accum;
+        STM_obs2obs = STM_accum/STM_accum_last;
     end
         
     % Calculate measurement deviation y
@@ -160,7 +164,8 @@ for ii = 1:num_obs
     y = [y1(ii);y2(ii)];
     
 %     xformed = householder([R_bar b_bar; V\H  V\y],8,7);
-    xformed = householder([R_bar b_bar; V\H  V\y],9,8);
+    xformed = householder([R_bar b_bar; V\H  V\y],...
+        consts.state_len+num_meas,consts.state_len+1);
     Rj = xformed(1:consts.state_len,1:consts.state_len);
     bj = xformed(1:consts.state_len,end);
     
@@ -201,4 +206,5 @@ output.prefit_range_store = prefit_range_store;
 output.cov_store = cov_store;
 output.state_store = state_store;
 output.x_est_store = x_est_store;
+output.final_P = P;
 % output.state_ap_store = state_ap_store;
