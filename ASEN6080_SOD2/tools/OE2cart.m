@@ -2,7 +2,7 @@ function [r, v ] = OE2cart( a,e,i,RAAN,w,f,mu)
 %cart2OE return classical orbital elements from cartesian coords
 % Only valid for e < 1
 % units in radians
-fcnPrintQueue(mfilename('fullpath')) % Add this code to code app 
+% fcnPrintQueue(mfilename('fullpath')) % Add this code to code app 
 
 % First find r,v in the perifocal coord system.
 p = a*(1-e*e);

@@ -2,7 +2,7 @@ function [ r, v ] = MeeusEphemeris( planet, JD , Sun)
 %MeeusEphemeris Calculate planetary ephemeris. Works with
 %CelestialConstants.m file
 %   Outputs PV in km, km/s
-fcnPrintQueue(mfilename('fullpath')) % Add this code to code app 
+% fcnPrintQueue(mfilename('fullpath')) % Add this code to code app 
 
 T = (JD - 2451545)/36525;
 

@@ -20,7 +20,7 @@ state_dot(4:6) = -mu * r_vec/(r*r*r); % Simple 2-body
 
 %% Solar accel
 [ r_earth, ~ ] = MeeusEphemeris( opts.Earth, opts.epoch + t/86400 , opts.Sun); %km
-r_s_wrt_earth = - r_earth; %km
+r_s_wrt_earth = - opts.EMO2EME*r_earth; %km
 delta_s_sc = r_s_wrt_earth - state(1:3); %km
 norm_r_s_wrt_earth = norm(r_s_wrt_earth); %km
 norm_delta_s_sc = norm(delta_s_sc); %km
@@ -32,7 +32,7 @@ state_dot(4:6) = state_dot(4:6) + opts.Sun.mu*...
 %% SRP
 srp_param = - opts.solar_flux/opts.c ...
     * opts.au2km*opts.au2km...
-    *prop_opts.A_m_ratio;
+    *opts.A_m_ratio*1e-6;
 state_dot(4:6) = state_dot(4:6) ...
     + srp_param...
     *state(7)*delta_s_sc/norm_delta_s_sc/norm_delta_s_sc/norm_delta_s_sc;

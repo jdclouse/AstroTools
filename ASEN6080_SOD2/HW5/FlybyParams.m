@@ -8,8 +8,8 @@ solar_flux = 1357; %W/m2 @ 1 AU
 A_m_ratio =  0.01; % m2/kg
 Re = 6378.1363;
 
-c = 299792.458*1e3; %m/s
-mu_earth = 3.98600432896939e5; %m3/s2
+c = 299792.458; %k/s
+mu_earth = 3.98600432896939e5; %km3/s2
 
 EMO2EME_theta = 23.4393; %deg
 EMO2EME = [1 0 0; 0 cosd(EMO2EME_theta) -sind(EMO2EME_theta); ...
@@ -80,6 +80,7 @@ propagator_opts.solar_flux = solar_flux; %W/m2 @ 1 AU
 propagator_opts.A_m_ratio =  A_m_ratio; % m2/kg
 propagator_opts.c = c; %km/s
 propagator_opts.au2km = au2km; %km
+propagator_opts.EMO2EME = EMO2EME;
 
 propagator_opts.OD.use = 1;
 propagator_opts.OD.state_len = 7;
