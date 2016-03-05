@@ -9,23 +9,13 @@ A_m_ratio =  0.01; % m2/kg
 Re = 6378.1363;
 
 c = 299792.458*1e3; %m/s
-mu_earth = 3.98600432896939e5; %km3/s2
+mu_earth = 3.98600432896939e5; %m3/s2
 
 EMO2EME_theta = 23.4393; %deg
 EMO2EME = [1 0 0; 0 cosd(EMO2EME_theta) -sind(EMO2EME_theta); ...
     0 sind(EMO2EME_theta) cosd(EMO2EME_theta)];
 
 au2km = 149597870.700; % km/AU
-
-state_ap = [-274096790.0 ;
-            -92859240.0 ;
-            -40199490.0 ;
-            32.67 ;
-            -8.94 ;
-            -3.88 ;
-            1.2];
-
-P = diag([100 100 100 0.1 0.1 0.1 0.1]);
 
 filename = 'Interplanetary_Obs.txt';
 delimiterIn = ',';
@@ -69,16 +59,47 @@ site(3).name = 'Goldstone Station (DSS 13)';
 site(3).id = 3;
 site(3).lat_lon_alt = [35.247164; 243.205; 1.07114904]; % geodetic, deg, km
 site(3).r = lla2ecef(site(3).lat_lon_alt', 0, Re); % m
+num_sites = length(site);
 
-prop_opts.Earth.Meeus.J200.L = [100.466449 35999.3728519 -0.00000568 0.0]; %deg
-prop_opts.Earth.Meeus.J200.a = 1.000001018*au2km; %km
-prop_opts.Earth.Meeus.J200.e = [0.01670862 -0.000042037 -0.0000001236 0.00000000004];
-prop_opts.Earth.Meeus.J200.i = [0 0.0130546 -0.00000931 -0.000000034]; % deg
-prop_opts.Earth.Meeus.J200.RAAN = [174.873174 -0.2410908 0.00004067 -0.000001327]; %deg
-prop_opts.Earth.Meeus.J200.Pi = [102.937348 0.3225557 0.00015026 0.000000478]; %deg
-prop_opts.epoch = JD_init;
-prop_opts.Sun.mu = mu_sun; % km3/s2
-prop_opts.solar_flux = solar_flux; %W/m2 @ 1 AU
-prop_opts.A_m_ratio =  A_m_ratio; % m2/kg
-prop_opts.c = c; %km/s
-prop_opts.au2km = au2km;
+filter_params;
+propagator_opts.J2.use = 0;
+propagator_opts.J3.use = 0;
+propagator_opts.mu = mu_earth; %km3/s2
+filter_opts.use_EKF = 0;
+filter_opts.use_SNC = 0;
+
+propagator_opts.Earth.Meeus.J200.L = [100.466449 35999.3728519 -0.00000568 0.0]; %deg
+propagator_opts.Earth.Meeus.J200.a = 1.000001018*au2km; %km
+propagator_opts.Earth.Meeus.J200.e = [0.01670862 -0.000042037 -0.0000001236 0.00000000004];
+propagator_opts.Earth.Meeus.J200.i = [0 0.0130546 -0.00000931 -0.000000034]; % deg
+propagator_opts.Earth.Meeus.J200.RAAN = [174.873174 -0.2410908 0.00004067 -0.000001327]; %deg
+propagator_opts.Earth.Meeus.J200.Pi = [102.937348 0.3225557 0.00015026 0.000000478]; %deg
+propagator_opts.epoch = JD_init;
+propagator_opts.Sun.mu = mu_sun; % km3/s2
+propagator_opts.solar_flux = solar_flux; %W/m2 @ 1 AU
+propagator_opts.A_m_ratio =  A_m_ratio; % m2/kg
+propagator_opts.c = c; %km/s
+propagator_opts.au2km = au2km; %km
+
+propagator_opts.OD.use = 1;
+propagator_opts.OD.state_len = 7;
+propagator_opts.OD.A_mat_handle = @A_state_rvCr;
+propagator_opts.OD.A_params.mu = propagator_opts.mu;
+propagator_opts.OD.A_params.Re = Re;
+filter_opts.important_block = [7 7]; %rows, cols
+propagator_opts.OD.A_params.important_block = filter_opts.important_block;
+propagator_opts.OD.A_params.state_len = propagator_opts.OD.state_len;
+STM_i = eye(propagator_opts.OD.state_len);
+
+% Filter Options
+filter_opts.propagator_opts = propagator_opts;
+
+state_ap = [-274096790.0 ; %km
+            -92859240.0 ;
+            -40199490.0 ;
+            32.67 ; %km/s
+            -8.94 ;
+            -3.88 ;
+            1.2];
+
+P = diag([100 100 100 0.1 0.1 0.1 0.1]);

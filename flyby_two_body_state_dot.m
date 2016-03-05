@@ -9,7 +9,7 @@ function state_dot = flyby_two_body_state_dot(t, state, opts)
 
 state_dot = zeros(length(state),1);
 state_dot(1:3) = state(4:6);
-mu = 3.986e5; % km3/s2
+% mu = 3.986e5; % km3/s2
 % if isfield(opts, 'mu')
     mu = opts.mu;
 % end
@@ -19,19 +19,19 @@ r = norm(r_vec);
 state_dot(4:6) = -mu * r_vec/(r*r*r); % Simple 2-body
 
 %% Solar accel
-[ r_earth, ~ ] = MeeusEphemeris( opts.Earth, opts.epoch + t/86400 , opts.Sun);
-r_s_wrt_earth = - r_earth*1e3;
-delta_s_sc = r_s_wrt_earth - state(1:3);
-norm_r_s_wrt_earth = norm(r_s_wrt_earth);
-norm_delta_s_sc = norm(delta_s_sc);
+[ r_earth, ~ ] = MeeusEphemeris( opts.Earth, opts.epoch + t/86400 , opts.Sun); %km
+r_s_wrt_earth = - r_earth; %km
+delta_s_sc = r_s_wrt_earth - state(1:3); %km
+norm_r_s_wrt_earth = norm(r_s_wrt_earth); %km
+norm_delta_s_sc = norm(delta_s_sc); %km
 
-state_dot(4:6) = state_dot(4:6) + opts.Sun.mu*xxx*...
+state_dot(4:6) = state_dot(4:6) + opts.Sun.mu*...
     (delta_s_sc/(norm_delta_s_sc*norm_delta_s_sc*norm_delta_s_sc) ...
     -r_s_wrt_earth/(norm_r_s_wrt_earth*norm_r_s_wrt_earth*norm_r_s_wrt_earth));
 
 %% SRP
 srp_param = - opts.solar_flux/opts.c ...
-    * prop_opts.au2km*prop_opts.au2km...
+    * opts.au2km*opts.au2km...
     *prop_opts.A_m_ratio;
 state_dot(4:6) = state_dot(4:6) ...
     + srp_param...
@@ -47,7 +47,7 @@ state_dot(4:6) = state_dot(4:6) ...
         opts.OD.state_len;
         % The OD.state_len is the length of the estimation state. The rest
         % is the STM, numerically propagated with the A-Matrix
-        A = A_state_rvCr(state(1:opts.OD.state_len),opts.OD.A_params);
+        A = A_state_rvCr(state(1:opts.OD.state_len),opts.OD.A_params, norm_delta_s_sc, r_s_wrt_earth, opts.Sun.mu, srp_param);
         
         % Block matrix multiplication
 %         long_dim = 9;
