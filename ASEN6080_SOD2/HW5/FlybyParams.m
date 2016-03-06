@@ -113,13 +113,20 @@ state_ap = [-274096790.0 ; %km
 P = diag([100 100 100 0.1 0.1 0.1 0.1]);
 P = P.*P;
 
+DCOs = [50 100 150 200];
+ell_plot = figure;
+color_order = get(groot,'defaultAxesColorOrder');
+
+for kk = 1:length(DCOs)
+    obs_to_process = ObsMassaged(:,2) <= DCOs(kk)*86400;
 %% First iteration
 % ref state
-[~,X] = ode45(@flyby_two_body_state_dot, ObsMassaged(:,2), [state_ap; reshape(eye(7),49,1)], ...
+[~,X] = ode45(@flyby_two_body_state_dot, ObsMassaged(:,2), ...
+    [state_ap; reshape(eye(7),49,1)], ...
         filter_opts.ode_opts, filter_opts.propagator_opts);
     
 filter_opts.ref_state = X;
-output_1 = SRIF(state_ap, P, ObsMassaged, filter_opts);
+output_1 = SRIF(state_ap, P, ObsMassaged(obs_to_process,:), filter_opts);
 % figure
 % plot3(X(:,1),X(:,2),X(:,3))
 % xlabel('x (km)')
@@ -139,7 +146,7 @@ iter2_P = STM_accum\output_1.final_P/(STM_accum');
         filter_opts.ode_opts, filter_opts.propagator_opts);
   
 filter_opts.ref_state = X;  
-output_2 = SRIF(iter2_state_ap, P, ObsMassaged, filter_opts);
+output_2 = SRIF(iter2_state_ap, P, ObsMassaged(obs_to_process,:), filter_opts);
 
 %% 3rd iteration
 STM_accum = reshape(filter_opts.ref_state(end,7+1:end),...
@@ -153,15 +160,18 @@ iter3_P = STM_accum\output_2.final_P/(STM_accum');
         filter_opts.ode_opts, filter_opts.propagator_opts);
   
 filter_opts.ref_state = X;  
-output_3 = SRIF(iter3_state_ap, P, ObsMassaged, filter_opts);
+output_3 = SRIF(iter3_state_ap, P, ObsMassaged(obs_to_process,:), filter_opts);
 
 %% B-plane target
 
 ode_opts = odeset('RelTol', 1e-12, 'AbsTol', 1e-20,...
     'Events',@stop_int);
 
+% Get the integration times
+processed_obs = ObsMassaged(obs_to_process,:);
+
 [T, X_to_SOI] = ode45(@flyby_two_body_state_dot, ...
-    [ObsMassaged(end,2), ObsMassaged(end,2)+100*86400], ...
+    [processed_obs(end,2), processed_obs(end,2)+400*86400], ...
     [output_3.state_store(:,end); reshape(eye(7),49,1)], ...
         ode_opts, filter_opts.propagator_opts);
     
@@ -183,7 +193,7 @@ S_hat = X_to_SOI(end,4:6)/v_inf;
 
 ode_opts = odeset('RelTol', 1e-12, 'AbsTol', 1e-20);
 [~, X_to_BPlane] = ode45(@flyby_two_body_state_dot, ...
-    [ObsMassaged(end,2), T(end)+LTOF], ...
+    [processed_obs(end,2), T(end)+LTOF], ...
     [output_3.state_store(:,end); reshape(eye(7),49,1)], ...
         ode_opts, filter_opts.propagator_opts);
 
@@ -191,7 +201,7 @@ ode_opts = odeset('RelTol', 1e-12, 'AbsTol', 1e-20);
 BT = dot(X_to_SOI(end,1:3)',B_plane(:,2));
 BR = dot(X_to_SOI(end,1:3)',B_plane(:,3));
 
-STM_DCO_intercept = reshape(X(end,8:end)',7,7);
+STM_DCO_intercept = reshape(X_to_BPlane(end,8:end)',7,7);
 P_intercept = STM_DCO_intercept*output_3.final_P*STM_DCO_intercept';
 P_int_Bplane = B_plane*P_intercept(1:3,1:3)*B_plane';
 [U,D] = eig(P_int_Bplane(2:3,2:3));
@@ -209,10 +219,19 @@ coords_prime = [];
 for ii = 1:length(t)
     coords_prime(:,ii) = ell_rot*[x(ii); y(ii)];
 end
-figure
-plot(x0+coords_prime(1,:),y0+coords_prime(2,:))
+
+ell_plot;
+hold on
+plot(x0+coords_prime(1,:),y0+coords_prime(2,:),'Color',color_order(kk,:))
+plot(x0, y0, 'x','Color',color_order(kk,:))
 axis equal
 
+end
+
+
+ell_plot;
+hold on
+% plot(  7009.767,14002.894,'x','Color',color_order(kk+1,:))
 %% plots
 for ii = 1:7
 figure
