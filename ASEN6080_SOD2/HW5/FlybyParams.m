@@ -136,10 +136,16 @@ output_1 = SRIF(state_ap, P, ObsMassaged(obs_to_process,:), filter_opts);
 % zlabel('z (km)')
 % axis equal
 
+% The last point at which the residuals looked good.
+iter_point = 5300;
+if length(ObsMassaged(obs_to_process,2)) < iter_point
+    iter_point = length(ObsMassaged(obs_to_process,2));
+end
+
 %% 2nd iteration
-STM_accum = reshape(filter_opts.ref_state(end,7+1:end),...
+STM_accum = reshape(filter_opts.ref_state(iter_point,7+1:end),...
     filter_opts.important_block(1), filter_opts.important_block(2));
-x0_est = STM_accum\output_1.x_est_store(:,end);
+x0_est = STM_accum\output_1.x_est_store(:,iter_point);
 iter2_state_ap = X(1,1:7)'+x0_est;
 iter2_P = STM_accum\output_1.final_P/(STM_accum');
 
@@ -149,11 +155,15 @@ iter2_P = STM_accum\output_1.final_P/(STM_accum');
   
 filter_opts.ref_state = X;  
 output_2 = SRIF(iter2_state_ap, P, ObsMassaged(obs_to_process,:), filter_opts);
+iter_point = 6000;
+if length(ObsMassaged(obs_to_process,2)) < iter_point
+    iter_point = length(ObsMassaged(obs_to_process,2));
+end
 
 %% 3rd iteration
-STM_accum = reshape(filter_opts.ref_state(end,7+1:end),...
+STM_accum = reshape(filter_opts.ref_state(iter_point,7+1:end),...
     filter_opts.important_block(1), filter_opts.important_block(2));
-x0_est = STM_accum\output_2.x_est_store(:,end);
+x0_est = STM_accum\output_2.x_est_store(:,iter_point);
 iter3_state_ap = X(1,1:7)'+x0_est;
 iter3_P = STM_accum\output_2.final_P/(STM_accum');
 
@@ -229,7 +239,7 @@ plot_handles = [plot_handles plot(x0, y0, 'x','Color',color_order(kk,:))];
 axis equal
 
 end
-legend('50-day obs', '100-day obs', '150-day obs', '200-day obs');
+legend(plot_handles, '50-day obs', '100-day obs', '150-day obs', '200-day obs');
 
 
 ell_plot;
