@@ -114,14 +114,16 @@ P = diag([100 100 100 0.1 0.1 0.1 0.1]);
 P = P.*P;
 
 DCOs = [50 100 150 200];
+% DCOs = [200];
 ell_plot = figure;
 color_order = get(groot,'defaultAxesColorOrder');
+plot_handles = [];
 
 for kk = 1:length(DCOs)
     obs_to_process = ObsMassaged(:,2) <= DCOs(kk)*86400;
 %% First iteration
 % ref state
-[~,X] = ode45(@flyby_two_body_state_dot, ObsMassaged(:,2), ...
+[~,X] = ode45(@flyby_two_body_state_dot, ObsMassaged(obs_to_process,2), ...
     [state_ap; reshape(eye(7),49,1)], ...
         filter_opts.ode_opts, filter_opts.propagator_opts);
     
@@ -142,7 +144,7 @@ iter2_state_ap = X(1,1:7)'+x0_est;
 iter2_P = STM_accum\output_1.final_P/(STM_accum');
 
 % ref state
-[~,X] = ode45(@flyby_two_body_state_dot, ObsMassaged(:,2), [iter2_state_ap; reshape(eye(7),49,1)], ...
+[~,X] = ode45(@flyby_two_body_state_dot, ObsMassaged(obs_to_process,2), [iter2_state_ap; reshape(eye(7),49,1)], ...
         filter_opts.ode_opts, filter_opts.propagator_opts);
   
 filter_opts.ref_state = X;  
@@ -156,7 +158,7 @@ iter3_state_ap = X(1,1:7)'+x0_est;
 iter3_P = STM_accum\output_2.final_P/(STM_accum');
 
 % ref state
-[~,X] = ode45(@flyby_two_body_state_dot, ObsMassaged(:,2), [iter3_state_ap; reshape(eye(7),49,1)], ...
+[~,X] = ode45(@flyby_two_body_state_dot, ObsMassaged(obs_to_process,2), [iter3_state_ap; reshape(eye(7),49,1)], ...
         filter_opts.ode_opts, filter_opts.propagator_opts);
   
 filter_opts.ref_state = X;  
@@ -223,23 +225,24 @@ end
 ell_plot;
 hold on
 plot(x0+coords_prime(1,:),y0+coords_prime(2,:),'Color',color_order(kk,:))
-plot(x0, y0, 'x','Color',color_order(kk,:))
+plot_handles = [plot_handles plot(x0, y0, 'x','Color',color_order(kk,:))];
 axis equal
 
 end
+legend('50-day obs', '100-day obs', '150-day obs', '200-day obs');
 
 
 ell_plot;
 hold on
 % plot(  7009.767,14002.894,'x','Color',color_order(kk+1,:))
 %% plots
-for ii = 1:7
-figure
-hold on
-plot(output_1.state_store(ii,:))
-plot(output_2.state_store(ii,:), 'r')
-plot(output_3.state_store(ii,:), 'g')
-end
+% for ii = 1:7
+% figure
+% hold on
+% plot(output_1.state_store(ii,:))
+% plot(output_2.state_store(ii,:), 'r')
+% plot(output_3.state_store(ii,:), 'g')
+% end
 
 fprintf('iter 1 x_est\n')
 for ii = 1:7
@@ -255,3 +258,7 @@ fprintf('iter 3 X_final\n')
 for ii = 1:7
     fprintf('%.5f\n',output_3.state_store(ii,end))
 end
+
+residual_plot(output_1.pfr_store, [0.005, 0.5*1e-6], '1 iter')
+residual_plot(output_2.pfr_store, [0.005, 0.5*1e-6], '2 iter')
+residual_plot(output_3.pfr_store, [0.005, 0.5*1e-6], '3 iter')
