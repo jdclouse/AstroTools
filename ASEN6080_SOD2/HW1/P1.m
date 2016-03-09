@@ -94,14 +94,14 @@ el_mask = 10*pi/180; %rad
 true_state = [];
 for t_i = 1:num_pts
     for site_num = 1:6
-        r_rel_ECEF = Euler2DCM('3',theta_dot*T(t_i))*X(t_i,1:3)' - site(site_num).r;
+        r_rel_ECEF = Euler2DCM('3',theta_dot*T(t_i))*X(t_i,1:3)' - site(site_num).r*1e-3;
         r_rel_ENU = R_ECEF2ENU(site(site_num).lat_lon_alt(1),...
             site(site_num).lat_lon_alt(2))*r_rel_ECEF;
         if asin(r_rel_ENU(3)/norm(r_rel_ENU)) > el_mask
             meas_store = [meas_store; [site_num, T(t_i), ...
-                1e3*compute_range_ECFsite(X(t_i,1:3)',site(site_num).r, ...
+                1e3*compute_range_ECFsite(X(t_i,1:3)',site(site_num).r*1e-3, ...
                 theta_dot*T(t_i)),...
-                1e3*compute_range_rate_ECFsite(X(t_i,1:6),site(site_num).r,... % m/s
+                1e3*compute_range_rate_ECFsite(X(t_i,1:6),site(site_num).r*1e-3,... % m/s
                 theta_dot*T(t_i), theta_dot), t_i]];
 %                 1e3*norm(r_rel_ENU), ... % m
 %                 compute_range_ECFsite(X(t_i,1:3)',site(site_num).r, ...
@@ -143,7 +143,7 @@ for pass_idx = all_idx(meas_store(:,1)==plot_arc_site);
 derp = X(meas_store(pass_idx,5),1:3)'/norm(X(meas_store(pass_idx,5),1:3))...
     *meas_store(pass_idx,3)*1e-3;
 pos_inrtl = X(meas_store(pass_idx,5),1:3)';
-site_inrtl = Euler2DCM('3',-theta_dot*meas_store(pass_idx,2))*site(meas_store(pass_idx,1)).r;
+site_inrtl = Euler2DCM('3',-theta_dot*meas_store(pass_idx,2))*site(meas_store(pass_idx,1)).r*1e-3;
 rel_vec = pos_inrtl - site_inrtl;
 rel_vec = rel_vec/norm(rel_vec)*meas_store(pass_idx,3)*1e-3;
 plot3([site_inrtl(1)],...
