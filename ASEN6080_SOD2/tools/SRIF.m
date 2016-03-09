@@ -46,13 +46,13 @@ Rj = R_bar;
 bj = x_est;
 obs_time_last = ObsData(1,obs_t_idx);
 
-num_state_store = 7;
+num_state_store = consts.state_len;
 
 % Set up storage
 x_est_store = zeros(num_state_store,num_obs);
 prefit_range_store = zeros(num_obs,1);
 state_store = zeros(num_state_store,num_obs);
-num_variance_store = 7;
+num_variance_store = consts.state_len;
 cov_store = zeros(num_variance_store,num_obs);
 
 STM_accum = eye(consts.state_len);
@@ -150,8 +150,8 @@ for ii = 1:num_obs
     
     % Time update
     x_ap = STM_obs2obs*x_est;
-%     R_bar = householder( Rj/STM_obs2obs, consts.state_len, consts.state_len);
     R_bar = Rj/STM_obs2obs;
+%     R_bar = householder( Rj/STM_obs2obs, consts.state_len, consts.state_len);
     b_bar = bj;%R_bar*x_ap;
     
     % H~
