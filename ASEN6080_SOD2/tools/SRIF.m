@@ -150,7 +150,7 @@ for ii = 1:num_obs
     
     % Time update
     x_ap = STM_obs2obs*x_est;
-%     R_bar = householder( R/STM_obs2obs, 6, 6);
+%     R_bar = householder( Rj/STM_obs2obs, consts.state_len, consts.state_len);
     R_bar = Rj/STM_obs2obs;
     b_bar = bj;%R_bar*x_ap;
     
