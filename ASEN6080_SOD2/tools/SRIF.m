@@ -40,7 +40,8 @@ V = chol(meas_noise_cov);
 % init
 state = X0_ap;
 x_est = zeros(consts.state_len,1);
-R_bar = inv(chol(P0,'upper'));
+% R_bar = inv(chol(P0,'upper'));
+R_bar = chol(inv(P0),'upper');
 Rj = R_bar;
 bj = x_est;
 obs_time_last = ObsData(1,obs_t_idx);
