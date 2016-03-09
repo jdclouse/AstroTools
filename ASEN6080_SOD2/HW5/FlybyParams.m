@@ -1,4 +1,9 @@
 clear
+hw_pub.figWidth = 1120; % pixels
+hw_pub.figHeight = 840; % pixels
+hw_pub.figPosn = [0, 0, hw_pub.figWidth, hw_pub.figHeight];
+% Example: some_fig = figure('Position', hw_pub.figPosnfigure);
+hw_pub.lineWidth = 2; % pixels
 
 theta0 = 0;
 theta_dot = 7.29211585275553e-005;
@@ -115,12 +120,30 @@ P = P.*P;
 
 DCOs = [50 100 150 200];
 % DCOs = [200];
-ell_plot = figure;
+ell_plot = figure('Position', hw_pub.figPosn);
+ell_plot_co = figure('Position', hw_pub.figPosn);
 color_order = get(groot,'defaultAxesColorOrder');
-plot_handles = [];
+plot_handles1 = [];
+plot_handles2 = [];
+full_resid = [];
+full_cov = [];
+full_x_est = [];
 
 for kk = 1:length(DCOs)
     obs_to_process = ObsMassaged(:,2) <= DCOs(kk)*86400;
+    if kk > 1        
+        obs_to_process = ObsMassaged(obs_to_process,2) > DCOs(kk-1)*86400;
+        last_time = max(ObsMassaged(ObsMassaged(:,2) <= DCOs(kk-1)*86400,2));
+        new_time = min(ObsMassaged(obs_to_process,2));
+        [~,X] = ode45(@flyby_two_body_state_dot, [last_time new_time], ...
+            [output_3.state_store(:,end); reshape(eye(7),49,1)], ...
+            filter_opts.ode_opts, filter_opts.propagator_opts);
+        % Propagate the last state
+        STM = reshape(X(end,7+1:end),...
+            filter_opts.important_block(1), filter_opts.important_block(2));
+        state_ap = X(end,1:7)';
+        P = STM*output_3.final_P*STM';
+    end
 %% First iteration
 % ref state
 [~,X] = ode45(@flyby_two_body_state_dot, ObsMassaged(obs_to_process,2), ...
@@ -174,6 +197,9 @@ iter3_P = STM_accum\output_2.final_P/(STM_accum');
 filter_opts.ref_state = X;  
 output_3 = SRIF(iter3_state_ap, P, ObsMassaged(obs_to_process,:), filter_opts);
 
+full_resid = [full_resid output_3.pfr_store];
+full_cov = [full_cov output_3.cov_store];
+full_x_est = [full_x_est output_3.x_est_store];
 %% B-plane target
 
 ode_opts = odeset('RelTol', 1e-12, 'AbsTol', 1e-20,...
@@ -187,9 +213,6 @@ processed_obs = ObsMassaged(obs_to_process,:);
     [output_3.state_store(:,end); reshape(eye(7),49,1)], ...
         ode_opts, filter_opts.propagator_opts);
     
-% [~,~,~,~,~,~] = ...
-%     cart2OE(X_to_SOI(end,1:3),...
-%     X_to_SOI(end,4:6),mu_earth);
 v_inf = norm(X_to_SOI(end,4:6));
 
 f = acosh(1+ v_inf*v_inf/mu_earth* norm(X_to_SOI(end,1:3)));
@@ -197,6 +220,7 @@ f = acosh(1+ v_inf*v_inf/mu_earth* norm(X_to_SOI(end,1:3)));
 LTOF = mu_earth/v_inf/v_inf/v_inf*(sinh(f)-f);
 
 S_hat = X_to_SOI(end,4:6)/v_inf;
+
 % T_hat
 % The B Plane. note that without a V_out, this isn't very correct except
 % the B Plane definition (so keep only that).
@@ -232,14 +256,36 @@ for ii = 1:length(t)
     coords_prime(:,ii) = ell_rot*[x(ii); y(ii)];
 end
 
-ell_plot;
+figure(ell_plot);
 hold on
-plot(x0+coords_prime(1,:),y0+coords_prime(2,:),'Color',color_order(kk,:))
-plot_handles = [plot_handles plot(x0, y0, 'x','Color',color_order(kk,:))];
+plot(x0+coords_prime(1,:),y0+coords_prime(2,:),'Color',color_order(kk,:),...
+    'LineWidth',hw_pub.lineWidth)
+plot_handles1 = [plot_handles1 plot(x0, y0, 'x','Color',color_order(kk,:),...
+    'LineWidth',hw_pub.lineWidth)];
+axis equal
+
+figure(ell_plot_co);
+hold on
+
+plot_handles2 = [plot_handles2 plot(coords_prime(1,:),coords_prime(2,:),...
+    'Color',color_order(kk,:),...
+    'LineWidth',hw_pub.lineWidth)];
 axis equal
 
 end
-legend(plot_handles, '50-day obs', '100-day obs', '150-day obs', '200-day obs');
+figure(ell_plot);
+legend(plot_handles1, '50-day obs', '100-day obs', '150-day obs', '200-day obs');
+xlabel('T (km)')
+ylabel('R (km)')
+title('3\sigma covariance ellipse on B-plane')
+set(gca,'YDir','reverse');
+
+figure(ell_plot_co);
+legend(plot_handles2, '50-day obs', '100-day obs', '150-day obs', '200-day obs');
+xlabel('T (km)')
+ylabel('R (km)')
+title('Co-centered 3\sigma covariance ellipse on B-plane')
+set(gca,'YDir','reverse');
 
 
 ell_plot;
@@ -269,6 +315,9 @@ for ii = 1:7
     fprintf('%.5f\n',output_3.state_store(ii,end))
 end
 
+plot_cov_err_envelope2(output_3.cov_store, output_3.x_est_store)
 residual_plot(output_1.pfr_store, [0.005, 0.5*1e-6], '1 iter')
 residual_plot(output_2.pfr_store, [0.005, 0.5*1e-6], '2 iter')
 residual_plot(output_3.pfr_store, [0.005, 0.5*1e-6], '3 iter')
+residual_plot(full_resid * 1e3, [0.005, 0.5*1e-6]* 1e3, '')
+plot_cov_err_envelope2(full_cov, full_x_est)
