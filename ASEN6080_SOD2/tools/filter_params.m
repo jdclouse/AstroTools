@@ -15,10 +15,10 @@ drag.Cd = 0.0;
 drag.A = 3.0; % m
 drag.m = 970; %kg
 
-state = state_i*1e3;
-state(1:3) = state(1:3) + 50;
-state(4:6) = state(4:6) - 0.01;
-P = eye(6)*1e6;
+% state = state_i*1e3;
+% state(1:3) = state(1:3) + 50;
+% state(4:6) = state(4:6) - 0.01;
+% P = eye(6)*1e6;
 
 % Set up propagator options for the filter
 propagator_opts.param_in_state.mu_idx = 0;

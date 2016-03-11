@@ -131,19 +131,19 @@ full_x_est = [];
 
 for kk = 1:length(DCOs)
     obs_to_process = ObsMassaged(:,2) <= DCOs(kk)*86400;
-    if kk > 1        
-        obs_to_process = ObsMassaged(obs_to_process,2) > DCOs(kk-1)*86400;
-        last_time = max(ObsMassaged(ObsMassaged(:,2) <= DCOs(kk-1)*86400,2));
-        new_time = min(ObsMassaged(obs_to_process,2));
-        [~,X] = ode45(@flyby_two_body_state_dot, [last_time new_time], ...
-            [output_3.state_store(:,end); reshape(eye(7),49,1)], ...
-            filter_opts.ode_opts, filter_opts.propagator_opts);
-        % Propagate the last state
-        STM = reshape(X(end,7+1:end),...
-            filter_opts.important_block(1), filter_opts.important_block(2));
-        state_ap = X(end,1:7)';
-        P = STM*output_3.final_P*STM';
-    end
+%     if kk > 1        
+%         obs_to_process = ObsMassaged(obs_to_process,2) > DCOs(kk-1)*86400;
+%         last_time = max(ObsMassaged(ObsMassaged(:,2) <= DCOs(kk-1)*86400,2));
+%         new_time = min(ObsMassaged(obs_to_process,2));
+%         [~,X] = ode45(@flyby_two_body_state_dot, [last_time new_time], ...
+%             [output_3.state_store(:,end); reshape(eye(7),49,1)], ...
+%             filter_opts.ode_opts, filter_opts.propagator_opts);
+%         % Propagate the last state
+%         STM = reshape(X(end,7+1:end),...
+%             filter_opts.important_block(1), filter_opts.important_block(2));
+%         state_ap = X(end,1:7)';
+%         P = STM*output_3.final_P*STM';
+%     end
 %% First iteration
 % ref state
 [~,X] = ode45(@flyby_two_body_state_dot, ObsMassaged(obs_to_process,2), ...

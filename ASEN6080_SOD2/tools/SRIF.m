@@ -134,7 +134,11 @@ for ii = 1:num_obs
         STM_accum_last = STM_accum;
         STM_accum = reshape(fo.ref_state(ii,consts.state_len+1:end),...
             fo.important_block(1), fo.important_block(2));
-        STM_obs2obs = STM_accum/STM_accum_last;
+        if dt > 0
+            STM_obs2obs = STM_accum/STM_accum_last;
+        else
+            STM_obs2obs = eye(consts.state_len);
+        end
     end
         
     % Calculate measurement deviation y
@@ -150,8 +154,13 @@ for ii = 1:num_obs
     
     % Time update
     x_ap = STM_obs2obs*x_est;
+%     if dt == 0
     R_bar = Rj/STM_obs2obs;
-%     R_bar = householder( Rj/STM_obs2obs, consts.state_len, consts.state_len);
+%     else
+%     info_mat = R_bar'*R_bar;
+%     R_bar = chol(info_mat,'upper');
+%     [~,R_bar] = householder2( Rj/STM_obs2obs);%, consts.state_len, consts.state_len,0);
+%     end
     b_bar = bj;%R_bar*x_ap;
     
     % H~
@@ -167,7 +176,7 @@ for ii = 1:num_obs
     
 %     xformed = householder([R_bar b_bar; V\H  V\y],8,7);
     xformed = householder([R_bar b_bar; V\H  V\y],...
-        consts.state_len+num_meas,consts.state_len+1);
+        consts.state_len+num_meas,consts.state_len+1, 1);
     Rj = xformed(1:consts.state_len,1:consts.state_len);
     bj = xformed(1:consts.state_len,end);
     

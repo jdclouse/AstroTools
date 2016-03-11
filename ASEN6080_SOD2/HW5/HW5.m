@@ -25,11 +25,13 @@ filter_opts.ode_opts = odeset('RelTol', 1e-12, 'AbsTol', 1e-20);
             filter_opts.ode_opts, filter_opts.propagator_opts);
 filter_opts.integrate_ref_state = 0;
 filter_opts.ref_state = X(i_uniques,:);
+filter_opts.ref_state = X;
+%% 
 tic
 storage = SRIF(state, P, meas_store, filter_opts);
 toc
 
-plot_cov_err_envelope(storage.cov_store(1:3,:), storage.state_store - true_state*1e3)
+% plot_cov_err_envelope(storage.cov_store(1:3,:), storage.state_store - true_state*1e3)
 residual_plot(storage.pfr_store, sigs,'SRIF, R not Triangular')
 
 
