@@ -13,8 +13,9 @@ v_inf_dep_countours = params.v_inf_dep_countours;
 TOF_countours = params.TOF_countours;
 fig_dim = params.fig_dim;
 day2sec = params.day2sec;
+debug = params.debug;
 
-min_xfer_time = 100; %days
+min_xfer_time = 80; %days
 max_xfer_time = 4000; %days
 
 dep_elapsed_time = DepartureDates - DepartureDates(1);
@@ -40,7 +41,9 @@ for JD_depart = DepartureDates
 %     fprintf(percent_complete);
     for JD_arrive = ArrivalDates
         cy = cy + 1;
-        fprintf([num2str(cx) ', ' num2str(cy) '\n']);
+        if debug
+            fprintf([num2str(cx) ', ' num2str(cy) '\n']);
+        end
         if JD_arrive-JD_depart < min_xfer_time
             continue % Don't bother with really short trajectories
         elseif JD_arrive-JD_depart > max_xfer_time
