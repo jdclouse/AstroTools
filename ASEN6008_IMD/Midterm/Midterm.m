@@ -44,9 +44,25 @@ params2.show_c3 = false;
 params2.show_v_inf_dep = true;
 params2.planet1 = Venus;
 params2.planet2 = Earth;
-params2.v_inf_dep_countours = [1:11 15 19 23];
+params2.v_inf_dep_countours = [5 7 9 11 15 19 23];
 
 [ fh , output_Launch_VGA] = PorkchopPlot( VGA_arr, EGA1_window, ...
     params2);
 figure(fh);
 title('VGA to EGA1');
+
+% EGA2 
+EGA2_window = JD_EGA2 + window;
+window = -120:0.5:30;
+JOI_window = JD_JOI + window;
+
+params3 = params2;
+params3.planet1 = Earth;
+params3.planet2 = Jupiter;
+params3.v_inf_arr_countours = 5:0.5:7.5;
+params3.v_inf_dep_countours = [5 7 9 11 15 19 23];
+
+[ fh , output_Launch_VGA] = PorkchopPlot( EGA2_window, JOI_window, ...
+    params3);
+figure(fh);
+title('EGA2 to JOI');
