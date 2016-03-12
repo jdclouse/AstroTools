@@ -108,7 +108,7 @@ legend_vec = [legend_vec ...
 legend_cells = {legend_cells{:} 'Baseline Trajectory' 'True Trajectory'};
 legend(legend_vec, legend_cells, 'Location', 'NorthWest')
 
-%%
+%% Patch together the trajectories
 lambert_out = [output_Launch_VGA output_VGA_EGA1 output_EGA2_JOI];
 
 % Initialize desired constraints
@@ -137,6 +137,7 @@ GA_idx1 = find(sum(total_launch_constraints,1)>0, 1, 'first');
 GA_idx2 = find(sum(total_launch_constraints,1)>0, 1, 'last');
 
 % Next determine the constraints on the slice for the last segment
+valid_final_pass = lambert_out(3).short_way_dv2_store < V_flyby_final_max;
 valid_final_pass = lambert_out(2).long_way_dv2_store < V_flyby_final_max;
 fb_idx1 = find(sum(valid_final_pass,1)>0, 1, 'first');
 fb_idx2 = find(sum(valid_final_pass,1)>0, 1, 'last');
@@ -174,40 +175,60 @@ EGA1_date_idx=EGA1_date_idx(Launch_date_idx,VGA_date_idx);
 fprintf('Launch: '); disp(getDate(Launch_dep(Launch_date_idx)))
 fprintf('VGA: '); disp(getDate(VGA_arr(VGA_date_idx)))
 fprintf('EGA1: '); disp(getDate(EGA1_window(EGA1_date_idx)))
-fprintf('velocity error: '); 
+fprintf('velocity error in VGA: '); 
 disp(VGA_vel_err_3d(Launch_date_idx, VGA_date_idx, EGA1_date_idx))
-VGA_valid(Launch_date_idx, VGA_date_idx, EGA1_date_idx)
+fprintf('\b\b km/s\n\n');
+VGA_valid(Launch_date_idx, VGA_date_idx, EGA1_date_idx);
 EGA1_v_inf = lambert_out(2).long_way_dv2_store(VGA_date_idx, EGA1_date_idx);
 
 % 3:2 resonant orbit
 % Need to keep the EGA windows the same. This will align the indices for
 % EGA1 and EGA2.
 % EGA2
-% num_depart = length(EGA2_window);
-% num_VGA_window = length(VGA_arr);
-% num_arr = length(EGA1_window);
-% VGA_valid = zeros(num_depart, num_VGA_window, num_arr);
-% VGA_vel_err_3d = nan(num_depart, num_VGA_window, num_arr);
-% 
-% for ii = launch_idx1:launch_idx2
-%     % 
-%     for jj = fb_idx1:fb_idx2
-%         GA_vel_err = abs(lambert_out(2).long_way_dv1_store(:,jj) ...
-%             - lambert_out(1).short_way_dv2_store(ii,:)');
-%         valid_GA = ...
-%             GA_vel_err <= max_GA_diff;
-%         VGA_vel_err_3d(ii,:,jj) = GA_vel_err;
-%         VGA_valid(ii,:,jj) = valid_GA;
-%     end
-% end
+% for simplicity, I had the windows the same. going to keep the indices the
+% same as well, could offset half a day though...
+EGA2_date_idx = EGA1_date_idx;
+num_joi = length(JOI_window);
+ResoOrb_valid = [];%zeros(num_joi,1);
+ResoOrb_vel_err = [];%nan(num_joi,1);
+
+for ii = 1:length(EGA2_window)
+    % 
+    ResoOrb_vel_err = ...
+        abs(lambert_out(2).long_way_dv2_store(VGA_date_idx,EGA1_date_idx) ...
+        - lambert_out(3).long_way_dv1_store(EGA2_date_idx,:)');
+    valid_RO = ...
+        ResoOrb_vel_err <= max_GA_diff;
+    ResoOrb_valid = valid_RO;
+end
+
+[~, JOI_date_idx] = min(ResoOrb_vel_err);
+
+fprintf('EGA2: '); disp(getDate(EGA2_window(EGA2_date_idx)))
+fprintf('JOI: '); disp(getDate(JOI_window(JOI_date_idx)))
+fprintf('velocity error in resonant orbit: '); 
+disp(ResoOrb_vel_err(JOI_date_idx)); fprintf('\b\b km/s\n\n')
 
 %% Resonant Orbit
+% Constructing a 2:1 resonant orbit
+% Ephemerides
+[r_earth_ega1, v_earth_ega1] = ...
+    MeeusEphemeris(Earth, EGA1_window(EGA1_date_idx),Sun);
+[r_earth_ega2, v_earth_ega2] = ...
+    MeeusEphemeris(Earth, EGA2_window(EGA2_date_idx),Sun);
+[r_jupiter_JOI, ~] = ...
+    MeeusEphemeris(Jupiter, JOI_window(JOI_date_idx),Sun);
 
-% Constructing a 3:2 resonant orbit
+% The outgoing velocity on EGA2.
+[~, EGA2_v_inf_out] = lambert( r_earth_ega2, r_jupiter_JOI, ...
+    (JOI_window(JOI_date_idx)-EGA2_window(EGA2_date_idx))*day2sec, ...
+    -1, Sun);
+
+% period is 2 years
 P = 2*365.242189*day2sec;
 a_reso = (P*P/4/pi/pi*Sun.mu)^(1/3);
-[r_earth_ega1, v_earth_ega1] = MeeusEphemeris(Earth, JD_EGA1,Sun);
-[~, v_earth_ega2] = MeeusEphemeris(Earth, JD_EGA1,Sun);
+
+% The veolocity immediately after the first gravity assist
 V_sc_sun = sqrt(Sun.mu*(2/norm(r_earth_ega1) - 1/a_reso));
 
 theta = acos((-norm(V_sc_sun)^2 + norm(v_earth_ega1)^2 + EGA1_v_inf^2)...
