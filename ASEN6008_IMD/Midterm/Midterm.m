@@ -108,7 +108,7 @@ legend_vec = [legend_vec ...
 legend_cells = {legend_cells{:} 'Baseline Trajectory' 'True Trajectory'};
 legend(legend_vec, legend_cells, 'Location', 'NorthWest')
 
-%% Patch together the trajectories
+%% Patch together the trajectories using constraints
 lambert_out = [output_Launch_VGA output_VGA_EGA1 output_EGA2_JOI];
 
 % Initialize desired constraints
@@ -209,29 +209,37 @@ fprintf('JOI: '); disp(getDate(JOI_window(JOI_date_idx)))
 fprintf('velocity error in resonant orbit: '); 
 disp(ResoOrb_vel_err(JOI_date_idx)); fprintf('\b\b km/s\n\n')
 
-%% Resonant Orbit
-% Constructing a 2:1 resonant orbit
 % Ephemerides
+[r_earth_launch, v_earth_launch] = ...
+    MeeusEphemeris(Earth, Launch_dep(Launch_date_idx),Sun);
 [r_venus_vga, v_venus_vga] = ...
     MeeusEphemeris(Venus, VGA_arr(VGA_date_idx),Sun);
 [r_earth_ega1, v_earth_ega1] = ...
     MeeusEphemeris(Earth, EGA1_window(EGA1_date_idx),Sun);
 [r_earth_ega2, v_earth_ega2] = ...
     MeeusEphemeris(Earth, EGA2_window(EGA2_date_idx),Sun);
-[r_jupiter_JOI, ~] = ...
+[r_jupiter_JOI, v_jupiter_JOI] = ...
     MeeusEphemeris(Jupiter, JOI_window(JOI_date_idx),Sun);
 
+% Launch to VGA
+[~, VGA_v_helio_in] = lambert( r_earth_launch, r_venus_vga, ...
+    (VGA_arr(VGA_date_idx)-Launch_dep(Launch_date_idx))*day2sec, ...
+    1, Sun);
+
 % Incoming velocity on EGA1
-[~, EGA1_v_helio] = lambert( r_venus_vga, r_earth_ega1, ...
+[~, EGA1_v_helio_in] = lambert( r_venus_vga, r_earth_ega1, ...
     (EGA1_window(EGA1_date_idx)-VGA_arr(VGA_date_idx))*day2sec, ...
     -1, Sun);
-EGA1_v_inf_in = EGA1_v_helio - v_earth_ega1;
+EGA1_v_inf_in = EGA1_v_helio_in - v_earth_ega1;
 
 % The outgoing velocity on EGA2.
-[EGA2_v_helio, ~] = lambert( r_earth_ega2, r_jupiter_JOI, ...
+[EGA2_v_helio_out, JOI_v_helio] = lambert( r_earth_ega2, r_jupiter_JOI, ...
     (JOI_window(JOI_date_idx)-EGA2_window(EGA2_date_idx))*day2sec, ...
     -1, Sun);
-EGA2_v_inf_out = EGA2_v_helio - v_earth_ega2;
+EGA2_v_inf_out = EGA2_v_helio_out - v_earth_ega2;
+
+%% Resonant Orbit
+% Constructing a 2:1 resonant orbit
 
 % period is 2 years
 P = 2*365.242189*day2sec;
@@ -280,10 +288,10 @@ for phi = 0:0.01:2*pi
     rp2 = Earth.mu/(norm(EGA2_v_inf_out))^2*(1/cos((pi-psi2)/2)-1);
     
     if rp1 > r_min && rp2 > r_min
-        acceptable_phi = [acceptable_phi phi];
-        acceptable_radii = [acceptable_radii [rp1;rp2]];
-        acceptable_EGA1_out = [acceptable_EGA1_out V_GA1_out];
-        acceptable_EGA2_in = [acceptable_EGA2_in V_GA2_in];
+        acceptable_phi = [acceptable_phi phi]; %#ok<AGROW>
+        acceptable_radii = [acceptable_radii [rp1;rp2]]; %#ok<AGROW>
+        acceptable_EGA1_out = [acceptable_EGA1_out V_GA1_out]; %#ok<AGROW>
+        acceptable_EGA2_in = [acceptable_EGA2_in V_GA2_in]; %#ok<AGROW>
     end
 end
 
