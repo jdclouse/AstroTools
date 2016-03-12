@@ -116,7 +116,7 @@ fb_idx2 = find(sum(valid_final_pass,1)>0, 1, 'last');
 % velocity difference must be small for pure-GA maneuvers. This section
 % determines what the valid GAs are in this 3D grid. 
 % for each launch date, see what has a valid GA
-GA_stuff = zeros(length(Earth_dep_dates),...
+GA_valid = zeros(length(Earth_dep_dates),...
     111, length(Pluto_arr_dates));
 GA_vel_err_3d = nan(length(Earth_dep_dates),...
     111, length(Pluto_arr_dates));
@@ -128,7 +128,7 @@ for ii = launch_idx1:launch_idx2
         valid_GA = ...
             GA_vel_err <= max_GA_diff;
         GA_vel_err_3d(ii,:,jj) = GA_vel_err;
-        GA_stuff(ii,:,jj) = valid_GA;
+        GA_valid(ii,:,jj) = valid_GA;
     end
 end
 
@@ -136,14 +136,14 @@ end
 % range or not enough granularity in the dates.
 
 % Those were velocities that matched. Now apply the valid dates to this.
-GA_stuff = GA_stuff & repmat(total_launch_constraints, [1 1 length(Pluto_arr_dates)]);
+GA_valid = GA_valid & repmat(total_launch_constraints, [1 1 length(Pluto_arr_dates)]);
 % And the final passes.
-GA_stuff = GA_stuff & repmat(reshape(valid_final_pass, 1, 111, 601), [length(Earth_dep_dates) 1 1]);
+GA_valid = GA_valid & repmat(reshape(valid_final_pass, 1, 111, 601), [length(Earth_dep_dates) 1 1]);
 
 % Create 3D grids of the interesting parameters.
-C3_X = GA_stuff.*repmat(out1.sw_c3_store, [1 1 length(Pluto_arr_dates)]);
+C3_X = GA_valid.*repmat(out1.sw_c3_store, [1 1 length(Pluto_arr_dates)]);
 C3_X(C3_X == 0) = NaN;
-viable_Vinf_pluto = GA_stuff.*repmat(reshape(out2.short_way_dv2_store, 1, 111, 601), [length(Earth_dep_dates) 1 1]);
+viable_Vinf_pluto = GA_valid.*repmat(reshape(out2.short_way_dv2_store, 1, 111, 601), [length(Earth_dep_dates) 1 1]);
 viable_Vinf_pluto(viable_Vinf_pluto == 0) = NaN;
 
 % Lowest C3
@@ -157,7 +157,7 @@ C3_X(Launch_date_idx, JGA_date_idx, PFB_date_idx)
 
 % Earliest to Pluto
 for ii = 1:length(Pluto_arr_dates)
-    if sum(sum(squeeze(GA_stuff(:,:,ii))))
+    if sum(sum(squeeze(GA_valid(:,:,ii))))
         break
     end
 end

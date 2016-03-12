@@ -1,5 +1,5 @@
-function [ fh , output] = PorkchopPlot( DepartureDates, ArrivalDates, ...
-    params)
+function [ fh , output, legend_vec, legend_cells] = ...
+    PorkchopPlot( DepartureDates, ArrivalDates, params)
 %PorkchopPlot Create a porkchop plot
 %   Detailed explanation goes here
 fcnPrintQueue(mfilename('fullpath')) % Add this code to code app 

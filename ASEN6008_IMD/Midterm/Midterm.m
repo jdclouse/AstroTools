@@ -1,6 +1,7 @@
 %% Galileo Reconstruction by John Clouse
 %% Initialize
 CelestialConstants;
+color_order = get(groot,'defaultAxesColorOrder');
 
 % Set up the baseline events
 JD_Launch = 2447807.5; %October 8, 1989 00:00:00
@@ -8,6 +9,10 @@ JD_VGA = 2447932.5; % February 10, 1990 00:00:00
 JD_EGA1 = 2448235.5; % December 10, 1990 00:00:00
 JD_EGA2 = 2448966.0; % December 9, 1992 12:00:00
 JD_JOI = 2450164.0; % March 21, 1996 12:00:00
+
+% Anonymous function to print out the dates.
+getDate = @(x_date) ...
+    datestr(x_date-(floor(juliandate(date)) - datenum(date)),1);
 
 %% Porkchop plots
 % Launch to VGA
@@ -31,11 +36,30 @@ params1.show_v_inf_arr = true;
 params1.show_tof = true;
 params1.debug = false;
 
-[ fh , output_Launch_VGA] = PorkchopPlot( Launch_dep, VGA_arr, ...
+[ fh , output_Launch_VGA, legend_vec, legend_cells] = PorkchopPlot( Launch_dep, VGA_arr, ...
     params1);
 figure(fh);
 title('Launch to VGA');
+JD_true_launch = juliandate(1989,10,13,16,53,40);
+JD_true_VGA = juliandate(1990,2,10);
+legend_vec = [legend_vec ...
+    plot(JD_Launch, JD_VGA,'d',...
+    'Color',color_order(2,:),'LineWidth',hw_pub.lineWidth,'MarkerSize', 3) ...
+    plot(JD_true_launch, JD_true_VGA, 'd',...
+    'Color',color_order(4,:),'LineWidth',hw_pub.lineWidth) ];
+% scatter(JD_Launch, JD_VGA, 'd',...
+%     'Color',color_order(2,:),'LineWidth',hw_pub.lineWidth)
+legend_cells = {legend_cells{:} 'Baseline Trajectory' 'True Trajectory'};
+legend(legend_vec, legend_cells, 'Location', 'NorthWest')
+hold on
+plot3(Launch_dep, VGA_arr,-1000*ones(length(VGA_arr)))
 
+% x = plot(JD_Launch, JD_VGA, 'd'),...
+%     'Color',color_order(2,:),'LineWidth',hw_pub.lineWidth)
+% uistack(x)
+
+
+figure
 % VGA to EGA1
 EGA1_window = JD_EGA1 + window;
 
@@ -46,10 +70,18 @@ params2.planet1 = Venus;
 params2.planet2 = Earth;
 params2.v_inf_dep_countours = [5 7 9 11 15 19 23];
 
-[ fh , output_Launch_VGA] = PorkchopPlot( VGA_arr, EGA1_window, ...
+[ fh , output_VGA_EGA1, legend_vec, legend_cells] = PorkchopPlot( VGA_arr, EGA1_window, ...
     params2);
 figure(fh);
 title('VGA to EGA1');
+JD_true_EGA1 = juliandate(1990,12,8);
+legend_vec = [legend_vec ...
+    plot(JD_VGA, JD_EGA1, 'd',...
+    'Color',color_order(2,:),'LineWidth',hw_pub.lineWidth) ...
+    plot(JD_true_VGA, JD_true_EGA1, 'd',...
+    'Color',color_order(4,:),'LineWidth',hw_pub.lineWidth) ];
+legend_cells = {legend_cells{:} 'Baseline Trajectory' 'True Trajectory'};
+legend(legend_vec, legend_cells, 'Location', 'NorthWest')
 
 % EGA2 
 EGA2_window = JD_EGA2 + window;
@@ -62,7 +94,138 @@ params3.planet2 = Jupiter;
 params3.v_inf_arr_countours = 5:0.5:7.5;
 params3.v_inf_dep_countours = [5 7 9 11 15 19 23];
 
-[ fh , output_Launch_VGA] = PorkchopPlot( EGA2_window, JOI_window, ...
+[ fh , output_EGA2_JOI, legend_vec, legend_cells] = PorkchopPlot( EGA2_window, JOI_window, ...
     params3);
 figure(fh);
 title('EGA2 to JOI');
+JD_true_EGA2 = juliandate(1992,12,8);
+JD_true_JOI = juliandate(1995,12,8);
+legend_vec = [legend_vec ...
+    plot(JD_EGA2, JD_JOI, 'd',...
+    'Color',color_order(2,:),'LineWidth',hw_pub.lineWidth) ...
+    plot(JD_true_EGA2, JD_true_JOI, 'd',...
+    'Color',color_order(4,:),'LineWidth',hw_pub.lineWidth) ];
+legend_cells = {legend_cells{:} 'Baseline Trajectory' 'True Trajectory'};
+legend(legend_vec, legend_cells, 'Location', 'NorthWest')
+
+%%
+lambert_out = [output_Launch_VGA output_VGA_EGA1 output_EGA2_JOI];
+
+% Initialize desired constraints
+% can interp2 for more granularity
+% These are only short-ways... since it's for a long interplanetary mission
+C3_max = 180; %km^2/s^2
+launch_date_min = Launch_dep(1);%juliandate('9-Jan-2006');
+launch_date_max = Launch_dep(end);%juliandate('10-Jan-2006');
+V_flyby_final_max = 10;
+max_GA_diff = .4; %km/s
+
+% Here we determine the constraints on the slice for the first segment
+% Get the dates for valid C3
+valid_c3_sw = (lambert_out(1).sw_c3_store < C3_max);
+%apparently this is the element-wise logical AND 
+valid_launch_sw = Launch_dep >= launch_date_min ...
+    & Launch_dep < launch_date_max; 
+
+total_launch_constraints = ...
+    valid_c3_sw & repmat(valid_launch_sw,length(EGA1_window),1)';
+launch_idx1 = find(sum(total_launch_constraints,2)>0, 1, 'first');
+launch_idx2 = find(sum(total_launch_constraints,2)>0, 1, 'last');
+
+% Y of this plot is X of the next.
+GA_idx1 = find(sum(total_launch_constraints,1)>0, 1, 'first');
+GA_idx2 = find(sum(total_launch_constraints,1)>0, 1, 'last');
+
+% Next determine the constraints on the slice for the last segment
+valid_final_pass = lambert_out(2).long_way_dv2_store < V_flyby_final_max;
+fb_idx1 = find(sum(valid_final_pass,1)>0, 1, 'first');
+fb_idx2 = find(sum(valid_final_pass,1)>0, 1, 'last');
+
+% Each segment forms a grid of information for each departure/arrival
+% combination. For a gravity assist, this forms a 3D grid. However, the
+% velocity difference must be small for pure-GA maneuvers. This section
+% determines what the valid GAs are in this 3D grid. 
+% for each launch date, see what has a valid GA
+num_depart = length(Launch_dep);
+num_VGA_window = length(VGA_arr);
+num_arr = length(EGA1_window);
+VGA_valid = zeros(num_depart, num_VGA_window, num_arr);
+VGA_vel_err_3d = nan(num_depart, num_VGA_window, num_arr);
+
+for ii = launch_idx1:launch_idx2
+    % 
+    for jj = fb_idx1:fb_idx2
+        GA_vel_err = abs(lambert_out(2).long_way_dv1_store(:,jj) ...
+            - lambert_out(1).short_way_dv2_store(ii,:)');
+        valid_GA = ...
+            GA_vel_err <= max_GA_diff;
+        VGA_vel_err_3d(ii,:,jj) = GA_vel_err;
+        VGA_valid(ii,:,jj) = valid_GA;
+    end
+end
+
+% Choose a date set based on some criteria
+% I'm going with minimal dV error during the GA
+[d3, EGA1_date_idx] = min(VGA_vel_err_3d, [], 3);
+[d2, VGA_date_idx] = min(d3, [], 2);
+[~, Launch_date_idx] = min(d2, [], 1);
+VGA_date_idx=VGA_date_idx(Launch_date_idx);
+EGA1_date_idx=EGA1_date_idx(Launch_date_idx,VGA_date_idx);
+fprintf('Launch: '); disp(getDate(Launch_dep(Launch_date_idx)))
+fprintf('VGA: '); disp(getDate(VGA_arr(VGA_date_idx)))
+fprintf('EGA1: '); disp(getDate(EGA1_window(EGA1_date_idx)))
+fprintf('velocity error: '); 
+disp(VGA_vel_err_3d(Launch_date_idx, VGA_date_idx, EGA1_date_idx))
+VGA_valid(Launch_date_idx, VGA_date_idx, EGA1_date_idx)
+EGA1_v_inf = lambert_out(2).long_way_dv2_store(VGA_date_idx, EGA1_date_idx);
+
+% 3:2 resonant orbit
+% Need to keep the EGA windows the same. This will align the indices for
+% EGA1 and EGA2.
+% EGA2
+% num_depart = length(EGA2_window);
+% num_VGA_window = length(VGA_arr);
+% num_arr = length(EGA1_window);
+% VGA_valid = zeros(num_depart, num_VGA_window, num_arr);
+% VGA_vel_err_3d = nan(num_depart, num_VGA_window, num_arr);
+% 
+% for ii = launch_idx1:launch_idx2
+%     % 
+%     for jj = fb_idx1:fb_idx2
+%         GA_vel_err = abs(lambert_out(2).long_way_dv1_store(:,jj) ...
+%             - lambert_out(1).short_way_dv2_store(ii,:)');
+%         valid_GA = ...
+%             GA_vel_err <= max_GA_diff;
+%         VGA_vel_err_3d(ii,:,jj) = GA_vel_err;
+%         VGA_valid(ii,:,jj) = valid_GA;
+%     end
+% end
+
+%% Resonant Orbit
+
+% Constructing a 3:2 resonant orbit
+P = 2*365.242189*day2sec;
+a_reso = (P*P/4/pi/pi*Sun.mu)^(1/3);
+[r_earth_ega1, v_earth_ega1] = MeeusEphemeris(Earth, JD_EGA1,Sun);
+[~, v_earth_ega2] = MeeusEphemeris(Earth, JD_EGA1,Sun);
+V_sc_sun = sqrt(Sun.mu*(2/norm(r_earth_ega1) - 1/a_reso));
+
+theta = acos((-norm(V_sc_sun)^2 + norm(v_earth_ega1)^2 + EGA1_v_inf^2)...
+    /(2*EGA1_v_inf*norm(v_earth_ega1)));
+
+% The velocity is calculated in the Earth VNC frame. Calculate the
+% transformation from VNC to ecliptic coords.
+V_hat = v_earth_ega1/norm(v_earth_ega1);
+N_hat = cross(r_earth_ega1, v_earth_ega1)...
+    /norm(cross(r_earth_ega1, v_earth_ega1)); % angular momentum
+C_hat = cross(V_hat, N_hat);
+T_VNC2Ecl = [V_hat N_hat C_hat];
+
+cos_term = cos(pi-theta);
+sin_term = sin(pi-theta);
+for phi = 0:0.01:2*pi
+    V_GA1_out = T_VNC2Ecl*EGA1_v_inf...
+        *[cos_term; sin_term*cos(phi);-sin_term*sin(phi)];
+    
+    V_GA1_in = V_GA1_out + v_earth_ega1 - v_earth_ega2;
+end
