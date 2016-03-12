@@ -212,6 +212,8 @@ disp(ResoOrb_vel_err(JOI_date_idx)); fprintf('\b\b km/s\n\n')
 %% Resonant Orbit
 % Constructing a 2:1 resonant orbit
 % Ephemerides
+[r_venus_vga, v_venus_vga] = ...
+    MeeusEphemeris(Venus, VGA_arr(VGA_date_idx),Sun);
 [r_earth_ega1, v_earth_ega1] = ...
     MeeusEphemeris(Earth, EGA1_window(EGA1_date_idx),Sun);
 [r_earth_ega2, v_earth_ega2] = ...
@@ -219,14 +221,21 @@ disp(ResoOrb_vel_err(JOI_date_idx)); fprintf('\b\b km/s\n\n')
 [r_jupiter_JOI, ~] = ...
     MeeusEphemeris(Jupiter, JOI_window(JOI_date_idx),Sun);
 
+% Incoming velocity on EGA1
+[~, EGA1_v_helio] = lambert( r_venus_vga, r_earth_ega1, ...
+    (EGA1_window(EGA1_date_idx)-VGA_arr(VGA_date_idx))*day2sec, ...
+    -1, Sun);
+EGA1_v_inf_in = EGA1_v_helio - v_earth_ega1;
+
 % The outgoing velocity on EGA2.
-[~, EGA2_v_inf_out] = lambert( r_earth_ega2, r_jupiter_JOI, ...
+[EGA2_v_helio, ~] = lambert( r_earth_ega2, r_jupiter_JOI, ...
     (JOI_window(JOI_date_idx)-EGA2_window(EGA2_date_idx))*day2sec, ...
     -1, Sun);
+EGA2_v_inf_out = EGA2_v_helio - v_earth_ega2;
 
 % period is 2 years
 P = 2*365.242189*day2sec;
-a_reso = (P*P/4/pi/pi*Sun.mu)^(1/3);
+a_reso = (P*P/4/pi/pi*Sun.mu)^(1/3); %sma
 
 % The veolocity immediately after the first gravity assist
 V_sc_sun = sqrt(Sun.mu*(2/norm(r_earth_ega1) - 1/a_reso));
@@ -242,11 +251,62 @@ N_hat = cross(r_earth_ega1, v_earth_ega1)...
 C_hat = cross(V_hat, N_hat);
 T_VNC2Ecl = [V_hat N_hat C_hat];
 
+% Cycle through the locus of possible orbits
+r_min = 7000; % Minimum radius of earth approach
 cos_term = cos(pi-theta);
 sin_term = sin(pi-theta);
+acceptable_phi = [];
+acceptable_radii = [];
+acceptable_EGA1_out = [];
+acceptable_EGA2_in = [];
 for phi = 0:0.01:2*pi
     V_GA1_out = T_VNC2Ecl*EGA1_v_inf...
         *[cos_term; sin_term*cos(phi);-sin_term*sin(phi)];
     
-    V_GA1_in = V_GA1_out + v_earth_ega1 - v_earth_ega2;
+    V_GA2_in = V_GA1_out + v_earth_ega1 - v_earth_ega2;
+    
+    % Determine if there is impact potential.
+    % GA1:
+    % Turning angle
+    psi1 = acos(dot(EGA1_v_inf_in,V_GA1_out)...
+        /norm(EGA1_v_inf_in)/norm(V_GA1_out));
+    % Closes approach to planet
+    rp1 = Earth.mu/(norm(V_GA1_out))^2*(1/cos((pi-psi1)/2)-1);
+    % GA2:
+    % Turning angle
+    psi2 = acos(dot(V_GA2_in,EGA2_v_inf_out)...
+        /norm(V_GA2_in)/norm(EGA2_v_inf_out));
+    % Closes approach to planet
+    rp2 = Earth.mu/(norm(EGA2_v_inf_out))^2*(1/cos((pi-psi2)/2)-1);
+    
+    if rp1 > r_min && rp2 > r_min
+        acceptable_phi = [acceptable_phi phi];
+        acceptable_radii = [acceptable_radii [rp1;rp2]];
+        acceptable_EGA1_out = [acceptable_EGA1_out V_GA1_out];
+        acceptable_EGA2_in = [acceptable_EGA2_in V_GA2_in];
+    end
 end
+
+% I'm choosing the phi such that both passes are as far away as possible to
+% minimize drag and other near-earth affects.
+[~,xxx] = min(max(acceptable_radii,[],2));
+[~,max_r_idx] = max(acceptable_radii(xxx,:));
+fprintf('Earth Resonant Orbit:\n')
+fprintf('phi = ');disp(acceptable_phi(max_r_idx)*180/pi);
+fprintf('\b\b deg\n');
+fprintf('EGA1 r_p = ');disp(acceptable_radii(1,max_r_idx));
+fprintf('\b\b km\n');
+fprintf('EGA2 r_p = ');disp(acceptable_radii(2,max_r_idx));
+fprintf('\b\b km\n');
+fprintf('EGA1 V_out = \n');disp(acceptable_EGA1_out(:,max_r_idx));
+fprintf('\b\b km/s\n');
+fprintf('EGA2 V_in = \n');disp(acceptable_EGA2_in(:,max_r_idx));
+fprintf('\b\b km/s\n');
+fprintf('\n');
+
+%% B Plane for all gravity assists
+% VGA
+
+% EGA1
+
+% EGA2
