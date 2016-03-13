@@ -27,6 +27,8 @@ VO_V100
     RenderFromPBufferToVOWindow No
     DefaultBingServerName       virtualearth.net
     BingServerName       virtualearth.net
+    DefaultStreamingTerrainServerName       assets.agi.com/stk-terrain/
+    StreamingTerrainServerName       assets.agi.com/stk-terrain/
 
     Begin DefaultViewAngles
         AIRCRAFT	0.000000	30.000000
@@ -208,29 +210,6 @@ VO_V100
 
             Begin Globe
                 AA Yes
-                BeginCentralBody "Moon"
-                    Show Yes
-                    Textured Yes
-                    AltOffset 0.000000
-                    Color #ffffff
-                    SpecularColor #545454
-                    Shininess 40.000000
-                    ShowWater No
-                    _AGI_PIBEGINTERRAINIMAGECALLDATA "SRC"
-                        BlendMode Value
-                        BlendFactor 1.000000
-                        BlendAltitudeLowerFactor 1.000000
-                        BlendAltitudeUpperFactor 0.000000
-                        BlendAltitudeLowerAltitude 500000.000000
-                        BlendAltitudeUpperAltitude 2500000.000000
-                        TextureRole Day
-                        URI "file:///Moon.jp2"
-                        BeginImageSetDefOn
-                        End
-                        InBase Yes
-                        BaseOn Yes
-                    End
-                EndCentralBody
                 BeginCentralBody "Sun"
                     Show Yes
                     Textured No
@@ -248,6 +227,29 @@ VO_V100
                         BlendAltitudeUpperAltitude 2500000.000000
                         TextureRole Day
                         URI "file:///Sun.jp2"
+                        BeginImageSetDefOn
+                        End
+                        InBase Yes
+                        BaseOn Yes
+                    End
+                EndCentralBody
+                BeginCentralBody "Moon"
+                    Show Yes
+                    Textured Yes
+                    AltOffset 0.000000
+                    Color #ffffff
+                    SpecularColor #545454
+                    Shininess 40.000000
+                    ShowWater No
+                    _AGI_PIBEGINTERRAINIMAGECALLDATA "SRC"
+                        BlendMode Value
+                        BlendFactor 1.000000
+                        BlendAltitudeLowerFactor 1.000000
+                        BlendAltitudeUpperFactor 0.000000
+                        BlendAltitudeLowerAltitude 500000.000000
+                        BlendAltitudeUpperAltitude 2500000.000000
+                        TextureRole Day
+                        URI "file:///Moon.jp2"
                         BeginImageSetDefOn
                         End
                         InBase Yes
@@ -359,12 +361,12 @@ VO_V100
             End
             Begin CentralBodyOpts
                 BeginCentralBody
-                    Name "Moon"
-                    ShowLabel Yes
-                EndCentralBody
-                BeginCentralBody
                     Name "Sun"
                     ShowLabel No
+                EndCentralBody
+                BeginCentralBody
+                    Name "Moon"
+                    ShowLabel Yes
                 EndCentralBody
                 BeginCentralBody
                     Name "Earth"
@@ -721,9 +723,9 @@ VO_V100
                 UseLayer                Yes
                 FromName                "Earth"
                 FromRegPosAttView       "Point"
-                FromPosition            75303436.125534698000000000  -21058995.846618470000000000  18998374.753406126000000000
-                FromOffset              75303436.125534698000000000  -21058995.846618470000000000  18998374.753406126000000000
-                FromOffsetLLR           0.238350231095337710  -0.272688921288086470  80467552.725624979000000000
+                FromPosition            91895569.606667146000000000  57821522.379307702000000000  133034769.461721850000000000
+                FromOffset              91895569.606667146000000000  57821522.379307702000000000  133034769.461721850000000000
+                FromOffsetLLR           0.886299540141996300  0.561620310819320730  171715969.115653510000000000
                 ToName                  "Earth"
                 ToRegPosAttView         "Point"
                 ToPosition              0.000000000000000000  0.000000000000000000  0.000000000000000000
@@ -731,9 +733,9 @@ VO_V100
                 ToOffsetLLR             0.000000000000000000  0.000000000000000000  0.000000000000000000
                 ConstantDistanceType    None
                 ConstantDistanceValue   1.000000
-                UpVector                -0.227375977737208360  0.063586869566035820  0.971728807212609460
-                ViewRad                 80467552.725624979000000000
-                ViewQuat                0.1349583 -0.1177898 0.0161603 0.9836924
+                UpVector                -0.655732485312082280  -0.412592802205785590  0.632283233428198140
+                ViewRad                 171715969.115653510000000000
+                ViewQuat                0.2503645 0.4119920 0.1188316 -0.8680203
                 ViewCoordSystem         From
                 ViewFromToMode          FromTo
                 ViewToCBIMtx            1.000000000000000000 0.000000000000000000 0.000000000000000000 0.000000000000000000 1.000000000000000000 0.000000000000000000  0.000000000000000000 0.000000000000000000 1.000000000000000000
@@ -747,9 +749,667 @@ VO_V100
                 MinAngleToUpAxis        0.0087266
                 InitUpAxisUp            Yes
                 TempUpAxisUp            Yes
-                CrossAxis               -0.2693220 -0.9630502 0.0000000
+                CrossAxis               0.5325583 -0.8463933 0.0000000
                 DefaultOffset           35079753.5000000
                 BaseDefaultOffset       6378137.0000000
+            End View
+
+            Begin ViewPathManagerSceneInfo
+                ActiveViewPath                      ""
+                FollowViewPath                      No
+                ActiveCtrlPt                        -1
+                ShowTrackball                       No
+            End ViewPathManagerSceneInfo
+        End Scene
+    End SceneWindow
+
+    Begin SceneWindow
+
+        Begin Scene
+            SceneID                  2
+            CentralBody              Venus
+            DisplayMode              Normal
+            IsAutoStereo             No
+            ProjectionDistance       100000.000000
+            EyeSeparationFactor      0.020000
+            WireframeMode            No
+            CameraLightAntiSun       No
+
+            Begin Compass
+                Show No
+                UseMagPole No
+                Radius 65.000000
+                XPosition 80
+                YPosition 100
+                XOrigin Min
+                YOrigin Min
+            End Compass
+
+            Begin Declutter
+                Enabled No
+                ShowsLines Yes
+                Mode MinimizeDistance
+                AvoidsTerrain Auto
+                ShiftFromTerrain 75
+                MaxPixelsPerSec 80
+            End Declutter
+
+            Begin LatLonLines
+                Enabled No
+                LineType Surface
+                FadeFactor 1.000000
+                SpacingLat 30.000000
+                SpacingLon 30.000000
+                Begin LineAttributes
+                    Width            1.000000
+                    Style            0
+                    Color            #f0ffff
+                End LineAttributes
+            End LatLonLines
+
+        BEGIN SoftVTR
+            OutputFormat     WMV
+            Directory        C:\Users\John\Documents\Astro\ASEN6008_IMD\Lab4\Midterm_Galileo
+            BaseName         VOsnap
+            Digits           4
+            Frame            0
+            LastAnimTime     0.000000
+            OutputMode       Normal
+            HiResAssembly    Assemble
+            HRWidth          6000
+            HRHeight         4500
+            HRDPI            600.000000
+            UseSnapInterval  No
+            SnapInterval     0.000000
+            WmvCodec         "Windows Media Video 9"
+            Framerate        30
+            Bitrate          3000000
+        END SoftVTR
+
+
+            BEGIN MapList
+                BEGIN Detail
+                    Alias crater
+                    Show No
+                    Color #00ff00
+                END Detail
+                BEGIN Detail
+                    Alias mons
+                    Show No
+                    Color #00ff00
+                END Detail
+            END MapList
+
+            SnapFileType             BMP
+            SnapOutputMode           Normal
+            OutputSnapToClipboard    No
+            SnapAntiAliasStrength    0
+            ShadeSkyByAlt            Yes
+            BackGroundColor          #000000
+            BackGroundRGB            0.000000 0.000000 0.000000
+
+            Begin Globe
+                AA Yes
+                BeginCentralBody "Sun"
+                    Show Yes
+                    Textured No
+                    AltOffset 0.000000
+                    Color #ffff00
+                    SpecularColor #545454
+                    Shininess 40.000000
+                    ShowWater No
+                    _AGI_PIBEGINTERRAINIMAGECALLDATA "SRC"
+                        BlendMode Value
+                        BlendFactor 1.000000
+                        BlendAltitudeLowerFactor 1.000000
+                        BlendAltitudeUpperFactor 0.000000
+                        BlendAltitudeLowerAltitude 500000.000000
+                        BlendAltitudeUpperAltitude 2500000.000000
+                        TextureRole Day
+                        URI "file:///Sun.jp2"
+                        InBase Yes
+                        BaseOn Yes
+                    End
+                EndCentralBody
+                BeginCentralBody "Moon"
+                    Show Yes
+                    Textured Yes
+                    AltOffset 0.000000
+                    Color #ffffff
+                    SpecularColor #545454
+                    Shininess 40.000000
+                    ShowWater No
+                    _AGI_PIBEGINTERRAINIMAGECALLDATA "SRC"
+                        BlendMode Value
+                        BlendFactor 1.000000
+                        BlendAltitudeLowerFactor 1.000000
+                        BlendAltitudeUpperFactor 0.000000
+                        BlendAltitudeLowerAltitude 500000.000000
+                        BlendAltitudeUpperAltitude 2500000.000000
+                        TextureRole Day
+                        URI "file:///Moon.jp2"
+                        InBase Yes
+                        BaseOn Yes
+                    End
+                EndCentralBody
+                BeginCentralBody "Earth"
+                    Show Yes
+                    Textured Yes
+                    AltOffset 0.000000
+                    Color #0000ff
+                    SpecularColor #545454
+                    Shininess 40.000000
+                    ShowWater Yes
+                    _AGI_PIBEGINTERRAINIMAGECALLDATA "SRC"
+                        BlendMode Value
+                        BlendFactor 1.000000
+                        BlendAltitudeLowerFactor 1.000000
+                        BlendAltitudeUpperFactor 0.000000
+                        BlendAltitudeLowerAltitude 10000.000000
+                        BlendAltitudeUpperAltitude 100000.000000
+                        TextureRole Day
+                        URI "file:///Earth_PE_b.jp2"
+                        InBase Yes
+                        BaseOn Yes
+                    End
+                EndCentralBody
+                BeginCentralBody "Venus"
+                    Show Yes
+                    Textured Yes
+                    AltOffset 0.000000
+                    Color #ffffff
+                    SpecularColor #545454
+                    Shininess 40.000000
+                    ShowWater No
+                    _AGI_PIBEGINTERRAINIMAGECALLDATA "SRC"
+                        BlendMode Value
+                        BlendFactor 1.000000
+                        BlendAltitudeLowerFactor 1.000000
+                        BlendAltitudeUpperFactor 0.000000
+                        BlendAltitudeLowerAltitude 500000.000000
+                        BlendAltitudeUpperAltitude 2500000.000000
+                        TextureRole Day
+                        URI "file:///Venus_clds.jp2"
+                        BeginImageSetDefOn
+                        End
+                        InBase Yes
+                        BaseOn Yes
+                    End
+                EndCentralBody
+            End Globe
+
+            IsShowingArcBall         Yes
+            IsShowingArcBallConstraintAxis No
+            ArcBallColor             #ff00ff
+            ArcBallTranslucency      0.500000
+            UseCameraInertia         Yes
+            IsShowingMap             No
+            MapResolution            Medium
+            MapLineType              Surface
+            MapFadeFactor            1.000000
+            Begin Border3dLineAttr
+                Width            1.000000
+                Style            0
+                Color            #8fbc8f
+            End Border3dLineAttr
+            GlobeTesselationFactor   1.000000
+            IsShowingClouds          No
+            CloudAltitude            50068.375000
+            CloudTesselationFactor   1.000000
+            ShowingTimeAsFPS         No
+            ShowingUpdateDelta       Yes
+            CloudFileIndexURI        "file:///Clouds.cld"
+            LightingEnabled          Yes
+            ObjectLightingEnabled    Yes
+            SolarIntensityLightingEnabled Yes
+            IsUsingPerPixelLighting  Yes
+            AmbientLight             25.000000
+            ObjectAmbientLight       25.000000
+            DayDirectLight           500.000000
+            NightDirectLight         500.000000
+            ObjectDirectLight        100.000000
+            EnablePositionalLighting Yes
+            EquatorLine              No
+            GreenwichLine            No
+            Zoom2dMap              No
+            Begin EqPrmMer3dLineAttr
+                Width            1.000000
+                Style            0
+                Color            #0000ff
+            End EqPrmMer3dLineAttr
+            AreaMask              No
+            Begin AreaMask3dLineAttr
+                Width            1.000000
+                Style            0
+                Color            #ffffff
+            End AreaMask3dLineAttr
+            IsShowingCelestialGrid   No
+            IsShowingCelestGridText  Yes
+            Begin Celestial3dLineAttr
+                Width            1.000000
+                Style            0
+                Color            #4d4d4d
+            End Celestial3dLineAttr
+            IsShowingSunshine        Yes
+            IsShowingSubSolarPoint   No
+            IsShowingPenumbraLimit   No
+            IsShowingUmbraCone       No
+            UmbraConeRGB             1.000000 0.000000 0.300000
+            IsShowingPenumbraCone    No
+            PenumbraConeRGB          0.941000 0.941000 0.392000
+            Begin CSData
+                Show       Yes
+                ShowPts    Yes
+                ShowTx     No
+                ShowLabels No
+                UseDefStarCollection No
+                StarCollectionName   Hipparcos 2 Mag 6
+                BrightestStarMag     -1.000000
+                BrightestStarPtSize  5.000000
+                BrightestStarPtAlpha 1.000000
+                MediumStarMag        7.000000
+                MediumStarPtSize     1.000000
+                MediumStarPtAlpha    0.750000
+                DimmestStarMag       12.000000
+                DimmestStarPtSize    0.100000
+                DimmestStarPtAlpha   0.200000
+                ColorStarsByMag      No
+                StarColor            #ffffff
+                StarUpdateFrequency  365.000000
+            End
+            Begin CentralBodyOpts
+                BeginCentralBody
+                    Name "Sun"
+                    ShowLabel No
+                EndCentralBody
+                BeginCentralBody
+                    Name "Moon"
+                    ShowLabel Yes
+                EndCentralBody
+                BeginCentralBody
+                    Name "Earth"
+                    ShowLabel No
+                EndCentralBody
+            End CentralBodyOpts
+            isShowingOverlay            Yes
+            Begin Overlays
+                Begin Overlay
+                    URI "file:///AGI_logo_big.ppm"
+                    Show No
+                    X 0
+                    Y 0
+                    Transparent Yes
+                    TransparentColorFirstPixel No
+                    SetAlphaFromLuminance Yes
+                    Scale 1.000000
+                    BorderAttachTypeX Max
+                    BorderAttachTypeY Min
+                End
+                Begin Overlay
+                    URI "file:///AGI_logo_small.ppm"
+                    Show Yes
+                    X 0
+                    Y 0
+                    Transparent Yes
+                    TransparentColorFirstPixel No
+                    SetAlphaFromLuminance Yes
+                    Scale 1.000000
+                    BorderAttachTypeX Max
+                    BorderAttachTypeY Min
+                End
+                Begin Overlay
+                    URI "file:///AGI_web_logo_small.ppm"
+                    Show No
+                    X 0
+                    Y 0
+                    Transparent Yes
+                    TransparentColorFirstPixel No
+                    SetAlphaFromLuminance Yes
+                    Scale 1.000000
+                    BorderAttachTypeX Max
+                    BorderAttachTypeY Min
+                End
+            End
+            IsShowingTimeDisplay     Yes
+            TimeDisplayPosition      10 5
+            TimeAttachX              Min
+            TimeAttachY              Min
+            TimeDisplayFontSize      0
+            TimeDisplayColor         #00ff00
+            TimeVertTextAlign        Border
+            IsShowingPositionDisplay No
+            ShowDistanceToViewObj    No
+            PositionDisplayPosition  10 45
+            PositionAttachX          Min
+            PositionAttachY          Min
+            PositionDisplayFontSize  0
+            PositionDisplayColor     #00ff00
+            PositionVertTextAlign    Border
+            IsShowingPositionOn2DMap No
+            PositionOn2DMapStyle     1
+            IsShowingCrdnFrame       Yes
+            CrdnFrameDisplayPosition 10 25
+            CrdnAttachX              Min
+            CrdnAttachY              Min
+            CrdnFrameDisplayFontSize 0
+            CrdnVertTextAlign        Border
+            CrdnFrameDisplayColor    #00ff00
+            IsShowingSpaceGridText   No
+            GridRadialLines          Yes
+            GridRadialResolution     3
+            GridPlaneEcliptic        No
+            Begin Ecliptic3dLineAttr
+                Width            1.000000
+                Style            0
+                Color            #00ff00
+            End Ecliptic3dLineAttr
+            GridPlaneEci             No
+            Begin ECI3dLineAttr
+                Width            1.000000
+                Style            0
+                Color            #00ff00
+            End ECI3dLineAttr
+            GridDisplayPosition      10 45
+            GridAttachX              Min
+            GridAttachY              Min
+            GridDisplayFontSize      0
+            GridDisplayColor         #00ff00
+            GridVertTextAlign        Border
+            IsShowingPickAnnotation  Yes
+            UsePickAnnoPosition      No
+            PickAnnoPosition         10 65
+            PickAttachX              Min
+            PickAttachY              Min
+            PickAnnoFontSize         1
+            PickAnnoColor            #f0ffff
+            PickHitMode              DoClosestPickHit
+            PickVertTextAlign        Border
+            MinimumViewingAltitude   0.000000
+            StopViewAtAltitude       No
+            StopViewAtObject         Yes
+            PreventViewFrustumCBIntersection Yes
+            PixelAspectRatio         1.000000
+            AntiAliasStrength        0
+            UseMotionBlur            No
+            MotionBlurLength         0.500000
+            UseDepthConeBufferCrossover No
+            DepthConeBufferCrossover 1000.00
+            MeshPixelError           2.000000
+            ChunkTexturePixelError   1.000000
+            EnableBorderViewport     No
+            BorderViewportLoc        Right
+            BorderViewportDim        256
+            BorderViewportColorIndex #4d4d4d
+            BorderViewportLineWidth  2
+    Begin GeneralVectorAxes
+        ArrowPointSize          3.00
+        PersistentLineWidth     2.00
+        Scale                   1.000000
+    End
+    Begin VectorAxes
+        Begin CrdnDef
+            IsVector No
+            IsCentralBodyFrame Yes
+            Name "Inertial"
+            CentralBody Earth
+        End
+        Begin RefCrdn
+            IsVector No
+            IsCentralBodyFrame Yes
+            Name "Fixed"
+            CentralBody Earth
+        End
+        Duration                3600.000
+        IsShowing               No
+        IsPersistent            No
+        IsTransparent           No
+        DrawFirstArrowOnly      Yes
+        UseTrueScale            No
+        DrawAtCentralBody       No
+        ArrowType               3D
+        ConnectType             Sweep
+        ColorIndex              #8fbc8f
+        IntervalType            AlwaysOn
+        AngleUnit               deg
+    End
+    Begin VectorAxes
+        Begin CrdnDef
+            IsVector No
+            IsCentralBodyFrame Yes
+            Name "Fixed"
+            CentralBody Earth
+        End
+        Begin RefCrdn
+            IsVector No
+            IsCentralBodyFrame Yes
+            Name "Fixed"
+            CentralBody Earth
+        End
+        Duration                3600.000
+        IsShowing               No
+        IsPersistent            No
+        IsTransparent           No
+        DrawFirstArrowOnly      Yes
+        UseTrueScale            No
+        DrawAtCentralBody       No
+        ArrowType               3D
+        ConnectType             Sweep
+        ColorIndex              #0000ff
+        IntervalType            AlwaysOn
+        AngleUnit               deg
+    End
+    Begin VectorAxes
+        Begin CrdnDef
+            IsVector Yes
+            IsCentralBodyFrame Yes
+            Name "Sun"
+            CentralBody Earth
+            MagUnit m
+        End
+        Begin RefCrdn
+            IsVector No
+            IsCentralBodyFrame Yes
+            Name "Inertial"
+            CentralBody Earth
+        End
+        Duration                3600.000
+        IsShowing               No
+        IsPersistent            No
+        IsTransparent           No
+        DrawFirstArrowOnly      Yes
+        UseTrueScale            No
+        DrawAtCentralBody       No
+        ArrowType               3D
+        ConnectType             Sweep
+        ColorIndex              #ffff00
+        IntervalType            AlwaysOn
+        AngleUnit               deg
+    End
+    Begin VectorAxes
+        Begin CrdnDef
+            IsVector Yes
+            IsCentralBodyFrame Yes
+            Name "Moon"
+            CentralBody Earth
+            MagUnit m
+        End
+        Begin RefCrdn
+            IsVector No
+            IsCentralBodyFrame Yes
+            Name "Inertial"
+            CentralBody Earth
+        End
+        Duration                3600.000
+        IsShowing               No
+        IsPersistent            No
+        IsTransparent           No
+        DrawFirstArrowOnly      Yes
+        UseTrueScale            No
+        DrawAtCentralBody       No
+        ArrowType               3D
+        ConnectType             Sweep
+        ColorIndex              #ffffff
+        IntervalType            AlwaysOn
+        AngleUnit               deg
+    End
+    Begin VectorAxes
+        Begin CrdnDef
+            IsVector Yes
+            IsCentralBodyFrame Yes
+            Name "NorthCelestialPole"
+            CentralBody Earth
+        End
+        Begin RefCrdn
+            IsVector No
+            IsCentralBodyFrame Yes
+            Name "Fixed"
+            CentralBody Earth
+        End
+        Duration                3600.000
+        IsShowing               No
+        IsPersistent            No
+        IsTransparent           No
+        DrawFirstArrowOnly      Yes
+        UseTrueScale            No
+        DrawAtCentralBody       No
+        ArrowType               3D
+        ConnectType             Sweep
+        ColorIndex              #ba55d3
+        IntervalType            AlwaysOn
+        AngleUnit               deg
+    End
+    Begin VectorAxes
+        Begin CrdnDef
+            IsVector Yes
+            IsCentralBodyFrame Yes
+            Name "VernalEquinox"
+            CentralBody Earth
+        End
+        Begin RefCrdn
+            IsVector No
+            IsCentralBodyFrame Yes
+            Name "Fixed"
+            CentralBody Earth
+        End
+        Duration                3600.000
+        IsShowing               No
+        IsPersistent            No
+        IsTransparent           No
+        DrawFirstArrowOnly      Yes
+        UseTrueScale            No
+        DrawAtCentralBody       No
+        ArrowType               3D
+        ConnectType             Sweep
+        ColorIndex              #fff0f5
+        IntervalType            AlwaysOn
+        AngleUnit               deg
+    End
+    Begin VectorAngle
+        FractionalScale                1.000000
+        SupportingDihedralArcLineWidth 1.00
+        ArcLineWidth                   2.00
+        PixelThreshold                 0.500000
+        Begin VectorAngleData
+            Name                    "SunRA"
+            CBName                  Earth
+            Show                    No
+            ShowLabel               No
+            ShowAngle               No
+            ShowDihedralAngleSupportingArcs Yes
+            ColorIndex              #6b8e23
+            IntervalType            AlwaysOn
+            Unit                    deg
+        End
+    End
+    Begin Plane
+    End
+            CBObscuring              No
+            BEGIN AOSLOSAnnotationData 
+                ShowAOSLOS           No
+                ColorIndex           #00ff00
+                FontIndex            0
+                XPosition            10.000000
+                YPosition            100.000000
+                UnitID               0
+                Location             3DWindow
+            END AOSLOSAnnotationData 
+            JoySupport               No
+            RubberBandLineWidth       2.000000
+            RubberBandCrosshairSize   16
+            RubberBandRGB             0.660000 0.660000 0.660000
+    _AGI_PIBEGINTYPEMGR3DSCENEDATA
+        Begin 3dScene
+        End
+    End
+            Begin View
+                ViewName                STKVOInitialView
+                ViewTime                9470700.000000
+                ViewUpdateDelta         3600.000000
+                CentralBody             Venus
+                Begin ViewCrdnAxes
+					BEGIN	AXES
+						Type	AXES_LINKTO
+						Name	Inertial
+						AbsolutePath	CentralBody/Venus
+					END	AXES
+                End
+                Begin FromViewCrdnPoint
+					BEGIN	POINT
+						Type	POINT_LINKTO
+						Name	Center
+						AbsolutePath	CentralBody/Venus
+					END	POINT
+                End
+                Begin ToViewCrdnPoint
+					BEGIN	POINT
+						Type	POINT_LINKTO
+						Name	Center
+						AbsolutePath	CentralBody/Venus
+					END	POINT
+                End
+                fov                           0.785398
+                FarNearPlaneDistanceRatio     1000.000000
+                NearPlaneDistance             1.000000
+                FarPlaneDistance              10000000000.000000
+                UseArcBallRotateSpeedOpt      No
+                ArcBallRotateSpeed            0.000000
+                ArcBallRadius           0.900000
+                ArcBallRotateMode       From
+                ZoomSpeed               0.000000
+                ZoomUseDistanceToCb     Yes
+                GlobeDetailLevel        1
+                UseLayer                Yes
+                FromName                "Venus"
+                FromRegPosAttView       "Point"
+                FromPosition            62238903.223288983000000000  -36354296.762473077000000000  -20756478.660823092000000000
+                FromOffset              62238903.223288983000000000  -36354296.762473077000000000  -20756478.660820231000000000
+                FromOffsetLLR           -0.280384160206651860  -0.528652907812194540  75007648.769502014000000000
+                ToName                  "Venus"
+                ToRegPosAttView         "Point"
+                ToPosition              0.000000000000000000  0.000000000000000000  -0.000002861022949219
+                ToOffset                0.000000000000000000  0.000000000000000000  0.000000000000000000
+                ToOffsetLLR             0.000000000000000000  0.000000000000000000  0.000000000000000000
+                ConstantDistanceType    None
+                ConstantDistanceValue   1.000000
+                UpVector                0.238948370604432860  -0.139571867850853490  0.960949202554490120
+                ViewRad                 75007648.769502014000000000
+                ViewQuat                0.2586960 0.1348802 -0.0365066 0.9557986
+                ViewCoordSystem         From
+                ViewFromToMode          FromTo
+                ViewToCBIMtx            1.000000000000000000 0.000000000000000000 0.000000000000000000 0.000000000000000000 1.000000000000000000 0.000000000000000000  0.000000000000000000 0.000000000000000000 1.000000000000000000
+                UseUpAxis               Yes
+                UpAxisType              Z
+                UserDefinedUpAxis       0.000000000000000000 0.000000000000000000 1.000000000000000000
+                OverUpAxis              No
+                LockInViewDir           No
+                NoZoom                  No
+                NoPan                   No
+                MinAngleToUpAxis        0.0087266
+                InitUpAxisUp            Yes
+                TempUpAxisUp            Yes
+                CrossAxis               -0.5043706 -0.8634873 0.0000000
+                DefaultOffset           33284900.0000000
+                BaseDefaultOffset       6051800.0000000
             End View
 
             Begin ViewPathManagerSceneInfo
@@ -829,4 +1489,74 @@ VO_V100
         CrossAxis               1.0000000 0.0000000 0.0000000
         DefaultOffset           35079753.5000000
         BaseDefaultOffset       6378137.0000000
+    End View
+    Begin View
+        ViewName                HomeView
+        ViewTime                9470700.000000
+        ViewUpdateDelta         3600.000000
+        CentralBody             Venus
+        Begin ViewCrdnAxes
+			BEGIN	AXES
+				Type	AXES_LINKTO
+				Name	Inertial
+				AbsolutePath	CentralBody/Venus
+			END	AXES
+        End
+        Begin FromViewCrdnPoint
+			BEGIN	POINT
+				Type	POINT_LINKTO
+				Name	Center
+				AbsolutePath	CentralBody/Venus
+			END	POINT
+        End
+        Begin ToViewCrdnPoint
+			BEGIN	POINT
+				Type	POINT_LINKTO
+				Name	Center
+				AbsolutePath	CentralBody/Venus
+			END	POINT
+        End
+        fov                           0.785398
+        FarNearPlaneDistanceRatio     1000.000000
+        NearPlaneDistance             1.000000
+        FarPlaneDistance              10000000000.000000
+        UseArcBallRotateSpeedOpt      No
+        ArcBallRotateSpeed            0.000000
+        ArcBallRadius           0.900000
+        ArcBallRotateMode       From
+        ZoomSpeed               0.000000
+        ZoomUseDistanceToCb     Yes
+        GlobeDetailLevel        1
+        UseLayer                Yes
+        FromName                "Venus"
+        FromRegPosAttView       "Point"
+        FromPosition            33284900.000000000000000000  0.000000000000000000  0.000000000000000000
+        FromOffset              0.000000000000000000  0.000000000000000000  0.000000000000000000
+        FromOffsetLLR           0.000000000000000000  0.000000000000000000  33284900.000000000000000000
+        ToName                  "Venus"
+        ToRegPosAttView         "Point"
+        ToPosition              0.000000000000000000  0.000000000000000000  0.000000000000000000
+        ToOffset                0.000000000000000000  0.000000000000000000  0.000000000000000000
+        ToOffsetLLR             0.000000000000000000  0.000000000000000000  0.000000000000000000
+        ConstantDistanceType    None
+        ConstantDistanceValue   1.000000
+        UpVector                0.000000000000000000  0.000000000000000000  0.000000000000000000
+        ViewRad                 33284900.000000000000000000
+        ViewQuat                0.0000000 0.0000000 0.0000000 -1.0000000
+        ViewCoordSystem         From
+        ViewFromToMode          FromTo
+        ViewToCBIMtx            0.000000000000000000 0.000000000000000000 0.000000000000000000 0.000000000000000000 0.000000000000000000 0.000000000000000000  0.000000000000000000 0.000000000000000000 0.000000000000000000
+        UseUpAxis               Yes
+        UpAxisType              Z
+        UserDefinedUpAxis       0.000000000000000000 0.000000000000000000 1.000000000000000000
+        OverUpAxis              No
+        LockInViewDir           No
+        NoZoom                  No
+        NoPan                   No
+        MinAngleToUpAxis        0.0087266
+        InitUpAxisUp            Yes
+        TempUpAxisUp            Yes
+        CrossAxis               1.0000000 0.0000000 0.0000000
+        DefaultOffset           33284900.0000000
+        BaseDefaultOffset       6051800.0000000
     End View

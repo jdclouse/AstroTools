@@ -12,7 +12,7 @@ JD_JOI = 2450164.0; % March 21, 1996 12:00:00
 
 % Anonymous function to print out the dates.
 getDate = @(x_date) ...
-    datestr(x_date-(floor(juliandate(date)) - datenum(date)),1);
+    datestr(x_date-(floor(juliandate(date)) - datenum(date)),0);
 
 %% Porkchop plots
 % Launch to VGA

@@ -105,7 +105,7 @@ BEGIN Animation
 
     StartTime          5 Oct 1989 00:00:00.000000000
     EndTime            22 Mar 1996 19:00:00.000000000
-    CurrentTime        5 Oct 1989 00:00:00.000000000
+    CurrentTime        22 Nov 1990 07:59:59.000000000
     Direction          Forward
     UpdateDelta        28800.000000
     RefreshDelta       0.010000
@@ -227,8 +227,8 @@ BEGIN MapData
                 BEGIN ZoomLocation
                     CenterLat    89.999943
                     CenterLon    1.489655
-                    ZoomWidth    360.000000
-                    ZoomHeight   180.000000
+                    ZoomWidth    69.590243
+                    ZoomHeight   41.178226
                 End ZoomLocation
             END ZoomLocations
             UseVarAspectRatio    No
@@ -793,8 +793,8 @@ END MapData
 		LaunchWindowUseEntireTraj               Yes
 		LaunchWindowTrajMETStart                0.000
 		LaunchWindowTrajMETStop                 900.000
-		LaunchWindowStart                       0.000
-		LaunchWindowStop                        0.000
+		LaunchWindowStart                       834260411.000
+		LaunchWindowStop                        630374405.000
 		LaunchMETOffset                         0.000
 		LaunchWindowUseSecEphem                 No 
 		LaunchWindowUseScenFolderForSecEphem    Yes
@@ -1186,8 +1186,6 @@ END MapData
     END ExportDataFile
     
     BEGIN Desc
-        ShortText    0
-
         LongText    50
 Galileo orbit reconstruction, with my own targets.
     END Desc
@@ -1679,7 +1677,7 @@ END Class
 
 Class Satellite
 
-	Satellite1
+	Galileo
 
 END Class
 
@@ -1698,8 +1696,8 @@ BEGIN References
     Instance Planet/Venus
         Planet/Venus
     END Instance
-    Instance Satellite/Satellite1
-        Satellite/Satellite1
+    Instance Satellite/Galileo
+        Satellite/Galileo
     END Instance
 END References
 

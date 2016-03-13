@@ -12,7 +12,7 @@ ptn_Child1=MainFrame
 ptn_Child2=ChildFrames
 [WorkState_v1_2.Frames.MainFrame]
 WindowPlacement=MCAAAAAACAAAAAAADAAAAAAAAAAAAAAAAAAAAAAAPPPPPPPPPPPPPPPPBCAAAAAAPDAAAAAABHFAAAAADHDAAAAA
-Title=Midterm_Galileo - STK 10 - 2D Graphics 1 - Sun
+Title=Midterm_Galileo - STK 10 - 3D Graphics 1 - Earth
 [WorkState_v1_2.Frames.ChildFrames]
 ptn_Child1=Document-0
 ptn_Child2=Document-1
@@ -20,25 +20,37 @@ ptn_Child3=Document-2
 ptn_Child4=Document-3
 [WorkState_v1_2.Frames.ChildFrames.Document-0]
 ptn_Child1=ViewFrame-0
+ptn_Child2=ViewFrame-1
 [WorkState_v1_2.Frames.ChildFrames.Document-0.ViewFrame-0]
-DocPathName=C:\Users\John\Documents\Astro\ASEN6008_IMD\Midterm_Galileo\AgUi3DGfxView10.AgUiPi3DGfxView.1
+DocPathName=C:\Windows\system32\AgUi3DGfxView10.AgUiPi3DGfxView.1
 DocumentString=AgUi3DGfxView.AgUiPi3DGfxView.1
 DocTemplateIndex=0
 WindowPlacement=MCAAAAAAAAAAAAAABAAAAAAAPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPBAAAAAAABAAAAAAABLCAAAAANDCAAAAA
-IsActiveChildFrame=False
+IsActiveChildFrame=True
 IsFrameVisible=True
 ptn_Child1=AGI Custom Node Data
 [WorkState_v1_2.Frames.ChildFrames.Document-0.ViewFrame-0.AGI Custom Node Data]
 MapID=1
 SceneType=1
+[WorkState_v1_2.Frames.ChildFrames.Document-0.ViewFrame-1]
+DocPathName=C:\Windows\system32\AgUi3DGfxView10.AgUiPi3DGfxView.1
+DocumentString=AgUi3DGfxView.AgUiPi3DGfxView.1
+DocTemplateIndex=0
+WindowPlacement=MCAAAAAAAAAAAAAABAAAAAAAPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPJBAAAAAAJBAAAAAAJMCAAAAAFFCAAAAA
+IsActiveChildFrame=False
+IsFrameVisible=True
+ptn_Child1=AGI Custom Node Data
+[WorkState_v1_2.Frames.ChildFrames.Document-0.ViewFrame-1.AGI Custom Node Data]
+MapID=2
+SceneType=1
 [WorkState_v1_2.Frames.ChildFrames.Document-1]
 ptn_Child1=ViewFrame-0
 [WorkState_v1_2.Frames.ChildFrames.Document-1.ViewFrame-0]
-DocPathName=C:\Users\John\Documents\Astro\ASEN6008_IMD\Midterm_Galileo\AgUi2DGfxView10.AgUiPi2DGfxView.1
+DocPathName=C:\Windows\system32\AgUi2DGfxView10.AgUiPi2DGfxView.1
 DocumentString=AgUi2DGfxView.AgUiPi2DGfxView.1
 DocTemplateIndex=0
 WindowPlacement=MCAAAAAAAAAAAAAABAAAAAAAPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPLKCAAAAAOPPPPPPPEJFAAAAAPOBAAAAA
-IsActiveChildFrame=True
+IsActiveChildFrame=False
 IsFrameVisible=True
 ptn_Child1=AGI Custom Node Data
 [WorkState_v1_2.Frames.ChildFrames.Document-1.ViewFrame-0.AGI Custom Node Data]
@@ -46,7 +58,7 @@ MapID=1
 [WorkState_v1_2.Frames.ChildFrames.Document-2]
 ptn_Child1=ViewFrame-0
 [WorkState_v1_2.Frames.ChildFrames.Document-2.ViewFrame-0]
-DocPathName=C:\Users\John\Documents\Astro\ASEN6008_IMD\Midterm_Galileo\AgUiAttrBrowser10.AgUiPiAttrBrowser.1
+DocPathName=C:\Windows\system32\AgUiAttrBrowser10.AgUiPiAttrBrowser.1
 DocumentString=AgUiAttrBrowser.AgUiPiAttrBrowser.1
 DocTemplateIndex=0
 WindowPlacement=MCAAAAAAAAAAAAAABAAAAAAAPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPAAAAAAAAAAAAAAAALNAAAAAADGCAAAAA
@@ -57,7 +69,7 @@ ptn_Child1=AGI Custom Node Data
 [WorkState_v1_2.Frames.ChildFrames.Document-3]
 ptn_Child1=ViewFrame-0
 [WorkState_v1_2.Frames.ChildFrames.Document-3.ViewFrame-0]
-DocPathName=C:\Users\John\Documents\Astro\ASEN6008_IMD\Midterm_Galileo\AgUiTimelineView10.AgUiPiTimelineView.1
+DocPathName=C:\Windows\system32\AgUiTimelineView10.AgUiPiTimelineView.1
 DocumentString=AgUiTimelineView.AgUiPiTimelineView.1
 DocTemplateIndex=0
 WindowPlacement=MCAAAAAAAAAAAAAABAAAAAAAPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPAAAAAAAAAAAAAAAAAJGAAAAANOAAAAAA
