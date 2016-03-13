@@ -222,10 +222,10 @@ disp(ResoOrb_vel_err(JOI_date_idx)); fprintf('\b\b km/s\n\n')
     MeeusEphemeris(Jupiter, JOI_window(JOI_date_idx),Sun);
 
 % Launch to VGA
-[~, VGA_v_helio_in] = lambert( r_earth_launch, r_venus_vga, ...
+[Launch_v_helio_out, VGA_v_helio_in] = lambert( r_earth_launch, r_venus_vga, ...
     (VGA_arr(VGA_date_idx)-Launch_dep(Launch_date_idx))*day2sec, ...
     1, Sun);
-
+Launch_v_inf_out = Launch_v_helio_out - v_earth_launch;
 VGA_v_inf_in = VGA_v_helio_in - v_venus_vga;
 
 % Incoming velocity on EGA1
@@ -348,3 +348,13 @@ fprintf('EGA2 r_p = '); disp(rp_EGA2);fprintf('\b\b km\n')
 fprintf('EGA2 turning angle = '); disp(psi_EGA2*180/pi);fprintf('\b\b deg\n')
 fprintf('EGA2 BT = '); disp(BT_EGA2);fprintf('\b\b km\n')
 fprintf('EGA2 BR = '); disp(BR_EGA2);fprintf('\b\b km\n\n')
+
+%% The target launch parameters
+launch_C3 = lambert_out(1).sw_c3_store(...
+    (Launch_date_idx),(VGA_date_idx));
+launch_DLA = asin(Launch_v_inf_out(1)/norm(Launch_v_inf_out));
+launch_RLA = atan2(Launch_v_inf_out(2),Launch_v_inf_out(1));
+fprintf('Launch Targets:\n')
+fprintf('C3 = %.3f km^2/s^2\n',launch_C3);
+fprintf('DLA = %.3f deg\n',launch_DLA*180/pi);
+fprintf('RLA = %.3f deg\n',launch_RLA*180/pi);
