@@ -226,10 +226,13 @@ disp(ResoOrb_vel_err(JOI_date_idx)); fprintf('\b\b km/s\n\n')
     (VGA_arr(VGA_date_idx)-Launch_dep(Launch_date_idx))*day2sec, ...
     1, Sun);
 
+VGA_v_inf_in = VGA_v_helio_in - v_venus_vga;
+
 % Incoming velocity on EGA1
-[~, EGA1_v_helio_in] = lambert( r_venus_vga, r_earth_ega1, ...
+[VGA_v_helio_out, EGA1_v_helio_in] = lambert( r_venus_vga, r_earth_ega1, ...
     (EGA1_window(EGA1_date_idx)-VGA_arr(VGA_date_idx))*day2sec, ...
     -1, Sun);
+VGA_v_inf_out = VGA_v_helio_out - v_venus_vga;
 EGA1_v_inf_in = EGA1_v_helio_in - v_earth_ega1;
 
 % The outgoing velocity on EGA2.
@@ -311,10 +314,37 @@ fprintf('\b\b km/s\n');
 fprintf('EGA2 V_in = \n');disp(acceptable_EGA2_in(:,max_r_idx));
 fprintf('\b\b km/s\n');
 fprintf('\n');
+EGA1_v_inf_out = acceptable_EGA1_out(:,max_r_idx);
+EGA2_v_inf_in = acceptable_EGA2_in(:,max_r_idx);
 
 %% B Plane for all gravity assists
+fprintf('B-plane targeting:\n')
 % VGA
+[b_VGA, B_hat_VGA, B_plane_VGA, psi_VGA, rp_VGA] = ...
+    BPlaneTarget(VGA_v_inf_in, VGA_v_inf_out, Venus.mu);
+BT_VGA = dot(b_VGA*B_hat_VGA, B_plane_VGA(:,2));
+BR_VGA = dot(b_VGA*B_hat_VGA, B_plane_VGA(:,3));
+fprintf('VGA r_p = '); disp(rp_VGA);fprintf('\b\b km\n')
+fprintf('VGA turning angle = '); disp(psi_VGA*180/pi);fprintf('\b\b deg\n')
+fprintf('VGA BT = '); disp(BT_VGA);fprintf('\b\b km\n')
+fprintf('VGA BR = '); disp(BR_VGA);fprintf('\b\b km\n\n')
 
 % EGA1
+[b_EGA1, B_hat_EGA1, B_plane_EGA1, psi_EGA1, rp_EGA1] = ...
+    BPlaneTarget(EGA1_v_inf_in, EGA1_v_inf_out, Earth.mu);
+BT_EGA1 = dot(b_EGA1*B_hat_EGA1, B_plane_EGA1(:,2));
+BR_EGA1 = dot(b_EGA1*B_hat_EGA1, B_plane_EGA1(:,3));
+fprintf('EGA1 r_p = '); disp(rp_EGA1);fprintf('\b\b km\n')
+fprintf('EGA1 turning angle = '); disp(psi_EGA1*180/pi);fprintf('\b\b deg\n')
+fprintf('EGA1 BT = '); disp(BT_EGA1);fprintf('\b\b km\n')
+fprintf('EGA1 BR = '); disp(BR_EGA1);fprintf('\b\b km\n\n')
 
 % EGA2
+[b_EGA2, B_hat_EGA2, B_plane_EGA2, psi_EGA2, rp_EGA2] = ...
+    BPlaneTarget(EGA2_v_inf_in, EGA2_v_inf_out, Earth.mu);
+BT_EGA2 = dot(b_EGA2*B_hat_EGA2, B_plane_EGA2(:,2));
+BR_EGA2 = dot(b_EGA2*B_hat_EGA2, B_plane_EGA2(:,3));
+fprintf('EGA2 r_p = '); disp(rp_EGA2);fprintf('\b\b km\n')
+fprintf('EGA2 turning angle = '); disp(psi_EGA2*180/pi);fprintf('\b\b deg\n')
+fprintf('EGA2 BT = '); disp(BT_EGA2);fprintf('\b\b km\n')
+fprintf('EGA2 BR = '); disp(BR_EGA2);fprintf('\b\b km\n\n')
