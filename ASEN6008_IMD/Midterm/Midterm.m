@@ -355,6 +355,6 @@ launch_C3 = lambert_out(1).sw_c3_store(...
 launch_DLA = asin(Launch_v_inf_out(1)/norm(Launch_v_inf_out));
 launch_RLA = atan2(Launch_v_inf_out(2),Launch_v_inf_out(1));
 fprintf('Launch Targets:\n')
-fprintf('C3 = %.3f km^2/s^2\n',launch_C3);
-fprintf('DLA = %.3f deg\n',launch_DLA*180/pi);
-fprintf('RLA = %.3f deg\n',launch_RLA*180/pi);
+fprintf('C3 = %.6f km^2/s^2\n',launch_C3);
+fprintf('DLA = %.6f deg\n',launch_DLA*180/pi);
+fprintf('RLA = %.6f deg\n',launch_RLA*180/pi);
