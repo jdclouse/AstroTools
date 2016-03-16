@@ -72,14 +72,14 @@ BEGIN Extensions
 			BEGIN Graphics
 
 				Show                     On
-				Inherit                  Off
+				Inherit                  On
 				ShowLabel                On
 				ShowPlanetPoint          On
 				ShowSubPlanetPoint       Off
 				ShowSubPlanetLabel       Off
 				ShowOrbit                On
 				NumOrbitPoints           360
-				OrbitTime                3.749769292471e+008
+				OrbitTime                0.000000000000e+000
 				OrbitDisplay             OneOrbit
 				TransformTrajectory      On
 
@@ -97,39 +97,13 @@ BEGIN Extensions
     END AccessConstraints
     
     BEGIN Desc
+        ShortText    0
+
+        LongText    0
+
     END Desc
     
     BEGIN Crdn
-		BEGIN	SYSTEM
-			Type	SYSTEM_ASSEMBLED
-			Name	JupEclp
-			Description	<Enter description (up to 300 chars)>
-				Origin
-					BEGIN	POINT
-						Type	POINT_LINKTO
-						Name	Center
-					END	POINT
-				Axes
-					BEGIN	AXES
-						Type	AXES_LINKTO
-						Name	MeanEclpDate
-					END	AXES
-		END	SYSTEM
-		BEGIN	SYSTEM
-			Type	SYSTEM_ASSEMBLED
-			Name	JupEclpJ2000
-			Description	<Enter description (up to 300 chars)>
-				Origin
-					BEGIN	POINT
-						Type	POINT_LINKTO
-						Name	Center
-					END	POINT
-				Axes
-					BEGIN	AXES
-						Type	AXES_LINKTO
-						Name	MeanEclpJ2000
-					END	AXES
-		END	SYSTEM
     END Crdn
     
     BEGIN VO

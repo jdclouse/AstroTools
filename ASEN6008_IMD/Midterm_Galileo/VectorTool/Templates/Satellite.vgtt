@@ -1,0 +1,60 @@
+stk.v.10.0
+BEGIN	AXES
+	Type	AXES_TRAJECTORY
+	Name	VNC(Jupiter)
+	Description	VNC
+		TrajPoint
+			BEGIN	POINT
+				Type	POINT_LINKTO
+				Name	Center
+			END	POINT
+		ReferenceSystem
+			BEGIN	SYSTEM
+				Type	SYSTEM_LINKTO
+				Name	Inertial
+				AbsolutePath	CentralBody/Jupiter
+			END	SYSTEM
+		TrajAxesType	11
+		LabelX	Velocity
+		LabelY	Normal
+		LabelZ	Co-Normal
+END	AXES
+BEGIN	AXES
+	Type	AXES_TRAJECTORY
+	Name	VNC_(Jupiter)
+	Description	<Enter description (up to 300 chars)>
+		TrajPoint
+			BEGIN	POINT
+				Type	POINT_LINKTO
+				Name	Center
+			END	POINT
+		ReferenceSystem
+			BEGIN	SYSTEM
+				Type	SYSTEM_LINKTO
+				Name	Inertial
+				AbsolutePath	CentralBody/Jupiter
+			END	SYSTEM
+		TrajAxesType	11
+		LabelX	Velocity
+		LabelY	Normal
+		LabelZ	Conormal
+END	AXES
+BEGIN	BPLANE
+	Type	BPLANE_TRAJECTORY
+	Name	Jupiter
+	Description	B-plane computed based on trajectory of point.
+		TrajectoryPoint
+			BEGIN	POINT
+				Type	POINT_LINKTO
+				Name	Center
+			END	POINT
+		TargetBody	CentralBody/Jupiter
+		ReferenceVector
+			BEGIN	VECTOR
+				Type	VECTOR_LINKTO
+				Name	EclipticNormal
+				AbsolutePath	CentralBody/Jupiter
+			END	VECTOR
+		EventOccurrenceEpoch	5 Oct 1989 00:00:00.000000000
+		UseEventOccurrenceEpoch	No
+END	BPLANE

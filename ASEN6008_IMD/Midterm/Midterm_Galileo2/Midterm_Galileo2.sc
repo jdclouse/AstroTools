@@ -1,14 +1,14 @@
 stk.v.10.0
 WrittenBy    STK_v10.1.3
 BEGIN Scenario
-    Name            Midterm_Galileo
+    Name            Midterm_Galileo2
 
 BEGIN Epoch
 
-    Epoch        5 Oct 1989 00:00:00.000000000
+    Epoch        5 Oct 1989 18:00:00.000000000
     SmartEpoch
 	BEGIN	EVENT
-			Epoch	5 Oct 1989 00:00:00.000000000
+			Epoch	5 Oct 1989 18:00:00.000000000
 			EventEpoch
 				BEGIN	EVENT
 					Type	EVENT_LINKTO
@@ -22,13 +22,13 @@ END Epoch
 
 BEGIN Interval
 
-Start                   5 Oct 1989 00:00:00.000000000
-Stop                    23 Dec 1996 19:00:00.000000000
+Start                   5 Oct 1989 18:00:00.000000000
+Stop                    28 Mar 1996 18:00:00.000000000
     SmartInterval
 	BEGIN	EVENTINTERVAL
 			BEGIN Interval
-				Start	5 Oct 1989 00:00:00.000000000
-				Stop	23 Dec 1996 19:00:00.000000000
+				Start	5 Oct 1989 18:00:00.000000000
+				Stop	28 Mar 1996 18:00:00.000000000
 			END Interval
 			IntervalState	Explicit
 	END	EVENTINTERVAL
@@ -103,11 +103,11 @@ BEGIN Extensions
 
 BEGIN Animation
 
-    StartTime          5 Oct 1989 00:00:00.000000000
-    EndTime            23 Dec 1996 19:00:00.000000000
-    CurrentTime        27 Dec 1995 23:52:18.425000012
+    StartTime          5 Oct 1989 18:00:00.000000000
+    EndTime            28 Mar 1996 18:00:00.000000000
+    CurrentTime        11 Jan 1995 13:07:30.000000000
     Direction          Forward
-    UpdateDelta        7200.000000
+    UpdateDelta        60.000000
     RefreshDelta       0.010000
     XRealTimeMult      1.000000
     RealTimeOffset     0.000000
@@ -121,7 +121,7 @@ END Animation
             ShowPassLabel        Off
             ShowElsetNum         Off
             ShowGndTracks        Off
-            ShowGndMarkers       On
+            ShowGndMarkers       Off
             ShowOrbitMarkers     On
             ShowPlanetOrbits     On
             ShowPlanetCBIPos     On
@@ -188,9 +188,9 @@ BEGIN MapData
         BEGIN MapAttributes
             PrimaryBody          Sun
             SecondaryBody        Earth
-            CenterLatitude       89.262238
-            CenterLongitude      -165.642948
-            ProjectionAltitude   63621849.674501
+            CenterLatitude       90.000000
+            CenterLongitude      0.000000
+            ProjectionAltitude   63621860.000000
             FieldOfView          35.000000
             OrthoDisplayDistance 1600000000000.000000
             TransformTrajectory  On
@@ -225,10 +225,10 @@ BEGIN MapData
             UseCloudsFile        Off
             BEGIN ZoomLocations
                 BEGIN ZoomLocation
-                    CenterLat    89.262238
-                    CenterLon    -165.642948
-                    ZoomWidth    239.348361
-                    ZoomHeight   162.000000
+                    CenterLat    0.000000
+                    CenterLon    0.000000
+                    ZoomWidth    136.826228
+                    ZoomHeight   106.288200
                 End ZoomLocation
             END ZoomLocations
             UseVarAspectRatio    No
@@ -312,7 +312,6 @@ BEGIN MapData
 
         BEGIN SoftVTR
             OutputFormat     WMV
-            Directory        C:\Users\John\Documents\Astro\ASEN6008_IMD\Lab4\Midterm_Galileo
             BaseName         Frame
             Digits           4
             Frame            0
@@ -372,7 +371,7 @@ BEGIN MapData
 
         BEGIN Style
         Name                DefaultWithBing
-        Time                834260411.000000
+        Time                834364811.000000
         UpdateDelta         60.000000
 
         BEGIN MapAttributes
@@ -405,7 +404,7 @@ BEGIN MapData
             Resolution           VeryLow
             CoordinateSys        ECF
             UseBackgroundImage   On
-            UseBingForBackground Off
+            UseBingForBackground On
             BingType             Aerial
             BingLogoHorizAlign   Right
             BingLogoVertAlign    Bottom
@@ -500,7 +499,6 @@ BEGIN MapData
 
         BEGIN SoftVTR
             OutputFormat     WMV
-            Directory        C:\Users\John\Documents\Astro\ASEN6008_IMD\Lab4\Midterm_Galileo
             BaseName         Frame
             Digits           4
             Frame            0
@@ -559,7 +557,7 @@ BEGIN MapData
 
         BEGIN Style
         Name                DefaultWithoutBing
-        Time                834260411.000000
+        Time                834364811.000000
         UpdateDelta         60.000000
 
         BEGIN MapAttributes
@@ -687,7 +685,6 @@ BEGIN MapData
 
         BEGIN SoftVTR
             OutputFormat     WMV
-            Directory        C:\Users\John\Documents\Astro\ASEN6008_IMD\Lab4\Midterm_Galileo
             BaseName         Frame
             Digits           4
             Frame            0
@@ -793,8 +790,8 @@ END MapData
 		LaunchWindowUseEntireTraj               Yes
 		LaunchWindowTrajMETStart                0.000
 		LaunchWindowTrajMETStop                 900.000
-		LaunchWindowStart                       834260411.000
-		LaunchWindowStop                        630288005.000
+		LaunchWindowStart                       0.000
+		LaunchWindowStop                        0.000
 		LaunchMETOffset                         0.000
 		LaunchWindowUseSecEphem                 No 
 		LaunchWindowUseScenFolderForSecEphem    Yes
@@ -803,8 +800,8 @@ END MapData
     LaunchWindowIntervalPtr
 	BEGIN	EVENTINTERVAL
 			BEGIN Interval
-				Start	12 Mar 2016 19:00:00.000000000
-				Stop	13 Mar 2016 19:00:00.000000000
+				Start	14 Mar 2016 18:00:00.000000000
+				Stop	15 Mar 2016 18:00:00.000000000
 			END Interval
 			IntervalState	Explicit
 	END	EVENTINTERVAL
@@ -983,19 +980,6 @@ END MapData
     END ConnectReportUnits
     
     BEGIN ReportFavorites
-        BEGIN Class
-            Name  Planet
-            BEGIN Favorite
-                Type    Report
-                BaseDir Install
-                Style   Apparent Helio Position Velocity
-            END Favorite
-            BEGIN Favorite
-                Type    Report
-                BaseDir Install
-                Style   Helio Position Velocity
-            END Favorite
-        END Class
     END ReportFavorites
     
     BEGIN ADFFileData
@@ -1201,8 +1185,8 @@ END MapData
     BEGIN Desc
         ShortText    0
 
-        LongText    50
-Galileo orbit reconstruction, with my own targets.
+        LongText    0
+
     END Desc
     
     BEGIN RfEnv
@@ -1667,6 +1651,14 @@ Galileo orbit reconstruction, with my own targets.
     END Gator
     
     BEGIN Crdn
+		BEGIN	EVENT
+			Type	EVENT_DATECONSTANT
+			Name	Today
+			Description	Local midnight today.
+				LocalOffsetWholeDays      0
+				LocalOffsetTime      	0.00000000000000e+000
+				ComputedDate      	14 Mar 2016 06:00:00.000000000
+		END	EVENT
     END Crdn
     
     BEGIN SpiceExt

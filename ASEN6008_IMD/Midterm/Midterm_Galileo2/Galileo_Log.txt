@@ -1,0 +1,574 @@
+Astrogator Log File; DriverMCS: Mission_Control_Sequence
+-------------------------------------------------------------
+
+
+----------------------------------------------
+Begin targeter profile TCM4.Differential_Corrector
+
+Initial control parameters:
+
+Unscaled Controls:
+Name                                   Current Value            Last Update        Total Correction
+Maneuver : ImpulsiveMnvr.Cartesian.X  0.002353131901 km/sec  0.000000000000 km/sec   0.002353131901 km/sec
+Maneuver : ImpulsiveMnvr.Cartesian.Y  0.009423619923 km/sec  0.000000000000 km/sec   0.009423619923 km/sec
+Maneuver : ImpulsiveMnvr.Cartesian.Z  0.000666655329 km/sec  0.000000000000 km/sec   0.000666655329 km/sec
+
+
+Homotopy step   1 of   1
+
+Intermediate Goals Desired:
+Propagate : BDotR           0.000000000000 km  
+Propagate : BDotT           0.000000000000 km  
+Propagate : Epoch 21 Mar 1996 00:00:00.000 UTCG
+
+
+
+---Running one step of the differential corrector...
+
+-------------------------------------------------------------
+Iteration =   1
+Unscaled Intermediate Constraints:
+Name                         Current Value                       Desired                   Difference               Tolerance
+Propagate : BDotR     3323709.032291461700 km             0.000000000000 km      3323709.032291461700 km   10000.000000000000 km 
+Propagate : BDotT  -405320238.261310160000 km             0.000000000000 km   -405320238.261310160000 km   10000.000000000000 km 
+Propagate : Epoch 16 Mar 2000 10:52:08.073 UTCG 21 Mar 1996 00:00:00.000 UTCG  125837530.073306800000 sec  86400.000000000000 sec
+
+
+
+Performing one Newton-Raphson Step...
+
+Perturbation evaluation +1
+Controls:
+Name                                           Value           Perturbation        Scaled Perturbation
+Maneuver : ImpulsiveMnvr.Cartesian.X  0.002363131901 km/sec  0.000010000000 km/sec      0.010000000000
+Maneuver : ImpulsiveMnvr.Cartesian.Y  0.009423619923 km/sec  0.000000000000 km/sec      0.000000000000
+Maneuver : ImpulsiveMnvr.Cartesian.Z  0.000666655329 km/sec  0.000000000000 km/sec      0.000000000000
+
+Constraints:
+Name                                 Value                    Change           Scaled Change
+Propagate : BDotR     3329372.536105752000 km      5663.503814290047 km        5663503.81429
+Propagate : BDotT  -405393189.864204170000 km    -72951.602893981937 km        -72951602.894
+Propagate : Epoch 17 Mar 2000 23:16:16.608 UTCG  131048.534727215770 sec   0.000643174134874
+
+
+Perturbation evaluation +2
+Controls:
+Name                                           Value           Perturbation        Scaled Perturbation
+Maneuver : ImpulsiveMnvr.Cartesian.X  0.002353131901 km/sec  0.000000000000 km/sec      0.000000000000
+Maneuver : ImpulsiveMnvr.Cartesian.Y  0.009433619923 km/sec  0.000010000000 km/sec      0.010000000000
+Maneuver : ImpulsiveMnvr.Cartesian.Z  0.000666655329 km/sec  0.000000000000 km/sec      0.000000000000
+
+Constraints:
+Name                                 Value                  Change           Scaled Change
+Propagate : BDotR     3323307.371880268200 km    -401.660411193848 km       -401660.411194
+Propagate : BDotT  -405323351.380998190000 km   -3113.119687988281 km       -3113119.68799
+Propagate : Epoch 16 Mar 2000 12:22:29.566 UTCG  5421.492240548134 sec  2.66081844318e-005
+
+
+Perturbation evaluation +3
+Controls:
+Name                                           Value           Perturbation        Scaled Perturbation
+Maneuver : ImpulsiveMnvr.Cartesian.X  0.002353131901 km/sec  0.000000000000 km/sec      0.000000000000
+Maneuver : ImpulsiveMnvr.Cartesian.Y  0.009423619923 km/sec  0.000000000000 km/sec      0.000000000000
+Maneuver : ImpulsiveMnvr.Cartesian.Z  0.000676655329 km/sec  0.000010000000 km/sec      0.010000000000
+
+Constraints:
+Name                                 Value                   Change           Scaled Change
+Propagate : BDotR     3323272.129766540600 km     -436.902524921417 km       -436902.524921
+Propagate : BDotT  -405328314.985008000000 km    -8076.723697814941 km       -8076723.69781
+Propagate : Epoch 16 Mar 2000 14:53:45.987 UTCG  14497.914192497730 sec  7.11544271567e-005
+
+
+Partial derivative matrix (scaled) :
+
+        566350381.429        -7295160289.4      0.0643174134874
+       -40166041.1194       -311311968.799     0.00266081844318
+       -43690252.4921       -807672369.781     0.00711544271567
+
+Newton Step Done...
+
+DC proposed step:
+Name                                              Scaled         Unscaled
+Maneuver : ImpulsiveMnvr.Cartesian.X   -915.956934833511  -0.915956934834 km/sec
+Maneuver : ImpulsiveMnvr.Cartesian.Y -36652.895313491405 -36.652895313491 km/sec
+Maneuver : ImpulsiveMnvr.Cartesian.Z  21899.000242561742  21.899000242562 km/sec
+
+
+Step with Max Step limits applied:
+Name                                            Scaled        Unscaled
+Maneuver : ImpulsiveMnvr.Cartesian.X   -2.499002949151 -0.002499002949 km/sec
+Maneuver : ImpulsiveMnvr.Cartesian.Y -100.000000000000 -0.100000000000 km/sec
+Maneuver : ImpulsiveMnvr.Cartesian.Z   59.746986030053  0.059746986030 km/sec
+
+
+Step final values:
+
+Unscaled Controls:
+Name                                   Current Value            Last Update        Total Correction
+Maneuver : ImpulsiveMnvr.Cartesian.X -0.000145871048 km/sec -0.002499002949 km/sec  -0.000145871048 km/sec
+Maneuver : ImpulsiveMnvr.Cartesian.Y -0.090576380077 km/sec -0.100000000000 km/sec  -0.090576380077 km/sec
+Maneuver : ImpulsiveMnvr.Cartesian.Z  0.060413641359 km/sec  0.059746986030 km/sec   0.060413641359 km/sec
+
+
+Unscaled Intermediate Constraints:
+Name                         Current Value                       Desired                   Difference               Tolerance
+Propagate : BDotR     3552854.768921856800 km             0.000000000000 km      3552854.768921856800 km   10000.000000000000 km 
+Propagate : BDotT  -405194316.146598990000 km             0.000000000000 km   -405194316.146598990000 km   10000.000000000000 km 
+Propagate : Epoch 23 Mar 2000 14:21:14.444 UTCG 21 Mar 1996 00:00:00.000 UTCG  126454876.444402220000 sec  86400.000000000000 sec
+
+
+
+-------------------------------------------------------------
+Iteration =   2
+Unscaled Intermediate Constraints:
+Name                         Current Value                       Desired                   Difference               Tolerance
+Propagate : BDotR     3552854.768921856800 km             0.000000000000 km      3552854.768921856800 km   10000.000000000000 km 
+Propagate : BDotT  -405194316.146598990000 km             0.000000000000 km   -405194316.146598990000 km   10000.000000000000 km 
+Propagate : Epoch 23 Mar 2000 14:21:14.444 UTCG 21 Mar 1996 00:00:00.000 UTCG  126454876.444402220000 sec  86400.000000000000 sec
+
+
+
+Updating partials with Secant method...
+
+Partial derivative matrix (scaled) :
+
+         566306532.04       -7294979911.33      0.0643165455936
+       -41920716.4816       -304093967.557     0.00262608883821
+       -42641886.8486       -811984907.975      0.0071361926079
+
+Secant Update Done...
+
+DC proposed step:
+Name                                              Scaled         Unscaled
+Maneuver : ImpulsiveMnvr.Cartesian.X  -1995.472745450566  -1.995472745451 km/sec
+Maneuver : ImpulsiveMnvr.Cartesian.Y -72046.594901049917 -72.046594901050 km/sec
+Maneuver : ImpulsiveMnvr.Cartesian.Z  44410.522675700464  44.410522675700 km/sec
+
+
+Step with Max Step limits applied:
+Name                                            Scaled        Unscaled
+Maneuver : ImpulsiveMnvr.Cartesian.X   -2.769697510606 -0.002769697511 km/sec
+Maneuver : ImpulsiveMnvr.Cartesian.Y -100.000000000000 -0.100000000000 km/sec
+Maneuver : ImpulsiveMnvr.Cartesian.Z   61.641390181860  0.061641390182 km/sec
+
+
+Step final values:
+
+Unscaled Controls:
+Name                                   Current Value            Last Update        Total Correction
+Maneuver : ImpulsiveMnvr.Cartesian.X -0.002915568558 km/sec -0.002769697511 km/sec  -0.002915568558 km/sec
+Maneuver : ImpulsiveMnvr.Cartesian.Y -0.190576380077 km/sec -0.100000000000 km/sec  -0.190576380077 km/sec
+Maneuver : ImpulsiveMnvr.Cartesian.Z  0.122055031541 km/sec  0.061641390182 km/sec   0.122055031541 km/sec
+
+
+Unscaled Intermediate Constraints:
+Name                         Current Value                       Desired                   Difference               Tolerance
+Propagate : BDotR     2894584.323447623300 km             0.000000000000 km      2894584.323447623300 km   10000.000000000000 km 
+Propagate : BDotT  -407086853.430931030000 km             0.000000000000 km   -407086853.430931030000 km   10000.000000000000 km 
+Propagate : Epoch 13 May 2000 01:57:57.215 UTCG 21 Mar 1996 00:00:00.000 UTCG  130816679.214717980000 sec  86400.000000000000 sec
+
+
+
+-------------------------------------------------------------
+Iteration =   3
+Unscaled Intermediate Constraints:
+Name                         Current Value                       Desired                   Difference               Tolerance
+Propagate : BDotR     2894584.323447623300 km             0.000000000000 km      2894584.323447623300 km   10000.000000000000 km 
+Propagate : BDotT  -407086853.430931030000 km             0.000000000000 km   -407086853.430931030000 km   10000.000000000000 km 
+Propagate : Epoch 13 May 2000 01:57:57.215 UTCG 21 Mar 1996 00:00:00.000 UTCG  130816679.214717980000 sec  86400.000000000000 sec
+
+
+
+Updating partials with Secant method...
+
+Partial derivative matrix (scaled) :
+
+        566437589.343       -7294487459.21      0.0643120785677
+        -37188889.171       -286313970.892      0.0024648067535
+       -45558650.9839       -822944745.094     0.00723560912703
+
+Secant Update Done...
+
+DC proposed step:
+Name                                              Scaled         Unscaled
+Maneuver : ImpulsiveMnvr.Cartesian.X  -1355.209206268996  -1.355209206269 km/sec
+Maneuver : ImpulsiveMnvr.Cartesian.Y -60430.022688567893 -60.430022688568 km/sec
+Maneuver : ImpulsiveMnvr.Cartesian.Z  32542.196329720824  32.542196329721 km/sec
+
+
+Step with Max Step limits applied:
+Name                                            Scaled        Unscaled
+Maneuver : ImpulsiveMnvr.Cartesian.X   -2.242609130321 -0.002242609130 km/sec
+Maneuver : ImpulsiveMnvr.Cartesian.Y -100.000000000000 -0.100000000000 km/sec
+Maneuver : ImpulsiveMnvr.Cartesian.Z   53.851041058565  0.053851041059 km/sec
+
+
+Step final values:
+
+Unscaled Controls:
+Name                                   Current Value            Last Update        Total Correction
+Maneuver : ImpulsiveMnvr.Cartesian.X -0.005158177689 km/sec -0.002242609130 km/sec  -0.005158177689 km/sec
+Maneuver : ImpulsiveMnvr.Cartesian.Y -0.290576380077 km/sec -0.100000000000 km/sec  -0.290576380077 km/sec
+Maneuver : ImpulsiveMnvr.Cartesian.Z  0.175906072600 km/sec  0.053851041059 km/sec   0.175906072600 km/sec
+
+
+Unscaled Intermediate Constraints:
+Name                        Current Value                       Desired                   Difference               Tolerance
+Propagate : BDotR    2324815.783304897100 km             0.000000000000 km      2324815.783304897100 km   10000.000000000000 km 
+Propagate : BDotT -408973100.777463080000 km             0.000000000000 km   -408973100.777463080000 km   10000.000000000000 km 
+Propagate : Epoch 4 Jul 2000 02:48:09.866 UTCG 21 Mar 1996 00:00:00.000 UTCG  135312491.866113660000 sec  86400.000000000000 sec
+
+
+
+-------------------------------------------------------------
+Iteration =   4
+Unscaled Intermediate Constraints:
+Name                        Current Value                       Desired                   Difference               Tolerance
+Propagate : BDotR    2324815.783304897100 km             0.000000000000 km      2324815.783304897100 km   10000.000000000000 km 
+Propagate : BDotT -408973100.777463080000 km             0.000000000000 km   -408973100.777463080000 km   10000.000000000000 km 
+Propagate : Epoch 4 Jul 2000 02:48:09.866 UTCG 21 Mar 1996 00:00:00.000 UTCG  135312491.866113660000 sec  86400.000000000000 sec
+
+
+
+Updating partials with Secant method...
+
+Partial derivative matrix (scaled) :
+
+        566535770.639       -7294042603.32       0.064308059502
+       -32810895.0404       -266477438.439     0.00228559292393
+       -47916246.4007        -833626924.33     0.00733211763998
+
+Secant Update Done...
+
+DC proposed step:
+Name                                              Scaled         Unscaled
+Maneuver : ImpulsiveMnvr.Cartesian.X   -965.894099502148  -0.965894099502 km/sec
+Maneuver : ImpulsiveMnvr.Cartesian.Y -52951.850003024003 -52.951850003024 km/sec
+Maneuver : ImpulsiveMnvr.Cartesian.Z  24887.359507236986  24.887359507237 km/sec
+
+
+Step with Max Step limits applied:
+Name                                            Scaled        Unscaled
+Maneuver : ImpulsiveMnvr.Cartesian.X   -1.824098873688 -0.001824098874 km/sec
+Maneuver : ImpulsiveMnvr.Cartesian.Y -100.000000000000 -0.100000000000 km/sec
+Maneuver : ImpulsiveMnvr.Cartesian.Z   46.999981125902  0.046999981126 km/sec
+
+
+Step final values:
+
+Unscaled Controls:
+Name                                   Current Value            Last Update        Total Correction
+Maneuver : ImpulsiveMnvr.Cartesian.X -0.006982276562 km/sec -0.001824098874 km/sec  -0.006982276562 km/sec
+Maneuver : ImpulsiveMnvr.Cartesian.Y -0.390576380077 km/sec -0.100000000000 km/sec  -0.390576380077 km/sec
+Maneuver : ImpulsiveMnvr.Cartesian.Z  0.222906053725 km/sec  0.046999981126 km/sec   0.222906053725 km/sec
+
+
+Unscaled Intermediate Constraints:
+Name                         Current Value                       Desired                   Difference               Tolerance
+Propagate : BDotR     1891123.040467570300 km             0.000000000000 km      1891123.040467570300 km   10000.000000000000 km 
+Propagate : BDotT  -410631394.491957310000 km             0.000000000000 km   -410631394.491957310000 km   10000.000000000000 km 
+Propagate : Epoch 22 Aug 2000 00:23:41.648 UTCG 21 Mar 1996 00:00:00.000 UTCG  139537423.647943970000 sec  86400.000000000000 sec
+
+
+
+-------------------------------------------------------------
+Iteration =   5
+Unscaled Intermediate Constraints:
+Name                         Current Value                       Desired                   Difference               Tolerance
+Propagate : BDotR     1891123.040467570300 km             0.000000000000 km      1891123.040467570300 km   10000.000000000000 km 
+Propagate : BDotT  -410631394.491957310000 km             0.000000000000 km   -410631394.491957310000 km   10000.000000000000 km 
+Propagate : Epoch 22 Aug 2000 00:23:41.648 UTCG 21 Mar 1996 00:00:00.000 UTCG  139537423.647943970000 sec  86400.000000000000 sec
+
+
+
+Updating partials with Secant method...
+
+Partial derivative matrix (scaled) :
+
+         566599893.55        -7293679549.4      0.0643047749962
+       -29295575.1523       -246574245.278     0.00210553109676
+       -49568446.0846       -842981421.359     0.00741674666476
+
+Secant Update Done...
+
+DC proposed step:
+Name                                              Scaled         Unscaled
+Maneuver : ImpulsiveMnvr.Cartesian.X   -730.023158307284  -0.730023158307 km/sec
+Maneuver : ImpulsiveMnvr.Cartesian.Y -47354.232795477074 -47.354232795477 km/sec
+Maneuver : ImpulsiveMnvr.Cartesian.Z  19680.454844831540  19.680454844832 km/sec
+
+
+Step with Max Step limits applied:
+Name                                            Scaled        Unscaled
+Maneuver : ImpulsiveMnvr.Cartesian.X   -1.541621762642 -0.001541621763 km/sec
+Maneuver : ImpulsiveMnvr.Cartesian.Y -100.000000000000 -0.100000000000 km/sec
+Maneuver : ImpulsiveMnvr.Cartesian.Z   41.560075378755  0.041560075379 km/sec
+
+
+Step final values:
+
+Unscaled Controls:
+Name                                   Current Value            Last Update        Total Correction
+Maneuver : ImpulsiveMnvr.Cartesian.X -0.008523898325 km/sec -0.001541621763 km/sec  -0.008523898325 km/sec
+Maneuver : ImpulsiveMnvr.Cartesian.Y -0.490576380077 km/sec -0.100000000000 km/sec  -0.490576380077 km/sec
+Maneuver : ImpulsiveMnvr.Cartesian.Z  0.264466129104 km/sec  0.041560075379 km/sec   0.264466129104 km/sec
+
+
+Unscaled Intermediate Constraints:
+Name                        Current Value                       Desired                   Difference               Tolerance
+Propagate : BDotR    1576650.052465417000 km             0.000000000000 km      1576650.052465417000 km   10000.000000000000 km 
+Propagate : BDotT -412090125.345084910000 km             0.000000000000 km   -412090125.345084910000 km   10000.000000000000 km 
+Propagate : Epoch 6 Oct 2000 19:25:48.278 UTCG 21 Mar 1996 00:00:00.000 UTCG  143493950.277648390000 sec  86400.000000000000 sec
+
+
+
+-------------------------------------------------------------
+Iteration =   6
+Unscaled Intermediate Constraints:
+Name                        Current Value                       Desired                   Difference               Tolerance
+Propagate : BDotR    1576650.052465417000 km             0.000000000000 km      1576650.052465417000 km   10000.000000000000 km 
+Propagate : BDotT -412090125.345084910000 km             0.000000000000 km   -412090125.345084910000 km   10000.000000000000 km 
+Propagate : Epoch 6 Oct 2000 19:25:48.278 UTCG 21 Mar 1996 00:00:00.000 UTCG  143493950.277648390000 sec  86400.000000000000 sec
+
+
+
+Updating partials with Secant method...
+
+Partial derivative matrix (scaled) :
+
+        566640699.814       -7293373859.45      0.0643020327823
+       -26648605.2201       -226745130.688     0.00192765257834
+       -50668528.7837       -851222416.329      0.0074906731111
+
+Secant Update Done...
+
+DC proposed step:
+Name                                              Scaled         Unscaled
+Maneuver : ImpulsiveMnvr.Cartesian.X   -607.742713472135  -0.607742713472 km/sec
+Maneuver : ImpulsiveMnvr.Cartesian.Y -44260.897509188500 -44.260897509189 km/sec
+Maneuver : ImpulsiveMnvr.Cartesian.Z  16513.131485732618  16.513131485733 km/sec
+
+
+Step with Max Step limits applied:
+Name                                            Scaled        Unscaled
+Maneuver : ImpulsiveMnvr.Cartesian.X   -1.373091707745 -0.001373091708 km/sec
+Maneuver : ImpulsiveMnvr.Cartesian.Y -100.000000000000 -0.100000000000 km/sec
+Maneuver : ImpulsiveMnvr.Cartesian.Z   37.308623220540  0.037308623221 km/sec
+
+
+Step final values:
+
+Unscaled Controls:
+Name                                   Current Value            Last Update        Total Correction
+Maneuver : ImpulsiveMnvr.Cartesian.X -0.009896990033 km/sec -0.001373091708 km/sec  -0.009896990033 km/sec
+Maneuver : ImpulsiveMnvr.Cartesian.Y -0.590576380077 km/sec -0.100000000000 km/sec  -0.590576380077 km/sec
+Maneuver : ImpulsiveMnvr.Cartesian.Z  0.301774752325 km/sec  0.037308623221 km/sec   0.301774752325 km/sec
+
+
+Unscaled Intermediate Constraints:
+Name                         Current Value                       Desired                   Difference               Tolerance
+Propagate : BDotR     1348496.814483898700 km             0.000000000000 km      1348496.814483898700 km   10000.000000000000 km 
+Propagate : BDotT  -413392959.481720450000 km             0.000000000000 km   -413392959.481720450000 km   10000.000000000000 km 
+Propagate : Epoch 19 Nov 2000 10:33:28.184 UTCG 21 Mar 1996 00:00:00.000 UTCG  147263610.183525200000 sec  86400.000000000000 sec
+
+
+
+-------------------------------------------------------------
+Iteration =   7
+Unscaled Intermediate Constraints:
+Name                         Current Value                       Desired                   Difference               Tolerance
+Propagate : BDotR     1348496.814483898700 km             0.000000000000 km      1348496.814483898700 km   10000.000000000000 km 
+Propagate : BDotT  -413392959.481720450000 km             0.000000000000 km   -413392959.481720450000 km   10000.000000000000 km 
+Propagate : Epoch 19 Nov 2000 10:33:28.184 UTCG 21 Mar 1996 00:00:00.000 UTCG  147263610.183525200000 sec  86400.000000000000 sec
+
+
+
+Updating partials with Secant method...
+
+Partial derivative matrix (scaled) :
+
+        566667765.729        -7293104649.9      0.0642996114207
+       -24677439.3691       -207139044.132     0.00175130881659
+       -51403943.6241       -858537177.291     0.00755646454074
+
+Secant Update Done...
+
+DC proposed step:
+Name                                              Scaled         Unscaled
+Maneuver : ImpulsiveMnvr.Cartesian.X   -532.463622554419  -0.532463622554 km/sec
+Maneuver : ImpulsiveMnvr.Cartesian.Y -41395.501180135616 -41.395501180136 km/sec
+Maneuver : ImpulsiveMnvr.Cartesian.Z  14029.147282724114  14.029147282724 km/sec
+
+
+Step with Max Step limits applied:
+Name                                            Scaled        Unscaled
+Maneuver : ImpulsiveMnvr.Cartesian.X   -1.286283792621 -0.001286283793 km/sec
+Maneuver : ImpulsiveMnvr.Cartesian.Y -100.000000000000 -0.100000000000 km/sec
+Maneuver : ImpulsiveMnvr.Cartesian.Z   33.890511970553  0.033890511971 km/sec
+
+
+Step final values:
+
+Unscaled Controls:
+Name                                   Current Value            Last Update        Total Correction
+Maneuver : ImpulsiveMnvr.Cartesian.X -0.011183273825 km/sec -0.001286283793 km/sec  -0.011183273825 km/sec
+Maneuver : ImpulsiveMnvr.Cartesian.Y -0.690576380077 km/sec -0.100000000000 km/sec  -0.690576380077 km/sec
+Maneuver : ImpulsiveMnvr.Cartesian.Z  0.335665264295 km/sec  0.033890511971 km/sec   0.335665264295 km/sec
+
+
+Unscaled Intermediate Constraints:
+Name                         Current Value                       Desired                   Difference               Tolerance
+Propagate : BDotR     1182308.664795366300 km             0.000000000000 km      1182308.664795366300 km   10000.000000000000 km 
+Propagate : BDotT  -414560055.961578430000 km             0.000000000000 km   -414560055.961578430000 km   10000.000000000000 km 
+Propagate : Epoch 31 Dec 2000 10:24:04.959 UTCG 21 Mar 1996 00:00:00.000 UTCG  150891846.958708410000 sec  86400.000000000000 sec
+
+
+
+-------------------------------------------------------------
+Iteration =   8
+Unscaled Intermediate Constraints:
+Name                         Current Value                       Desired                   Difference               Tolerance
+Propagate : BDotR     1182308.664795366300 km             0.000000000000 km      1182308.664795366300 km   10000.000000000000 km 
+Propagate : BDotT  -414560055.961578430000 km             0.000000000000 km   -414560055.961578430000 km   10000.000000000000 km 
+Propagate : Epoch 31 Dec 2000 10:24:04.959 UTCG 21 Mar 1996 00:00:00.000 UTCG  150891846.958708410000 sec  86400.000000000000 sec
+
+
+
+Updating partials with Secant method...
+
+Partial derivative matrix (scaled) :
+
+        566686561.314        -7292854811.4      0.0642973557933
+       -23216207.7735       -187715764.052     0.00157594880377
+       -51899162.4929       -865119826.351     0.00761589494688
+
+Secant Update Done...
+
+DC proposed step:
+Name                                              Scaled         Unscaled
+Maneuver : ImpulsiveMnvr.Cartesian.X   -485.514932690005  -0.485514932690 km/sec
+Maneuver : ImpulsiveMnvr.Cartesian.Y -38602.854192368941 -38.602854192369 km/sec
+Maneuver : ImpulsiveMnvr.Cartesian.Z  11989.777381448208  11.989777381448 km/sec
+
+
+Step with Max Step limits applied:
+Name                                            Scaled        Unscaled
+Maneuver : ImpulsiveMnvr.Cartesian.X   -1.257717707272 -0.001257717707 km/sec
+Maneuver : ImpulsiveMnvr.Cartesian.Y -100.000000000000 -0.100000000000 km/sec
+Maneuver : ImpulsiveMnvr.Cartesian.Z   31.059302821754  0.031059302822 km/sec
+
+
+Step final values:
+
+Unscaled Controls:
+Name                                   Current Value            Last Update        Total Correction
+Maneuver : ImpulsiveMnvr.Cartesian.X -0.012440991533 km/sec -0.001257717707 km/sec  -0.012440991533 km/sec
+Maneuver : ImpulsiveMnvr.Cartesian.Y -0.790576380077 km/sec -0.100000000000 km/sec  -0.790576380077 km/sec
+Maneuver : ImpulsiveMnvr.Cartesian.Z  0.366724567117 km/sec  0.031059302822 km/sec   0.366724567117 km/sec
+
+
+Unscaled Intermediate Constraints:
+Name                        Current Value                       Desired                   Difference               Tolerance
+Propagate : BDotR    1068386.940163809100 km             0.000000000000 km      1068386.940163809100 km   10000.000000000000 km 
+Propagate : BDotT -415604711.673696040000 km             0.000000000000 km   -415604711.673696040000 km   10000.000000000000 km 
+Propagate : Epoch 9 Feb 2001 22:15:07.183 UTCG 21 Mar 1996 00:00:00.000 UTCG  154390509.183462380000 sec  86400.000000000000 sec
+
+
+
+-------------------------------------------------------------
+Iteration =   9
+Unscaled Intermediate Constraints:
+Name                        Current Value                       Desired                   Difference               Tolerance
+Propagate : BDotR    1068386.940163809100 km             0.000000000000 km      1068386.940163809100 km   10000.000000000000 km 
+Propagate : BDotT -415604711.673696040000 km             0.000000000000 km   -415604711.673696040000 km   10000.000000000000 km 
+Propagate : Epoch 9 Feb 2001 22:15:07.183 UTCG 21 Mar 1996 00:00:00.000 UTCG  154390509.183462380000 sec  86400.000000000000 sec
+
+
+
+Updating partials with Secant method...
+
+Partial derivative matrix (scaled) :
+
+        566699275.701       -7292611833.62      0.0642951664204
+       -22205298.3696       -168396819.654     0.00140187374075
+       -52213143.9059       -871120155.794     0.00766996144784
+
+Secant Update Done...
+
+DC proposed step:
+Name                                              Scaled         Unscaled
+Maneuver : ImpulsiveMnvr.Cartesian.X   -465.072135158966  -0.465072135159 km/sec
+Maneuver : ImpulsiveMnvr.Cartesian.Y -36398.965072103929 -36.398965072104 km/sec
+Maneuver : ImpulsiveMnvr.Cartesian.Z  10452.583080480046  10.452583080480 km/sec
+
+
+Step with Max Step limits applied:
+Name                                            Scaled        Unscaled
+Maneuver : ImpulsiveMnvr.Cartesian.X   -1.277707028861 -0.001277707029 km/sec
+Maneuver : ImpulsiveMnvr.Cartesian.Y -100.000000000000 -0.100000000000 km/sec
+Maneuver : ImpulsiveMnvr.Cartesian.Z   28.716704059509  0.028716704060 km/sec
+
+
+Step final values:
+
+Unscaled Controls:
+Name                                   Current Value            Last Update        Total Correction
+Maneuver : ImpulsiveMnvr.Cartesian.X -0.013718698561 km/sec -0.001277707029 km/sec  -0.013718698561 km/sec
+Maneuver : ImpulsiveMnvr.Cartesian.Y -0.890576380077 km/sec -0.100000000000 km/sec  -0.890576380077 km/sec
+Maneuver : ImpulsiveMnvr.Cartesian.Z  0.395441271177 km/sec  0.028716704060 km/sec   0.395441271177 km/sec
+
+
+=================================
+Iteration Interrupted            
+=================================
+Unscaled Controls:
+Name                                   Current Value            Last Update        Total Correction
+Maneuver : ImpulsiveMnvr.Cartesian.X -0.012440991533 km/sec -0.001277707029 km/sec  -0.013718698561 km/sec
+Maneuver : ImpulsiveMnvr.Cartesian.Y -0.790576380077 km/sec -0.100000000000 km/sec  -0.890576380077 km/sec
+Maneuver : ImpulsiveMnvr.Cartesian.Z  0.366724567117 km/sec  0.028716704060 km/sec   0.395441271177 km/sec
+
+
+Unscaled Intermediate Constraints:
+Name                         Current Value                       Desired                   Difference               Tolerance
+Propagate : BDotR   -40108820.242297068000 km             0.000000000000 km    -40108820.242297068000 km   10000.000000000000 km 
+Propagate : BDotT    -4515939.333001175900 km             0.000000000000 km     -4515939.333001175900 km   10000.000000000000 km 
+Propagate : Epoch 26 Dec 1992 15:35:09.612 UTCG 21 Mar 1996 00:00:00.000 UTCG -101982293.387660010000 sec  86400.000000000000 sec
+
+
+
+--------------------------------------------------------
+
+***Targeting aborted***
+
+
+***Targeting aborted***
+
+
+--------------------------------------------------------
+
+***Error running sequence or in evaluating results.
+
+
+----------------------------------------------
+Final Params from Homotopy Diff Corr
+
+Unscaled Controls:
+Name                                   Current Value            Last Update        Total Correction
+Maneuver : ImpulsiveMnvr.Cartesian.X -0.012440991533 km/sec -0.001277707029 km/sec  -0.013718698561 km/sec
+Maneuver : ImpulsiveMnvr.Cartesian.Y -0.790576380077 km/sec -0.100000000000 km/sec  -0.890576380077 km/sec
+Maneuver : ImpulsiveMnvr.Cartesian.Z  0.366724567117 km/sec  0.028716704060 km/sec   0.395441271177 km/sec
+
+
+Unscaled Intermediate Constraints:
+Name                         Current Value                       Desired                   Difference               Tolerance
+Propagate : BDotR   -40108820.242297068000 km             0.000000000000 km    -40108820.242297068000 km   10000.000000000000 km 
+Propagate : BDotT    -4515939.333001175900 km             0.000000000000 km     -4515939.333001175900 km   10000.000000000000 km 
+Propagate : Epoch 26 Dec 1992 15:35:09.612 UTCG 21 Mar 1996 00:00:00.000 UTCG -101982293.387660010000 sec  86400.000000000000 sec
+
+
+
+----------------------------------------------
+
+*********** Done Targeting************************
+
+End targeter profile TCM4.Differential_Corrector

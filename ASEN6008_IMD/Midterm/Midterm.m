@@ -240,6 +240,7 @@ EGA1_v_inf_in = EGA1_v_helio_in - v_earth_ega1;
     (JOI_window(JOI_date_idx)-EGA2_window(EGA2_date_idx))*day2sec, ...
     -1, Sun);
 EGA2_v_inf_out = EGA2_v_helio_out - v_earth_ega2;
+Jup_v_inf_in = JOI_v_helio - v_jupiter_JOI;
 
 %% Resonant Orbit
 % Constructing a 2:1 resonant orbit
@@ -358,3 +359,34 @@ fprintf('Launch Targets:\n')
 fprintf('C3 = %.6f km^2/s^2\n',launch_C3);
 fprintf('DLA = %.6f deg\n',launch_DLA*180/pi);
 fprintf('RLA = %.6f deg\n',launch_RLA*180/pi);
+
+%% JOI
+% from http://www2.jpl.nasa.gov/files/misc/gllele2.txt
+%  Semi-major Axis    9814688.8        km 
+%  Eccentricity       .971233 
+%  Inclination        5.300            degree
+
+a_JOI = 9814688.8; %km
+e_JOI = .971233;
+i_joi = 5.3; %deg
+r_p_JOI = a_JOI*(1-e_JOI);
+
+a_Jup_hyp = -Jupiter.mu/norm(Jup_v_inf_in)^2;
+e_Jup_hyp = r_p_JOI/abs(a_Jup_hyp)+1;
+b_Jup_hyp = -a_Jup_hyp*sqrt(e_Jup_hyp*e_Jup_hyp-1);
+BT_jup = b_Jup_hyp*cosd(i_joi)
+BR_jup = -b_Jup_hyp*sind(i_joi)
+
+%%
+
+% [EGA2_v_helio_out, JOI_v_helio] = lambert( r_earth_ega2, r_jupiter_JOI, ...
+%     (JOI_window(JOI_date_idx)-EGA2_window(EGA2_date_idx))*day2sec, ...
+%     -1, Sun);
+r_TCM4 = [-1.1718287242230503e+006;1.4660929961577514e+008;
+    -291804.3640374601800000];
+TCM4_initial_v = [-39.0900653941649950;
+    0.7125395475475220;
+    -0.3339664598402935];
+[TCM4_final_v, ~] = lambert( r_earth_ega2, r_jupiter_JOI, ...
+    (JOI_window(JOI_date_idx)-EGA2_window(EGA2_date_idx)-10)*day2sec, ...
+    -1, Sun);

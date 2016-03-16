@@ -14,7 +14,7 @@ VO_V100
     Level4SwapDistance        1000000000000000.000000
     ShowMarker                Yes
     Begin Marker
-        Show               Yes
+        Show               No
         Type               LineGraphic
         Shape              Point
         IsTransparent      No
@@ -74,11 +74,11 @@ VO_V100
     ModelRotation             0.000000000000 0.000000000000 0.000000000000
     DontSaveArticFile         Yes
     ObscurationToObject       No
-    Inherit2DPassGfx          Yes
-    GtLeadingType             OnePass
-    GtTrailingType            OnePass
-    OrbitLeadingType          AllData
-    OrbitTrailingType         AllData
+    Inherit2DPassGfx          No
+    GtLeadingType             NoPass
+    GtTrailingType            NoPass
+    OrbitLeadingType          OnePass
+    OrbitTrailingType         OnePass
     GtArcDrawRouteOnSurface   No
     FixVectorAxesScaleToModel Yes
     FixVectorAxesScaleToAttSph No
@@ -394,29 +394,6 @@ VO_V100
             IntervalType            AlwaysOn
         End
     End
-    Begin BPlanes
-        Begin SceneIDs
-            SceneID 3
-        End
-        Begin BPlaneData
-            Show Yes
-            PointColorFirst #00ff00
-            PointColorRest #00ff00
-            TargetShow Yes
-            TargetColor #ffff00
-            ConnectorShow Yes
-            ConnectorColor #00ff00
-            ConnectorWidth 1.000000
-            PointSize 10.000000
-            ShowPointLabel Yes
-            UseInterval Yes
-            IntervalStart 198633605.993000
-            IntervalEnd 203817605.993000
-            Begin BPlaneDef
-                Name Galileo_1
-            End
-        End
-    End
 
     BEGIN VolumesGfx
 
@@ -476,7 +453,7 @@ VO_V100
     VaporRadius               1000.000000
     VaporExpansionRate        0.010000
     VaporStartTime            0.000000
-    VaporEndTime              227818806.000000
+    VaporEndTime              204422406.000000
     VaporIntervalPtr
 	BEGIN	EVENTINTERVAL
 			EventInterval
