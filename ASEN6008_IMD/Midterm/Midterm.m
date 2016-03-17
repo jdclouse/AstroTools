@@ -47,26 +47,19 @@ legend_vec = [legend_vec ...
     'Color',color_order(2,:),'LineWidth',hw_pub.lineWidth) ...
     plot(JD_true_launch, JD_true_VGA, 'd',...
     'Color',color_order(4,:),'LineWidth',hw_pub.lineWidth) ];
+legend_cells = {legend_cells{:} 'Baseline Trajectory' 'Designed Trajectory'};
+legend(legend_vec, legend_cells, 'Location', 'NorthWest')
 figure('Position',hw_pub.figPosn);
 plot(JD_Launch, JD_VGA,'d',...
     'Color',color_order(2,:),'LineWidth',hw_pub.lineWidth)
 hold on
 % axis equal
-plot(JD_true_launch, JD_true_VGA, 'd',...
+plot(Launch_dep(Launch_date_idx), VGA_arr(VGA_date_idx), 'd',...
     'Color',color_order(4,:),'LineWidth',hw_pub.lineWidth)
 xlim([Launch_dep(1) Launch_dep(end)])
 ylim([VGA_arr(1) VGA_arr(end)])
-% scatter(JD_Launch, JD_VGA, 'd',...
-%     'Color',color_order(2,:),'LineWidth',hw_pub.lineWidth)
-legend_cells = {legend_cells{:} 'Baseline Trajectory' 'True Trajectory'};
-legend(legend_vec, legend_cells, 'Location', 'NorthWest')
-hold on
-plot3(Launch_dep, VGA_arr,-1000*ones(length(VGA_arr)))
-
-% x = plot(JD_Launch, JD_VGA, 'd'),...
-%     'Color',color_order(2,:),'LineWidth',hw_pub.lineWidth)
-% uistack(x)
-
+set(gca,'YTick',[]);
+set(gca,'XTick',[]);
 
 figure
 % VGA to EGA1
@@ -89,8 +82,19 @@ legend_vec = [legend_vec ...
     'Color',color_order(2,:),'LineWidth',hw_pub.lineWidth) ...
     plot(JD_true_VGA, JD_true_EGA1, 'd',...
     'Color',color_order(4,:),'LineWidth',hw_pub.lineWidth) ];
-legend_cells = {legend_cells{:} 'Baseline Trajectory' 'True Trajectory'};
+legend_cells = {legend_cells{:} 'Baseline Trajectory' 'Designed Trajectory'};
 legend(legend_vec, legend_cells, 'Location', 'NorthWest')
+figure('Position',hw_pub.figPosn);
+plot(JD_VGA, JD_EGA1,'d',...
+    'Color',color_order(2,:),'LineWidth',hw_pub.lineWidth)
+hold on
+% axis equal
+plot(VGA_arr(VGA_date_idx), EGA1_window(EGA1_date_idx), 'd',...
+    'Color',color_order(4,:),'LineWidth',hw_pub.lineWidth)
+xlim([VGA_arr(1) VGA_arr(end)])
+ylim([EGA1_window(1) EGA1_window(end)])
+set(gca,'YTick',[]);
+set(gca,'XTick',[]);
 
 % EGA2 
 EGA2_window = JD_EGA2 + window;
@@ -114,8 +118,19 @@ legend_vec = [legend_vec ...
     'Color',color_order(2,:),'LineWidth',hw_pub.lineWidth) ...
     plot(JD_true_EGA2, JD_true_JOI, 'd',...
     'Color',color_order(4,:),'LineWidth',hw_pub.lineWidth) ];
-legend_cells = {legend_cells{:} 'Baseline Trajectory' 'True Trajectory'};
+legend_cells = {legend_cells{:} 'Baseline Trajectory' 'Designed Trajectory'};
 legend(legend_vec, legend_cells, 'Location', 'NorthWest')
+figure('Position',hw_pub.figPosn);
+plot(JD_EGA2, JD_JOI,'d',...
+    'Color',color_order(2,:),'LineWidth',hw_pub.lineWidth)
+hold on
+% axis equal
+plot(EGA2_window(EGA2_date_idx), JOI_window(JOI_date_idx), 'd',...
+    'Color',color_order(4,:),'LineWidth',hw_pub.lineWidth)
+xlim([EGA2_window(1) EGA2_window(end)])
+ylim([JOI_window(1) JOI_window(end)])
+set(gca,'YTick',[]);
+set(gca,'XTick',[]);
 
 %% Patch together the trajectories using constraints
 lambert_out = [output_Launch_VGA output_VGA_EGA1 output_EGA2_JOI];
@@ -400,3 +415,25 @@ TCM4_initial_v = [-39.0900653941649950;
 [TCM4_final_v, ~] = lambert( r_earth_ega2, r_jupiter_JOI, ...
     (JOI_window(JOI_date_idx)-EGA2_window(EGA2_date_idx)-10)*day2sec, ...
     -1, Sun);
+
+4.04413
+
+TCM1_dv = norm([0.01960719667492187;                                          
+      -0.09119868787744483; 
+       0.04409718855638307]);
+      
+TCM2_dv = norm([0.03086161951055671; 
+      0.003346990697327708; 
+     -0.009372025584854725]);
+      
+TCM3_dv = norm([0.004079990197027538; 
+      -0.00210616092634577; 
+        0.0168876956331692]);
+      
+TCM4_dv = norm([0.02723484822490837; 
+        0.4243964358261687; 
+       -0.3362196230896702]);
+              
+JOI_dv = norm([-0.7861251732912726; 
+         0.877626473509227; 
+      -0.00336061711326272]);   
