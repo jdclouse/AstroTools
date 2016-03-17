@@ -44,9 +44,18 @@ JD_true_launch = juliandate(1989,10,13,16,53,40);
 JD_true_VGA = juliandate(1990,2,10);
 legend_vec = [legend_vec ...
     plot(JD_Launch, JD_VGA,'d',...
-    'Color',color_order(2,:),'LineWidth',hw_pub.lineWidth,'MarkerSize', 3) ...
+    'Color',color_order(2,:),'LineWidth',hw_pub.lineWidth) ...
     plot(JD_true_launch, JD_true_VGA, 'd',...
     'Color',color_order(4,:),'LineWidth',hw_pub.lineWidth) ];
+figure('Position',hw_pub.figPosn);
+plot(JD_Launch, JD_VGA,'d',...
+    'Color',color_order(2,:),'LineWidth',hw_pub.lineWidth)
+hold on
+% axis equal
+plot(JD_true_launch, JD_true_VGA, 'd',...
+    'Color',color_order(4,:),'LineWidth',hw_pub.lineWidth)
+xlim([Launch_dep(1) Launch_dep(end)])
+ylim([VGA_arr(1) VGA_arr(end)])
 % scatter(JD_Launch, JD_VGA, 'd',...
 %     'Color',color_order(2,:),'LineWidth',hw_pub.lineWidth)
 legend_cells = {legend_cells{:} 'Baseline Trajectory' 'True Trajectory'};
@@ -370,6 +379,7 @@ a_JOI = 9814688.8; %km
 e_JOI = .971233;
 i_joi = 5.3; %deg
 r_p_JOI = a_JOI*(1-e_JOI);
+P_JOI = 2*pi*sqrt(a_JOI^3/Jupiter.mu)
 
 a_Jup_hyp = -Jupiter.mu/norm(Jup_v_inf_in)^2;
 e_Jup_hyp = r_p_JOI/abs(a_Jup_hyp)+1;
