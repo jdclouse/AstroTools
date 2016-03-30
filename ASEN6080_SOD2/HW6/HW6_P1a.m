@@ -17,8 +17,8 @@ Theta = @(t) [0 -t/(2*sqrt(g*l))*(theta_0*sin(w*t) - theta_dot_0/w*cos(w*t));...
 
 get_theta = @(t) theta_0*cos(w*t);
 get_range = @(theta) sqrt((x0+l*theta)^2+(l*(1-theta^2/2))^2);
-get_H_tilde_x = @(theta, range) [(l^2*theta^3 + 2*x0*l)/2/range, 0];
-get_H_tilde_c = @(theta, range) [(2*x0 + 2*l*theta)/2/range, 0];
+% get_H_tilde_x = @(theta, range) [(l^2*theta^3 + 2*x0*l)/2/range, 0];
+% get_H_tilde_c = @(theta, range) [(2*x0 + 2*l*theta)/2/range, 0];
 get_H_tilde_x = @(theta, range) [(l*x0*cos(theta))/range, 0];
 get_H_tilde_c = @(theta, range) [(x0 + l*sin(theta))/range, 0];
 H_tilde_x = [l 0];
@@ -69,3 +69,5 @@ Pxx = Px + Sxc*Pcc*Sxc';
 Pxc = Sxc*Pcc;
 
 Pc = [Pxx Pxc;Pxc' Pcc]
+
+Gamma = Sxc*Pcc; % Only because the covariance is 1! 

@@ -15,19 +15,19 @@ k1 = 2.5;
 k2 = 3.7;
 m = 1.5;
 h = 5.4;
-x0 = 3;
-xd0 = 0;
+% x0 = 3;
+% xd0 = 0;
 x0 = 4;
 xd0 = .2;
-last_x_est = Mxx\N;
-x0 = 4 + x_est(1);
-xd0 = .2 + x_est(2);
+% last_x_est = Mxx\N;
+% x0 = x0 + last_x_est(1);
+% xd0 = xd0 + last_x_est(2);
 
 % m = 1.6;
 % k2 = 3.5;
 % h = 5.7;
-m = 1.2;
-k2 = 3.0;
+% m = 1.2;
+% k2 = 3.0;
 h = 6.4;
 
 w = sqrt((k1+k2)/m);
@@ -37,25 +37,29 @@ B1 = x0/2/m;
 B2 = xd0/2/m;
 get_x = @(t) x0*cos(w*t)+xd0/w*sin(w*t);
 get_v = @(t) xd0*cos(w*t)-x0*w*sin(w*t);
-Theta = @(t) [B2/w*sin(w*t) + t*(-B2*cos(w*t)+B1*w*sin(w*t)), -(B2/w*sin(w*t) + t*(-B2*cos(w*t)+B1*w*sin(w*t)))/w/w, 0;...
-    B1/w*sin(w*t) + t*(B2*w*sin(w*t)+B1*w*w*cos(w*t)), -(B1/w*sin(w*t) + t*(B2*w*sin(w*t)+B1*w*w*cos(w*t)))/w/w, 0];
+% Theta = @(t) [B2/w*sin(w*t) + t*(-B2*cos(w*t)+B1*w*sin(w*t)), -(B2/w*sin(w*t) + t*(-B2*cos(w*t)+B1*w*sin(w*t)))/w/w, 0;...
+%     B1/w*sin(w*t) + t*(B2*w*sin(w*t)+B1*w*w*cos(w*t)), -(B1/w*sin(w*t) + t*(B2*w*sin(w*t)+B1*w*w*cos(w*t)))/w/w, 0];
+Theta = @(t) [0;0];
 get_range = @(x) sqrt(x*x+h*h);
 get_H_tilde_x = @(x, xdot, rho) [x/rho 0; xdot/rho-x*x*xdot/rho/rho/rho x/rho];
-get_H_tilde_c = @(x, xdot, rho) [0 0 h/rho;0 0 -x*xdot*h/rho/rho/rho];
+get_H_tilde_c = @(x, xdot, rho) [h/rho;-x*xdot*h/rho/rho/rho];
+% get_H_tilde_c = @(x, xdot, rho) [0 0 h/rho;0 0 -x*xdot*h/rho/rho/rho];
 
-X0_ap = [4;.2] + last_x_est;
+X0_ap = [x0;xd0];
 Pbar_ap = [100 0;0 10];
 c = [.3;.7;-1];
+c = [-1];
 xbar = [x0;xd0]-X0_ap;
 Pcc = [0.09 0 0;0 0.49 0; 0 0 1];
+Pcc = [1];
 % Pcc = [0.01 0 0;0 0.04 0; 0 0 0.09];
 R = 1;
 
 Px_bar = Pbar_ap;
 Mcc_bar = inv(Pcc);
 Mxx_bar = inv(Px_bar);
-% Mxc_bar = zeros(1);
-Mxc_bar = zeros(2,3);
+Mxc_bar = zeros(1);
+% Mxc_bar = zeros(2,3);
 
 Mxx = Mxx_bar;
 Mxc = Mxc_bar;
@@ -89,3 +93,4 @@ Gamma = Sxc*diag(sqrt(diag(Pcc)))
 
 Pc = [Pxx Pxc;Pxc' Pcc]
 x_est = Mxx\N - Mxx\Mxc*c
+new_state = X0_ap + Mxx\N

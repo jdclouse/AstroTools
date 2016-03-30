@@ -29,8 +29,8 @@ filter_opts.use_joseph = 0;
 tic
 CKF_storage = ConsiderKalmanFilter(state, meas_store, filter_opts);
 toc
-plot_cov_err_envelope(CKF_storage.cov_store(1:3,:), CKF_storage.state_store - true_state*1e3)
-plot_cov_err_envelope(CKF_storage.consider_cov_store(1:3,:), CKF_storage.state_store - true_state*1e3)
+plot_cov_err_envelope(CKF_storage.cov_store(1:6,:), CKF_storage.state_store - true_state*1e3)
+plot_cov_err_envelope(CKF_storage.consider_cov_store(1:6,:), CKF_storage.state_store - true_state*1e3)
 residual_plot(CKF_storage.pfr_store, sigs,'CKF')
 
 mapped_x_est0 = CKF_storage.STM\CKF_storage.x_est_store(:,end);
@@ -48,5 +48,5 @@ for ii = 1:num_obs
     Pck =  CKF_storage.Psi(:,:,ii)*full_Pc0*(CKF_storage.Psi(:,:,ii)');
     prop_Pc_store(:,ii) = diag(Pck);
 end
-plot_cov_err_envelope(prop_Pc_store(1:3,:), CKF_storage.state_store - [X(IC,1) X(IC,2) X(IC,3) X(IC,4) X(IC,5) X(IC,6)]')
+plot_cov_err_envelope(prop_Pc_store(1:6,:), [X(IC,1) X(IC,2) X(IC,3) X(IC,4) X(IC,5) X(IC,6)]' - true_state*1e3)
         
