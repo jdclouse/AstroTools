@@ -1,4 +1,7 @@
-clear
+%% John Clouse IMD HW5 problem 2
+%% Initialize
+clearvars -except hw_pub function_list
+close all
 
 x0 = 1.2;
 x_dot0 = 0;
@@ -11,9 +14,10 @@ dunit = 384747.962856037;
 
 T = 6.192169331319632;
 
+%% Integrate and plot
 [~,X_out] = ode45(@CRTBP, [0,T], X, odeset(),mu);
 
-figure
+figure('Position', hw_pub.figPosn)
 plot3(X_out(:,1), X_out(:,2), X_out(:,3), 'r')
 hold on
 axis equal
@@ -28,3 +32,9 @@ for ang = rad_vec
     plot3(earth(:,1), earth(:,2), earth(:,3))
     plot3(moon(:,1) + 1, moon(:,2), moon(:,3), 'k')
 end
+xlabel('X'); ylabel('Y'); zlabel('Z');
+
+%% Conclusion
+% This is not a periodic orbit, since the final position on the XZ plane is
+% not the same as the initial position on the plane.  It ends up further
+% from the Moon than it started.

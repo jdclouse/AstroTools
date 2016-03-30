@@ -1,5 +1,9 @@
-clear
+%% John Clouse IMD HW5 problem 3
+%% Initialize
+clearvars -except hw_pub function_list
+close all;
 
+%% Initial conditions
 IC_set(:,1) = [
     -0.08
 -0.03
@@ -33,17 +37,19 @@ IC_set(:,4) = [-0.05
 0
 15];
 
+% Constants
+mu = 0.012150585609624;
+dunit = 384747.962856037;
+
+%% Loop through the conditions
 for ii = 1:4
     X = IC_set(1:end-1,ii);
-
-    mu = 0.012150585609624;
-    dunit = 384747.962856037;
 
     T = 6.192169331319632;
 
     [T_out,X_out] = ode45(@CRTBP, [0,IC_set(end,ii)], X, odeset(),mu);
 
-    figure
+    figure('Position', hw_pub.figPosn)
     subplot(2,1,1);
     plot3(X_out(:,1), X_out(:,2), X_out(:,3), 'r')
     hold on
@@ -58,8 +64,10 @@ for ii = 1:4
         plot3(earth(:,1) - mu, earth(:,2), earth(:,3))
         plot3(moon(:,1) + 1-mu, moon(:,2), moon(:,3), 'k')
     end
-    axis equal
+    axis equal; xlabel('X'); ylabel('Y'); zlabel('Z'); 
+    title(['IC ' num2str(ii) ', Rotating Frame'])
     
+    % For the inertial plots
     X_inrt = X_out;
     X_inrt(:,1) = X_inrt(:,1) + mu;
     for jj = 1:length(T_out)
@@ -78,6 +86,13 @@ for ii = 1:4
     plot3(earth(:,1) - mu, earth(:,2), earth(:,3))
     end
     plot3(my_circ(:,1), my_circ(:,3), my_circ(:,2), 'k')
-    axis equal
+    axis equal; xlabel('X'); ylabel('Y'); zlabel('Z');
+    title(['IC ' num2str(ii) ', Inertial Frame'])
     
 end
+
+%% Plot 1 Conclusion
+% For the first case, a two-body, point-mass propagation would yeild an
+% elliptical (0<e<1) orbit that would follow previous orbit passes exactly,
+% not changing any of the Keplerian orbital elements. The lunar
+% perturbation is evident in the raising of the apogee as time progresses.

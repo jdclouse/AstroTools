@@ -1,4 +1,5 @@
 function state_dot = CRTBP_Halo_Target(t, state, mu)
+fcnPrintQueue(mfilename('fullpath')) % Add this code to code app 
 
 state_dot = CRTBP(t, state, mu);
 

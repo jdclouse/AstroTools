@@ -1,4 +1,5 @@
 function state_dot = CRTBP(t, state, mu)
+fcnPrintQueue(mfilename('fullpath')) % Add this code to code app 
 
 x = state(1);
 y = state(2);
