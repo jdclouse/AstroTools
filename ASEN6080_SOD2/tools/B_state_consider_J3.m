@@ -28,5 +28,7 @@ sin_sq_phi_z = z*z*z/(r*r);
 
 accel = const*[7*sin_sq_phi_z - 3*z;
     7*sin_sq_phi_z - 3*z;
-    7*sin_sq_phi_z - 6*z + 0.6*r*r/z].*pos;
+    7*sin_sq_phi_z - 6*z + 0.6*r*r/z].*state(1:3);
+
+accel = [0;0;0;accel];
 end

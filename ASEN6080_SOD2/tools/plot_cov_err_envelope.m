@@ -28,8 +28,8 @@ subplot(3,1,ii)
 hold on
 plot(err_store(ii,:),'.')
 ylabel(['\delta' labels{ii} '(m)'])
-plot(cov_store(ii,:)*3,'r')
-plot(-cov_store(ii,:)*3,'r')
+plot(cov_store(ii,:)*2,'r')
+plot(-cov_store(ii,:)*2,'r')
 legend(sprintf('RMS = %f m',RMS(ii)), '3\sigma envelope')
 
 end

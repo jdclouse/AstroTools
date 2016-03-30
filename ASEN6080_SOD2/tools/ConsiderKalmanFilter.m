@@ -6,7 +6,7 @@
 % addpath('C:\Users\John\Documents\Astro\ASEN5070_SOD\tools\')
 % addpath('C:\Users\John\Documents\Astro\ASEN5050\tools\')
 % close all
-function output = KalmanFilter(state_ap, meas_store, fo)
+function output = ConsiderKalmanFilter(state_ap, meas_store, fo)
 % filter_params; % load filter params
 % ObsData = load('ObsData.txt');
 ObsData = meas_store;
@@ -14,8 +14,6 @@ obs_r_idx = 3;
 obs_rr_idx = 4;
 obs_t_idx = 2;
 obs_site_idx = 1;
-
-
 
 propagator_opts = fo.propagator_opts;
 site = fo.site;
@@ -27,7 +25,7 @@ consts.state_len = propagator_opts.OD.state_len;
 % Initial covariance: no initial correlation between states.
 P0 = eye(consts.state_len)*500;
 W0 = sqrt(P0);
-P0 = eye(6)*1e4;
+% P0 = eye(6)*1e4;
 c = propagator_opts.J3.params.J3;
 Pcc = propagator_opts.J3.params.J3^2;
 
@@ -90,6 +88,8 @@ if fo.use_EKF
     end
 end
 
+Sk = zeros(6,1);
+
 % Set up storage
 x_est_store = zeros(num_state_store,num_obs);
 prefit_range_store = zeros(num_obs,1);
@@ -97,6 +97,8 @@ state_store = zeros(num_state_store,num_obs);
 state_ap_store = zeros(num_state_store,num_obs);
 num_variance_store = 3;
 EKF_cov_store = zeros(num_variance_store,num_obs);
+consider_cov_store = zeros(num_variance_store,num_obs);
+Psi_store = zeros(consts.state_len+1,consts.state_len+1,num_obs);
 
 % Smoother
 % Set up all the storage mechanisms for good memory managements
@@ -118,6 +120,7 @@ if fo.use_smoother
 end
 
 STM_accum = eye(consts.state_len);
+Psi_accum = eye(consts.state_len+1);
 pfr_store = zeros(2,num_obs);
 
 mystr = '';
@@ -144,14 +147,17 @@ for ii = 1:num_obs
     % Get STM from last obs to this one.
     if ii == 1 || obs_time - obs_time_last == 0
         STM_obs2obs = eye(consts.state_len);
+        Theta_obs2obs = zeros(6,1);
         X = state';
     else
         times = obs_time_last:meas_dt:obs_time;
         % Make the STM reflect an epoch time == the last msmnt time
         STM_obs2obs = eye(consts.state_len);
+        Theta_obs2obs = zeros(6,1);
         last_state = [state;...
             reshape(STM_obs2obs(1:fo.important_block(1),1:fo.important_block(2)),...
-            fo.important_block(1)*fo.important_block(2),1)];
+            fo.important_block(1)*fo.important_block(2),1);...
+            Theta_obs2obs]; %only if Theta has one col!
         
         % Make sure we propagate with the reference values!
         % If a member of the state is in the propagator_opts, set it here.
@@ -187,11 +193,12 @@ for ii = 1:num_obs
         end
         
         try
-            [~,X] = ode45(@two_body_state_dot, times, last_state, ...
+            [~,X] = ode45(@two_body_state_dot_consider, times, last_state, ...
             fo.ode_opts, propagator_opts);
         STM_obs2obs(1:fo.important_block(1),1:fo.important_block(2)) = ...
-            reshape(X(end,consts.state_len+1:end), ...
+            reshape(X(end,consts.state_len+1:consts.state_len + 36), ...
             fo.important_block(1), fo.important_block(2));
+        Theta_obs2obs = X(end,end-5:end)';
         if fo.use_DMC
             STM_obs2obs = compute_DMC_STM(fo, dt, STM_obs2obs(1:fo.important_block(1),1:fo.important_block(2)));
         end
@@ -217,9 +224,16 @@ for ii = 1:num_obs
     y2(ii) = (ObsData(ii,obs_rr_idx)-rr_comp);
     
     % Time update
+    Psi_obs2obs = [STM_obs2obs Theta_obs2obs;zeros(1,6),1];
+    Psi_accum = Psi_obs2obs*Psi_accum;
+    
     STM_accum = STM_obs2obs*STM_accum;
+    Sk_ap = STM_obs2obs*Sk + Theta_obs2obs;
     x_ap = STM_obs2obs*x_est;
+    xc = x_ap + Sk_ap*c;
     P_ap = STM_obs2obs*P*STM_obs2obs';
+    Pc_ap = P_ap + Sk_ap*Pcc*Sk_ap';
+    Pxc_ap = Sk_ap*Pcc;
     
     dt = obs_time - obs_time_last;
     if fo.use_SNC ...
@@ -264,6 +278,12 @@ for ii = 1:num_obs
         P_trace_store(ii) = trace(P(1:6,1:6));
     end
     
+    H_tilde_c = zeros(2,1);
+    Sk = (I-K*H_tilda)*Sk_ap - K*H_tilde_c;
+    xc_est = x_est + Sk*c;
+    Pc = P+Sk*Pcc*Sk';
+    Pxc = Sk*Pcc;
+    
     % Track the last time
     obs_time_last = obs_time;    
         
@@ -298,6 +318,9 @@ for ii = 1:num_obs
             state(1:num_state_store) + x_est(1:num_state_store);
         EKF_cov_store(:,ii) = ...
             diag(P(1:num_variance_store,1:num_variance_store));
+        consider_cov_store(:,ii) = ...
+            diag(Pc(1:num_variance_store,1:num_variance_store));
+        Psi_store(:,:,ii) = Psi_accum;
     end
     
     if fo.use_smoother
@@ -321,9 +344,13 @@ output.range_RMS = sqrt(sum(pfr_store(1,:).*pfr_store(1,:))/num_obs)
 output.pfr_store = pfr_store;
 output.prefit_range_store = prefit_range_store;
 output.cov_store = EKF_cov_store;
+output.consider_cov_store = consider_cov_store;
 output.state_store = state_store;
 output.x_est_store = x_est_store;
 output.state_ap_store = state_ap_store;
+output.Psi = Psi_store;
+output.STM = STM_accum;
+output.final_full_Pc = [Pc Pxc;Pxc' Pcc];
 
 %% Smoothed state
 if fo.use_smoother

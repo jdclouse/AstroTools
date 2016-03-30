@@ -84,8 +84,14 @@ state_dot(4:6) = -mu * r_vec/(r*r*r); % Simple 2-body
             *STM;
 %         end
         % Pack up the important stuff
-        state_dot(opts.OD.state_len+aug_len+1:end) = reshape(STM_dot,...
+        state_dot(opts.OD.state_len+aug_len+1:opts.OD.state_len+36) = ...
+            reshape(STM_dot,...
             (opts.OD.A_params.important_block(1)+0)...
             *(opts.OD.A_params.important_block(2)+0),1);
+        
+        % Theta
+        B = B_state_consider_J3(state(1:opts.OD.state_len),opts.OD.A_params);
+        state_dot(opts.OD.state_len+36+1:end) = B;
+        
     end
 % end
