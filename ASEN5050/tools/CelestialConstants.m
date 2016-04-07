@@ -109,6 +109,12 @@ Saturn.P_years = 29.423519; %days
 Saturn.P_days = Saturn.P_years/Earth.P_years*Earth.P_days; %days
 Saturn.mu = 3.794e7; %km3/s2
 Saturn.m = 5.685e26; %kg
+Saturn.Meeus.J200.L = [50.077471 1222.1137943 0.00021004 -0.000000019 ];
+Saturn.Meeus.J200.a = [9.554909596 -0.0000021389 ]*au2km;
+Saturn.Meeus.J200.e = [0.05550862 -0.000346818 -0.0000006456 0.00000000338 ];
+Saturn.Meeus.J200.i = [2.488878 -0.0025515 -0.00004903 0.000000018 ];
+Saturn.Meeus.J200.RAAN = [113.665524 -0.2566649 -0.00018345 0.000000357 ];
+Saturn.Meeus.J200.Pi = [93.056787 0.5665496 0.00052809 0.000004882 ];
 
 %% Uranus
 Uranus.name = 'Uranus';
@@ -117,6 +123,12 @@ Uranus.J2 = 0.012;
 Uranus.P_years = 83.747406; %days
 Uranus.P_days = Uranus.P_years/Earth.P_years*Earth.P_days; %days
 Uranus.mu = 5.794e6; %km3/s2
+Uranus.Meeus.J200.L = [314.055005 428.4669983 -.00000486 0.000000006 ];
+Uranus.Meeus.J200.a = [19.218446062 -0.0000000372 0.00000000098 ]*au2km;
+Uranus.Meeus.J200.e = [0.04629590 -0.000027337 0.0000000790 0.00000000025 ];
+Uranus.Meeus.J200.i = [0.773196 -0.0016869 0.00000349 0.000000016 ];
+Uranus.Meeus.J200.RAAN = [74.005947 0.0741461 0.00040540 0.000000104 ];
+Uranus.Meeus.J200.Pi = [173.005159 0.0893206 -0.00009470 0.000000413 ];
 
 %% Neptune
 Neptune.name = 'Neptune';
@@ -125,6 +137,12 @@ Neptune.J2 = 0.004;
 Neptune.P_years = 163.7232045; %days
 Neptune.P_days = Neptune.P_years/Earth.P_years*Earth.P_days; %days
 Neptune.mu = 6.809e6; %km3/s2
+Neptune.Meeus.J200.L = [304.348665 218.4862002 0.00000059 -0.000000002 ];
+Neptune.Meeus.J200.a = [30.110386869 -0.000000166 0.00000000069 ]*au2km;
+Neptune.Meeus.J200.e = [0.00898809 0.000006408 -0.0000000008 0 ];
+Neptune.Meeus.J200.i = [1.769952 0.0002257 0.00000023 -0 ];
+Neptune.Meeus.J200.RAAN = [131.784057 -0.0061651 -0.00000219 -0.000000078 ];
+Neptune.Meeus.J200.Pi = [48.123691 0.0291587 0.00007051 -0 ];
 
 %% Pluto
 Pluto.name = 'Pluto';

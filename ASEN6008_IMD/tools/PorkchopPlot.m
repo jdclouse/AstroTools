@@ -15,7 +15,21 @@ fig_dim = params.fig_dim;
 day2sec = params.day2sec;
 debug = params.debug;
 
-min_xfer_time = 80; %days
+if isfield(params, 'min_xfer_time')
+    min_xfer_time = params.min_xfer_time;
+else
+    min_xfer_time = 80; %days
+end
+if isfield(params, 'lambert_tol')
+    lambert_tol = params.lambert_tol;
+else
+    lambert_tol = 1e-3;
+end
+if isfield(params, 'ignore_longway')
+    ignore_longway = params.ignore_longway;
+else
+    ignore_longway = false;
+end
 max_xfer_time = 4000; %days
 
 dep_elapsed_time = DepartureDates - DepartureDates(1);
@@ -39,11 +53,14 @@ for JD_depart = DepartureDates
 %     fprintf(repmat('\b',size(percent_complete)))
 %     percent_complete = [num2str(floor(cx/num_dep)) '%%'];
 %     fprintf(percent_complete);
+    if debug
+        fprintf([num2str(cx) '\n']);
+    end
     for JD_arrive = ArrivalDates
         cy = cy + 1;
-        if debug
-            fprintf([num2str(cx) ', ' num2str(cy) '\n']);
-        end
+%         if debug
+%             fprintf([num2str(cx) ', ' num2str(cy) '\n']);
+%         end
         if JD_arrive-JD_depart < min_xfer_time
             continue % Don't bother with really short trajectories
         elseif JD_arrive-JD_depart > max_xfer_time
@@ -53,21 +70,25 @@ for JD_depart = DepartureDates
         [r_p2, v_p2] = MeeusEphemeris(planet2, JD_arrive, Sun);
         % Short way (Type I)
         [v1, v2] = lambert(r_p1, r_p2, (JD_arrive-JD_depart)*day2sec, ...
-            1, Sun);
+            1, Sun, 0, lambert_tol);
         short_way_dv1_store(cx, cy) = norm(v1 - v_p1);
         short_way_dv2_store(cx, cy) = norm(v2 - v_p2);
         % Long way (Type II)
-        [v1, v2] = lambert(r_p1, r_p2, (JD_arrive-JD_depart)*day2sec, ...
-            -1, Sun);
-        if norm(v1) ~= 0
-            long_way_dv1_store(cx, cy) = norm(v1 - v_p1);
-            long_way_dv2_store(cx, cy) = norm(v2 - v_p2);
-        else
-            long_way_dv1_store(cx, cy) = NaN;
-            long_way_dv2_store(cx, cy) = NaN;
+        if ~ignore_longway
+            [v1, v2] = lambert(r_p1, r_p2, (JD_arrive-JD_depart)*day2sec, ...
+                -1, Sun, 0, lambert_tol);
+            if norm(v1) ~= 0
+                long_way_dv1_store(cx, cy) = norm(v1 - v_p1);
+                long_way_dv2_store(cx, cy) = norm(v2 - v_p2);
+            else
+                long_way_dv1_store(cx, cy) = NaN;
+                long_way_dv2_store(cx, cy) = NaN;
+            end
         end
     end
 end
+
+fprintf('Lambert complete, generating plots\n')
 
 sw_c3_store = short_way_dv1_store.*short_way_dv1_store;
 lw_c3_store = long_way_dv1_store.*long_way_dv1_store;
@@ -89,10 +110,12 @@ if params.show_c3
         contour(dep_elapsed_time, arr_elapsed_time, sw_c3_store', ...
         c3_countours, 'r');
     clabel(cs_sw_c3, h_sw_c3)
-    [cs_lw_c3, h_lw_c3] = ...
-        contour(dep_elapsed_time, arr_elapsed_time, lw_c3_store', ...
-        c3_countours, 'r');
-    clabel(cs_lw_c3, h_lw_c3)
+    if ~ignore_longway
+        [cs_lw_c3, h_lw_c3] = ...
+            contour(dep_elapsed_time, arr_elapsed_time, lw_c3_store', ...
+            c3_countours, 'r');
+        clabel(cs_lw_c3, h_lw_c3)
+    end
     legend_vec = [legend_vec h_sw_c3];
     legend_cells = {legend_cells{:} 'C_3 (km^2/s^2)'};
 end
@@ -101,10 +124,12 @@ if params.show_v_inf_dep
         contour(dep_elapsed_time, arr_elapsed_time, short_way_dv1_store', ...
         v_inf_dep_countours, 'r');
     clabel(cs_sw_v_inf_dep, h_sw_v_inf_dep)
-    [cs_lw_v_inf_dep, h_lw_v_inf_dep] = ...
-        contour(dep_elapsed_time, arr_elapsed_time, long_way_dv1_store', ...
-        v_inf_dep_countours, 'r');
-    clabel(cs_lw_v_inf_dep, h_lw_v_inf_dep)
+    if ~ignore_longway
+        [cs_lw_v_inf_dep, h_lw_v_inf_dep] = ...
+            contour(dep_elapsed_time, arr_elapsed_time, long_way_dv1_store', ...
+            v_inf_dep_countours, 'r');
+        clabel(cs_lw_v_inf_dep, h_lw_v_inf_dep)
+    end
     legend_vec = [legend_vec h_sw_v_inf_dep];
     legend_cells = {legend_cells{:} 'Departure V_{\infty} (km/s)'};
 end
@@ -113,10 +138,12 @@ if params.show_v_inf_arr
         contour(dep_elapsed_time, arr_elapsed_time, short_way_dv2_store', ...
         v_inf_arr_countours, 'b');
     clabel(cs_sw_v_inf_arr, h_sw_v_inf_arr)
-    [cs_lw_v_inf_arr, h_lw_v_inf_arr] = ...
-        contour(dep_elapsed_time, arr_elapsed_time, long_way_dv2_store', ...
-        v_inf_arr_countours, 'b');
-    clabel(cs_lw_v_inf_arr, h_lw_v_inf_arr)
+    if ~ignore_longway
+        [cs_lw_v_inf_arr, h_lw_v_inf_arr] = ...
+            contour(dep_elapsed_time, arr_elapsed_time, long_way_dv2_store', ...
+            v_inf_arr_countours, 'b');
+        clabel(cs_lw_v_inf_arr, h_lw_v_inf_arr)
+    end
     legend_vec = [legend_vec h_sw_v_inf_arr];
     legend_cells = {legend_cells{:} 'Arrival V_{\infty} (km/s)'};
 end

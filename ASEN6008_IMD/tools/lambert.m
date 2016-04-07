@@ -1,12 +1,10 @@
-function [vi, vf, psi] = lambert(ri_vec, rf_vec, dt, DM, Sun, psi_in)
+function [vi, vf, psi] = lambert(ri_vec, rf_vec, dt, DM, Sun, psi_in, tol_in)
 %lambert Solve lambert problem using universal variables method
 %   Output initial and final velocities given respective position vectors
 %   Inputs in km, Results in km/s
 %   DM = Direction of Motion (short way or long way)
 
-fcnPrintQueue(mfilename('fullpath')) % Add this code to code app 
-
-tol = 1e-3;
+% fcnPrintQueue(mfilename('fullpath')) % Add this code to code app 
 
 ri = norm(ri_vec);
 rf = norm(rf_vec);
@@ -20,10 +18,15 @@ if nargin < 6
 else
     psi = psi_in;
 end
+if nargin < 7
+    tol = 1e-3;
+else
+    tol = tol_in;
+end
 c2 = 1/2;
 c3 = 1/6;
 psi_up_i = 4*pi*pi + psi; % Doubled from Vallado for higher TOF
-psi_low_i = -4*pi*8; % Doubled from Vallado for lower TOF
+psi_low_i = -4*pi*16; % Doubled from Vallado for lower TOF
 
 dt_calc = 0;
 
