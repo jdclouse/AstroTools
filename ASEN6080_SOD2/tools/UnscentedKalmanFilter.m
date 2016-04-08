@@ -2,7 +2,7 @@ function output = UnscentedKalmanFilter(state_ap, P_ap, meas_store, fo)
 
 ObsData = meas_store;
 [num_obs, ~] = size(ObsData);
-% num_obs = 500;
+num_obs = 231;
 obs_r_idx = 3;
 obs_rr_idx = 4;
 obs_t_idx = 2;
@@ -33,7 +33,11 @@ X_est = state_ap;
 % FIXME
 sig_range = 0.01; % m
 sig_rangerate = 0.001; %m/s
-R = [(sig_range*sig_range) 0; 0 (sig_rangerate*sig_rangerate)];
+if isfield(fo,'R')
+    R = fo.R;
+else
+    R = [(sig_range*sig_range) 0; 0 (sig_rangerate*sig_rangerate)];
+end
 last_obs_time = 0;
 
 gamma = alpha*sqrt(3);
@@ -71,7 +75,9 @@ for ii = 1:num_obs
         prop_state_last = reshape(sig_pts, L*num_sig_pts, 1);
         times = [0 dt];
 
-        [~,X] = ode45(@UKF_two_body_state_dot, times, prop_state_last, ...
+%         [~,X] = ode45(@UKF_two_body_state_dot, times, prop_state_last, ...
+%             fo.ode_opts, fo.propagator_opts);
+        [~,X] = ode45(@UKF_flyby_two_body_state_dot, times, prop_state_last, ...
             fo.ode_opts, fo.propagator_opts);
 
         sig_pts_new = reshape(X(end,:)',L,num_sig_pts);
@@ -146,6 +152,7 @@ for ii = 1:num_obs
 %     if alpha == 1
     y_mean = zeros(2,1);
     sqrtP = sqrtm(P);
+%     sqrtP = chol(P)';
     sig_pts = [X_est, repmat(X_est,1,L) + gamma*sqrtP, ...
         repmat(X_est,1,L) - gamma*sqrtP];
     for jj = 1:num_sig_pts
@@ -153,6 +160,10 @@ for ii = 1:num_obs
             site(site_num).r*1e3,theta_dot*t_obs);
         rr_comp = compute_range_rate_ECFsite(sig_pts(1:6,jj),...
             site(site_num).r*1e3,theta_dot*t_obs, theta_dot);
+%         r_comp = compute_range_ECFsite(sig_pts(1:3,jj),...
+%             site(site_num).r,theta_dot*t_obs);
+%         rr_comp = compute_range_rate_ECFsite(sig_pts(1:6,jj),...
+%             site(site_num).r,theta_dot*t_obs, theta_dot);
         y_sig_comp = [r_comp; rr_comp];
         if jj == 1
             y_mean = y_mean + w_0_m*y_sig_comp;
@@ -162,7 +173,7 @@ for ii = 1:num_obs
     end
 %     end
     pfr = y_obs - y_mean;
-    if ~isreal(pfr)
+    if ~isreal(pfr(1))
         zzzzz = 1;
     end
     
