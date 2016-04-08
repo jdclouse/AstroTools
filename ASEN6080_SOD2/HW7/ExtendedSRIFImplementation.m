@@ -63,7 +63,7 @@ for ii = obs_seg_idx'
         STM = reshape(X(end,state_len+1:end),...
             filter_opts.important_block(1), ...
             filter_opts.important_block(2));
-        state_ap = X(end,1:state_len)';
+        iter_state_ap = X(end,1:state_len)';
 %         P_asdf = STM*output.final_P*STM';
     end
     seg_begin = ii+1; %Next idx is the next segment
