@@ -37,7 +37,13 @@ R_s_e_x = R_s_e(1);
 R_s_e_y = R_s_e(2);
 R_s_e_z = R_s_e(3);
 
-srp_wrt_r = srp_param*state(7);
+if length(state) == 7
+    Cr = state(7);
+    srp_wrt_r = srp_param*state(7);
+else
+    Cr = 1;
+    srp_wrt_r = 0;
+end
 x_pri = (mu_sun + srp_wrt_r)*(-1/norm_del_3 + 3*(R_s_e_x - x)*(R_s_e_x - x)/norm_del_5);
 y_pri = (mu_sun + srp_wrt_r)*(-1/norm_del_3 + 3*(R_s_e_y - y)*(R_s_e_y - y)/norm_del_5);
 z_pri = (mu_sun + srp_wrt_r)*(-1/norm_del_3 + 3*(R_s_e_z - z)*(R_s_e_z - z)/norm_del_5);
@@ -59,9 +65,9 @@ A3 = [ 0,0,0,0,0,1,0];
 % A5 = [ (3*mu*x*y)/(r_sqrd_5_2) + 0 - (15*J2*Re^2*mu*x*y*z^2)/(r_sqrd_9_2) - (15*J2*Re^2*mu*x*y*((5*z^2)/(r_sqrd) - 1))/(2*(r_sqrd_7_2)) + 0 + 0,            (3*mu*y^2)/(r_sqrd_5_2) - mu/(r_sqrd_3_2) + (3*J2*Re^2*mu*((5*z^2)/(r_sqrd) - 1))/(2*(r_sqrd_5_2)) - (15*J2*Re^2*mu*y^2*z^2)/(r_sqrd_9_2) - (15*J2*Re^2*mu*y^2*((5*z^2)/(r_sqrd) - 1))/(2*(r_sqrd_7_2)) - 0 + 0,                                                                                           (3*mu*y*z)/(r_sqrd_5_2) + (3*J2*Re^2*mu*y*((10*z)/(r_sqrd) - (10*z^3)/(r_sqrd)^2))/(2*(r_sqrd_5_2)) - (15*J2*Re^2*mu*y*z*((5*z^2)/(r_sqrd) - 1))/(2*(r_sqrd_7_2)), 0, 0, 0];
 % A6 = [ (3*mu*x*z)/(r_sqrd_5_2) - (15*J2*Re^2*mu*x*z^3)/(r_sqrd_9_2) - (15*J2*Re^2*mu*x*z*((5*z^2)/(r_sqrd) - 3))/(2*(r_sqrd_7_2)) + 0 + 0,                                                                                                                                                        (3*mu*y*z)/(r_sqrd_5_2) - (15*J2*Re^2*mu*y*z^3)/(r_sqrd_9_2) - (15*J2*Re^2*mu*y*z*((5*z^2)/(r_sqrd) - 3))/(2*(r_sqrd_7_2)) - 0 + 0, (3*mu*z^2)/(r_sqrd_5_2) - mu/(r_sqrd_3_2) + (3*J2*Re^2*mu*((5*z^2)/(r_sqrd) - 3))/(2*(r_sqrd_5_2)) + (3*J2*Re^2*mu*z*((10*z)/(r_sqrd) - (10*z^3)/(r_sqrd)^2))/(2*(r_sqrd_5_2)) - (15*J2*Re^2*mu*z^2*((5*z^2)/(r_sqrd) - 3))/(2*(r_sqrd_7_2)), -0, -0, 0];
 
-A4 = [ (3*mu*x^2)/(r_sqrd_5_2) - mu/(r_sqrd_3_2) + x_pri, (3*mu*x*y)/(r_sqrd_5_2) + xy_off, (3*mu*x*z)/(r_sqrd_5_2) + xz_off, 0, 0, 0, srp_wrt_r*(R_s_e_x - x)/norm_del_3/state(7)];
-A5 = [ (3*mu*x*y)/(r_sqrd_5_2) + xy_off,            (3*mu*y^2)/(r_sqrd_5_2) - mu/(r_sqrd_3_2) + y_pri,(3*mu*y*z)/(r_sqrd_5_2) + yz_off, 0, 0, 0, srp_wrt_r*(R_s_e_y - y)/norm_del_3/state(7)];
-A6 = [ (3*mu*x*z)/(r_sqrd_5_2) + xz_off, (3*mu*y*z)/(r_sqrd_5_2) + yz_off, (3*mu*z^2)/(r_sqrd_5_2) - mu/(r_sqrd_3_2) + z_pri, -0, -0, 0, srp_wrt_r*(R_s_e_z - z)/norm_del_3/state(7)];
+A4 = [ (3*mu*x^2)/(r_sqrd_5_2) - mu/(r_sqrd_3_2) + x_pri, (3*mu*x*y)/(r_sqrd_5_2) + xy_off, (3*mu*x*z)/(r_sqrd_5_2) + xz_off, 0, 0, 0, srp_wrt_r*(R_s_e_x - x)/norm_del_3/Cr];
+A5 = [ (3*mu*x*y)/(r_sqrd_5_2) + xy_off,            (3*mu*y^2)/(r_sqrd_5_2) - mu/(r_sqrd_3_2) + y_pri,(3*mu*y*z)/(r_sqrd_5_2) + yz_off, 0, 0, 0, srp_wrt_r*(R_s_e_y - y)/norm_del_3/Cr];
+A6 = [ (3*mu*x*z)/(r_sqrd_5_2) + xz_off, (3*mu*y*z)/(r_sqrd_5_2) + yz_off, (3*mu*z^2)/(r_sqrd_5_2) - mu/(r_sqrd_3_2) + z_pri, -0, -0, 0, srp_wrt_r*(R_s_e_z - z)/norm_del_3/Cr];
 A7 = [0 0 0 0 0 0 0];
 
 

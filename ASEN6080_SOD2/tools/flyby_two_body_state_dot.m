@@ -30,12 +30,16 @@ state_dot(4:6) = state_dot(4:6) + opts.Sun.mu*...
     -r_s_wrt_earth/(norm_r_s_wrt_earth*norm_r_s_wrt_earth*norm_r_s_wrt_earth));
 
 %% SRP
+if opts.OD.state_len > 6
 srp_param = - opts.solar_flux/opts.c ...
     * opts.au2km*opts.au2km...
     *opts.A_m_ratio*1e-6;
 state_dot(4:6) = state_dot(4:6) ...
     + srp_param...
     *state(7)*delta_s_sc/norm_delta_s_sc/norm_delta_s_sc/norm_delta_s_sc;
+else
+    srp_param = 0;
+end
 
 %% STM
 % For orbit determination application
@@ -48,7 +52,9 @@ state_dot(4:6) = state_dot(4:6) ...
         % The OD.state_len is the length of the estimation state. The rest
         % is the STM, numerically propagated with the A-Matrix
         A = A_state_rvCr(state(1:opts.OD.state_len),opts.OD.A_params, norm_delta_s_sc, r_s_wrt_earth, opts.Sun.mu, srp_param);
-        
+        if opts.OD.state_len == 6
+            A = A(1:6, 1:6);
+        end
         % Block matrix multiplication
 %         long_dim = 9;
 %         STM = zeros(long_dim);

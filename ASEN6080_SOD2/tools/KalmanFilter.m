@@ -23,7 +23,11 @@ consts.theta_dot = fo.theta_dot;
 consts.state_len = propagator_opts.OD.state_len;
 
 % Initial covariance: no initial correlation between states.
-P0 = eye(consts.state_len)*500;
+if isfield(fo,'P0')
+    P0 = fo.P0;
+else
+    P0 = eye(consts.state_len)*500;
+end
 W0 = sqrt(P0);
 
 % A priori state
@@ -34,7 +38,11 @@ x0_ap = zeros(consts.state_len,1);
 sig_range = 0.01; % m
 sig_rangerate = 0.001; %m/s
 % W = [1/(sig_range*sig_range) 0; 0 1/(sig_rangerate*sig_rangerate)];
-R = [(sig_range*sig_range) 0; 0 (sig_rangerate*sig_rangerate)];
+if isfield(fo,'R')
+    R = fo.R;
+else
+    R = [(sig_range*sig_range) 0; 0 (sig_rangerate*sig_rangerate)];
+end
 
 % DMC setup
 if fo.use_DMC
@@ -78,7 +86,7 @@ if fo.use_joseph
 else
     P_trace_store = zeros(num_obs,1);
 end
-num_state_store = 6;
+num_state_store = 7;
 if fo.use_EKF
     if fo.use_DMC
         num_state_store = 9;
@@ -141,7 +149,8 @@ for ii = 1:num_obs
         STM_obs2obs = eye(consts.state_len);
         X = state';
     else
-        times = obs_time_last:meas_dt:obs_time;
+%         times = obs_time_last:meas_dt:obs_time;
+        times = [obs_time_last obs_time];
         % Make the STM reflect an epoch time == the last msmnt time
         STM_obs2obs = eye(consts.state_len);
         last_state = [state;...
@@ -182,7 +191,9 @@ for ii = 1:num_obs
         end
         
         try
-            [~,X] = ode45(@two_body_state_dot, times, last_state, ...
+%             [~,X] = ode45(@two_body_state_dot, times, last_state, ...
+%             fo.ode_opts, propagator_opts);
+            [~,X] = ode45(@flyby_two_body_state_dot, times, last_state, ...
             fo.ode_opts, propagator_opts);
         STM_obs2obs(1:fo.important_block(1),1:fo.important_block(2)) = ...
             reshape(X(end,consts.state_len+1:end), ...
