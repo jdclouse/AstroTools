@@ -6,7 +6,7 @@ hw_pub.figPosn = [0, 0, hw_pub.figWidth, hw_pub.figHeight];
 hw_pub.lineWidth = 2; % pixels
 
 theta0 = 0;
-theta_dot = 7.29211585275553-005;
+theta_dot = 7.29211585275553e-005;
 JD_init = 2456296.25;
 mu_sun = 132712440017.987; % km3/s2
 solar_flux = 1357; %W/m2 @ 1 AU
