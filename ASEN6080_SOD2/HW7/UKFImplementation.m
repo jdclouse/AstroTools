@@ -8,7 +8,7 @@ sig_rangerate = 0.5*1e-6; %m/s
 filter_opts.R = [(sig_range*sig_range) 0; 0 (sig_rangerate*sig_rangerate)];
 
 filter_opts.use_SNC = 1;
-filter_opts.SNC_Q = eye(3)*1e-5;
+filter_opts.SNC_Q = eye(3)*1e-12;
 filter_opts.SNC_Gamma = @(dt) [dt*dt/2 0 0;...
             0 dt*dt/2 0;...
             0 0 dt*dt/2;...
@@ -21,4 +21,9 @@ tic
 UKFstorage = UnscentedKalmanFilter(state_ap, P, ObsMassaged, filter_opts);
 toc
 
-residual_plot(UKFstorage.pfr_store, [0.005, 0.5*1e-6], '1 iter')
+if filter_opts.use_SNC
+    plot_title = sprintf('UKF w/ SNC, Q=%.1e', filter_opts.SNC_Q(1,1));
+else
+    plot_title = 'UKF w/o SNC';
+end
+residual_plot(UKFstorage.pfr_store, [0.005, 0.5*1e-6], plot_title)

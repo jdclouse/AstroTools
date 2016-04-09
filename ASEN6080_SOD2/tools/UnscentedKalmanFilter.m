@@ -3,6 +3,7 @@ function output = UnscentedKalmanFilter(state_ap, P_ap, meas_store, fo)
 ObsData = meas_store;
 [num_obs, ~] = size(ObsData);
 num_obs = 231;
+num_obs = 1000;
 obs_r_idx = 3;
 obs_rr_idx = 4;
 obs_t_idx = 2;
@@ -122,9 +123,9 @@ for ii = 1:num_obs
     y_sig_comp = zeros(2,2*L+1);
     for jj = 1:num_sig_pts
         r_comp = compute_range_ECFsite(sig_pts(1:3,jj),...
-            site(site_num).r*1e3,theta_dot*t_obs);
+            site(site_num).r,theta_dot*t_obs);
         rr_comp = compute_range_rate_ECFsite(sig_pts(1:6,jj),...
-            site(site_num).r*1e3,theta_dot*t_obs, theta_dot);
+            site(site_num).r,theta_dot*t_obs, theta_dot);
         y_sig_comp(:,jj) = [r_comp; rr_comp];
         if jj == 1
             y_mean = y_mean + w_0_m*y_sig_comp(:,jj);
@@ -156,14 +157,14 @@ for ii = 1:num_obs
     sig_pts = [X_est, repmat(X_est,1,L) + gamma*sqrtP, ...
         repmat(X_est,1,L) - gamma*sqrtP];
     for jj = 1:num_sig_pts
-        r_comp = compute_range_ECFsite(sig_pts(1:3,jj),...
-            site(site_num).r*1e3,theta_dot*t_obs);
-        rr_comp = compute_range_rate_ECFsite(sig_pts(1:6,jj),...
-            site(site_num).r*1e3,theta_dot*t_obs, theta_dot);
 %         r_comp = compute_range_ECFsite(sig_pts(1:3,jj),...
-%             site(site_num).r,theta_dot*t_obs);
+%             site(site_num).r*1e3,theta_dot*t_obs);
 %         rr_comp = compute_range_rate_ECFsite(sig_pts(1:6,jj),...
-%             site(site_num).r,theta_dot*t_obs, theta_dot);
+%             site(site_num).r*1e3,theta_dot*t_obs, theta_dot);
+        r_comp = compute_range_ECFsite(sig_pts(1:3,jj),...
+            site(site_num).r,theta_dot*t_obs);
+        rr_comp = compute_range_rate_ECFsite(sig_pts(1:6,jj),...
+            site(site_num).r,theta_dot*t_obs, theta_dot);
         y_sig_comp = [r_comp; rr_comp];
         if jj == 1
             y_mean = y_mean + w_0_m*y_sig_comp;
