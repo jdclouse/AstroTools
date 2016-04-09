@@ -30,6 +30,8 @@ IB = [7 7];
 filter_opts.propagator_opts.OD.A_params.important_block = IB;
 filter_opts.important_block = IB;
 filter_opts.propagator_opts.OD.state_len = state_len;
+filter_opts.SNC_Q = eye(3)*1e-13;
+filter_opts.use_SNC = 1;
 P_in = P(1:state_len,1:state_len);
 
 num_seg_iter = 4; % Number of times to iterate the filter on a segment
@@ -54,11 +56,11 @@ for ii = obs_seg_idx'
             filter_opts.ode_opts, filter_opts.propagator_opts);
 
         filter_opts.ref_state = X;
-        if seg_begin == 1 || (ObsMassaged(seg_begin,2) - ObsMassaged(seg_begin-1,2))/3600/24 < 5
+%         if seg_begin == 1 || (ObsMassaged(seg_begin,2) - ObsMassaged(seg_begin-1,2))/3600/24 < 5
             myP_in = P_in;
-        else
-            myP_in = P_in*10;
-        end
+%         else
+%             myP_in = P_in*10;
+%         end
         output = SRIF(iter_state_ap, myP_in, ObsMassaged(obs_to_process,:), ...
             filter_opts);
         
@@ -93,7 +95,7 @@ for ii = obs_seg_idx'
             filter_opts.important_block(1), ...
             filter_opts.important_block(2));
         iter_state_ap = X(end,1:state_len)';
-%         P_in = STM*output.final_P*STM';
+        P_in = STM*output.final_P*STM';
     end
     seg_begin = ii+1; %Next idx is the next segment
 end

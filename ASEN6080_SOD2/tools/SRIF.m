@@ -46,6 +46,10 @@ Rj = R_bar;
 bj = x_est;
 obs_time_last = ObsData(1,obs_t_idx);
 
+if fo.use_SNC == 1
+    Ru = chol(inv(fo.SNC_Q),'upper');
+end
+
 num_state_store = consts.state_len;
 
 % Set up storage
@@ -162,6 +166,14 @@ for ii = 1:num_obs
 %     [~,R_bar] = householder2( Rj/STM_obs2obs);%, consts.state_len, consts.state_len,0);
 %     end
     b_bar = bj;%R_bar*x_ap;
+    
+    if fo.use_SNC
+        transformed_w_PN = householder(...
+            [[Ru zeros(3,7) zeros(3,1)];...
+            [R_bar*fo.SNC_Gamma(dt) R_bar b_bar]], 10,11,1);
+        R_bar = transformed_w_PN(4:end, 4:10);
+        b_bar = transformed_w_PN(4:end,end);        
+    end
     
     % H~
     consts.t = obs_time;

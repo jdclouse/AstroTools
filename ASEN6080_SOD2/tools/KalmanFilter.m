@@ -330,6 +330,7 @@ output.cov_store = EKF_cov_store;
 output.state_store = state_store;
 output.x_est_store = x_est_store;
 output.state_ap_store = state_ap_store;
+output.final_P = P;
 
 %% Smoothed state
 if fo.use_smoother

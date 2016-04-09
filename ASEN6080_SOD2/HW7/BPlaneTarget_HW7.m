@@ -3,7 +3,7 @@ ode_opts = odeset('RelTol', 1e-12, 'AbsTol', 1e-20,...
     'Events',@stop_int);
 
 output_state = EKFoutput.state_store(:,end);
-final_P = diag(EKFoutput.cov_store(:,end));
+final_P = EKFoutput.final_P;
 
 % Get the integration times
 processed_obs = ObsMassaged(obs_to_process,:);
@@ -58,16 +58,18 @@ end
 
 figure(ell_plot);
 hold on
-plot(x0+coords_prime(1,:),y0+coords_prime(2,:),'Color',color_order(kk,:),...
-    'LineWidth',hw_pub.lineWidth)
-plot_handles1 = [plot_handles1 plot(x0, y0, 'x','Color',color_order(kk,:),...
-    'LineWidth',hw_pub.lineWidth)];
+% plot(x0+coords_prime(1,:),y0+coords_prime(2,:),'Color',color_order(kk,:),...
+%     'LineWidth',hw_pub.lineWidth)
+% plot_handles1 = [plot_handles1 plot(x0, y0, 'x','Color',color_order(kk,:),...
+%     'LineWidth',hw_pub.lineWidth)];
+plot(x0+coords_prime(1,:),y0+coords_prime(2,:))
+plot_handles1 = [plot_handles1 plot(x0, y0, 'x')];
 axis equal
 
 figure(ell_plot_co);
 hold on
 
-plot_handles2 = [plot_handles2 plot(coords_prime(1,:),coords_prime(2,:),...
-    'Color',color_order(kk,:),...
-    'LineWidth',hw_pub.lineWidth)];
-axis equal
+% plot_handles2 = [plot_handles2 plot(coords_prime(1,:),coords_prime(2,:),...
+%     'Color',color_order(kk,:),...
+%     'LineWidth',hw_pub.lineWidth)];
+% axis equal
