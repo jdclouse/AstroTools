@@ -1,6 +1,6 @@
 %% SRIF
 
-function output = SRIF(X0_ap, P0, meas_store, fo)
+function output = SRIF(X0_ap, P0_or_R0, meas_store, fo)
 % filter_params; % load filter params
 % ObsData = load('ObsData.txt');
 ObsData = meas_store;
@@ -41,13 +41,32 @@ V = chol(meas_noise_cov);
 state = X0_ap;
 x_est = zeros(consts.state_len,1);
 % R_bar = inv(chol(P0,'upper'));
-R_bar = chol(inv(P0),'upper');
+if fo.SRIF_input_P0
+R_bar = chol(inv(P0_or_R0),'upper');
+else
+    R_bar = P0_or_R0;
+%     x_est = fo.bj;
+end
 Rj = R_bar;
 bj = x_est;
 obs_time_last = ObsData(1,obs_t_idx);
 
 if fo.use_SNC == 1
     Ru = chol(inv(fo.SNC_Q),'upper');
+end
+
+if fo.use_smoother == 1
+    % Store
+    % Deviation estimates are already stored
+    % STM between observations
+    STM_smooth_store = zeros(consts.state_len,consts.state_len,num_obs);
+    Gamma_smooth_store = zeros(consts.state_len,3,num_obs);
+    Ru_bar_store = zeros(3,3,num_obs);
+    Rux_bar_store = zeros(3,7,num_obs);
+    % Probably a smarter way to store these since they are symmetric.
+    x_l_k_store = zeros(consts.state_len,num_obs);
+    smoothed_pfr_store = zeros(2,num_obs);
+
 end
 
 num_state_store = consts.state_len;
@@ -167,12 +186,20 @@ for ii = 1:num_obs
 %     end
     b_bar = bj;%R_bar*x_ap;
     
+    if fo.use_smoother
+        STM_smooth_store(:,:,ii) = STM_obs2obs;
+    end
     if fo.use_SNC
         transformed_w_PN = householder(...
             [[Ru zeros(3,7) zeros(3,1)];...
             [R_bar*fo.SNC_Gamma(dt) R_bar b_bar]], 10,11,1);
-        R_bar = transformed_w_PN(4:end, 4:10);
+        R_bar = transformed_w_PN(4:end, 4:10);        
         b_bar = transformed_w_PN(4:end,end);        
+        if fo.use_smoother
+            Gamma_smooth_store(:,:,ii) = fo.SNC_Gamma(dt);
+            Ru_bar_store(:,:,ii) = transformed_w_PN(1:3,1:3);
+            Rux_bar_store(:,:,ii) = transformed_w_PN(1:3,4:10);
+        end
     end
     
     % H~
@@ -230,4 +257,32 @@ output.cov_store = cov_store;
 output.state_store = state_store;
 output.x_est_store = x_est_store;
 output.final_P = P;
+output.final_Rj = Rj;
+output.final_bj = bj;
 % output.state_ap_store = state_ap_store;
+
+%% Smoother
+if fo.use_smoother == 1
+    x_l_k = x_est;
+    x_l_k_store(:,end) = x_l_k;
+    for kk = num_obs-1:-1:1
+        Sk = STM_smooth_store(:,:,kk+1)\(eye(7)+...
+            Gamma_smooth_store(:,:,kk+1)/Ru_bar_store(:,:,kk+1)*Rux_bar_store(:,:,kk+1));
+
+        x_l_k = x_est_store(:,kk) ...
+            + Sk*(x_l_k - STM_smooth_store(:,:,kk+1)*x_est_store(:,kk));
+
+        x_l_k_store(:,kk) = x_l_k;
+%         P_l_k = P_smooth_store(:,:,end-ii) + Sk*(P_l_k - P_ap_smooth_store(:,:,end-ii+1))*Sk';
+%         P_smoothed_diag(:,end-ii) = diag(P_l_k);
+    end
+    output.x_l_k_store = x_l_k_store;
+    output.smoothed_state_store = state_store - x_est_store + x_l_k_store;
+    for ii = 1:num_obs
+        y = [y1(ii);y2(ii)];
+        ref_state_at_obs = fo.ref_state(ii,1:consts.state_len)';
+        H_tilda = fo.H_tilda_handle(ref_state_at_obs, consts);
+        smoothed_pfr_store(:,ii) = y-H_tilda*x_l_k_store(:,ii);
+    end
+    output.smoothed_pfr = smoothed_pfr_store;
+end

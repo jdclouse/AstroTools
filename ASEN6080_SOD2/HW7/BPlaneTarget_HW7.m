@@ -1,9 +1,13 @@
 %% B-plane target
+color_order = get(groot,'defaultAxesColorOrder');
 ode_opts = odeset('RelTol', 1e-12, 'AbsTol', 1e-20,...
     'Events',@stop_int);
 
-output_state = EKFoutput.state_store(:,end);
-final_P = EKFoutput.final_P;
+% output_state = EKFoutput.state_store(:,end);
+% final_P = EKFoutput.final_P;
+% 
+% output_state = state_total(:,end);
+% final_P = SRIFoutput.final_P;
 
 % Get the integration times
 processed_obs = ObsMassaged(obs_to_process,:);
@@ -62,12 +66,13 @@ hold on
 %     'LineWidth',hw_pub.lineWidth)
 % plot_handles1 = [plot_handles1 plot(x0, y0, 'x','Color',color_order(kk,:),...
 %     'LineWidth',hw_pub.lineWidth)];
-plot(x0+coords_prime(1,:),y0+coords_prime(2,:))
-plot_handles1 = [plot_handles1 plot(x0, y0, 'x')];
+plot(x0+coords_prime(1,:),y0+coords_prime(2,:),'Color',color_order(color_num,:),...
+    'LineWidth',hw_pub.lineWidth);
+plot_handles1 = [plot_handles1 plot(x0, y0, 'x','Color',color_order(color_num,:),...
+    'LineWidth',hw_pub.lineWidth)];
 axis equal
 
-figure(ell_plot_co);
-hold on
+plot(6378*cos(0:0.01:2*pi),6378*sin(0:0.01:2*pi),'LineWidth',hw_pub.lineWidth)
 
 % plot_handles2 = [plot_handles2 plot(coords_prime(1,:),coords_prime(2,:),...
 %     'Color',color_order(kk,:),...

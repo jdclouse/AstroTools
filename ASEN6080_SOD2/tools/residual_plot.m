@@ -34,7 +34,7 @@ plot(times,3*sigs(2)*ones(1,num_obs),'r--')
 plot(times,-3*sigs(2)*ones(1,num_obs),'r--')   
 end
 title([the_title ' Range-Rate, '])
-ylabel('m/s'),xlabel('Observation')
+ylabel('m/s'),xlabel('Time (days)')
 legend(sprintf('RMS = %.4e m/s',rangerate_RMS),'3\sigma measurement noise')
 
 
