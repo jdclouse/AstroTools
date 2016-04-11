@@ -22,7 +22,7 @@ obs_seg_idx = [find(ObsMassaged(:,2)/3600/24 <= 50, 1,'last');...
     find(ObsMassaged(:,2)/3600/24 <= 150, 1,'last');...
     find(ObsMassaged(:,2)/3600/24 <= 200, 1,'last');...
     length(ObsMassaged)];
-obs_seg_idx = [12000; length(ObsMassaged)];
+% obs_seg_idx = [12000; length(ObsMassaged)];
 % obs_seg_idx = [12000];
 
 % obs_seg_idx = [...
@@ -38,7 +38,7 @@ IB = [7 7];
 filter_opts.propagator_opts.OD.A_params.important_block = IB;
 filter_opts.important_block = IB;
 filter_opts.propagator_opts.OD.state_len = state_len;
-filter_opts.SNC_Q = eye(3)*1e-17;
+filter_opts.SNC_Q = eye(3)*1e-15;
 filter_opts.use_SNC = 1;
 filter_opts.SRIF_input_P0 = true;
 filter_opts.propagator_opts.A_m_ratio =  A_m_ratio; % m2/kg
@@ -91,7 +91,7 @@ for ii = obs_seg_idx'
         x0_est = STM_accum\SRIFoutput.x_est_store(:,end);
         iter_state_ap = X(1,1:state_len)'+x0_est;
         if ii ~= obs_seg_idx(1)
-            break
+%             break
         end
     end
     
@@ -111,7 +111,7 @@ for ii = obs_seg_idx'
     if ii == num_obs
         ii
         color_num = cnt;
-        BPlaneTarget_HW7;
+%         BPlaneTarget_HW7;
         break;
     else
 %         if cnt == 1
@@ -140,15 +140,15 @@ for ii = obs_seg_idx'
     seg_begin = ii+1; %Next idx is the next segment
     
     color_num = cnt;
-    BPlaneTarget_HW7;
+%     BPlaneTarget_HW7;
 end
 
-figure(ell_plot);
-legend(plot_handles1, '200-day obs', 'Full obs set');
-xlabel('T (km)')
-ylabel('R (km)')
-title('3\sigma covariance ellipse on B-plane')
-set(gca,'YDir','reverse');
+% figure(ell_plot);
+% legend(plot_handles1, '200-day obs', 'Full obs set');
+% xlabel('T (km)')
+% ylabel('R (km)')
+% title('3\sigma covariance ellipse on B-plane')
+% set(gca,'YDir','reverse');
 
 if filter_opts.use_SNC
     plot_title = sprintf('SRIF w/ SNC, Q=%.1e', filter_opts.SNC_Q(1,1));
