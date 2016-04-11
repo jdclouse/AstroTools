@@ -1,11 +1,12 @@
 filter_opts.use_EKF = 1;
 filter_opts.use_SNC = 1;
-filter_opts.SNC_Q = eye(3)*1e-13;
+filter_opts.SNC_Q = eye(3)*1e-17;
 sig_range = 0.005; % km
 sig_rangerate = 0.5*1e-6; %m/s
 % W = [1/(sig_range*sig_range) 0; 0 1/(sig_rangerate*sig_rangerate)];
 filter_opts.R = [(sig_range*sig_range) 0; 0 (sig_rangerate*sig_rangerate)];
 filter_opts.P0 = P;
+filter_opts.use_smoother = 1;
 % (1:1000,:)
 tic
 EKFoutput = KalmanFilter(state_ap, ObsMassaged, filter_opts);
