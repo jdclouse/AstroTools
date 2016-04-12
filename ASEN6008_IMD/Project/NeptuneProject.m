@@ -245,9 +245,6 @@ ResoOrb_valid = zeros(num_VGA_window, num_EGA, num_JGA_window);
 ResoOrb_vel_err = [];%nan(num_joi,1);
 ResoOrb_vel_err_3d = nan(num_VGA_window, num_EGA, num_JGA_window);
 
-max_vinf_reso = 8;
-max_GA_diff_reso = .5;
-
 Earth_Jupiter.idx = 3;
 Earth_Jupiter.route = 'short';
 Earth_Jupiter.lambert = 1;
@@ -261,7 +258,7 @@ for ii = 1:num_VGA_window
     for jj = 1:num_JGA_window;
         ResoOrb_vel_err = abs(outgoing_v(:,jj) - incoming_v(ii,:)');
         valid_RO = ...
-            (ResoOrb_vel_err <= max_GA_diff_reso) & incoming_v(ii,:)' < max_vinf_reso;
+            (ResoOrb_vel_err <= max_GA_diff_reso);
         ResoOrb_vel_err_3d(ii,:,jj) = ResoOrb_vel_err;
         ResoOrb_valid(ii,:,jj) = valid_RO;
     end
