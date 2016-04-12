@@ -4,8 +4,8 @@
 good_reso = 0;
 
 use_traj = best_traj;
-use_traj = lowest_vf_traj;
-use_traj = lowest_C3_traj;
+% use_traj = lowest_vf_traj;
+% use_traj = lowest_C3_traj;
 Launch_date = Launch_dep(use_traj(1));
 VGA_date_idx = use_traj(2);
 EGA_date_idx = use_traj(3);

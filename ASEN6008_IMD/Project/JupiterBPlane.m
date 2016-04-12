@@ -1,4 +1,11 @@
 %% B Plane for all gravity assists
+
+fprintf(['Launch: ' getDate(Launch_date) '\n'])
+fprintf(['VGA: ' getDate(VGA_date) '\n'])
+fprintf(['EGA1: ' getDate(EGA1_date) '\n'])
+fprintf(['EGA2: ' getDate(EGA2_date) '\n'])
+fprintf(['JOI: ' getDate(JGA_date) '\n'])
+fprintf('\n')
 fprintf('B-plane targeting:\n')
 % VGA
 [b_VGA, B_hat_VGA, B_plane_VGA, psi_VGA, rp_VGA] = ...
@@ -29,3 +36,6 @@ fprintf('EGA2 r_p = '); disp(rp_EGA2);fprintf('\b\b km\n')
 fprintf('EGA2 turning angle = '); disp(psi_EGA2*180/pi);fprintf('\b\b deg\n')
 fprintf('EGA2 BT = '); disp(BT_EGA2);fprintf('\b\b km\n')
 fprintf('EGA2 BR = '); disp(BR_EGA2);fprintf('\b\b km\n\n')
+
+fprintf('C3: '); disp(c3_store(use_traj(1), VGA_date_idx)); fprintf('\b\b km^2/s^2\n');
+fprintf('V_inf JOI: '); disp(dv_final_store(EGA_date_idx, JGA_date_idx)); fprintf('\b\b km/s\n');

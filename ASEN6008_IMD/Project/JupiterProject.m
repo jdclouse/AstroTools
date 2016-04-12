@@ -30,8 +30,9 @@ hw_pub.lineWidth = 2; % pixels
 window = 0:window_gran:150; %was 150
 Launch_dep = JD_Launch + window;
 window = 0:window_gran:250;
+window = 0:window_gran:250;
 VGA_arr = JD_VGA + window;
-VGA_arr = juliandate([2020, 5, 30]):2:juliandate([2020, 10, 27]);
+VGA_arr = juliandate([2020, 5, 30]):1:juliandate([2020, 10, 27]);
 
 params1.fig_dim = hw_pub.figPosn;
 params1.Sun = Sun;
@@ -103,7 +104,7 @@ params3.debug = true;
     PorkchopPlot( EGA2_arr, JGA_arr, params3);
 figure(fh);
 xlabel('Departure Date')
-title('EGA2 to JGA');
+title('EGA2 to JOI');
 
 %% Patch together the trajectories using constraints
 lambert_out = [output_Launch_VGA output_VGA_EGA1 output_EGA2_JGA];
