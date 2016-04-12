@@ -4,8 +4,8 @@
 good_reso = 0;
 
 use_traj = best_traj;
-% use_traj = lowest_vf_traj;
-% use_traj = lowest_C3_traj;
+use_traj = lowest_vf_traj;
+use_traj = lowest_C3_traj;
 Launch_date = Launch_dep(use_traj(1));
 VGA_date_idx = use_traj(2);
 EGA_date_idx = use_traj(3);
@@ -38,21 +38,21 @@ Launch_to_VGA_direction = -1;
 % Launch to VGA
 [Launch_v_helio_out, VGA_v_helio_in] = lambert( r_earth_launch, r_venus_vga, ...
     (VGA_date-Launch_date)*day2sec, ...
-    -1, Sun);
+    Earth_Venus.lambert, Sun);
 Launch_v_inf_out = Launch_v_helio_out - v_earth_launch;
 VGA_v_inf_in = VGA_v_helio_in - v_venus_vga;
 
 % Incoming velocity on EGA1
 [VGA_v_helio_out, EGA1_v_helio_in] = lambert( r_venus_vga, r_earth_ega1, ...
     (EGA1_date-VGA_date)*day2sec, ...
-    -1, Sun);
+    Venus_Earth.lambert, Sun);
 VGA_v_inf_out = VGA_v_helio_out - v_venus_vga;
 EGA1_v_inf_in = EGA1_v_helio_in - v_earth_ega1;
 
 % The outgoing velocity on EGA2.
 [EGA2_v_helio_out, JOI_v_helio] = lambert( r_earth_ega2, r_jupiter_JGA, ...
     (JGA_date-EGA2_date)*day2sec, ...
-    -1, Sun);
+    Earth_Jupiter.lambert, Sun);
 EGA2_v_inf_out = EGA2_v_helio_out - v_earth_ega2;
 Jup_v_inf_in = JOI_v_helio - v_jupiter_JGA;
 
@@ -66,6 +66,7 @@ BR_VGA = dot(b_VGA*B_hat_VGA, B_plane_VGA(:,3));
 % fprintf('VGA BT = '); disp(BT_VGA);fprintf('\b\b km\n')
 % fprintf('VGA BR = '); disp(BR_VGA);fprintf('\b\b km\n\n')
 if rp_VGA < 6000
+    fprintf('no good VGA\n');
 %     rp_VGA
     return
 end
@@ -91,6 +92,7 @@ T_VNC2Ecl = [V_hat N_hat C_hat];
 
 % Cycle through the locus of possible orbits
 r_min = 7000; % Minimum radius of earth approach
+r_min = Earth.R + 300; % Minimum radius of earth approach
 cos_term = cos(pi-theta);
 sin_term = sin(pi-theta);
 acceptable_phi = [];
@@ -135,15 +137,15 @@ for phi = angles
         acceptable_EGA2_in = [acceptable_EGA2_in V_GA2_in]; %#ok<AGROW>
     end
 end
-% figure('Position', hw_pub.figPosn);
-% hold on
-% plot(angles,rp1_store)
-% plot(angles,rp2_store, 'r')
-% plot(angles,Earth.R*ones(1,length(angles)), '--k')
-% xlabel('\phi (radians)')
-% xlim([0 2*pi])
-% ylabel('r_p (km)')
-% title('Closest Earth Approach for Resonant E-E Orbit')
+figure('Position', hw_pub.figPosn);
+hold on
+plot(angles,rp1_store)
+plot(angles,rp2_store, 'r')
+plot(angles,Earth.R*ones(1,length(angles)), '--k')
+xlabel('\phi (radians)')
+xlim([0 2*pi])
+ylabel('r_p (km)')
+title('Closest Earth Approach for Resonant E-E Orbit')
 % plot(angles,psi1_store)
 % plot(angles,psi2_store)
 % I'm choosing the phi such that both passes are as far away as possible to
