@@ -118,8 +118,10 @@ max_GA_diff = .15; %km/s
 
 Earth_Venus.idx = 1;
 Earth_Venus.route = 'long';
+Earth_Venus.lambert = -1;
 Venus_Earth.idx = 2;
 Venus_Earth.route = 'long';
+Venus_Earth.lambert = -1;
 
 % Here we determine the constraints on the slice for the first segment
 % Get the dates for valid C3
@@ -185,6 +187,7 @@ ResoOrb_vel_err_3d = nan(num_VGA_window, num_EGA, num_JGA_window);
 
 Earth_Jupiter.idx = 3;
 Earth_Jupiter.route = 'long';
+Earth_Jupiter.lambert = -1;
 
 incoming_v = eval(inc_vel(Venus_Earth));
 outgoing_v = eval(out_vel(Earth_Jupiter));

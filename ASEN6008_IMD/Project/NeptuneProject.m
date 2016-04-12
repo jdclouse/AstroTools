@@ -29,8 +29,8 @@ params1.fig_dim = hw_pub.figPosn;
 params1.Sun = Sun;
 params1.planet1 = Earth;
 params1.planet2 = Venus;
-params1.c3_countours = [10:1:18 20:5:30 40 50 60];
-params1.v_inf_arr_countours = [1:1:11 13 17 29 45];
+params1.c3_countours = [10:1:13 15 18 25 40 50 60];
+params1.v_inf_arr_countours = [1:1:9 11 17 29 45];
 params1.v_inf_dep_countours = 11:1:23;
 params1.TOF_countours = 50:50:500;
 params1.day2sec = day2sec;
@@ -53,8 +53,8 @@ params2.Sun = Sun;
 params2.planet1 = Venus;
 params2.planet2 = Earth;
 params2.c3_countours = 10:1:21;
-params2.v_inf_arr_countours = [2:2:12 17:4:21 29 37];
-params2.v_inf_dep_countours = [1:11 12:4:28];
+params2.v_inf_arr_countours = [1:1:8 12 24];
+params2.v_inf_dep_countours = [1:5 7 11 16 28];
 params2.TOF_countours = 50:50:500;
 params2.day2sec = day2sec;
 params2.show_c3 = false;
@@ -66,20 +66,23 @@ params2.debug = false;
 [ fh , output_VGA_EGA1, legend_vec, legend_cells] = ...
     PorkchopPlot( VGA_arr, EGA1_arr, params2);
 figure(fh);
+xlabel('Departure Date')
 title('VGA to EGA1');
 %%
 % EGA2 to JGA
 EGA2_arr = EGA1_arr + 365*num_resonant_years;
+% EGA2_arr = juliandate([2019, 12, 03]):2:juliandate([2020, 6, 01]);
 window = 0:window_gran:(365*3);
 JGA_arr = EGA2_arr(1) + 365 + window;
+% JGA_arr = juliandate([2020, 12, 03]):2:juliandate([2023, 4, 01]);
 params3.fig_dim = hw_pub.figPosn;
 params3.Sun = Sun;
 params3.planet1 = Earth;
 params3.planet2 = Jupiter;
 params3.c3_countours = 10:1:21;
-params3.v_inf_arr_countours = 1:1:13;
-params3.v_inf_dep_countours = 11:1:23;
-params3.TOF_countours = 100:100:2000;
+params3.v_inf_arr_countours = 1:1:10;
+params3.v_inf_dep_countours = 10:2:18;
+params3.TOF_countours = 300:200:2000;
 params3.day2sec = day2sec;
 params3.show_c3 = false;
 params3.show_v_inf_dep = true;
@@ -90,20 +93,23 @@ params3.debug = false;
 [ fh , output_EGA2_JGA, legend_vec, legend_cells] = ...
     PorkchopPlot( EGA2_arr, JGA_arr, params3);
 figure(fh);
+xlabel('Departure Date')
 title('EGA2 to JGA');
 
 %%
 % JGA to SGA
 window = 0:window_gran:(365*4);
+% JGA_arr = juliandate([2020, 12, 03]):2:juliandate([2022, 11, 01]);
 SGA_arr = JGA_arr(1) + 365 + window;
+% SGA_arr = juliandate([2021, 12, 03]):2:juliandate([2025, 3, 16]);
 params4.fig_dim = hw_pub.figPosn;
 params4.Sun = Sun;
 params4.planet1 = Jupiter;
 params4.planet2 = Saturn;
 params4.c3_countours = 10:1:21;
-params4.v_inf_arr_countours = 1:1:13;
-params4.v_inf_dep_countours = 11:1:23;
-params4.TOF_countours = 100:100:200;
+params4.v_inf_arr_countours = [1:1:9 12 15 20];
+params4.v_inf_dep_countours = [11:1:13 15 17 20 23];
+params4.TOF_countours = 300:300:6000;
 params4.day2sec = day2sec;
 params4.show_c3 = false;
 params4.show_v_inf_dep = true;
@@ -112,6 +118,7 @@ params4.show_tof = true;
 params4.debug = true;
 params4.min_xfer_time = 300; % days
 params4.lambert_tol = 1e-2;
+params4.ignore_longway = true;
 
 fprintf('JGA to SGA Plot \n')
 clock
@@ -122,6 +129,7 @@ tic
 %     PorkchopPlot( JGA_arr(69), SGA_arr(1047), params4);
 toc
 figure(fh);
+xlabel('Departure Date')
 title('JGA to SGA');
 
 %% SGA to NOI
@@ -129,14 +137,16 @@ title('JGA to SGA');
 window = 0:window_gran:(365*4);
 NOI_arr = SGA_arr(1) + 365*6.5 + window;
 NOI_arr = juliandate(2027,12,23):NOI_arr(end);
+% SGA_arr = juliandate([2021, 12, 03]):7:juliandate([2025, 3, 16]);
+% NOI_arr = juliandate(2027,12,23):7:NOI_arr(end);
 params5.fig_dim = hw_pub.figPosn;
 params5.Sun = Sun;
 params5.planet1 = Saturn;
 params5.planet2 = Neptune;
 params5.c3_countours = 10:1:21;
-params5.v_inf_arr_countours = [1:1:15 16:2:30];
+params5.v_inf_arr_countours = [1:1:15 16:2:22 26];
 params5.v_inf_dep_countours = 3:2:25;
-params5.TOF_countours = 100:1500:6000;
+params5.TOF_countours = 1000:500:6000;
 params5.day2sec = day2sec;
 params5.show_c3 = false;
 params5.show_v_inf_dep = true;
@@ -157,6 +167,7 @@ tic
 %     PorkchopPlot( SGA_arr(1460), NOI_arr, params5);
 toc
 figure(fh);
+xlabel('Departure Date')
 title('SGA to NOI');
 
 %% Patch together the trajectories using constraints
@@ -205,8 +216,10 @@ inc_vel = @(leg) ['lambert_out(' num2str(leg.idx) ').' ...
 
 Earth_Venus.idx = 1;
 Earth_Venus.route = 'long';
+Earth_Venus.lambert = -1;
 Venus_Earth.idx = 2;
 Venus_Earth.route = 'long';
+Venus_Earth.lambert = -1;
 
 incoming_v = eval(inc_vel(Earth_Venus));
 outgoing_v = eval(out_vel(Venus_Earth));
@@ -232,9 +245,14 @@ ResoOrb_valid = zeros(num_VGA_window, num_EGA, num_JGA_window);
 ResoOrb_vel_err = [];%nan(num_joi,1);
 ResoOrb_vel_err_3d = nan(num_VGA_window, num_EGA, num_JGA_window);
 
+max_vinf_reso = 8;
+max_GA_diff_reso = .5;
 
 Earth_Jupiter.idx = 3;
 Earth_Jupiter.route = 'short';
+Earth_Jupiter.lambert = 1;
+Earth_Jupiter.route = 'long';
+Earth_Jupiter.lambert = -1;
 
 incoming_v = eval(inc_vel(Venus_Earth));
 outgoing_v = eval(out_vel(Earth_Jupiter));
@@ -243,7 +261,7 @@ for ii = 1:num_VGA_window
     for jj = 1:num_JGA_window;
         ResoOrb_vel_err = abs(outgoing_v(:,jj) - incoming_v(ii,:)');
         valid_RO = ...
-            ResoOrb_vel_err <= max_GA_diff;
+            (ResoOrb_vel_err <= max_GA_diff_reso) & incoming_v(ii,:)' < max_vinf_reso;
         ResoOrb_vel_err_3d(ii,:,jj) = ResoOrb_vel_err;
         ResoOrb_valid(ii,:,jj) = valid_RO;
     end
@@ -255,11 +273,17 @@ num_SGA = length(SGA_arr);
 JGA_valid = int8(zeros(num_EGA, num_JGA_window, num_SGA));
 JGA_vel_err_3d = nan(num_EGA, num_JGA_window, num_SGA);
 
+Jupiter_Saturn.idx = 4;
+Jupiter_Saturn.route = 'short';
+Jupiter_Saturn.lambert = 1;
+incoming_v = eval(inc_vel(Earth_Jupiter));
+outgoing_v = eval(out_vel(Jupiter_Saturn));
 for ii = 1:num_EGA
     % 
     for jj = 1:num_SGA
-        GA_vel_err = abs(lambert_out(4).short_way_dv1_store(:,jj) ...
-            - lambert_out(3).long_way_dv2_store(ii,:)');
+        GA_vel_err = abs(outgoing_v(:,jj) - incoming_v(ii,:)');
+%         GA_vel_err = abs(lambert_out(4).short_way_dv1_store(:,jj) ...
+%             - lambert_out(3).long_way_dv2_store(ii,:)');
         valid_GA = ...
             GA_vel_err <= max_GA_diff;
         JGA_vel_err_3d(ii,:,jj) = GA_vel_err;
@@ -286,63 +310,3 @@ for ii = 1:num_JGA_window
 end
 
 %%
-max_err = 1.5;
-best_traj = zeros(6,1);
-best_err = max_err;
-lowest_vf_traj = zeros(6,1);
-lowest_vf = V_inf_final_max;
-lowest_vf_err = max_err;
-lowest_C3_traj = zeros(6,1);
-lowest_C3 = C3_max;
-lowest_C3_err = max_err;
-for launch_idx = launch_idx1:launch_idx2
-    for VGA_idx = 1:num_VGA_window
-        for EGA_idx = 1:num_EGA
-            if VGA_valid(launch_idx, VGA_idx, EGA_idx) == 0
-                continue
-            end                
-            for JGA_idx = 1:num_JGA_window
-                if ResoOrb_valid(VGA_idx, EGA_idx, JGA_idx) == 0
-                    continue
-                end                
-                for SGA_idx = 1:num_SGA
-                    if JGA_valid(EGA_idx, JGA_idx, SGA_idx) == 0
-                        continue
-                    end                
-                    for NOI_idx = 1:num_NOI
-                        if SGA_valid(JGA_idx, SGA_idx, NOI_idx) == 0
-                            continue
-                        end  
-                        % Congrats. you made it!
-                        traj_error = ...
-                            +VGA_vel_err_3d(launch_idx, VGA_idx, EGA_idx)...
-                            +ResoOrb_vel_err_3d(VGA_idx, EGA_idx, JGA_idx)...
-                            +JGA_vel_err_3d(EGA_idx, JGA_idx, SGA_idx)...
-                            +abs(lambert_out(5).short_way_dv1_store(SGA_idx,NOI_idx) ...
-                                - lambert_out(4).short_way_dv2_store(JGA_idx,SGA_idx)');
-                        
-                        if traj_error < max_err &&...
-                                lambert_out(1).lw_c3_store(launch_idx,VGA_idx) < C3_max &&...
-                                lambert_out(5).short_way_dv1_store(SGA_idx,NOI_idx) < V_inf_final_max
-                            if traj_error < best_err
-                                best_err = traj_error;
-                                best_traj = [launch_idx;
-                                    VGA_idx; EGA_idx; JGA_idx; SGA_idx; NOI_idx];
-                            end
-                            if lambert_out(1).lw_c3_store(launch_idx,VGA_idx) < lowest_C3_err
-                                lowest_C3_err = lambert_out(1).lw_c3_store(launch_idx,VGA_idx);
-                                lowest_C3_traj = [launch_idx;
-                                    VGA_idx; EGA_idx; JGA_idx; SGA_idx; NOI_idx];
-                            end
-                            if lambert_out(5).short_way_dv1_store(SGA_idx,NOI_idx) < lowest_vf_err
-                                lowest_vf_err = lambert_out(5).short_way_dv1_store(SGA_idx,NOI_idx);
-                                lowest_vf_traj = [launch_idx;
-                                    VGA_idx; EGA_idx; JGA_idx; SGA_idx; NOI_idx];
-                            end
-                        end
-                    end
-                end
-            end
-        end
-    end
-end
