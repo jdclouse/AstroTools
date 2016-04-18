@@ -3,10 +3,11 @@
 %% Ephemerides and v_infs
 good_reso = 0;
 
-use_traj = best_traj;
+% use_traj = best_traj;
 % use_traj = lowest_vf_traj;
 % use_traj = lowest_C3_traj;
 Launch_date = Launch_dep(use_traj(1));
+Launch_date_idx = use_traj(1);
 VGA_date_idx = use_traj(2);
 EGA_date_idx = use_traj(3);
 JGA_date_idx = use_traj(4);
@@ -38,7 +39,7 @@ Launch_to_VGA_direction = -1;
 % Launch to VGA
 [Launch_v_helio_out, VGA_v_helio_in] = lambert( r_earth_launch, r_venus_vga, ...
     (VGA_date-Launch_date)*day2sec, ...
-    Earth_Venus.lambert, Sun);
+    Earth_Venus.lambert, Sun, 0, 1e-6);
 Launch_v_inf_out = Launch_v_helio_out - v_earth_launch;
 VGA_v_inf_in = VGA_v_helio_in - v_venus_vga;
 
@@ -137,15 +138,15 @@ for phi = angles
         acceptable_EGA2_in = [acceptable_EGA2_in V_GA2_in]; %#ok<AGROW>
     end
 end
-figure('Position', hw_pub.figPosn);
-hold on
-plot(angles,rp1_store)
-plot(angles,rp2_store, 'r')
-plot(angles,Earth.R*ones(1,length(angles)), '--k')
-xlabel('\phi (radians)')
-xlim([0 2*pi])
-ylabel('r_p (km)')
-title('Closest Earth Approach for Resonant E-E Orbit')
+% figure('Position', hw_pub.figPosn);
+% hold on
+% plot(angles,rp1_store)
+% plot(angles,rp2_store, 'r')
+% plot(angles,Earth.R*ones(1,length(angles)), '--k')
+% xlabel('\phi (radians)')
+% xlim([0 2*pi])
+% ylabel('r_p (km)')
+% title('Closest Earth Approach for Resonant E-E Orbit')
 % plot(angles,psi1_store)
 % plot(angles,psi2_store)
 % I'm choosing the phi such that both passes are as far away as possible to
@@ -154,20 +155,20 @@ if max(acceptable_phi) > 0
     good_reso = 1;
 [~,xxx] = min(max(acceptable_radii,[],2));
 [~,max_r_idx] = max(acceptable_radii(xxx,:));
-fprintf('Earth Resonant Orbit:\n')
-fprintf('phi = ');disp(acceptable_phi(max_r_idx)*180/pi);
-fprintf('\b\b deg\n');
-fprintf('EGA1 r_p = ');disp(acceptable_radii(1,max_r_idx));
-fprintf('\b\b km\n');
-fprintf('EGA2 r_p = ');disp(acceptable_radii(2,max_r_idx));
-fprintf('\b\b km\n');
-fprintf('EGA1 V_out = \n');disp(acceptable_EGA1_out(:,max_r_idx));
-fprintf('\b\b km/s\n');
-fprintf('EGA2 V_in = \n');disp(acceptable_EGA2_in(:,max_r_idx));
-fprintf('\b\b km/s\n');
-fprintf('\n');
-EGA1_v_inf_out = acceptable_EGA1_out(:,max_r_idx);
-EGA2_v_inf_in = acceptable_EGA2_in(:,max_r_idx);
+% fprintf('Earth Resonant Orbit:\n')
+% fprintf('phi = ');disp(acceptable_phi(max_r_idx)*180/pi);
+% fprintf('\b\b deg\n');
+% fprintf('EGA1 r_p = ');disp(acceptable_radii(1,max_r_idx));
+% fprintf('\b\b km\n');
+% fprintf('EGA2 r_p = ');disp(acceptable_radii(2,max_r_idx));
+% fprintf('\b\b km\n');
+% fprintf('EGA1 V_out = \n');disp(acceptable_EGA1_out(:,max_r_idx));
+% fprintf('\b\b km/s\n');
+% fprintf('EGA2 V_in = \n');disp(acceptable_EGA2_in(:,max_r_idx));
+% fprintf('\b\b km/s\n');
+% fprintf('\n');
+% EGA1_v_inf_out = acceptable_EGA1_out(:,max_r_idx);
+% EGA2_v_inf_in = acceptable_EGA2_in(:,max_r_idx);
 else
     fprintf('No valid Resonant Orbit!!!\n');
 end

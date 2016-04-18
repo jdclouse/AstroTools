@@ -23,6 +23,7 @@ valid_c3 = eval(get_val_c3(Earth_Venus));
 c3_store =  eval(get_c3_store(Earth_Venus));
 dv_final_store = lambert_out(3).long_way_dv2_store;
 dv_final_store = eval(inc_vel(Earth_Jupiter));
+all_traj = zeros(4,467485);
 for launch_idx = launch_idx1:launch_idx2
 %     launch_idx
     for VGA_idx = 1:num_VGA_window
@@ -47,7 +48,6 @@ for launch_idx = launch_idx1:launch_idx2
 %                 if ~good_reso 
 %                     continue
 %                 end
-                x = x+1;
                 % Congrats. you made it!
                 traj_error = ...
                     +VGA_vel_err_3d(launch_idx, VGA_idx, EGA_idx)...
@@ -56,6 +56,8 @@ for launch_idx = launch_idx1:launch_idx2
                 if traj_error < max_err &&...
                         c3_store(launch_idx,VGA_idx) < C3_max &&...
                         dv_final_store(EGA_idx,JGA_idx) < V_inf_final_max
+                x = x+1;
+                all_traj(:,x) = [launch_idx; VGA_idx; EGA_idx; JGA_idx];
                     if traj_error < best_err
                         best_err = traj_error;
                         best_traj = [launch_idx;
