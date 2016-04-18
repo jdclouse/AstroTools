@@ -1,7 +1,7 @@
 function DCM = EulerParam2DCM( EP )
 %EulerParam2PRV Get PRV from EP
 
-fcnPrintQueue(mfilename('fullpath'))
+% fcnPrintQueue(mfilename('fullpath'))
 
 B0 = EP(1);
 B1 = EP(2);
