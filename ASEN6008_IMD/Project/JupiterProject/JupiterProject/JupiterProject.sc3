@@ -209,42 +209,6 @@ VO_V100
 
             Begin Globe
                 AA Yes
-                BeginCentralBody "Earth"
-                    Show Yes
-                    Textured Yes
-                    AltOffset 0.000000
-                    Color #0000ff
-                    SpecularColor #545454
-                    Shininess 40.000000
-                    ShowWater Yes
-                    _AGI_PIBEGINTERRAINIMAGECALLDATA "SRC"
-                        BlendMode Value
-                        BlendFactor 1.000000
-                        BlendAltitudeLowerFactor 1.000000
-                        BlendAltitudeUpperFactor 0.000000
-                        BlendAltitudeLowerAltitude 10000.000000
-                        BlendAltitudeUpperAltitude 100000.000000
-                        TextureRole Day
-                        URI "file:///Earth_PE_b.jp2"
-                        BeginImageSetDefOn
-                        End
-                        InBase Yes
-                        BaseOn Yes
-                    End
-                    _AGI_PIBEGINTERRAINIMAGECALLDATA "USER"
-                        BlendMode Altitude
-                        BlendFactor 1.000000
-                        BlendAltitudeLowerFactor 1.000000
-                        BlendAltitudeUpperFactor 0.000000
-                        BlendAltitudeLowerAltitude 500000.000000
-                        BlendAltitudeUpperAltitude 2500000.000000
-                        URI "virtual_earth://virtualearth.net/Aerial.ve"
-                        BeginImageSetDefOn
-                        End
-                        InBase Yes
-                        BaseOn Yes
-                    End
-                EndCentralBody
                 BeginCentralBody "Sun"
                     Show Yes
                     Textured No
@@ -285,6 +249,42 @@ VO_V100
                         BlendAltitudeUpperAltitude 2500000.000000
                         TextureRole Day
                         URI "file:///Moon.jp2"
+                        BeginImageSetDefOn
+                        End
+                        InBase Yes
+                        BaseOn Yes
+                    End
+                EndCentralBody
+                BeginCentralBody "Earth"
+                    Show Yes
+                    Textured Yes
+                    AltOffset 0.000000
+                    Color #0000ff
+                    SpecularColor #545454
+                    Shininess 40.000000
+                    ShowWater Yes
+                    _AGI_PIBEGINTERRAINIMAGECALLDATA "SRC"
+                        BlendMode Value
+                        BlendFactor 1.000000
+                        BlendAltitudeLowerFactor 1.000000
+                        BlendAltitudeUpperFactor 0.000000
+                        BlendAltitudeLowerAltitude 10000.000000
+                        BlendAltitudeUpperAltitude 100000.000000
+                        TextureRole Day
+                        URI "file:///Earth_PE_b.jp2"
+                        BeginImageSetDefOn
+                        End
+                        InBase Yes
+                        BaseOn Yes
+                    End
+                    _AGI_PIBEGINTERRAINIMAGECALLDATA "USER"
+                        BlendMode Altitude
+                        BlendFactor 1.000000
+                        BlendAltitudeLowerFactor 1.000000
+                        BlendAltitudeUpperFactor 0.000000
+                        BlendAltitudeLowerAltitude 500000.000000
+                        BlendAltitudeUpperAltitude 2500000.000000
+                        URI "virtual_earth://virtualearth.net/Aerial.ve"
                         BeginImageSetDefOn
                         End
                         InBase Yes
@@ -373,16 +373,16 @@ VO_V100
             End
             Begin CentralBodyOpts
                 BeginCentralBody
-                    Name "Earth"
-                    ShowLabel No
-                EndCentralBody
-                BeginCentralBody
                     Name "Sun"
                     ShowLabel No
                 EndCentralBody
                 BeginCentralBody
                     Name "Moon"
                     ShowLabel Yes
+                EndCentralBody
+                BeginCentralBody
+                    Name "Earth"
+                    ShowLabel No
                 EndCentralBody
             End CentralBodyOpts
             isShowingOverlay            Yes
@@ -696,10 +696,6 @@ VO_V100
             RubberBandLineWidth       2.000000
             RubberBandCrosshairSize   16
             RubberBandRGB             0.660000 0.660000 0.660000
-    _AGI_PIBEGINTYPEMGR3DSCENEDATA
-        Begin 3dScene
-        End
-    End
             Begin View
                 ViewName                STKVOInitialView
                 ViewTime                -121759200.000000
@@ -866,42 +862,6 @@ VO_V100
 
             Begin Globe
                 AA Yes
-                BeginCentralBody "Earth"
-                    Show Yes
-                    Textured Yes
-                    AltOffset 0.000000
-                    Color #0000ff
-                    SpecularColor #545454
-                    Shininess 40.000000
-                    ShowWater Yes
-                    _AGI_PIBEGINTERRAINIMAGECALLDATA "SRC"
-                        BlendMode Value
-                        BlendFactor 1.000000
-                        BlendAltitudeLowerFactor 1.000000
-                        BlendAltitudeUpperFactor 0.000000
-                        BlendAltitudeLowerAltitude 10000.000000
-                        BlendAltitudeUpperAltitude 100000.000000
-                        TextureRole Day
-                        URI "file:///Earth_PE_b.jp2"
-                        BeginImageSetDefOn
-                        End
-                        InBase Yes
-                        BaseOn Yes
-                    End
-                    _AGI_PIBEGINTERRAINIMAGECALLDATA "USER"
-                        BlendMode Altitude
-                        BlendFactor 1.000000
-                        BlendAltitudeLowerFactor 1.000000
-                        BlendAltitudeUpperFactor 0.000000
-                        BlendAltitudeLowerAltitude 500000.000000
-                        BlendAltitudeUpperAltitude 2500000.000000
-                        URI "virtual_earth://virtualearth.net/Aerial.ve"
-                        BeginImageSetDefOn
-                        End
-                        InBase Yes
-                        BaseOn Yes
-                    End
-                EndCentralBody
                 BeginCentralBody "Sun"
                     Show Yes
                     Textured No
@@ -942,6 +902,42 @@ VO_V100
                         BlendAltitudeUpperAltitude 2500000.000000
                         TextureRole Day
                         URI "file:///Moon.jp2"
+                        BeginImageSetDefOn
+                        End
+                        InBase Yes
+                        BaseOn Yes
+                    End
+                EndCentralBody
+                BeginCentralBody "Earth"
+                    Show Yes
+                    Textured Yes
+                    AltOffset 0.000000
+                    Color #0000ff
+                    SpecularColor #545454
+                    Shininess 40.000000
+                    ShowWater Yes
+                    _AGI_PIBEGINTERRAINIMAGECALLDATA "SRC"
+                        BlendMode Value
+                        BlendFactor 1.000000
+                        BlendAltitudeLowerFactor 1.000000
+                        BlendAltitudeUpperFactor 0.000000
+                        BlendAltitudeLowerAltitude 10000.000000
+                        BlendAltitudeUpperAltitude 100000.000000
+                        TextureRole Day
+                        URI "file:///Earth_PE_b.jp2"
+                        BeginImageSetDefOn
+                        End
+                        InBase Yes
+                        BaseOn Yes
+                    End
+                    _AGI_PIBEGINTERRAINIMAGECALLDATA "USER"
+                        BlendMode Altitude
+                        BlendFactor 1.000000
+                        BlendAltitudeLowerFactor 1.000000
+                        BlendAltitudeUpperFactor 0.000000
+                        BlendAltitudeLowerAltitude 500000.000000
+                        BlendAltitudeUpperAltitude 2500000.000000
+                        URI "virtual_earth://virtualearth.net/Aerial.ve"
                         BeginImageSetDefOn
                         End
                         InBase Yes
@@ -1053,16 +1049,20 @@ VO_V100
             End
             Begin CentralBodyOpts
                 BeginCentralBody
-                    Name "Earth"
-                    ShowLabel No
-                EndCentralBody
-                BeginCentralBody
                     Name "Sun"
                     ShowLabel No
                 EndCentralBody
                 BeginCentralBody
                     Name "Moon"
                     ShowLabel Yes
+                EndCentralBody
+                BeginCentralBody
+                    Name "Earth"
+                    ShowLabel No
+                EndCentralBody
+                BeginCentralBody
+                    Name "Venus"
+                    ShowLabel No
                 EndCentralBody
             End CentralBodyOpts
             isShowingOverlay            Yes
@@ -1426,6 +1426,13 @@ VO_V100
                 ViewTime                17496000.000000
                 ViewUpdateDelta         600.000000
                 CentralBody             Venus
+                Begin ViewCrdnAxes
+					BEGIN	AXES
+						Type	AXES_LINKTO
+						Name	Inertial
+						AbsolutePath	CentralBody/Venus
+					END	AXES
+                End
                 Begin FromViewCrdnPoint
 					BEGIN	POINT
 						Type	POINT_LINKTO
@@ -1454,22 +1461,22 @@ VO_V100
                 UseLayer                Yes
                 FromName                "Planet/Venus"
                 FromRegPosAttView       "Point"
-                FromPosition            -984121914.826191780000000000  492658072.377123000000000000  548923244.314157840000000000
-                FromOffset              -984121914.826710580000000000  492658072.373390320000000000  548923244.314073920000000000
-                FromOffsetLLR           0.475223921728098130  2.712837882814585800  1229847408.284923800000000000
+                FromPosition            -1221846630.385554600000000000  868917484.967097760000000000  1187701302.310288400000000000
+                FromOffset              -1221846630.384017700000000000  868917484.967158790000000000  1187701302.310233100000000000
+                FromOffsetLLR           0.669945772851267220  2.523421918509622500  1912736565.074201300000000000
                 ToName                  "Planet/Venus"
                 ToRegPosAttView         "Point"
-                ToPosition              0.000518798828125000  0.003732681274414063  0.000083923339843750
+                ToPosition              -0.001536846160888672  -0.000061035156250000  0.000055313110351563
                 ToOffset                0.000000000000000000  0.000000000000000000  0.000000000000000000
                 ToOffsetLLR             0.000000000000000000  0.000000000000000000  0.000000000000000000
                 ConstantDistanceType    None
                 ConstantDistanceValue   1.000000
-                UpVector                0.390205323988817910  -0.217407608040763260  0.894691978893728650
-                ViewRad                 1229847408.284924000000000000
-                ViewQuat                0.9496551 0.0500750 0.2299942 -0.2067617
+                UpVector                0.506031657141554850  -0.359864932228858290  0.783855339027866300
+                ViewRad                 1912736565.074201300000000000
+                ViewQuat                0.8996653 0.0999997 0.3131651 -0.2872805
                 ViewCoordSystem         From
                 ViewFromToMode          FromTo
-                ViewToCBIMtx            0.998839997509548660 -0.044376902396045692 0.018690904441919613 0.044178978834076607 0.998964466732069620 0.010872535853729359  -0.019154038850940719 -0.010034178613332393 0.999766191694464460
+                ViewToCBIMtx            1.000000000000000000 0.000000000000000000 0.000000000000000000 0.000000000000000000 1.000000000000000000 0.000000000000000000  0.000000000000000000 0.000000000000000000 1.000000000000000000
                 UseUpAxis               Yes
                 UpAxisType              Z
                 UserDefinedUpAxis       0.000000000000000000 0.000000000000000000 1.000000000000000000
@@ -1480,7 +1487,7 @@ VO_V100
                 MinAngleToUpAxis        0.0087266
                 InitUpAxisUp            Yes
                 TempUpAxisUp            Yes
-                CrossAxis               0.4157386 0.9094841 -0.0000000
+                CrossAxis               0.5795454 0.8149400 -0.0000000
                 DefaultOffset           52953250.0000000
                 BaseDefaultOffset       42362600.0000000
             End View

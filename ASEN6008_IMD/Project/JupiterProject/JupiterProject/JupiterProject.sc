@@ -105,7 +105,7 @@ BEGIN Animation
 
     StartTime          26 Feb 2020 00:00:00.000000000
     EndTime            30 Jun 2026 23:00:00.000000000
-    CurrentTime        1 Oct 2030 01:15:29.601000011
+    CurrentTime        26 Feb 2020 00:00:00.000000000
     Direction          Forward
     UpdateDelta        57600.000000
     RefreshDelta       0.010000
@@ -212,7 +212,7 @@ BEGIN MapData
             ShowImageNames       Off
             ImageNameFont        0
             Projection           Orthographic
-            Resolution           None
+            Resolution           VeryLow
             CoordinateSys        ECI
             UseBackgroundImage   On
             UseBingForBackground Off
@@ -985,22 +985,7 @@ END MapData
             BEGIN Favorite
                 Type    Report
                 BaseDir Install
-                Style   Helio Position Velocity
-            END Favorite
-            BEGIN Favorite
-                Type    Report
-                BaseDir Install
-                Style   Helio Classical Elements
-            END Favorite
-            BEGIN Favorite
-                Type    Report
-                BaseDir User
-                Style   Helio Position Velocity
-            END Favorite
-            BEGIN Favorite
-                Type    Report
-                BaseDir Install
-                Style   Apparent LLA Position
+                Style   J2000 Position Velocity
             END Favorite
             BEGIN Favorite
                 Type    Report
@@ -1010,7 +995,22 @@ END MapData
             BEGIN Favorite
                 Type    Report
                 BaseDir Install
-                Style   J2000 Position Velocity
+                Style   Apparent LLA Position
+            END Favorite
+            BEGIN Favorite
+                Type    Report
+                BaseDir User
+                Style   Helio Position Velocity
+            END Favorite
+            BEGIN Favorite
+                Type    Report
+                BaseDir Install
+                Style   Helio Classical Elements
+            END Favorite
+            BEGIN Favorite
+                Type    Report
+                BaseDir Install
+                Style   Helio Position Velocity
             END Favorite
         END Class
         BEGIN Class
@@ -1018,12 +1018,20 @@ END MapData
             BEGIN Favorite
                 Type    Report
                 BaseDir Install
-                Style   LLA Position
+                Style   Lifetime
             END Favorite
             BEGIN Favorite
                 Type    Report
                 BaseDir Install
-                Style   Lifetime
+                Style   LLA Position
+            END Favorite
+        END Class
+        BEGIN Class
+            Name  Access
+            BEGIN Favorite
+                Type    Report
+                BaseDir Install
+                Style   Access Intervals by Time
             END Favorite
         END Class
     END ReportFavorites
@@ -1097,6 +1105,16 @@ END MapData
     
     BEGIN SOCDb
         BEGIN Defaults
+            BEGIN Catalog Facilities
+                BEGIN Criteria Name
+                    Type  Value
+                    Value DSS
+                END Criteria
+                BEGIN Criteria Status
+                    Type  List
+                    Value Active
+                END Criteria
+            END Catalog
         END Defaults
     END SOCDb
     
@@ -1708,6 +1726,14 @@ END Extensions
 
 BEGIN SubObjects
 
+Class Facility
+
+	DSS_14_Goldstone_STDN_DS14
+	DSS_43_Tidbinbilla_STDN_DS43
+	DSS_63_Robledo_STDN_DS63
+
+END Class
+
 Class Planet
 
 	Earth
@@ -1727,6 +1753,15 @@ END SubObjects
 BEGIN References
     Instance *
         *
+    END Instance
+    Instance Facility/DSS_14_Goldstone_STDN_DS14
+        Facility/DSS_14_Goldstone_STDN_DS14
+    END Instance
+    Instance Facility/DSS_43_Tidbinbilla_STDN_DS43
+        Facility/DSS_43_Tidbinbilla_STDN_DS43
+    END Instance
+    Instance Facility/DSS_63_Robledo_STDN_DS63
+        Facility/DSS_63_Robledo_STDN_DS63
     END Instance
     Instance Planet/Earth
         Planet/Earth
