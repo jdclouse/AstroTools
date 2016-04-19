@@ -3,7 +3,7 @@
 %% Ephemerides and v_infs
 good_reso = 0;
 
-% use_traj = best_traj;
+use_traj = best_traj;
 % use_traj = lowest_vf_traj;
 % use_traj = lowest_C3_traj;
 Launch_date = Launch_dep(use_traj(1));
@@ -53,7 +53,7 @@ EGA1_v_inf_in = EGA1_v_helio_in - v_earth_ega1;
 % The outgoing velocity on EGA2.
 [EGA2_v_helio_out, JOI_v_helio] = lambert( r_earth_ega2, r_jupiter_JGA, ...
     (JGA_date-EGA2_date)*day2sec, ...
-    Earth_Jupiter.lambert, Sun);
+    Earth_Jupiter.lambert, Sun, 0, 1e-6);
 EGA2_v_inf_out = EGA2_v_helio_out - v_earth_ega2;
 Jup_v_inf_in = JOI_v_helio - v_jupiter_JGA;
 

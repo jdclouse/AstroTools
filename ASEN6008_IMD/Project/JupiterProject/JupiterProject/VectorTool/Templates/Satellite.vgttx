@@ -1,0 +1,57 @@
+stk.v.10.0
+BEGIN BPlaneMgrGfx
+    Begin BPlaneGfx
+        Name BPlaneVenus
+        ShowRectGrid No
+        ShowCircGrid Yes
+        GridSpacing 12100000.000000
+        Begin BPlane
+            Show Yes
+            ShowLabel No
+            Color #ff00ff
+            Scale 10.000000
+        End
+        Begin BVector
+            Show Yes
+            ShowLabel Yes
+            Color #ff0000
+            Scale 1.000000
+        End
+        Begin TVector
+            Show Yes
+            ShowLabel Yes
+            Color #ff00ff
+            Scale 15.000000
+        End
+        Begin RVector
+            Show Yes
+            ShowLabel Yes
+            Color #ff00ff
+            Scale 15.000000
+        End
+        Begin Theta
+            Show Yes
+            ShowLabel Yes
+            Color #ff0000
+            Scale 5.000000
+        End
+        Begin Asymptote
+            Show Yes
+            ShowLabel Yes
+            Color #ffffff
+            Scale 100.000000
+        End
+        Begin SVector
+            Show Yes
+            ShowLabel Yes
+            Color #ffffff
+            Scale 15.000000
+        End
+        Begin ReferenceVector
+            Show Yes
+            ShowLabel Yes
+            Color #f0e68c
+            Scale 15.000000
+        End
+    End
+END BPlaneMgrGfx

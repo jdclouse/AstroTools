@@ -1,0 +1,20 @@
+stk.v.10.0
+BEGIN	BPLANE
+	Type	BPLANE_TRAJECTORY
+	Name	BPlaneVenus
+	Description	B-plane computed based on trajectory of point.
+		TrajectoryPoint
+			BEGIN	POINT
+				Type	POINT_LINKTO
+				Name	Center
+			END	POINT
+		TargetBody	CentralBody/Venus
+		ReferenceVector
+			BEGIN	VECTOR
+				Type	VECTOR_LINKTO
+				Name	EclipticNormal
+				AbsolutePath	CentralBody/Venus
+			END	VECTOR
+		EventOccurrenceEpoch	26 Feb 2020 00:00:00.000000000
+		UseEventOccurrenceEpoch	No
+END	BPLANE

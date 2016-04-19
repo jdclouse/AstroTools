@@ -14,7 +14,7 @@ VO_V100
     Level4SwapDistance        600000000.000000
     ShowMarker                Yes
     Begin Marker
-        Show               Yes
+        Show               No
         Type               LineGraphic
         Shape              Point
         IsTransparent      No
@@ -392,6 +392,27 @@ VO_V100
             ShowRectGrid            No
             ShowCircGrid            No
             IntervalType            AlwaysOn
+        End
+    End
+    Begin BPlanes
+        Begin SceneIDs
+            SceneID 2
+        End
+        Begin BPlaneData
+            Show Yes
+            PointColorFirst #00ff00
+            PointColorRest #00ff00
+            TargetShow Yes
+            TargetColor #ffff00
+            ConnectorShow Yes
+            ConnectorColor #00ff00
+            ConnectorWidth 1.000000
+            PointSize 10.000000
+            ShowPointLabel Yes
+            UseInterval No
+            Begin BPlaneDef
+                Name Zeus_1
+            End
         End
     End
 

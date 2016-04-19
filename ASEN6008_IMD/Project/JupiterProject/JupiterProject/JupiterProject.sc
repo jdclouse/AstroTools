@@ -105,9 +105,9 @@ BEGIN Animation
 
     StartTime          26 Feb 2020 00:00:00.000000000
     EndTime            30 Jun 2026 23:00:00.000000000
-    CurrentTime        15 Sep 2020 12:00:00.000000000
-    Direction          Reverse
-    UpdateDelta        600.000000
+    CurrentTime        1 Oct 2030 01:15:29.601000011
+    Direction          Forward
+    UpdateDelta        57600.000000
     RefreshDelta       0.010000
     XRealTimeMult      1.000000
     RealTimeOffset     0.000000
@@ -188,9 +188,9 @@ BEGIN MapData
         BEGIN MapAttributes
             PrimaryBody          Sun
             SecondaryBody        Earth
-            CenterLatitude       23.862156
-            CenterLongitude      17.541528
-            ProjectionAltitude   63621860.000065
+            CenterLatitude       80.229588
+            CenterLongitude      19.136212
+            ProjectionAltitude   63621860.000162
             FieldOfView          35.000000
             OrthoDisplayDistance 1600000000000.000000
             TransformTrajectory  On
@@ -225,10 +225,10 @@ BEGIN MapData
             UseCloudsFile        Off
             BEGIN ZoomLocations
                 BEGIN ZoomLocation
-                    CenterLat    23.862156
-                    CenterLon    17.541528
-                    ZoomWidth    45.838714
-                    ZoomHeight   24.315331
+                    CenterLat    80.229588
+                    CenterLon    19.136212
+                    ZoomWidth    360.000000
+                    ZoomHeight   180.000000
                 End ZoomLocation
             END ZoomLocations
             UseVarAspectRatio    No
@@ -980,6 +980,52 @@ END MapData
     END ConnectReportUnits
     
     BEGIN ReportFavorites
+        BEGIN Class
+            Name  Planet
+            BEGIN Favorite
+                Type    Report
+                BaseDir Install
+                Style   Helio Position Velocity
+            END Favorite
+            BEGIN Favorite
+                Type    Report
+                BaseDir Install
+                Style   Helio Classical Elements
+            END Favorite
+            BEGIN Favorite
+                Type    Report
+                BaseDir User
+                Style   Helio Position Velocity
+            END Favorite
+            BEGIN Favorite
+                Type    Report
+                BaseDir Install
+                Style   Apparent LLA Position
+            END Favorite
+            BEGIN Favorite
+                Type    Report
+                BaseDir Install
+                Style   Apparent Helio Position Velocity
+            END Favorite
+            BEGIN Favorite
+                Type    Report
+                BaseDir Install
+                Style   J2000 Position Velocity
+            END Favorite
+        END Class
+        BEGIN Class
+            Name  Satellite
+            BEGIN Favorite
+                Type    Report
+                BaseDir Install
+                Style   LLA Position
+            END Favorite
+            BEGIN Favorite
+                Type    Report
+                BaseDir Install
+                Style   Lifetime
+            END Favorite
+        END Class
     END ReportFavorites
     
     BEGIN ADFFileData
@@ -1689,9 +1735,11 @@ BEGIN References
         Planet/Jupiter
     END Instance
     Instance Planet/Venus
+        *
         Planet/Venus
     END Instance
     Instance Satellite/Zeus
+        *
         Satellite/Zeus
     END Instance
 END References
