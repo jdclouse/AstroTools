@@ -227,8 +227,8 @@ BEGIN MapData
                 BEGIN ZoomLocation
                     CenterLat    80.229588
                     CenterLon    19.136212
-                    ZoomWidth    360.000000
-                    ZoomHeight   180.000000
+                    ZoomWidth    324.000000
+                    ZoomHeight   171.867110
                 End ZoomLocation
             END ZoomLocations
             UseVarAspectRatio    No
@@ -985,21 +985,6 @@ END MapData
             BEGIN Favorite
                 Type    Report
                 BaseDir Install
-                Style   J2000 Position Velocity
-            END Favorite
-            BEGIN Favorite
-                Type    Report
-                BaseDir Install
-                Style   Apparent Helio Position Velocity
-            END Favorite
-            BEGIN Favorite
-                Type    Report
-                BaseDir Install
-                Style   Apparent LLA Position
-            END Favorite
-            BEGIN Favorite
-                Type    Report
-                BaseDir User
                 Style   Helio Position Velocity
             END Favorite
             BEGIN Favorite
@@ -1009,21 +994,23 @@ END MapData
             END Favorite
             BEGIN Favorite
                 Type    Report
-                BaseDir Install
+                BaseDir User
                 Style   Helio Position Velocity
             END Favorite
-        END Class
-        BEGIN Class
-            Name  Satellite
             BEGIN Favorite
                 Type    Report
                 BaseDir Install
-                Style   Lifetime
+                Style   Apparent LLA Position
             END Favorite
             BEGIN Favorite
                 Type    Report
                 BaseDir Install
-                Style   LLA Position
+                Style   Apparent Helio Position Velocity
+            END Favorite
+            BEGIN Favorite
+                Type    Report
+                BaseDir Install
+                Style   J2000 Position Velocity
             END Favorite
         END Class
         BEGIN Class
@@ -1032,6 +1019,19 @@ END MapData
                 Type    Report
                 BaseDir Install
                 Style   Access Intervals by Time
+            END Favorite
+        END Class
+        BEGIN Class
+            Name  Satellite
+            BEGIN Favorite
+                Type    Report
+                BaseDir Install
+                Style   LLA Position
+            END Favorite
+            BEGIN Favorite
+                Type    Report
+                BaseDir Install
+                Style   Lifetime
             END Favorite
         END Class
     END ReportFavorites

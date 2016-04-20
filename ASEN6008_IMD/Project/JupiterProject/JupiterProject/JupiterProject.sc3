@@ -1417,10 +1417,6 @@ VO_V100
             RubberBandLineWidth       2.000000
             RubberBandCrosshairSize   16
             RubberBandRGB             0.660000 0.660000 0.660000
-    _AGI_PIBEGINTYPEMGR3DSCENEDATA
-        Begin 3dScene
-        End
-    End
             Begin View
                 ViewName                STKVOInitialView
                 ViewTime                17496000.000000

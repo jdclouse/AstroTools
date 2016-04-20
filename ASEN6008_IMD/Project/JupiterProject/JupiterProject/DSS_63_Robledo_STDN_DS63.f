@@ -38,7 +38,7 @@ BEGIN Extensions
 
             BEGIN Graphics
 
-                Show                    On
+                Show                    Off
                 Inherit                 On
                 IsDynamic               Off
                 ShowLabel               On

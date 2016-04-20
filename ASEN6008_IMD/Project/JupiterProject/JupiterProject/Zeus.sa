@@ -4366,9 +4366,9 @@ BEGIN VehiclePath
                                     </OBJECT>
                                     <OBJECT Class = "container" Name = "BPlanes" />
                                     <OBJECT Class = "container" Name = "Cartesian">
-                                        <OBJECT Class = "double" Name = "X"> 91.36805577987379 m*sec^-1 </OBJECT>
-                                        <OBJECT Class = "double" Name = "Y"> -35.10001258258691 m*sec^-1 </OBJECT>
-                                        <OBJECT Class = "double" Name = "Z"> -86.89624043741517 m*sec^-1 </OBJECT>
+                                        <OBJECT Class = "double" Name = "X"> 91.36805577987381 m*sec^-1 </OBJECT>
+                                        <OBJECT Class = "double" Name = "Y"> -35.10001258258692 m*sec^-1 </OBJECT>
+                                        <OBJECT Class = "double" Name = "Z"> -86.89624043741522 m*sec^-1 </OBJECT>
                                     </OBJECT>
                                     <OBJECT Class = "string" Name = "Category"> &quot;&quot; </OBJECT>
                                     <OBJECT Class = "bool" Name = "Clonable"> True </OBJECT>
@@ -7272,8 +7272,8 @@ BEGIN VehiclePath
                                     </OBJECT>
                                     <OBJECT Class = "container" Name = "BPlanes" />
                                     <OBJECT Class = "container" Name = "Cartesian">
-                                        <OBJECT Class = "double" Name = "X"> 30.6425782070235 m*sec^-1 </OBJECT>
-                                        <OBJECT Class = "double" Name = "Y"> -289.8438096605603 m*sec^-1 </OBJECT>
+                                        <OBJECT Class = "double" Name = "X"> 30.64257820702351 m*sec^-1 </OBJECT>
+                                        <OBJECT Class = "double" Name = "Y"> -289.8438096605605 m*sec^-1 </OBJECT>
                                         <OBJECT Class = "double" Name = "Z"> -1085.80742424606 m*sec^-1 </OBJECT>
                                     </OBJECT>
                                     <OBJECT Class = "string" Name = "Category"> &quot;&quot; </OBJECT>
@@ -8135,7 +8135,7 @@ BEGIN Attitude
       BEGIN Profile
           Name			 ECIVVLH
           UserNamed			 No
-          StartTime			 -4.003168280680e+004
+          StartTime			 0.000000000000e+000
           BEGIN ECIVVLH
              	Azimuth		 0.000000000000e+000
           END ECIVVLH
@@ -8206,7 +8206,7 @@ ScenarioEpoch			26 Feb 2020 00:00:00.000000
 # Epoch in YYDDD format:	  20057.00000000000000
 
 
-# Time of first point: 6 Mar 2020 15:18:46.683631207 UTCG = 2458915.13804031980563 JDate = 20066.63804031980564 YYDDD
+# Time of first point: 6 Mar 2020 15:18:46.683631207 UTCG = 2458915.13804031980564 JDate = 20066.63804031980564 YYDDD
 
 CoordinateAxes		Inertial
 
@@ -8245,7 +8245,7 @@ ScenarioEpoch			26 Feb 2020 00:00:00.000000
 # Epoch in YYDDD format:	  20057.00000000000000
 
 
-# Time of first point: 25 Sep 2020 11:59:59.978994884 UTCG = 2459117.99999975688523 JDate = 20269.49999975688523 YYDDD
+# Time of first point: 25 Sep 2020 11:59:59.978994898 UTCG = 2459117.99999975688540 JDate = 20269.49999975688540 YYDDD
 
 CoordinateAxes		Inertial
 
@@ -8284,7 +8284,7 @@ ScenarioEpoch			26 Feb 2020 00:00:00.000000
 # Epoch in YYDDD format:	  20057.00000000000000
 
 
-# Time of first point: 22 Jul 2021 12:00:00.011512674 UTCG = 2459418.00000013324855 JDate = 21203.50000013324855 YYDDD
+# Time of first point: 22 Jul 2021 12:00:00.011512697 UTCG = 2459418.00000013324880 JDate = 21203.50000013324880 YYDDD
 
 CoordinateAxes		Inertial
 
@@ -8323,7 +8323,7 @@ ScenarioEpoch			26 Feb 2020 00:00:00.000000
 # Epoch in YYDDD format:	  20057.00000000000000
 
 
-# Time of first point: 22 Jul 2023 11:59:59.999689952 UTCG = 2460147.99999999641148 JDate = 23203.49999999641148 YYDDD
+# Time of first point: 22 Jul 2023 11:59:59.999689996 UTCG = 2460147.99999999641199 JDate = 23203.49999999641199 YYDDD
 
 CoordinateAxes		Inertial
 
@@ -8954,7 +8954,7 @@ BEGIN Extensions
 		LaunchWindowTrajMETStart                0.000
 		LaunchWindowTrajMETStop                 900.000
 		LaunchWindowStart                       40031.683
-		LaunchWindowStop                        -188352000.003
+		LaunchWindowStop                        -188395200.003
 		LaunchMETOffset                         0.000
 		LaunchWindowUseSecEphem                 No 
 		LaunchWindowUseScenFolderForSecEphem    Yes
@@ -9358,10 +9358,6 @@ BEGIN Extensions
     END ObjectCoverage
     
     BEGIN Desc
-        ShortText    0
-
-        LongText    0
-
     END Desc
     
     BEGIN Contours

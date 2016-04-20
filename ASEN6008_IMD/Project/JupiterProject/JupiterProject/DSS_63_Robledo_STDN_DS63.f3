@@ -14,7 +14,7 @@ VO_V100
     Level4SwapDistance    160000000.000000
     ShowMarker            Yes
     Begin Marker
-        Show               Yes
+        Show               No
         Type               LineGraphic
         Shape              Point
         IsTransparent      No

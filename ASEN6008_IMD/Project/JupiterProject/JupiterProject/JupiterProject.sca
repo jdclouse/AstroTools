@@ -20,7 +20,7 @@ BEGIN Access
     AbsValueConvergence      1.000000e-014
     RelValueConvergence      1.000000e-008
     DetectEventsUsingSamplesOnly No
-    Show                     Yes
+    Show                     No
     Inherit                  Yes
     ShowIV                   Yes
     ShowLineGfx              Yes
