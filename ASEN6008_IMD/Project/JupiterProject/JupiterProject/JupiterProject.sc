@@ -105,9 +105,9 @@ BEGIN Animation
 
     StartTime          26 Feb 2020 00:00:00.000000000
     EndTime            30 Jun 2026 23:00:00.000000000
-    CurrentTime        26 Feb 2020 00:00:00.000000000
+    CurrentTime        28 Mar 2026 23:04:42.398000002
     Direction          Forward
-    UpdateDelta        57600.000000
+    UpdateDelta        600.000000
     RefreshDelta       0.010000
     XRealTimeMult      1.000000
     RealTimeOffset     0.000000
@@ -228,7 +228,7 @@ BEGIN MapData
                     CenterLat    80.229588
                     CenterLon    19.136212
                     ZoomWidth    324.000000
-                    ZoomHeight   171.867110
+                    ZoomHeight   162.000000
                 End ZoomLocation
             END ZoomLocations
             UseVarAspectRatio    No
@@ -981,36 +981,16 @@ END MapData
     
     BEGIN ReportFavorites
         BEGIN Class
-            Name  Planet
+            Name  Satellite
             BEGIN Favorite
                 Type    Report
                 BaseDir Install
-                Style   Helio Position Velocity
+                Style   Lifetime
             END Favorite
             BEGIN Favorite
                 Type    Report
                 BaseDir Install
-                Style   Helio Classical Elements
-            END Favorite
-            BEGIN Favorite
-                Type    Report
-                BaseDir User
-                Style   Helio Position Velocity
-            END Favorite
-            BEGIN Favorite
-                Type    Report
-                BaseDir Install
-                Style   Apparent LLA Position
-            END Favorite
-            BEGIN Favorite
-                Type    Report
-                BaseDir Install
-                Style   Apparent Helio Position Velocity
-            END Favorite
-            BEGIN Favorite
-                Type    Report
-                BaseDir Install
-                Style   J2000 Position Velocity
+                Style   LLA Position
             END Favorite
         END Class
         BEGIN Class
@@ -1022,16 +1002,36 @@ END MapData
             END Favorite
         END Class
         BEGIN Class
-            Name  Satellite
+            Name  Planet
             BEGIN Favorite
                 Type    Report
                 BaseDir Install
-                Style   LLA Position
+                Style   J2000 Position Velocity
             END Favorite
             BEGIN Favorite
                 Type    Report
                 BaseDir Install
-                Style   Lifetime
+                Style   Apparent Helio Position Velocity
+            END Favorite
+            BEGIN Favorite
+                Type    Report
+                BaseDir Install
+                Style   Apparent LLA Position
+            END Favorite
+            BEGIN Favorite
+                Type    Report
+                BaseDir User
+                Style   Helio Position Velocity
+            END Favorite
+            BEGIN Favorite
+                Type    Report
+                BaseDir Install
+                Style   Helio Classical Elements
+            END Favorite
+            BEGIN Favorite
+                Type    Report
+                BaseDir Install
+                Style   Helio Position Velocity
             END Favorite
         END Class
     END ReportFavorites
@@ -1737,6 +1737,7 @@ END Class
 Class Planet
 
 	Earth
+	Europa
 	Jupiter
 	Venus
 
@@ -1744,6 +1745,7 @@ END Class
 
 Class Satellite
 
+	Satellite2
 	Zeus
 
 END Class
@@ -1766,12 +1768,18 @@ BEGIN References
     Instance Planet/Earth
         Planet/Earth
     END Instance
+    Instance Planet/Europa
+        Planet/Europa
+    END Instance
     Instance Planet/Jupiter
         Planet/Jupiter
     END Instance
     Instance Planet/Venus
         *
         Planet/Venus
+    END Instance
+    Instance Satellite/Satellite2
+        Satellite/Satellite2
     END Instance
     Instance Satellite/Zeus
         *

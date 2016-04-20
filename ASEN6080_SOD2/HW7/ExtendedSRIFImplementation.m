@@ -22,7 +22,7 @@ obs_seg_idx = [find(ObsMassaged(:,2)/3600/24 <= 50, 1,'last');...
     find(ObsMassaged(:,2)/3600/24 <= 150, 1,'last');...
     find(ObsMassaged(:,2)/3600/24 <= 200, 1,'last');...
     length(ObsMassaged)];
-% obs_seg_idx = [12000; length(ObsMassaged)];
+obs_seg_idx = [12000; length(ObsMassaged)];
 % obs_seg_idx = [12000];
 
 % obs_seg_idx = [...
@@ -38,8 +38,15 @@ IB = [7 7];
 filter_opts.propagator_opts.OD.A_params.important_block = IB;
 filter_opts.important_block = IB;
 filter_opts.propagator_opts.OD.state_len = state_len;
-filter_opts.SNC_Q = eye(3)*1e-15;
+filter_opts.SNC_Q = eye(3)*1e-17;
 filter_opts.use_SNC = 1;
+filter_opts.SNC_Gamma = @(dt) [dt*dt/2 0 0;...
+            0 dt*dt/2 0;...
+            0 0 dt*dt/2;...
+            dt 0 0;...
+            0 dt 0;...
+            0 0 dt;...
+            0 0 0 ];
 filter_opts.SRIF_input_P0 = true;
 filter_opts.propagator_opts.A_m_ratio =  A_m_ratio; % m2/kg
 filter_opts.propagator_opts.A_m_amplitude =  0.02; % m2/kg
@@ -111,7 +118,7 @@ for ii = obs_seg_idx'
     if ii == num_obs
         ii
         color_num = cnt;
-%         BPlaneTarget_HW7;
+        BPlaneTarget_HW7;
         break;
     else
 %         if cnt == 1
@@ -140,7 +147,7 @@ for ii = obs_seg_idx'
     seg_begin = ii+1; %Next idx is the next segment
     
     color_num = cnt;
-%     BPlaneTarget_HW7;
+    BPlaneTarget_HW7;
 end
 
 % figure(ell_plot);

@@ -9,12 +9,12 @@ VO_V100
     IsSwapped                 Yes
     Level0SwapDistance        700.000000
     Level1SwapDistance        1400.000000
-    Level2SwapDistance        1000000000000000.000000
-    Level3SwapDistance        1000000000000000.000000
-    Level4SwapDistance        1000000000000000.000000
+    Level2SwapDistance        794328234724282.120000
+    Level3SwapDistance        794328234724282.120000
+    Level4SwapDistance        794328234724282.120000
     ShowMarker                Yes
     Begin Marker
-        Show               Yes
+        Show               No
         Type               LineGraphic
         Shape              Point
         IsTransparent      No
@@ -394,27 +394,6 @@ VO_V100
             IntervalType            AlwaysOn
         End
     End
-    Begin BPlanes
-        Begin SceneIDs
-            SceneID 2
-        End
-        Begin BPlaneData
-            Show Yes
-            PointColorFirst #00ff00
-            PointColorRest #00ff00
-            TargetShow Yes
-            TargetColor #ffff00
-            ConnectorShow Yes
-            ConnectorColor #00ff00
-            ConnectorWidth 1.000000
-            PointSize 10.000000
-            ShowPointLabel Yes
-            UseInterval No
-            Begin BPlaneDef
-                Name Zeus_1
-            End
-        End
-    End
 
     BEGIN VolumesGfx
 
@@ -537,7 +516,7 @@ VO_V100
 				BEGIN	AXES
 					Type	AXES_LINKTO
 					Name	VVLH
-					RelativePath	Satellite/Zeus
+					RelativePath	Satellite/Satellite2
 				END	AXES
             End
         End
