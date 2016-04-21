@@ -48,7 +48,7 @@ BEGIN Extensions
                 AzElFillAltTranslucency 0.500000
                 UseAzElColor            Off
                 AzElColor               #ffffff
-                MinDisplayAlt           0.000
+                MinDisplayAlt           864.816
                 MaxDisplayAlt           10000000.000
                 NumAzElMaskSteps        1
                 ShowAzElAtRangeMask       On
@@ -60,6 +60,15 @@ BEGIN Extensions
                 MinDisplayRange           0.000
                 MaxDisplayRange           1000000.000
                 NumAzElAtRangeMaskSteps   10
+
+            BEGIN RangeContourData
+                    Show                  Off
+                    ShowRangeFill         Off
+                    RangeFillTranslucency 0.500000
+                    LabelUnits            4
+                    NumDecimalDigits      3
+
+            END RangeContourData
 
             END Graphics
 

@@ -105,9 +105,9 @@ BEGIN Animation
 
     StartTime          26 Feb 2020 00:00:00.000000000
     EndTime            30 Jun 2026 23:00:00.000000000
-    CurrentTime        28 Mar 2026 23:04:42.398000002
+    CurrentTime        26 Apr 2026 04:39:42.398000002
     Direction          Forward
-    UpdateDelta        600.000000
+    UpdateDelta        300.000000
     RefreshDelta       0.010000
     XRealTimeMult      1.000000
     RealTimeOffset     0.000000
@@ -189,7 +189,7 @@ BEGIN MapData
             PrimaryBody          Sun
             SecondaryBody        Earth
             CenterLatitude       80.229588
-            CenterLongitude      19.136212
+            CenterLongitude      -89.024200
             ProjectionAltitude   63621860.000162
             FieldOfView          35.000000
             OrthoDisplayDistance 1600000000000.000000
@@ -212,7 +212,7 @@ BEGIN MapData
             ShowImageNames       Off
             ImageNameFont        0
             Projection           Orthographic
-            Resolution           VeryLow
+            Resolution           None
             CoordinateSys        ECI
             UseBackgroundImage   On
             UseBingForBackground Off
@@ -226,9 +226,9 @@ BEGIN MapData
             BEGIN ZoomLocations
                 BEGIN ZoomLocation
                     CenterLat    80.229588
-                    CenterLon    19.136212
-                    ZoomWidth    324.000000
-                    ZoomHeight   162.000000
+                    CenterLon    -89.024200
+                    ZoomWidth    291.518325
+                    ZoomHeight   180.000000
                 End ZoomLocation
             END ZoomLocations
             UseVarAspectRatio    No

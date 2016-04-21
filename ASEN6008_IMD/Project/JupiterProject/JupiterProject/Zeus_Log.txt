@@ -3,107 +3,131 @@ Astrogator Log File; DriverMCS: Mission_Control_Sequence
 
 
 ----------------------------------------------
-Begin targeter profile EuOI.Differential_Corrector
+Begin targeter profile TEuI.Differential_Corrector
 
 Initial control parameters:
 
 Unscaled Controls:
-Name                                           Current Value            Last Update        Total Correction
-Maneuver : ImpulsiveMnvr.Spherical.Magnitude  0.000000000000 km/sec  0.000000000000 km/sec   0.000000000000 km/sec
+Name                                   Current Value            Last Update        Total Correction
+Maneuver : ImpulsiveMnvr.Cartesian.X -1.857162851349 km/sec  0.000000000000 km/sec   0.000000000000 km/sec
+Maneuver : ImpulsiveMnvr.Cartesian.Y  0.193213008729 km/sec  0.000000000000 km/sec   0.000000000000 km/sec
+Maneuver : ImpulsiveMnvr.Cartesian.Z  0.349068505871 km/sec  0.000000000000 km/sec   0.000000000000 km/sec
 
 
 Homotopy step   1 of   1
 
 Intermediate Goals Desired:
-Propagate : Eccentricity  0.000010000000
+Propagate : BDotR        3500.000000000000 km  
+Propagate : BDotT           0.000000000000 km  
+Propagate : Epoch 25 Apr 2026 06:00:00.000 UTCG
 
 
 
 ---Running one step of the differential corrector...
 
--------------------------------------------------------------
-Iteration =   1
-Unscaled Intermediate Constraints:
-Name                        Current Value         Desired       Difference       Tolerance
-Propagate : Eccentricity  12.289871858076  0.000010000000  12.289861858076  0.100000000000
+--------------------------------------------------------
 
-
-
-Performing one Newton-Raphson Step...
-
-Perturbation evaluation +1
-Controls:
-Name                                                   Value           Perturbation        Scaled Perturbation
-Maneuver : ImpulsiveMnvr.Spherical.Magnitude  0.000100000000 km/sec  0.000100000000 km/sec      0.100000000000
-
-Constraints:
-Name                                Value          Change       Scaled Change
-Propagate : Eccentricity  12.325852804220  0.035980946143       3598.09461435
-
-
-Partial derivative matrix (scaled) :
-
-        35980.9461435
-
-Newton Step Done...
-
-DC proposed step:
-Name                                                   Scaled        Unscaled
-Maneuver : ImpulsiveMnvr.Spherical.Magnitude -34.156583345739 -0.034156583346 km/sec
-
-
-Step with Max Step limits applied:
-Name                                                   Scaled        Unscaled
-Maneuver : ImpulsiveMnvr.Spherical.Magnitude -34.156583345739 -0.034156583346 km/sec
-
-
-Step final values:
-
-Unscaled Controls:
-Name                                           Current Value            Last Update        Total Correction
-Maneuver : ImpulsiveMnvr.Spherical.Magnitude -0.034156583346 km/sec -0.034156583346 km/sec  -0.034156583346 km/sec
-
-
-Unable to set one or more control values.
-
-=================================
-Iteration Interrupted            
-=================================
-Unscaled Controls:
-Name                                           Current Value            Last Update        Total Correction
-Maneuver : ImpulsiveMnvr.Spherical.Magnitude  0.000000000000 km/sec -0.034156583346 km/sec  -0.034156583346 km/sec
-
-
-Unscaled Intermediate Constraints:
-Name                        Current Value         Desired       Difference       Tolerance
-Propagate : Eccentricity  12.289871858076  0.000010000000  12.289861858076  0.100000000000
-
+<<< Targeting Finished >>>
+    [Goals met]
 
 
 --------------------------------------------------------
 
-***Targeting aborted***
+---Done. (running one step of the differential corrector.)
+
+Params from single diff corr
+
+Unscaled Controls:
+Name                                   Current Value            Last Update        Total Correction
+Maneuver : ImpulsiveMnvr.Cartesian.X -1.857162851349 km/sec  0.000000000000 km/sec   0.000000000000 km/sec
+Maneuver : ImpulsiveMnvr.Cartesian.Y  0.193213008729 km/sec  0.000000000000 km/sec   0.000000000000 km/sec
+Maneuver : ImpulsiveMnvr.Cartesian.Z  0.349068505871 km/sec  0.000000000000 km/sec   0.000000000000 km/sec
 
 
-***Targeting aborted***
+Unscaled Intermediate Constraints:
+Name                         Current Value                       Desired           Difference            Tolerance
+Propagate : BDotR        3500.002226745637 km          3500.000000000000 km    0.002226745637 km    0.100000000000 km 
+Propagate : BDotT          -0.000601902236 km             0.000000000000 km   -0.000601902236 km    0.100000000000 km 
+Propagate : Epoch 25 Apr 2026 06:00:00.000 UTCG 25 Apr 2026 06:00:00.000 UTCG -0.000486344099 sec  60.000000000000 sec
 
-
---------------------------------------------------------
-
-***Error running sequence or in evaluating results.
 
 
 ----------------------------------------------
 Final Params from Homotopy Diff Corr
 
 Unscaled Controls:
-Name                                           Current Value            Last Update        Total Correction
-Maneuver : ImpulsiveMnvr.Spherical.Magnitude  0.000000000000 km/sec -0.034156583346 km/sec  -0.034156583346 km/sec
+Name                                   Current Value            Last Update        Total Correction
+Maneuver : ImpulsiveMnvr.Cartesian.X -1.857162851349 km/sec  0.000000000000 km/sec   0.000000000000 km/sec
+Maneuver : ImpulsiveMnvr.Cartesian.Y  0.193213008729 km/sec  0.000000000000 km/sec   0.000000000000 km/sec
+Maneuver : ImpulsiveMnvr.Cartesian.Z  0.349068505871 km/sec  0.000000000000 km/sec   0.000000000000 km/sec
 
 
 Unscaled Intermediate Constraints:
-Name                        Current Value         Desired       Difference       Tolerance
-Propagate : Eccentricity  12.289871858076  0.000010000000  12.289861858076  0.100000000000
+Name                         Current Value                       Desired           Difference            Tolerance
+Propagate : BDotR        3500.002226745637 km          3500.000000000000 km    0.002226745637 km    0.100000000000 km 
+Propagate : BDotT          -0.000601902236 km             0.000000000000 km   -0.000601902236 km    0.100000000000 km 
+Propagate : Epoch 25 Apr 2026 06:00:00.000 UTCG 25 Apr 2026 06:00:00.000 UTCG -0.000486344099 sec  60.000000000000 sec
+
+
+
+----------------------------------------------
+
+*********** Done Targeting************************
+
+End targeter profile TEuI.Differential_Corrector
+----------------------------------------------
+Begin targeter profile EuOI.Differential_Corrector
+
+Initial control parameters:
+
+Unscaled Controls:
+Name                                   Current Value            Last Update        Total Correction
+Maneuver : ImpulsiveMnvr.Cartesian.X -4.497178938502 km/sec  0.000000000000 km/sec   0.000000000000 km/sec
+
+
+Homotopy step   1 of   1
+
+Intermediate Goals Desired:
+Propagate : Eccentricity  0.000100000000
+
+
+
+---Running one step of the differential corrector...
+
+--------------------------------------------------------
+
+<<< Targeting Finished >>>
+    [Goals met]
+
+
+--------------------------------------------------------
+
+---Done. (running one step of the differential corrector.)
+
+Params from single diff corr
+
+Unscaled Controls:
+Name                                   Current Value            Last Update        Total Correction
+Maneuver : ImpulsiveMnvr.Cartesian.X -4.497178938502 km/sec  0.000000000000 km/sec   0.000000000000 km/sec
+
+
+Unscaled Intermediate Constraints:
+Name                       Current Value         Desired      Difference       Tolerance
+Propagate : Eccentricity  0.091702010675  0.000100000000  0.091602010675  0.100000000000
+
+
+
+----------------------------------------------
+Final Params from Homotopy Diff Corr
+
+Unscaled Controls:
+Name                                   Current Value            Last Update        Total Correction
+Maneuver : ImpulsiveMnvr.Cartesian.X -4.497178938502 km/sec  0.000000000000 km/sec   0.000000000000 km/sec
+
+
+Unscaled Intermediate Constraints:
+Name                       Current Value         Desired      Difference       Tolerance
+Propagate : Eccentricity  0.091702010675  0.000100000000  0.091602010675  0.100000000000
 
 
 
