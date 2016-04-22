@@ -446,7 +446,7 @@ VO_V100
             PositionVertTextAlign    Border
             IsShowingPositionOn2DMap No
             PositionOn2DMapStyle     1
-            IsShowingCrdnFrame       Yes
+            IsShowingCrdnFrame       No
             CrdnFrameDisplayPosition 10 25
             CrdnAttachX              Min
             CrdnAttachY              Min
@@ -696,6 +696,10 @@ VO_V100
             RubberBandLineWidth       2.000000
             RubberBandCrosshairSize   16
             RubberBandRGB             0.660000 0.660000 0.660000
+    _AGI_PIBEGINTYPEMGR3DSCENEDATA
+        Begin 3dScene
+        End
+    End
             Begin View
                 ViewName                STKVOInitialView
                 ViewTime                -121759200.000000
@@ -736,9 +740,9 @@ VO_V100
                 UseLayer                Yes
                 FromName                "Earth"
                 FromRegPosAttView       "Point"
-                FromPosition            32612901.856354710000000000  -4083679.648875232300000000  24945277.175892577000000000
-                FromOffset              32612901.856354710000000000  -4083679.648875232300000000  24945277.175892577000000000
-                FromOffsetLLR           0.649212796266930740  -0.124568345980220370  41261903.256502472000000000
+                FromPosition            -33632999.617415339000000000  23053249.466560192000000000  6317727.923585348800000000
+                FromOffset              -33632999.617415339000000000  23053249.466560192000000000  6317727.923585348800000000
+                FromOffsetLLR           0.153717509974609530  2.540708596982336400  41261903.256502457000000000
                 ToName                  "Earth"
                 ToRegPosAttView         "Point"
                 ToPosition              0.000000000000000000  0.000000000000000000  0.000000000000000000
@@ -746,9 +750,9 @@ VO_V100
                 ToOffsetLLR             0.000000000000000000  0.000000000000000000  0.000000000000000000
                 ConstantDistanceType    None
                 ConstantDistanceValue   1.000000
-                UpVector                -0.599875042756201850  0.075114367766520335  0.796559956835190870
-                ViewRad                 41261903.256502472000000000
-                ViewQuat                0.0589933 -0.3183173 0.0198518 0.9459386
+                UpVector                0.126293014974759560  -0.086565706693303171  0.988208709126404240
+                ViewRad                 41261903.256502457000000000
+                ViewQuat                0.9523858 0.0227234 0.0733437 -0.2950688
                 ViewCoordSystem         From
                 ViewFromToMode          FromTo
                 ViewToCBIMtx            1.000000000000000000 0.000000000000000000 0.000000000000000000 0.000000000000000000 1.000000000000000000 0.000000000000000000  0.000000000000000000 0.000000000000000000 1.000000000000000000
@@ -762,7 +766,7 @@ VO_V100
                 MinAngleToUpAxis        0.0087266
                 InitUpAxisUp            Yes
                 TempUpAxisUp            Yes
-                CrossAxis               -0.1242464 -0.9922514 0.0000000
+                CrossAxis               0.5653719 0.8248361 -0.0000000
                 DefaultOffset           35079753.5000000
                 BaseDefaultOffset       6378137.0000000
             End View
@@ -967,6 +971,29 @@ VO_V100
                         BaseOn Yes
                     End
                 EndCentralBody
+                BeginCentralBody "Callisto"
+                    Show Yes
+                    Textured Yes
+                    AltOffset 0.000000
+                    Color #ffffff
+                    SpecularColor #545454
+                    Shininess 40.000000
+                    ShowWater No
+                    _AGI_PIBEGINTERRAINIMAGECALLDATA "SRC"
+                        BlendMode Value
+                        BlendFactor 1.000000
+                        BlendAltitudeLowerFactor 1.000000
+                        BlendAltitudeUpperFactor 0.000000
+                        BlendAltitudeLowerAltitude 500000.000000
+                        BlendAltitudeUpperAltitude 2500000.000000
+                        TextureRole Day
+                        URI "file:///Callisto.jp2"
+                        BeginImageSetDefOn
+                        End
+                        InBase Yes
+                        BaseOn Yes
+                    End
+                EndCentralBody
             End Globe
 
             IsShowingArcBall         Yes
@@ -1126,7 +1153,7 @@ VO_V100
             PositionVertTextAlign    Border
             IsShowingPositionOn2DMap No
             PositionOn2DMapStyle     1
-            IsShowingCrdnFrame       Yes
+            IsShowingCrdnFrame       No
             CrdnFrameDisplayPosition 10 25
             CrdnAttachX              Min
             CrdnAttachY              Min
@@ -1358,7 +1385,7 @@ VO_V100
             CentralBody Venus
         End
         Duration                600.000
-        IsShowing               Yes
+        IsShowing               No
         IsPersistent            No
         IsTransparent           No
         DrawFirstArrowOnly      Yes
@@ -1403,7 +1430,7 @@ VO_V100
             END AOSLOSAnnotationData 
             BEGIN ObjPairData
                 BEGIN ObjPair
-                    Show           Yes
+                    Show           No
                     FromObj        Planet/Venus
                     ToObj          Satellite/Zeus
                     Color          #00ff00
@@ -1417,6 +1444,10 @@ VO_V100
             RubberBandLineWidth       2.000000
             RubberBandCrosshairSize   16
             RubberBandRGB             0.660000 0.660000 0.660000
+    _AGI_PIBEGINTYPEMGR3DSCENEDATA
+        Begin 3dScene
+        End
+    End
             Begin View
                 ViewName                STKVOInitialView
                 ViewTime                17496000.000000
@@ -1426,27 +1457,27 @@ VO_V100
 					BEGIN	AXES
 						Type	AXES_LINKTO
 						Name	Inertial
-						AbsolutePath	CentralBody/Venus
+						AbsolutePath	CentralBody/Earth
 					END	AXES
                 End
                 Begin FromViewCrdnPoint
 					BEGIN	POINT
 						Type	POINT_LINKTO
 						Name	Center
-						RelativePath	Planet/Venus
+						AbsolutePath	CentralBody/Earth
 					END	POINT
                 End
                 Begin ToViewCrdnPoint
 					BEGIN	POINT
 						Type	POINT_LINKTO
 						Name	Center
-						RelativePath	Planet/Venus
+						AbsolutePath	CentralBody/Venus
 					END	POINT
                 End
                 fov                           0.785398
                 FarNearPlaneDistanceRatio     1000.000000
                 NearPlaneDistance             1.000000
-                FarPlaneDistance              1000000000000.000000
+                FarPlaneDistance              1000000000.000000
                 UseArcBallRotateSpeedOpt      No
                 ArcBallRotateSpeed            0.000000
                 ArcBallRadius           0.900000
@@ -1455,24 +1486,24 @@ VO_V100
                 ZoomUseDistanceToCb     Yes
                 GlobeDetailLevel        1
                 UseLayer                Yes
-                FromName                "Planet/Venus"
+                FromName                "Earth"
                 FromRegPosAttView       "Point"
-                FromPosition            -1221846630.383565700000000000  868917484.967235090000000000  1187701302.310201600000000000
-                FromOffset              -1221846630.384017700000000000  868917484.967158790000000000  1187701302.310233100000000000
-                FromOffsetLLR           0.669945772851267220  2.523421918509622500  1912736565.074201300000000000
-                ToName                  "Planet/Venus"
+                FromPosition            -309237749316.786870000000000000  233484341109.614750000000000000  832666817.641828540000000000
+                FromOffset              -87237979753.471649000000000000  114485567615.489200000000000000  -2548092158.476982100000000000
+                FromOffsetLLR           0.296713719128717250  2.305276976310495700  143957990668.652920000000000000
+                ToName                  "Venus"
                 ToRegPosAttView         "Point"
-                ToPosition              0.000452041625976563  0.000076293945312500  -0.000031471252441406
+                ToPosition              0.000000000000000000  0.000000000000000000  0.000000000000000000
                 ToOffset                0.000000000000000000  0.000000000000000000  0.000000000000000000
                 ToOffsetLLR             0.000000000000000000  0.000000000000000000  0.000000000000000000
                 ConstantDistanceType    None
                 ConstantDistanceValue   1.000000
-                UpVector                0.506031657141554850  -0.359864932228858290  0.783855339027866300
-                ViewRad                 1912736565.074201300000000000
-                ViewQuat                0.8996653 0.0999997 0.3131651 -0.2872805
+                UpVector                0.193706904372567850  0.253174413585247060  0.947829283945249120
+                ViewRad                 387483698340.887700000000000000
+                ViewQuat                0.9543827 0.0327702 0.1141666 -0.2739447
                 ViewCoordSystem         From
                 ViewFromToMode          FromTo
-                ViewToCBIMtx            1.000000000000000000 0.000000000000000000 0.000000000000000000 0.000000000000000000 1.000000000000000000 0.000000000000000000  0.000000000000000000 0.000000000000000000 1.000000000000000000
+                ViewToCBIMtx            0.998839997508546130 -0.044376940440182977 0.018690814168902059 0.048152459720433569 0.920523340574016190 -0.387708808361799000  -0.000000000000000012 0.388159073854550730 0.921592390042570650
                 UseUpAxis               Yes
                 UpAxisType              Z
                 UserDefinedUpAxis       0.000000000000000000 0.000000000000000000 1.000000000000000000
@@ -1483,9 +1514,9 @@ VO_V100
                 MinAngleToUpAxis        0.0087266
                 InitUpAxisUp            Yes
                 TempUpAxisUp            Yes
-                CrossAxis               0.5795454 0.8149400 -0.0000000
-                DefaultOffset           52953250.0000000
-                BaseDefaultOffset       42362600.0000000
+                CrossAxis               0.5303787 0.8477608 -0.0000000
+                DefaultOffset           33284900.0000000
+                BaseDefaultOffset       6051800.0000000
             End View
 
             Begin ViewPathManagerSceneInfo
@@ -1771,6 +1802,10 @@ VO_V100
                     Name "Earth"
                     ShowLabel No
                 EndCentralBody
+                BeginCentralBody
+                    Name "Jupiter"
+                    ShowLabel No
+                EndCentralBody
             End CentralBodyOpts
             isShowingOverlay            Yes
             Begin Overlays
@@ -1833,7 +1868,7 @@ VO_V100
             PositionVertTextAlign    Border
             IsShowingPositionOn2DMap No
             PositionOn2DMapStyle     1
-            IsShowingCrdnFrame       Yes
+            IsShowingCrdnFrame       No
             CrdnFrameDisplayPosition 10 25
             CrdnAttachX              Min
             CrdnAttachY              Min
@@ -2096,14 +2131,14 @@ VO_V100
 					BEGIN	AXES
 						Type	AXES_LINKTO
 						Name	Inertial
-						AbsolutePath	CentralBody/Jupiter
+						AbsolutePath	CentralBody/Earth
 					END	AXES
                 End
                 Begin FromViewCrdnPoint
 					BEGIN	POINT
 						Type	POINT_LINKTO
 						Name	Center
-						AbsolutePath	CentralBody/Jupiter
+						AbsolutePath	CentralBody/Earth
 					END	POINT
                 End
                 Begin ToViewCrdnPoint
@@ -2116,7 +2151,7 @@ VO_V100
                 fov                           0.785398
                 FarNearPlaneDistanceRatio     1000.000000
                 NearPlaneDistance             1.000000
-                FarPlaneDistance              100000000000.000000
+                FarPlaneDistance              1000000000000.000000
                 UseArcBallRotateSpeedOpt      No
                 ArcBallRotateSpeed            0.000000
                 ArcBallRadius           0.900000
@@ -2125,24 +2160,24 @@ VO_V100
                 ZoomUseDistanceToCb     Yes
                 GlobeDetailLevel        1
                 UseLayer                Yes
-                FromName                "Jupiter"
+                FromName                "Earth"
                 FromRegPosAttView       "Point"
-                FromPosition            7627992920.304639800000000000  -3238254309.448913600000000000  4975355251.435885400000000000
-                FromOffset              7627992920.304639800000000000  -3238254309.448913600000000000  4975355251.435896900000000000
-                FromOffsetLLR           0.540705204486185530  -0.401466096136733450  9665750195.555072800000000000
+                FromPosition            5674231109.307738300000000000  551714438.537431720000000000  30083303271.495197000000000000
+                FromOffset              -193556519252.847960000000000000  631901697147.302120000000000000  13555246961.366642000000000000
+                FromOffsetLLR           0.444719536393322620  1.867103232691277100  661020140179.633670000000000000
                 ToName                  "Jupiter"
                 ToRegPosAttView         "Point"
-                ToPosition              0.000000000000000000  0.000000000000000000  -0.000011444091796875
+                ToPosition              0.000000000000000000  0.000000000000000000  0.000015258789062500
                 ToOffset                0.000000000000000000  0.000000000000000000  0.000000000000000000
                 ToOffsetLLR             0.000000000000000000  0.000000000000000000  0.000000000000000000
                 ConstantDistanceType    None
                 ConstantDistanceValue   1.000000
-                UpVector                -0.473813215054602280  0.201144351017978420  0.857345897111065570
-                ViewRad                 9665750195.555072800000000000
-                ViewQuat                0.1921453 -0.2617086 0.0532507 0.9443268
+                UpVector                -0.370764574937578810  0.927217489322069270  0.052927851521058000
+                ViewRad                 30618726675.488632000000000000
+                ViewQuat                0.4723431 -0.4372740 0.2919687 0.7074162
                 ViewCoordSystem         From
                 ViewFromToMode          FromTo
-                ViewToCBIMtx            1.000000000000000000 0.000000000000000000 0.000000000000000000 0.000000000000000000 1.000000000000000000 0.000000000000000000  0.000000000000000000 0.000000000000000000 1.000000000000000000
+                ViewToCBIMtx            0.999420902031672890 0.030710028601556805 -0.014654512120466905 -0.034027350502167347 0.901987490458049270 -0.430419221776854600  -0.000000000000000015 0.430668621100356030 0.902510132242025250
                 UseUpAxis               Yes
                 UpAxisType              Z
                 UserDefinedUpAxis       0.000000000000000000 0.000000000000000000 1.000000000000000000
@@ -2153,7 +2188,7 @@ VO_V100
                 MinAngleToUpAxis        0.0087266
                 InitUpAxisUp            Yes
                 TempUpAxisUp            Yes
-                CrossAxis               -0.3907683 -0.9204891 0.0000000
+                CrossAxis               -0.9236270 -0.3832925 0.0000000
                 DefaultOffset           393206000.0000000
                 BaseDefaultOffset       71492000.0000000
             End View
@@ -2441,6 +2476,10 @@ VO_V100
                     Name "Earth"
                     ShowLabel No
                 EndCentralBody
+                BeginCentralBody
+                    Name "Europa"
+                    ShowLabel No
+                EndCentralBody
             End CentralBodyOpts
             isShowingOverlay            Yes
             Begin Overlays
@@ -2503,7 +2542,7 @@ VO_V100
             PositionVertTextAlign    Border
             IsShowingPositionOn2DMap No
             PositionOn2DMapStyle     1
-            IsShowingCrdnFrame       Yes
+            IsShowingCrdnFrame       No
             CrdnFrameDisplayPosition 10 25
             CrdnAttachX              Min
             CrdnAttachY              Min
@@ -2766,14 +2805,14 @@ VO_V100
 					BEGIN	AXES
 						Type	AXES_LINKTO
 						Name	Inertial
-						AbsolutePath	CentralBody/Europa
+						AbsolutePath	CentralBody/Earth
 					END	AXES
                 End
                 Begin FromViewCrdnPoint
 					BEGIN	POINT
 						Type	POINT_LINKTO
 						Name	Center
-						AbsolutePath	CentralBody/Europa
+						AbsolutePath	CentralBody/Earth
 					END	POINT
                 End
                 Begin ToViewCrdnPoint
@@ -2786,7 +2825,7 @@ VO_V100
                 fov                           0.785398
                 FarNearPlaneDistanceRatio     1000.000000
                 NearPlaneDistance             1.000000
-                FarPlaneDistance              100000000000.000000
+                FarPlaneDistance              100000000.000000
                 UseArcBallRotateSpeedOpt      No
                 ArcBallRotateSpeed            0.000000
                 ArcBallRadius           0.900000
@@ -2795,24 +2834,24 @@ VO_V100
                 ZoomUseDistanceToCb     Yes
                 GlobeDetailLevel        1
                 UseLayer                Yes
-                FromName                "Europa"
+                FromName                "Earth"
                 FromRegPosAttView       "Point"
-                FromPosition            11049322.785995040000000000  -9793952.643199723200000000  2539606.264687303000000000
-                FromOffset              11049322.785995040000000000  -9793952.643199723200000000  2539606.264693978700000000
-                FromOffsetLLR           0.170333601174890960  -0.725241808611835070  14981943.878750212000000000
+                FromPosition            -73628760548.222351000000000000  136709821271.755980000000000000  -1125250657.142704000000000000
+                FromOffset              -272823956437.251560000000000000  768796114505.228520000000000000  -12441949881.396912000000000000
+                FromOffsetLLR           0.395205040844275490  1.907348473646392400  815864681795.494260000000000000
                 ToName                  "Europa"
                 ToRegPosAttView         "Point"
-                ToPosition              0.000000000000000000  0.000000000000000000  -0.000006675720214844
+                ToPosition              0.000000000000000000  0.000000000000000000  0.000000000000000000
                 ToOffset                0.000000000000000000  0.000000000000000000  0.000000000000000000
                 ToOffsetLLR             0.000000000000000000  0.000000000000000000  0.000000000000000000
                 ConstantDistanceType    None
                 ConstantDistanceValue   1.000000
-                UpVector                -0.126851799096664890  0.112439516621971800  0.985528272637450350
-                ViewRad                 14981943.878750212000000000
-                ViewQuat                0.3534402 -0.0795322 0.0301744 0.9315815
+                UpVector                0.186513177568454260  0.108488755857024390  0.976444071335329180
+                ViewRad                 155280506828.978150000000000000
+                ViewQuat                0.8451175 0.0950057 0.1602381 -0.5010729
                 ViewCoordSystem         From
                 ViewFromToMode          FromTo
-                ViewToCBIMtx            1.000000000000000000 0.000000000000000000 0.000000000000000000 0.000000000000000000 1.000000000000000000 0.000000000000000000  0.000000000000000000 0.000000000000000000 1.000000000000000000
+                ViewToCBIMtx            0.999414832418621060 0.030990615113200802 -0.014476688729299809 -0.034205156653048470 0.905491552752447190 -0.422983516407321180  -0.000000000000000013 0.423231177571865070 0.906021727295285300
                 UseUpAxis               Yes
                 UpAxisType              Z
                 UserDefinedUpAxis       0.000000000000000000 0.000000000000000000 1.000000000000000000
@@ -2823,7 +2862,7 @@ VO_V100
                 MinAngleToUpAxis        0.0087266
                 InitUpAxisUp            Yes
                 TempUpAxisUp            Yes
-                CrossAxis               -0.6633164 -0.7483390 0.0000000
+                CrossAxis               0.8773780 0.4797998 -0.0000000
                 DefaultOffset           8594300.0000000
                 BaseDefaultOffset       1562600.0000000
             End View
@@ -3115,4 +3154,74 @@ VO_V100
         CrossAxis               1.0000000 0.0000000 0.0000000
         DefaultOffset           8594300.0000000
         BaseDefaultOffset       1562600.0000000
+    End View
+    Begin View
+        ViewName                HomeView
+        ViewTime                17496000.000000
+        ViewUpdateDelta         300.000000
+        CentralBody             Callisto
+        Begin ViewCrdnAxes
+			BEGIN	AXES
+				Type	AXES_LINKTO
+				Name	Inertial
+				AbsolutePath	CentralBody/Callisto
+			END	AXES
+        End
+        Begin FromViewCrdnPoint
+			BEGIN	POINT
+				Type	POINT_LINKTO
+				Name	Center
+				AbsolutePath	CentralBody/Callisto
+			END	POINT
+        End
+        Begin ToViewCrdnPoint
+			BEGIN	POINT
+				Type	POINT_LINKTO
+				Name	Center
+				AbsolutePath	CentralBody/Callisto
+			END	POINT
+        End
+        fov                           0.785398
+        FarNearPlaneDistanceRatio     1000.000000
+        NearPlaneDistance             1.000000
+        FarPlaneDistance              100000000000.000000
+        UseArcBallRotateSpeedOpt      No
+        ArcBallRotateSpeed            0.000000
+        ArcBallRadius           0.900000
+        ArcBallRotateMode       From
+        ZoomSpeed               0.000000
+        ZoomUseDistanceToCb     Yes
+        GlobeDetailLevel        1
+        UseLayer                Yes
+        FromName                "Callisto"
+        FromRegPosAttView       "Point"
+        FromPosition            13256650.000000000000000000  0.000000000000000000  0.000000000000000000
+        FromOffset              0.000000000000000000  0.000000000000000000  0.000000000000000000
+        FromOffsetLLR           0.000000000000000000  0.000000000000000000  13256650.000000000000000000
+        ToName                  "Callisto"
+        ToRegPosAttView         "Point"
+        ToPosition              0.000000000000000000  0.000000000000000000  0.000000000000000000
+        ToOffset                0.000000000000000000  0.000000000000000000  0.000000000000000000
+        ToOffsetLLR             0.000000000000000000  0.000000000000000000  0.000000000000000000
+        ConstantDistanceType    None
+        ConstantDistanceValue   1.000000
+        UpVector                0.000000000000000000  0.000000000000000000  0.000000000000000000
+        ViewRad                 13256650.000000000000000000
+        ViewQuat                0.0000000 0.0000000 0.0000000 -1.0000000
+        ViewCoordSystem         From
+        ViewFromToMode          FromTo
+        ViewToCBIMtx            0.000000000000000000 0.000000000000000000 0.000000000000000000 0.000000000000000000 0.000000000000000000 0.000000000000000000  0.000000000000000000 0.000000000000000000 0.000000000000000000
+        UseUpAxis               Yes
+        UpAxisType              Z
+        UserDefinedUpAxis       0.000000000000000000 0.000000000000000000 1.000000000000000000
+        OverUpAxis              No
+        LockInViewDir           No
+        NoZoom                  No
+        NoPan                   No
+        MinAngleToUpAxis        0.0087266
+        InitUpAxisUp            Yes
+        TempUpAxisUp            Yes
+        CrossAxis               1.0000000 0.0000000 0.0000000
+        DefaultOffset           13256650.0000000
+        BaseDefaultOffset       2410300.0000000
     End View

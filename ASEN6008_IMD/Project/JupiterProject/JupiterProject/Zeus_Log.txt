@@ -46,9 +46,9 @@ Maneuver : ImpulsiveMnvr.Cartesian.Z  0.349068505871 km/sec  0.000000000000 km/s
 
 Unscaled Intermediate Constraints:
 Name                         Current Value                       Desired           Difference            Tolerance
-Propagate : BDotR        3500.002226745637 km          3500.000000000000 km    0.002226745637 km    0.100000000000 km 
-Propagate : BDotT          -0.000601902236 km             0.000000000000 km   -0.000601902236 km    0.100000000000 km 
-Propagate : Epoch 25 Apr 2026 06:00:00.000 UTCG 25 Apr 2026 06:00:00.000 UTCG -0.000486344099 sec  60.000000000000 sec
+Propagate : BDotR        3500.002226598028 km          3500.000000000000 km    0.002226598028 km    0.100000000000 km 
+Propagate : BDotT          -0.000601940878 km             0.000000000000 km   -0.000601940878 km    0.100000000000 km 
+Propagate : Epoch 25 Apr 2026 05:59:59.999 UTCG 25 Apr 2026 06:00:00.000 UTCG -0.000536412001 sec  60.000000000000 sec
 
 
 
@@ -64,9 +64,9 @@ Maneuver : ImpulsiveMnvr.Cartesian.Z  0.349068505871 km/sec  0.000000000000 km/s
 
 Unscaled Intermediate Constraints:
 Name                         Current Value                       Desired           Difference            Tolerance
-Propagate : BDotR        3500.002226745637 km          3500.000000000000 km    0.002226745637 km    0.100000000000 km 
-Propagate : BDotT          -0.000601902236 km             0.000000000000 km   -0.000601902236 km    0.100000000000 km 
-Propagate : Epoch 25 Apr 2026 06:00:00.000 UTCG 25 Apr 2026 06:00:00.000 UTCG -0.000486344099 sec  60.000000000000 sec
+Propagate : BDotR        3500.002226598028 km          3500.000000000000 km    0.002226598028 km    0.100000000000 km 
+Propagate : BDotT          -0.000601940878 km             0.000000000000 km   -0.000601940878 km    0.100000000000 km 
+Propagate : Epoch 25 Apr 2026 05:59:59.999 UTCG 25 Apr 2026 06:00:00.000 UTCG -0.000536412001 sec  60.000000000000 sec
 
 
 
@@ -113,7 +113,7 @@ Maneuver : ImpulsiveMnvr.Cartesian.X -4.497178938502 km/sec  0.000000000000 km/s
 
 Unscaled Intermediate Constraints:
 Name                       Current Value         Desired      Difference       Tolerance
-Propagate : Eccentricity  0.091702010675  0.000100000000  0.091602010675  0.100000000000
+Propagate : Eccentricity  0.091702010535  0.000100000000  0.091602010535  0.100000000000
 
 
 
@@ -127,7 +127,7 @@ Maneuver : ImpulsiveMnvr.Cartesian.X -4.497178938502 km/sec  0.000000000000 km/s
 
 Unscaled Intermediate Constraints:
 Name                       Current Value         Desired      Difference       Tolerance
-Propagate : Eccentricity  0.091702010675  0.000100000000  0.091602010675  0.100000000000
+Propagate : Eccentricity  0.091702010535  0.000100000000  0.091602010535  0.100000000000
 
 
 

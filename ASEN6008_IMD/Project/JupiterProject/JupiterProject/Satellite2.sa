@@ -841,7 +841,7 @@ BEGIN Attitude
       BEGIN Profile
           Name			 ECIVVLH
           UserNamed			 No
-          StartTime			 1.883520000000e+008
+          StartTime			 0.000000000000e+000
           BEGIN ECIVVLH
              	Azimuth		 0.000000000000e+000
           END ECIVVLH
@@ -1211,8 +1211,8 @@ BEGIN Extensions
 		LaunchWindowUseEntireTraj               Yes
 		LaunchWindowTrajMETStart                0.000
 		LaunchWindowTrajMETStop                 900.000
-		LaunchWindowStart                       0.000
-		LaunchWindowStop                        0.000
+		LaunchWindowStart                       -188352000.000
+		LaunchWindowStop                        -193536000.000
 		LaunchMETOffset                         0.000
 		LaunchWindowUseSecEphem                 No 
 		LaunchWindowUseScenFolderForSecEphem    Yes
@@ -1401,10 +1401,6 @@ BEGIN Extensions
     END ObjectCoverage
     
     BEGIN Desc
-        ShortText    0
-
-        LongText    0
-
     END Desc
     
     BEGIN Contours

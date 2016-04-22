@@ -105,9 +105,9 @@ BEGIN Animation
 
     StartTime          26 Feb 2020 00:00:00.000000000
     EndTime            30 Jun 2026 23:00:00.000000000
-    CurrentTime        26 Apr 2026 04:39:42.398000002
+    CurrentTime        14 Feb 2026 03:59:59.995999992
     Direction          Forward
-    UpdateDelta        300.000000
+    UpdateDelta        600.000000
     RefreshDelta       0.010000
     XRealTimeMult      1.000000
     RealTimeOffset     0.000000
@@ -189,7 +189,7 @@ BEGIN MapData
             PrimaryBody          Sun
             SecondaryBody        Earth
             CenterLatitude       80.229588
-            CenterLongitude      -89.024200
+            CenterLongitude      162.815388
             ProjectionAltitude   63621860.000162
             FieldOfView          35.000000
             OrthoDisplayDistance 1600000000000.000000
@@ -212,7 +212,7 @@ BEGIN MapData
             ShowImageNames       Off
             ImageNameFont        0
             Projection           Orthographic
-            Resolution           None
+            Resolution           VeryLow
             CoordinateSys        ECI
             UseBackgroundImage   On
             UseBingForBackground Off
@@ -226,8 +226,193 @@ BEGIN MapData
             BEGIN ZoomLocations
                 BEGIN ZoomLocation
                     CenterLat    80.229588
-                    CenterLon    -89.024200
-                    ZoomWidth    291.518325
+                    CenterLon    162.815388
+                    ZoomWidth    154.924790
+                    ZoomHeight   95.659380
+                End ZoomLocation
+            END ZoomLocations
+            UseVarAspectRatio    No
+            SwapMapResolution    Yes
+            NoneToVLowSwapDist   2000000.000000
+            VLowToLowSwapDist    20000.000000
+            LowToMediumSwapDist  10000.000000
+            MediumToHighSwapDist 5000.000000
+            HighToVHighSwapDist  1000.000000
+            VHighToSHighSwapDist 100.000000
+            BEGIN Axes
+                DisplayAxes no
+                CoordSys    CBI
+                2aryCB      Sun
+                Display+x   yes
+                Label+x     yes
+                Color+x     #ffffff
+                Scale+x     3.000000
+                Display-x   yes
+                Label-x     yes
+                Color-x     #ffffff
+                Scale-x     3.000000
+                Display+y   yes
+                Label+y     yes
+                Color+y     #ffffff
+                Scale+y     3.000000
+                Display-y   yes
+                Label-y     yes
+                Color-y     #ffffff
+                Scale-y     3.000000
+                Display+z   yes
+                Label+z     yes
+                Color+z     #ffffff
+                Scale+z     3.000000
+                Display-z   yes
+                Label-z     yes
+                Color-z     #ffffff
+                Scale-z     3.000000
+            END Axes
+
+        END MapAttributes
+
+        BEGIN MapList
+        END MapList
+
+
+        BEGIN MapAnnotations
+        END MapAnnotations
+
+        BEGIN DisplayFlags
+            ShowLabels           On
+            ShowPassLabel        Off
+            ShowElsetNum         Off
+            ShowGndTracks        On
+            ShowGndMarkers       On
+            ShowOrbitMarkers     On
+            ShowPlanetOrbits     Off
+            ShowPlanetCBIPos     On
+            ShowPlanetCBILabel   On
+            ShowPlanetGndPos     On
+            ShowPlanetGndLabel   On
+            ShowSensors          On
+            ShowWayptMarkers     Off
+            ShowWayptTurnMarkers Off
+            ShowOrbits           On
+            ShowDtedRegions      Off
+            ShowAreaTgtCentroids On
+            ShowToolBar          On
+            ShowStatusBar        On
+            ShowScrollBars       On
+            AllowAnimUpdate      Off
+            AccShowLine          On
+            AccAnimHigh          On
+            AccStatHigh          On
+            ShowPrintButton      On
+            ShowAnimButtons      On
+            ShowAnimModeButtons  On
+            ShowZoomMsrButtons   On
+            ShowMapCbButton      Off
+        END DisplayFlags
+
+        BEGIN SoftVTR
+            OutputFormat     WMV
+            BaseName         Frame
+            Digits           4
+            Frame            0
+            LastAnimTime     0.000000
+            OutputMode       Normal
+            HiResAssembly    Assemble
+            HRWidth          6000
+            HRHeight         4500
+            HRDPI            600.000000
+            UseSnapInterval  No
+            SnapInterval     0.000000
+            WmvCodec         "Windows Media Video 9"
+            Framerate        30
+            Bitrate          3000000
+        END SoftVTR
+
+
+        BEGIN TimeDisplay
+            Show             0
+            TextColor        #ffffff
+            TextTranslucency 0.000000
+            ShowBackground   0
+            BackColor        #4d4d4d
+            BackTranslucency 0.400000
+            XPosition        20
+            YPosition        -20
+        END TimeDisplay
+
+        BEGIN LightingData
+            DisplayAltitude              0.000000
+            SubsolarPoint                Off
+            SubsolarPointColor           #ffff00
+            SubsolarPointMarkerStyle     2
+
+            ShowUmbraLine                Off
+            UmbraLineColor               #000000
+            UmbraLineStyle               0
+            UmbraLineWidth               2
+            FillUmbra                    On
+            UmbraFillColor               #000000
+            ShowSunlightLine             Off
+            SunlightLineColor            #ffff00
+            SunlightLineStyle            0
+            SunlightLineWidth            2
+            FillSunlight                 On
+            SunlightFillColor            #ffffff
+            SunlightMinOpacity           0.000000
+            SunlightMaxOpacity           0.200000
+            UmbraMaxOpacity              0.700000
+            UmbraMinOpacity              0.400000
+        END LightingData
+    END Map
+    BEGIN Map
+        MapNum         2
+        TrackingMode   LatLon
+        PickEnabled    On
+        PanEnabled     On
+
+        BEGIN MapAttributes
+            PrimaryBody          Earth
+            SecondaryBody        Sun
+            CenterLatitude       0.000000
+            CenterLongitude      0.000005
+            ProjectionAltitude   63621860.000000
+            FieldOfView          35.000000
+            OrthoDisplayDistance 20000000.000000
+            TransformTrajectory  On
+            EquatorialRadius     6378137.000000
+            BackgroundColor      #000000
+            LatLonLines          On
+            LatSpacing           30.000000
+            LonSpacing           30.000000
+            LatLonLineColor      #999999
+            LatLonLineStyle      2
+            ShowOrthoDistGrid    Off
+            OrthoGridXSpacing    5
+            OrthoGridYSpacing    5
+            OrthoGridColor       #ffffff
+            ShowImageExtents     Off
+            ImageExtentLineColor #ffffff
+            ImageExtentLineStyle 0
+            ImageExtentLineWidth 1.000000
+            ShowImageNames       Off
+            ImageNameFont        0
+            Projection           EquidistantCylindrical
+            Resolution           VeryLow
+            CoordinateSys        ECF
+            UseBackgroundImage   On
+            UseBingForBackground On
+            BingType             Aerial
+            BingLogoHorizAlign   Right
+            BingLogoVertAlign    Bottom
+            BackgroundImageFile  Basic.bmp
+            UseNightLights       Off
+            NightLightsFactor    3.500000
+            UseCloudsFile        Off
+            BEGIN ZoomLocations
+                BEGIN ZoomLocation
+                    CenterLat    0.000000
+                    CenterLon    0.000005
+                    ZoomWidth    360.000000
                     ZoomHeight   180.000000
                 End ZoomLocation
             END ZoomLocations
@@ -272,6 +457,36 @@ BEGIN MapData
         END MapAttributes
 
         BEGIN MapList
+            BEGIN Detail
+                Alias RWDB2_Coastlines
+                Show Yes
+                Color #8fbc8f
+            END Detail
+            BEGIN Detail
+                Alias RWDB2_International_Borders
+                Show No
+                Color #8fbc8f
+            END Detail
+            BEGIN Detail
+                Alias RWDB2_Islands
+                Show No
+                Color #8fbc8f
+            END Detail
+            BEGIN Detail
+                Alias RWDB2_Lakes
+                Show No
+                Color #87cefa
+            END Detail
+            BEGIN Detail
+                Alias RWDB2_Provincial_Borders
+                Show No
+                Color #8fbc8f
+            END Detail
+            BEGIN Detail
+                Alias RWDB2_Rivers
+                Show No
+                Color #87cefa
+            END Detail
         END MapList
 
 
@@ -981,20 +1196,12 @@ END MapData
     
     BEGIN ReportFavorites
         BEGIN Class
-            Name  Satellite
-            BEGIN Favorite
-                Type    Report
-                BaseDir Install
-                Style   Lifetime
-            END Favorite
-            BEGIN Favorite
-                Type    Report
-                BaseDir Install
-                Style   LLA Position
-            END Favorite
-        END Class
-        BEGIN Class
             Name  Access
+            BEGIN Favorite
+                Type    Graph
+                BaseDir Install
+                Style   Access
+            END Favorite
             BEGIN Favorite
                 Type    Report
                 BaseDir Install
@@ -1006,21 +1213,6 @@ END MapData
             BEGIN Favorite
                 Type    Report
                 BaseDir Install
-                Style   J2000 Position Velocity
-            END Favorite
-            BEGIN Favorite
-                Type    Report
-                BaseDir Install
-                Style   Apparent Helio Position Velocity
-            END Favorite
-            BEGIN Favorite
-                Type    Report
-                BaseDir Install
-                Style   Apparent LLA Position
-            END Favorite
-            BEGIN Favorite
-                Type    Report
-                BaseDir User
                 Style   Helio Position Velocity
             END Favorite
             BEGIN Favorite
@@ -1030,8 +1222,41 @@ END MapData
             END Favorite
             BEGIN Favorite
                 Type    Report
-                BaseDir Install
+                BaseDir User
                 Style   Helio Position Velocity
+            END Favorite
+            BEGIN Favorite
+                Type    Report
+                BaseDir Install
+                Style   Apparent LLA Position
+            END Favorite
+            BEGIN Favorite
+                Type    Report
+                BaseDir Install
+                Style   Apparent Helio Position Velocity
+            END Favorite
+            BEGIN Favorite
+                Type    Report
+                BaseDir Install
+                Style   J2000 Position Velocity
+            END Favorite
+        END Class
+        BEGIN Class
+            Name  Satellite
+            BEGIN Favorite
+                Type    Report
+                BaseDir Install
+                Style   LLA Position
+            END Favorite
+            BEGIN Favorite
+                Type    Report
+                BaseDir Install
+                Style   Lifetime
+            END Favorite
+            BEGIN Favorite
+                Type    Graph
+                BaseDir Install
+                Style   Inertial Position Velocity
             END Favorite
         END Class
     END ReportFavorites
@@ -1736,8 +1961,10 @@ END Class
 
 Class Planet
 
+	Callisto
 	Earth
 	Europa
+	Ganymede
 	Jupiter
 	Venus
 
@@ -1747,6 +1974,7 @@ Class Satellite
 
 	Satellite2
 	Zeus
+	Zeus_newJOI
 
 END Class
 
@@ -1765,11 +1993,17 @@ BEGIN References
     Instance Facility/DSS_63_Robledo_STDN_DS63
         Facility/DSS_63_Robledo_STDN_DS63
     END Instance
+    Instance Planet/Callisto
+        Planet/Callisto
+    END Instance
     Instance Planet/Earth
         Planet/Earth
     END Instance
     Instance Planet/Europa
         Planet/Europa
+    END Instance
+    Instance Planet/Ganymede
+        Planet/Ganymede
     END Instance
     Instance Planet/Jupiter
         Planet/Jupiter
@@ -1784,6 +2018,9 @@ BEGIN References
     Instance Satellite/Zeus
         *
         Satellite/Zeus
+    END Instance
+    Instance Satellite/Zeus_newJOI
+        Satellite/Zeus_newJOI
     END Instance
 END References
 

@@ -50,7 +50,7 @@ VO_V100
     Begin Covariance
         UseProbability Yes
         Probability 95.000000
-        Scale 2.795484
+        Scale 2.795483
         NonIntervalLineWidth 1.000000
         NonIntervalTranslucency 0.000000
         NonIntervalShow  No

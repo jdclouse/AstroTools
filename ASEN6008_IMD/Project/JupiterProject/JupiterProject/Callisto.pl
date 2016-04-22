@@ -3,20 +3,20 @@ WrittenBy    STK_v10.1.3
 
 BEGIN Planet
 
-Name        Europa
+Name        Callisto
 
 BEGIN PathDescription
 
-		CentralBody                    Europa
-		UseCbEphemeris                 No
+		CentralBody                    Callisto
+		UseCbEphemeris                 Yes
 
 BEGIN               EphemerisData
 
-	EphemerisSource             JplSpice
+	EphemerisSource             None
 
 	JplIndex                    -1
 
-	JplSpiceId                  502
+	JplSpiceId                  504
 
 	ApplyTDTtoTDBCorrectionForDE     Yes
 
@@ -26,8 +26,8 @@ END PathDescription
 
 	BEGIN PhysicalData
 
-		GM                   3.202720000000e+012
-		Radius               1.562600000000e+006
+		GM                   7.179292000000e+012
+		Radius               2.410300000000e+006
 		Magnitude            0.000000000000e+000
 		ReferenceDistance    0.000000000000e+000
 
@@ -45,9 +45,9 @@ BEGIN Extensions
 
 			BEGIN Attributes
 
-				MarkerColor             #00ffff
-				LabelColor              #00ffff
-				LineColor               #00ffff
+				MarkerColor             #0000ff
+				LabelColor              #0000ff
+				LineColor               #0000ff
 				LineStyle               0
 				LineWidth               1.0
 				MarkerStyle             2
@@ -57,7 +57,7 @@ BEGIN Extensions
 
 			BEGIN Graphics
 
-				Show                     Off
+				Show                     On
 				Inherit                  On
 				ShowLabel                On
 				ShowPlanetPoint          On
@@ -65,7 +65,7 @@ BEGIN Extensions
 				ShowSubPlanetLabel       Off
 				ShowOrbit                On
 				NumOrbitPoints           360
-				OrbitTime                3.067232699873e+005
+				OrbitTime                0.000000000000e+000
 				OrbitDisplay             OneOrbit
 				TransformTrajectory      On
 
@@ -83,6 +83,10 @@ BEGIN Extensions
     END AccessConstraints
     
     BEGIN Desc
+        ShortText    0
+
+        LongText    0
+
     END Desc
     
     BEGIN Crdn
