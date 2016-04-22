@@ -1,0 +1,8 @@
+\begin{thebibliography}{1}
+\newcommand{\enquote}[1]{``#1''}
+
+\bibitem{WieSolarSail2}
+Wie, B., \enquote{Solar Sail Attitude Control and Dynamics, Part 2,} {\em
+  Journal of Guidance, Control, and Dynamics\/}, Vol.~27, 2004, pp.~536--544.
+
+\end{thebibliography}
