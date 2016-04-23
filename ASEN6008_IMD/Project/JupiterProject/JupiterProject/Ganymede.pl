@@ -65,7 +65,7 @@ BEGIN Extensions
 				ShowSubPlanetLabel       Off
 				ShowOrbit                On
 				NumOrbitPoints           360
-				OrbitTime                0.000000000000e+000
+				OrbitTime                6.180834336481e+005
 				OrbitDisplay             OneOrbit
 				TransformTrajectory      On
 
@@ -83,10 +83,6 @@ BEGIN Extensions
     END AccessConstraints
     
     BEGIN Desc
-        ShortText    0
-
-        LongText    0
-
     END Desc
     
     BEGIN Crdn

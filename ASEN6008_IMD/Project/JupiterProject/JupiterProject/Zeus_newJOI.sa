@@ -6981,10 +6981,10 @@ BEGIN VehiclePath
                                     <OBJECT Class = "string" Name = "UserComment"> &quot;Epoch of State&quot; </OBJECT>
                                     <OBJECT Class = "bool" Name = "Valid"> True </OBJECT>
                                     <OBJECT Class = "container" Name = "Values">
-                                        <DATE>&quot;20 Jan 2026 15:00:34.999689966&quot; TAIG</DATE>
-                                        <DATE>&quot;20 Jan 2026 15:00:34.999689966&quot; TAIG</DATE>
-                                        <DATE>&quot;20 Jan 2026 15:00:34.999689966&quot; TAIG</DATE>
-                                        <DATE>&quot;20 Jan 2026 15:00:34.999689966&quot; TAIG</DATE>
+                                        <DATE>&quot;20 Jan 2026 15:00:35.000000000&quot; TAIG</DATE>
+                                        <DATE>&quot;20 Jan 2026 15:00:35.000000000&quot; TAIG</DATE>
+                                        <DATE>&quot;20 Jan 2026 15:00:35.000000000&quot; TAIG</DATE>
+                                        <DATE>&quot;20 Jan 2026 15:00:35.000000000&quot; TAIG</DATE>
                                     </OBJECT>
                                     <OBJECT Class = "string" Name = "Version"> &quot;1.0.1 a&quot; </OBJECT>
                                     <OBJECT Class = "double" Name = "Weight"> 1 &quot;&quot; </OBJECT>
@@ -7068,10 +7068,10 @@ BEGIN VehiclePath
                                     <OBJECT Class = "string" Name = "UserComment"> &quot;Epoch of State&quot; </OBJECT>
                                     <OBJECT Class = "bool" Name = "Valid"> True </OBJECT>
                                     <OBJECT Class = "container" Name = "Values">
-                                        <DATE>&quot;14 Feb 2026 12:00:34.996015608&quot; TAIG</DATE>
-                                        <DATE>&quot;14 Feb 2026 02:59:38.576359689&quot; TAIG</DATE>
-                                        <DATE>&quot;14 Feb 2026 03:00:35.140752673&quot; TAIG</DATE>
-                                        <DATE>&quot;14 Feb 2026 03:00:35.000226498&quot; TAIG</DATE>
+                                        <DATE>&quot;14 Feb 2026 12:00:34.995999992&quot; TAIG</DATE>
+                                        <DATE>&quot;14 Feb 2026 02:59:38.576000005&quot; TAIG</DATE>
+                                        <DATE>&quot;14 Feb 2026 03:00:35.141000003&quot; TAIG</DATE>
+                                        <DATE>&quot;14 Feb 2026 03:00:35.000000000&quot; TAIG</DATE>
                                     </OBJECT>
                                     <OBJECT Class = "string" Name = "Version"> &quot;1.0.1 a&quot; </OBJECT>
                                     <OBJECT Class = "double" Name = "Weight"> 1 &quot;&quot; </OBJECT>
@@ -8784,7 +8784,7 @@ BEGIN VehiclePath
                                     <OBJECT Class = "container" Name = "BPlanes" />
                                     <OBJECT Class = "container" Name = "Cartesian">
                                         <OBJECT Class = "double" Name = "X"> -3250.845725613035 m*sec^-1 </OBJECT>
-                                        <OBJECT Class = "double" Name = "Y"> 3.980930414575887e-013 m*sec^-1 </OBJECT>
+                                        <OBJECT Class = "double" Name = "Y"> 3.981137812393858e-013 m*sec^-1 </OBJECT>
                                         <OBJECT Class = "double" Name = "Z"> 0 m*sec^-1 </OBJECT>
                                     </OBJECT>
                                     <OBJECT Class = "string" Name = "Category"> &quot;&quot; </OBJECT>
@@ -13593,7 +13593,7 @@ BEGIN Attitude
       BEGIN Profile
           Name			 ECIVVLH
           UserNamed			 No
-          StartTime			 -4.003168280680e+004
+          StartTime			 0.000000000000e+000
           BEGIN ECIVVLH
              	Azimuth		 0.000000000000e+000
           END ECIVVLH
@@ -13664,7 +13664,7 @@ ScenarioEpoch			26 Feb 2020 00:00:00.000000
 # Epoch in YYDDD format:	  20057.00000000000000
 
 
-# Time of first point: 6 Mar 2020 15:18:46.683631207 UTCG = 2458915.13804031980563 JDate = 20066.63804031980564 YYDDD
+# Time of first point: 6 Mar 2020 15:18:46.683631207 UTCG = 2458915.13804031980564 JDate = 20066.63804031980564 YYDDD
 
 CoordinateAxes		Inertial
 
@@ -13703,7 +13703,7 @@ ScenarioEpoch			26 Feb 2020 00:00:00.000000
 # Epoch in YYDDD format:	  20057.00000000000000
 
 
-# Time of first point: 25 Sep 2020 11:59:59.978994884 UTCG = 2459117.99999975688523 JDate = 20269.49999975688523 YYDDD
+# Time of first point: 25 Sep 2020 11:59:59.978994898 UTCG = 2459117.99999975688540 JDate = 20269.49999975688540 YYDDD
 
 CoordinateAxes		Inertial
 
@@ -13742,7 +13742,7 @@ ScenarioEpoch			26 Feb 2020 00:00:00.000000
 # Epoch in YYDDD format:	  20057.00000000000000
 
 
-# Time of first point: 22 Jul 2021 12:00:00.011512674 UTCG = 2459418.00000013324855 JDate = 21203.50000013324855 YYDDD
+# Time of first point: 22 Jul 2021 12:00:00.011512697 UTCG = 2459418.00000013324880 JDate = 21203.50000013324880 YYDDD
 
 CoordinateAxes		Inertial
 
@@ -13781,7 +13781,7 @@ ScenarioEpoch			26 Feb 2020 00:00:00.000000
 # Epoch in YYDDD format:	  20057.00000000000000
 
 
-# Time of first point: 22 Jul 2023 11:59:59.999689952 UTCG = 2460147.99999999641148 JDate = 23203.49999999641148 YYDDD
+# Time of first point: 22 Jul 2023 11:59:59.999689996 UTCG = 2460147.99999999641199 JDate = 23203.49999999641199 YYDDD
 
 CoordinateAxes		Inertial
 
@@ -13820,7 +13820,7 @@ ScenarioEpoch			26 Feb 2020 00:00:00.000000
 # Epoch in YYDDD format:	  20057.00000000000000
 
 
-# Time of first point: 14 Feb 2026 03:00:00.000226498 UTCG = 2461085.62500000262150 JDate = 26045.12500000262150 YYDDD
+# Time of first point: 14 Feb 2026 03:00:00.000227004 UTCG = 2461085.62500000262736 JDate = 26045.12500000262736 YYDDD
 
 CoordinateAxes		Inertial
 
@@ -14503,7 +14503,7 @@ BEGIN Extensions
 		LaunchWindowTrajMETStart                0.000
 		LaunchWindowTrajMETStop                 900.000
 		LaunchWindowStart                       40031.683
-		LaunchWindowStop                        -196168778.018
+		LaunchWindowStop                        -192046753.113
 		LaunchMETOffset                         0.000
 		LaunchWindowUseSecEphem                 No 
 		LaunchWindowUseScenFolderForSecEphem    Yes
@@ -14907,10 +14907,6 @@ BEGIN Extensions
     END ObjectCoverage
     
     BEGIN Desc
-        ShortText    0
-
-        LongText    0
-
     END Desc
     
     BEGIN Contours

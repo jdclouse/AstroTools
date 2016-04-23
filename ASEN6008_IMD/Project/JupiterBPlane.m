@@ -28,6 +28,7 @@ fprintf('EGA1 BT = '); disp(BT_EGA1);fprintf('\b\b km\n')
 fprintf('EGA1 BR = '); disp(BR_EGA1);fprintf('\b\b km\n\n')
 
 % EGA2
+EGA2_v_inf_in = EGA2_v_inf_in/norm(EGA2_v_inf_in)*norm(EGA2_v_inf_out);
 [b_EGA2, B_hat_EGA2, B_plane_EGA2, psi_EGA2, rp_EGA2] = ...
     BPlaneTarget(EGA2_v_inf_in, EGA2_v_inf_out, Earth.mu);
 BT_EGA2 = dot(b_EGA2*B_hat_EGA2, B_plane_EGA2(:,2));

@@ -54,6 +54,7 @@
 \usepackage{float}
 \usepackage{epstopdf}
 \usepackage{amsmath}
+\usepackage[table,xcdraw]{xcolor}
 
 \title{Zeus: Mission to Jupiter}
 
@@ -173,6 +174,63 @@ System performance was judged by the response to errors, namely a step from $\al
 	\end{figure}	
 
 	Porkchop plots serve as great visual guides to determine low-cost trajectories. However, chaining together multiple gravity assists leads to many potential solutions whose benefits become difficult to compare using several porkchop plots. An algorithm was developed to trim the search space of the possible trajectories, as well as to determine the merits of each trajectory. The algorithm took a predetermined set of windows and determined the lambert solution between the launch, gravity assists, and orbit insertion. Next, launch C3 and final $V_\infty$ were applied to the initial and final windows to rid the search space of known unusable trajectories. The ${\Delta}V$ difference between planetary encounters on a given date were subsequently calculated; any ${\Delta}V$ difference outside of a tuned tolerance were thrown out. The result was a set of dates
+	
+	\vspace{5 mm}
+
+Dates were chosen to minimize the V$_\infty$ errors in the calculated gravity assist. Table \ref{TrajParams} shows the chosen dates and the relevant targeting parameters.
+% Please add the following required packages to your document preamble:
+% \usepackage[table,xcdraw]{xcolor}
+% If you use beamer only pass "xcolor=table" option, i.e. \documentclass[xcolor=table]{beamer}
+\begin{table}[H]
+\centering
+\caption{Trajectory parameters}
+\label{TrajParams}
+\begin{tabular}{|c|c|c|l|}
+\hline
+\rowcolor[HTML]{C0C0C0} 
+\textbf{Event}                                                           & \textbf{Calendar Date}                                                & \textbf{Julian Date} & \multicolumn{1}{c|}{\cellcolor[HTML]{C0C0C0}\textbf{Information}}                      \\ \hline
+Launch                                                                   & \begin{tabular}[c]{@{}c@{}}25 February 2020 \\ 12:52:48\end{tabular}  &          2458906            & \begin{tabular}[c]{@{}l@{}}C$_3$: 16.72 $\mathrm{km^2/s^2}$\\ RLA: 108.64$^\circ$\\ DLA: 7.52$^\circ$\\ Launched from \\ Tanegashima, Japan\end{tabular} \\ \hline
+\begin{tabular}[c]{@{}c@{}}Venus Gravity Assist \\ (VGA)\end{tabular}    & \begin{tabular}[c]{@{}c@{}}15 September 2020 \\ 12:00:00\end{tabular} &                     2459108 & \begin{tabular}[c]{@{}l@{}}r$_\mathrm{p}$: 23224 km\\ B$_\mathrm{T}$: 29790\\ B$_\mathrm{R}$: 4735.7\\ Turning Angle: 29.63$^\circ$ \\ V$_\infty$: 6.39 km/s\\$\Delta$V$_\infty$: 2.7298e-4 km/s\end{tabular}                           \\ \hline
+\begin{tabular}[c]{@{}c@{}}Resonant Orbit\end{tabular} &  -- & -- & \begin{tabular}[c]{@{}l@{}}Resonance: 2:1 \\$\varphi$: 130.06$^\circ$ \\ V$_\infty$: 9.45 km/s\\$\Delta$V$_\infty$: 2.7298e-4 km/s\end{tabular}                           \\ \hline
+\begin{tabular}[c]{@{}c@{}}Earth Gravity Assist 1 \\ (EGA1)\end{tabular} & \begin{tabular}[c]{@{}c@{}}12 July 2021 \\ 12:00:00\end{tabular}      &           2459408           & \begin{tabular}[c]{@{}l@{}}r$_\mathrm{p}$: 6745.2 km\\ B$_\mathrm{T}$: -7069.2 km\\ B$_\mathrm{R}$: -7474.7 km\\ Turning Angle: 47.00$^\circ$ \end{tabular}                           \\ \hline
+\begin{tabular}[c]{@{}c@{}}Earth Gravity Assist 2 \\ (EGA2)\end{tabular} & \begin{tabular}[c]{@{}c@{}}12 July 2023 \\ 12:00:00\end{tabular}      &         2460138             & \begin{tabular}[c]{@{}l@{}}r$_\mathrm{p}$: 7079.5 km\\ B$_\mathrm{T}$:-10549 km\\ B$_\mathrm{R}$: 1472.1 km\\ Turning Angle: 45.56$^\circ$ \end{tabular}                           \\ \hline
+\begin{tabular}[c]{@{}c@{}}Jupiter Orbit Insertion \\ (JOI)\end{tabular} & \begin{tabular}[c]{@{}c@{}}14 February 2026 \\ 12:00:00\end{tabular}  &                     2461086 & \begin{tabular}[c]{@{}l@{}}V$_\infty$: 5.5868 km/s\\ $\Delta$V:\\ Inclination:\\ r$_\mathrm{p}$:\end{tabular}             \\ \hline
+\end{tabular}
+\end{table}
+
+As Table \ref{TrajParams} shows, the $\Delta$V$_\infty$ is quite low for each gravity assist. The resonant orbit gravity assist's $\Delta$V$_\infty$ is the error between the initial approach and final departure; the V$_\infty$ magnitude between these times is assumed to be within this error. Because the errors were non-zero, trajectory correction maneuvers (TCM) will have to be performed to allow the spacecraft to reach the calculated B-plane targets. The flyby altitude for each planet is greater than 300 km. Not only does this prevent planetary impact, it reduces drag that a TCM would have to correct. With Earth encounters, conjunction analysis should be performed to ensure there is no risk to hitting another spacecraft. In addition, one must ensure that the Moon does not interfere with or stand in the way of the trajectory. TCMs will have to account for lunar perturbations.
+	
+	\vspace{5 mm}
+
+The resonant orbit periapses are shown in Figure \ref{fig:reso} below.
+	\begin{figure}[H]
+		\centering
+			\includegraphics[width = 18cm]{../PCP/VEEJ/PhiVsRp.png}
+		\caption{Resonant orbit periapses. }
+		\label{fig:reso}
+	\end{figure}	
+
+The range of $\varphi$ that prevents planetary impact for both gravity assists is small. The value of $\varphi$ was chosen approximately where the periapses are the same (and greater than the radius of Earth) to ensure minimum drag effects on both flybys. 
+	
+	\vspace{5 mm}
+
+A Hohmann transfer from Earth to Jupiter was constructed using semimajor axes of the planets given by Vallado\cite{Vallado} and assuming circular planetary orbits. It is shown alongside the trajectory requirements and the actual performance in Table \ref{TrajReqs} below. 
+\begin{table}[H]
+\centering
+\caption{Trajectory requirements}
+\label{TrajReqs}
+\begin{tabular}{|c|c|c|c|}
+\hline
+\rowcolor[HTML]{C0C0C0} 
+\textbf{Parameter}     & \textbf{Requirement} & \textbf{Actual}& \textbf{Hohmann} \\ \hline
+Time of flight (years) & \textless10          & 6       & 2.7        \\ \hline
+C3 ($\mathrm{km^2/s^2}$)              & \textless18          & 16.72     & 77.31      \\ \hline
+Arrival V$_\infty$ (km/s)       & \textless6           & 5.59       & 5.64     \\ \hline
+Total $\Delta$V$_\infty$ (km/s)         & \textless0.3           & 2.65e-4    & N/A     \\ \hline
+\end{tabular}
+\end{table}
+The Hohmann transfer to Jupiter looked attractive due to the shorter time of flight, but the C$_3$ is prohibitively large. In fact, it's off the chart given by Vallado\cite{Vallado}. The proposed trajectory is most easily compared to the Galileo mission. Galileo was flown to study Jupiter and its moons; one could surmise that the mass of the spacecraft would be comparable. Like the proposed trajectory, Galileo took advantage of a VEEGA. Galileo's time of flight was just over six years. It also had a maximum C$_3$ of 17 $\mathrm{km^2/s^2}$\cite{Damario}. With a V$_\infty$ error orders of magnitude less than the maximum allowable, this trajectory was determined to be feasible.
+
 	\section{STK Simulation}
 
 	\section{Earth Access}

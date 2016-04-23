@@ -1,3 +1,10 @@
 This is BibTeX, Version 0.99dThe top-level auxiliary file: Clouse_ASEN6008_Project.aux
 The style file: aiaa.bst
 Database file #1: ASEN6008ProjectBib.bib
+I was expecting a `,' or a `}'---line 77 of file ASEN6008ProjectBib.bib
+ :    
+ :    volume = "60",
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+Warning--empty year in Damario
+(There was 1 error message)

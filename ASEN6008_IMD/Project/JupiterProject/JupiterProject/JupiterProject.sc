@@ -1198,14 +1198,14 @@ END MapData
         BEGIN Class
             Name  Access
             BEGIN Favorite
-                Type    Graph
-                BaseDir Install
-                Style   Access
-            END Favorite
-            BEGIN Favorite
                 Type    Report
                 BaseDir Install
                 Style   Access Intervals by Time
+            END Favorite
+            BEGIN Favorite
+                Type    Graph
+                BaseDir Install
+                Style   Access
             END Favorite
         END Class
         BEGIN Class
@@ -1213,22 +1213,7 @@ END MapData
             BEGIN Favorite
                 Type    Report
                 BaseDir Install
-                Style   Helio Position Velocity
-            END Favorite
-            BEGIN Favorite
-                Type    Report
-                BaseDir Install
-                Style   Helio Classical Elements
-            END Favorite
-            BEGIN Favorite
-                Type    Report
-                BaseDir User
-                Style   Helio Position Velocity
-            END Favorite
-            BEGIN Favorite
-                Type    Report
-                BaseDir Install
-                Style   Apparent LLA Position
+                Style   J2000 Position Velocity
             END Favorite
             BEGIN Favorite
                 Type    Report
@@ -1238,15 +1223,30 @@ END MapData
             BEGIN Favorite
                 Type    Report
                 BaseDir Install
-                Style   J2000 Position Velocity
+                Style   Apparent LLA Position
+            END Favorite
+            BEGIN Favorite
+                Type    Report
+                BaseDir User
+                Style   Helio Position Velocity
+            END Favorite
+            BEGIN Favorite
+                Type    Report
+                BaseDir Install
+                Style   Helio Classical Elements
+            END Favorite
+            BEGIN Favorite
+                Type    Report
+                BaseDir Install
+                Style   Helio Position Velocity
             END Favorite
         END Class
         BEGIN Class
             Name  Satellite
             BEGIN Favorite
-                Type    Report
+                Type    Graph
                 BaseDir Install
-                Style   LLA Position
+                Style   Inertial Position Velocity
             END Favorite
             BEGIN Favorite
                 Type    Report
@@ -1254,9 +1254,9 @@ END MapData
                 Style   Lifetime
             END Favorite
             BEGIN Favorite
-                Type    Graph
+                Type    Report
                 BaseDir Install
-                Style   Inertial Position Velocity
+                Style   LLA Position
             END Favorite
         END Class
     END ReportFavorites
@@ -1975,6 +1975,7 @@ Class Satellite
 	Satellite2
 	Zeus
 	Zeus_newJOI
+	ZeusBetterEGA2
 
 END Class
 
@@ -2018,6 +2019,9 @@ BEGIN References
     Instance Satellite/Zeus
         *
         Satellite/Zeus
+    END Instance
+    Instance Satellite/ZeusBetterEGA2
+        Satellite/ZeusBetterEGA2
     END Instance
     Instance Satellite/Zeus_newJOI
         Satellite/Zeus_newJOI

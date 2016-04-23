@@ -138,15 +138,16 @@ for phi = angles
         acceptable_EGA2_in = [acceptable_EGA2_in V_GA2_in]; %#ok<AGROW>
     end
 end
-% figure('Position', hw_pub.figPosn);
-% hold on
-% plot(angles,rp1_store)
-% plot(angles,rp2_store, 'r')
-% plot(angles,Earth.R*ones(1,length(angles)), '--k')
-% xlabel('\phi (radians)')
-% xlim([0 2*pi])
-% ylabel('r_p (km)')
-% title('Closest Earth Approach for Resonant E-E Orbit')
+figure('Position', hw_pub.figPosn);
+hold on
+plot(angles*180/pi,rp1_store)
+plot(angles*180/pi,rp2_store, 'r')
+plot(angles*180/pi,Earth.R*ones(1,length(angles)), '--k')
+xlabel('\phi (deg)')
+xlim([0 360])
+ylabel('r_p (km)')
+title('Closest Earth Approach for Resonant E-E Orbit')
+legend('EGA1 r_p', 'EGA2 r_p', 'Earth Surface')
 % plot(angles,psi1_store)
 % plot(angles,psi2_store)
 % I'm choosing the phi such that both passes are as far away as possible to
@@ -155,20 +156,20 @@ if max(acceptable_phi) > 0
     good_reso = 1;
 [~,xxx] = min(max(acceptable_radii,[],2));
 [~,max_r_idx] = max(acceptable_radii(xxx,:));
-% fprintf('Earth Resonant Orbit:\n')
-% fprintf('phi = ');disp(acceptable_phi(max_r_idx)*180/pi);
-% fprintf('\b\b deg\n');
-% fprintf('EGA1 r_p = ');disp(acceptable_radii(1,max_r_idx));
-% fprintf('\b\b km\n');
-% fprintf('EGA2 r_p = ');disp(acceptable_radii(2,max_r_idx));
-% fprintf('\b\b km\n');
-% fprintf('EGA1 V_out = \n');disp(acceptable_EGA1_out(:,max_r_idx));
-% fprintf('\b\b km/s\n');
-% fprintf('EGA2 V_in = \n');disp(acceptable_EGA2_in(:,max_r_idx));
-% fprintf('\b\b km/s\n');
-% fprintf('\n');
-% EGA1_v_inf_out = acceptable_EGA1_out(:,max_r_idx);
-% EGA2_v_inf_in = acceptable_EGA2_in(:,max_r_idx);
+fprintf('Earth Resonant Orbit:\n')
+fprintf('phi = ');disp(acceptable_phi(max_r_idx)*180/pi);
+fprintf('\b\b deg\n');
+fprintf('EGA1 r_p = ');disp(acceptable_radii(1,max_r_idx));
+fprintf('\b\b km\n');
+fprintf('EGA2 r_p = ');disp(acceptable_radii(2,max_r_idx));
+fprintf('\b\b km\n');
+fprintf('EGA1 V_out = \n');disp(acceptable_EGA1_out(:,max_r_idx));
+fprintf('\b\b km/s\n');
+fprintf('EGA2 V_in = \n');disp(acceptable_EGA2_in(:,max_r_idx));
+fprintf('\b\b km/s\n');
+fprintf('\n');
+EGA1_v_inf_out = acceptable_EGA1_out(:,max_r_idx);
+EGA2_v_inf_in = acceptable_EGA2_in(:,max_r_idx);
 else
     fprintf('No valid Resonant Orbit!!!\n');
 end

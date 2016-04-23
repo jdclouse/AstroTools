@@ -696,10 +696,6 @@ VO_V100
             RubberBandLineWidth       2.000000
             RubberBandCrosshairSize   16
             RubberBandRGB             0.660000 0.660000 0.660000
-    _AGI_PIBEGINTYPEMGR3DSCENEDATA
-        Begin 3dScene
-        End
-    End
             Begin View
                 ViewName                STKVOInitialView
                 ViewTime                -121759200.000000
@@ -948,29 +944,6 @@ VO_V100
                         BaseOn Yes
                     End
                 EndCentralBody
-                BeginCentralBody "Venus"
-                    Show Yes
-                    Textured Yes
-                    AltOffset 0.000000
-                    Color #ffffff
-                    SpecularColor #545454
-                    Shininess 40.000000
-                    ShowWater No
-                    _AGI_PIBEGINTERRAINIMAGECALLDATA "SRC"
-                        BlendMode Value
-                        BlendFactor 1.000000
-                        BlendAltitudeLowerFactor 1.000000
-                        BlendAltitudeUpperFactor 0.000000
-                        BlendAltitudeLowerAltitude 500000.000000
-                        BlendAltitudeUpperAltitude 2500000.000000
-                        TextureRole Day
-                        URI "file:///Venus_clds.jp2"
-                        BeginImageSetDefOn
-                        End
-                        InBase Yes
-                        BaseOn Yes
-                    End
-                EndCentralBody
                 BeginCentralBody "Callisto"
                     Show Yes
                     Textured Yes
@@ -988,6 +961,29 @@ VO_V100
                         BlendAltitudeUpperAltitude 2500000.000000
                         TextureRole Day
                         URI "file:///Callisto.jp2"
+                        BeginImageSetDefOn
+                        End
+                        InBase Yes
+                        BaseOn Yes
+                    End
+                EndCentralBody
+                BeginCentralBody "Venus"
+                    Show Yes
+                    Textured Yes
+                    AltOffset 0.000000
+                    Color #ffffff
+                    SpecularColor #545454
+                    Shininess 40.000000
+                    ShowWater No
+                    _AGI_PIBEGINTERRAINIMAGECALLDATA "SRC"
+                        BlendMode Value
+                        BlendFactor 1.000000
+                        BlendAltitudeLowerFactor 1.000000
+                        BlendAltitudeUpperFactor 0.000000
+                        BlendAltitudeLowerAltitude 500000.000000
+                        BlendAltitudeUpperAltitude 2500000.000000
+                        TextureRole Day
+                        URI "file:///Venus_clds.jp2"
                         BeginImageSetDefOn
                         End
                         InBase Yes
@@ -1444,10 +1440,6 @@ VO_V100
             RubberBandLineWidth       2.000000
             RubberBandCrosshairSize   16
             RubberBandRGB             0.660000 0.660000 0.660000
-    _AGI_PIBEGINTYPEMGR3DSCENEDATA
-        Begin 3dScene
-        End
-    End
             Begin View
                 ViewName                STKVOInitialView
                 ViewTime                17496000.000000
@@ -2162,8 +2154,8 @@ VO_V100
                 UseLayer                Yes
                 FromName                "Earth"
                 FromRegPosAttView       "Point"
-                FromPosition            5674231109.307738300000000000  551714438.537431720000000000  30083303271.495197000000000000
-                FromOffset              -193556519252.847960000000000000  631901697147.302120000000000000  13555246961.366642000000000000
+                FromPosition            5674231109.307708700000000000  551714438.537597660000000000  30083303271.495132000000000000
+                FromOffset              -193556519252.847990000000000000  631901697147.302250000000000000  13555246961.366577000000000000
                 FromOffsetLLR           0.444719536393322620  1.867103232691277100  661020140179.633670000000000000
                 ToName                  "Jupiter"
                 ToRegPosAttView         "Point"
@@ -2172,8 +2164,8 @@ VO_V100
                 ToOffsetLLR             0.000000000000000000  0.000000000000000000  0.000000000000000000
                 ConstantDistanceType    None
                 ConstantDistanceValue   1.000000
-                UpVector                -0.370764574937578810  0.927217489322069270  0.052927851521058000
-                ViewRad                 30618726675.488632000000000000
+                UpVector                -0.370764574937582530  0.927217489322067930  0.052927851521053504
+                ViewRad                 30618726675.488567000000000000
                 ViewQuat                0.4723431 -0.4372740 0.2919687 0.7074162
                 ViewCoordSystem         From
                 ViewFromToMode          FromTo
@@ -2792,10 +2784,6 @@ VO_V100
             RubberBandLineWidth       2.000000
             RubberBandCrosshairSize   16
             RubberBandRGB             0.660000 0.660000 0.660000
-    _AGI_PIBEGINTYPEMGR3DSCENEDATA
-        Begin 3dScene
-        End
-    End
             Begin View
                 ViewName                STKVOInitialView
                 ViewTime                190681215.013000
