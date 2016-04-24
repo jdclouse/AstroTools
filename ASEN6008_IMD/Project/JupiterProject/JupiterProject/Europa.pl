@@ -57,7 +57,7 @@ BEGIN Extensions
 
 			BEGIN Graphics
 
-				Show                     Off
+				Show                     On
 				Inherit                  On
 				ShowLabel                On
 				ShowPlanetPoint          On

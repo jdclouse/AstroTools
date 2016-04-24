@@ -1,7 +1,7 @@
 \contentsline {section}{\numberline {I}Introduction}{3}{section.1}
 \contentsline {section}{\numberline {II}Preliminary Trajectory Design}{4}{section.2}
 \contentsline {section}{\numberline {III}STK Simulation}{9}{section.3}
-\contentsline {section}{\numberline {IV}Earth Access}{9}{section.4}
-\contentsline {section}{\numberline {V}Europa Injection}{9}{section.5}
-\contentsline {section}{\numberline {VI}System Model}{9}{section.6}
-\contentsline {section}{\numberline {VII}Conclusion}{9}{section.7}
+\contentsline {section}{\numberline {IV}Earth Access}{12}{section.4}
+\contentsline {section}{\numberline {V}Europa Injection}{12}{section.5}
+\contentsline {section}{\numberline {VI}System Model}{12}{section.6}
+\contentsline {section}{\numberline {VII}Conclusion}{13}{section.7}

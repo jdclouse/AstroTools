@@ -13902,7 +13902,7 @@ BEGIN Extensions
             AttributeType    CustomIntervals
             ScenarioEpoch 26 Feb 2020 00:00:00.000000
 
-            ShowGfx          On
+            ShowGfx          Off
 
             IntvlHideShowAll Off
 

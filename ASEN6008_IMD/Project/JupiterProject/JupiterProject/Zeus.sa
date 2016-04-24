@@ -6447,7 +6447,7 @@ BEGIN VehiclePath
                     <OBJECT Class = "container" Name = "ResultsSelected" />
                     <OBJECT Class = "ListLink" Name = "Results" />
                     <OBJECT Class = "string" Name = "RunDirection"> &quot;Forward&quot; </OBJECT>
-                    <OBJECT Class = "int" Name = "SegmentColor"> 65280 </OBJECT>
+                    <OBJECT Class = "int" Name = "SegmentColor"> 255 </OBJECT>
                     <OBJECT Class = "container" Name = "ShooterControls" />
                     <OBJECT Class = "double" Name = "SmallestStep"> 50.814 sec </OBJECT>
                     <OBJECT Class = "container" Name = "StoppingConditionsSelected" />
@@ -7770,7 +7770,7 @@ BEGIN VehiclePath
                                 </OBJECT>
                             </OBJECT>
                             <OBJECT Class = "string" Name = "RunDirection"> &quot;Forward&quot; </OBJECT>
-                            <OBJECT Class = "int" Name = "SegmentColor"> 65280 </OBJECT>
+                            <OBJECT Class = "int" Name = "SegmentColor"> 255 </OBJECT>
                             <OBJECT Class = "container" Name = "ShooterControls" />
                             <OBJECT Class = "double" Name = "SmallestStep"> 60 sec </OBJECT>
                             <OBJECT Class = "container" Name = "StoppingConditionsSelected" />
@@ -7967,7 +7967,7 @@ BEGIN VehiclePath
                                 </OBJECT>
                             </OBJECT>
                             <OBJECT Class = "string" Name = "RunDirection"> &quot;Forward&quot; </OBJECT>
-                            <OBJECT Class = "int" Name = "SegmentColor"> 65280 </OBJECT>
+                            <OBJECT Class = "int" Name = "SegmentColor"> 255 </OBJECT>
                             <OBJECT Class = "container" Name = "ShooterControls">
                                 <OBJECT Class = "string" Name = "StoppingConditions.Duration.TripValue"> &quot;StoppingConditions.Duration.TripValue&quot; </OBJECT>
                             </OBJECT>
@@ -9024,7 +9024,7 @@ BEGIN VehiclePath
                                         <OBJECT Class = "double" Name = "Y"> -2255943228.368164 m </OBJECT>
                                         <OBJECT Class = "double" Name = "Z"> 138061719.8876305 m </OBJECT>
                                         <OBJECT Class = "double" Name = "Vx"> 3563.78629287185 m*sec^-1 </OBJECT>
-                                        <OBJECT Class = "double" Name = "Vy"> 5256.262476320108 m*sec^-1 </OBJECT>
+                                        <OBJECT Class = "double" Name = "Vy"> 5256.262476320107 m*sec^-1 </OBJECT>
                                         <OBJECT Class = "double" Name = "Vz"> 23.25940564166194 m*sec^-1 </OBJECT>
                                     </OBJECT>
                                     <OBJECT Class = "double" Name = "Cd"> 2.2 &quot;&quot; </OBJECT>
@@ -9271,7 +9271,7 @@ BEGIN VehiclePath
                     <OBJECT Class = "string" Name = "WhenConverged"> &quot;Run to RETURN and continue&quot; </OBJECT>
                 </OBJECT>
                 <OBJECT Class = "MCSSegment" Name = "TEuI">
-                    <OBJECT Class = "string" Name = "Action"> &quot;Run active profiles&quot; </OBJECT>
+                    <OBJECT Class = "string" Name = "Action"> &quot;Run nominal sequence&quot; </OBJECT>
                     <OBJECT Class = "bool" Name = "BeenRun"> True </OBJECT>
                     <OBJECT Class = "container" Name = "BPlanes" />
                     <OBJECT Class = "string" Name = "Category"> &quot;@Top&quot; </OBJECT>
@@ -9686,7 +9686,7 @@ BEGIN VehiclePath
                                     <OBJECT Class = "string" Name = "UserComment"> &quot;Epoch of State&quot; </OBJECT>
                                     <OBJECT Class = "bool" Name = "Valid"> True </OBJECT>
                                     <OBJECT Class = "container" Name = "Values">
-                                        <DATE>&quot;22 Apr 2026 03:20:59.122999996&quot; TAIG</DATE>
+                                        <DATE>&quot;22 Apr 2026 03:20:59.122959286&quot; TAIG</DATE>
                                     </OBJECT>
                                     <OBJECT Class = "string" Name = "Version"> &quot;1.0.1 a&quot; </OBJECT>
                                     <OBJECT Class = "double" Name = "Weight"> 1 &quot;&quot; </OBJECT>
@@ -9764,7 +9764,7 @@ BEGIN VehiclePath
                                     <OBJECT Class = "string" Name = "UserComment"> &quot;Epoch of State&quot; </OBJECT>
                                     <OBJECT Class = "bool" Name = "Valid"> True </OBJECT>
                                     <OBJECT Class = "container" Name = "Values">
-                                        <DATE>&quot;25 Apr 2026 06:00:34.999000013&quot; TAIG</DATE>
+                                        <DATE>&quot;25 Apr 2026 06:00:34.999463588&quot; TAIG</DATE>
                                     </OBJECT>
                                     <OBJECT Class = "string" Name = "Version"> &quot;1.0.1 a&quot; </OBJECT>
                                     <OBJECT Class = "double" Name = "Weight"> 1 &quot;&quot; </OBJECT>
@@ -10934,7 +10934,7 @@ BEGIN VehiclePath
                     <OBJECT Class = "string" Name = "WhenConverged"> &quot;Run to RETURN and continue&quot; </OBJECT>
                 </OBJECT>
                 <OBJECT Class = "MCSSegment" Name = "EuOI">
-                    <OBJECT Class = "string" Name = "Action"> &quot;Run active profiles&quot; </OBJECT>
+                    <OBJECT Class = "string" Name = "Action"> &quot;Run nominal sequence&quot; </OBJECT>
                     <OBJECT Class = "bool" Name = "BeenRun"> True </OBJECT>
                     <OBJECT Class = "container" Name = "BPlanes" />
                     <OBJECT Class = "string" Name = "Category"> &quot;@Top&quot; </OBJECT>
@@ -13574,7 +13574,7 @@ BEGIN Attitude
       BEGIN Profile
           Name			 ECIVVLH
           UserNamed			 No
-          StartTime			 0.000000000000e+000
+          StartTime			 -4.003168280680e+004
           BEGIN ECIVVLH
              	Azimuth		 0.000000000000e+000
           END ECIVVLH
@@ -13645,7 +13645,7 @@ ScenarioEpoch			26 Feb 2020 00:00:00.000000
 # Epoch in YYDDD format:	  20057.00000000000000
 
 
-# Time of first point: 6 Mar 2020 15:18:46.683631207 UTCG = 2458915.13804031980564 JDate = 20066.63804031980564 YYDDD
+# Time of first point: 6 Mar 2020 15:18:46.683631207 UTCG = 2458915.13804031980563 JDate = 20066.63804031980564 YYDDD
 
 CoordinateAxes		Inertial
 
@@ -13684,7 +13684,7 @@ ScenarioEpoch			26 Feb 2020 00:00:00.000000
 # Epoch in YYDDD format:	  20057.00000000000000
 
 
-# Time of first point: 25 Sep 2020 11:59:59.978994898 UTCG = 2459117.99999975688540 JDate = 20269.49999975688540 YYDDD
+# Time of first point: 25 Sep 2020 11:59:59.978994884 UTCG = 2459117.99999975688523 JDate = 20269.49999975688523 YYDDD
 
 CoordinateAxes		Inertial
 
@@ -13723,7 +13723,7 @@ ScenarioEpoch			26 Feb 2020 00:00:00.000000
 # Epoch in YYDDD format:	  20057.00000000000000
 
 
-# Time of first point: 22 Jul 2021 12:00:00.011512697 UTCG = 2459418.00000013324880 JDate = 21203.50000013324880 YYDDD
+# Time of first point: 22 Jul 2021 12:00:00.011512674 UTCG = 2459418.00000013324855 JDate = 21203.50000013324855 YYDDD
 
 CoordinateAxes		Inertial
 
@@ -13762,7 +13762,7 @@ ScenarioEpoch			26 Feb 2020 00:00:00.000000
 # Epoch in YYDDD format:	  20057.00000000000000
 
 
-# Time of first point: 22 Jul 2023 11:59:59.999689996 UTCG = 2460147.99999999641199 JDate = 23203.49999999641199 YYDDD
+# Time of first point: 22 Jul 2023 11:59:59.999689952 UTCG = 2460147.99999999641148 JDate = 23203.49999999641148 YYDDD
 
 CoordinateAxes		Inertial
 
@@ -13801,12 +13801,12 @@ ScenarioEpoch			26 Feb 2020 00:00:00.000000
 # Epoch in YYDDD format:	  20057.00000000000000
 
 
-# Time of first point: 14 Feb 2026 11:59:59.996015996 UTCG = 2461085.99999995388884 JDate = 26045.49999995388884 YYDDD
+# Time of first point: 14 Feb 2026 11:59:59.996015608 UTCG = 2461085.99999995388436 JDate = 26045.49999995388436 YYDDD
 
 CoordinateAxes		Inertial
 
 AttitudeTimeQuaternions
-1.88395199996016e+008 -2.39809428733298e-001 7.56737798457954e-001 -4.69528253505314e-001 3.86500402892245e-001
+1.88395199996016e+008 -2.39809428733298e-001 7.56737798457955e-001 -4.69528253505314e-001 3.86500402892245e-001
 
 
 END AttitudeData
@@ -13840,7 +13840,7 @@ ScenarioEpoch			26 Feb 2020 00:00:00.000000
 # Epoch in YYDDD format:	  20057.00000000000000
 
 
-# Time of first point: 29 Mar 2026 03:20:24.122958988 UTCG = 2461128.63916808980310 JDate = 26088.13916808980310 YYDDD
+# Time of first point: 29 Mar 2026 03:20:24.122959286 UTCG = 2461128.63916808980655 JDate = 26088.13916808980655 YYDDD
 
 CoordinateAxes		Inertial
 
@@ -13879,7 +13879,7 @@ ScenarioEpoch			26 Feb 2020 00:00:00.000000
 # Epoch in YYDDD format:	  20057.00000000000000
 
 
-# Time of first point: 25 Apr 2026 05:59:59.999464005 UTCG = 2461155.74999999379636 JDate = 26115.24999999379636 YYDDD
+# Time of first point: 25 Apr 2026 05:59:59.999463588 UTCG = 2461155.74999999379153 JDate = 26115.24999999379153 YYDDD
 
 CoordinateAxes		Inertial
 
@@ -13961,7 +13961,7 @@ BEGIN Extensions
             AttributeType    CustomIntervals
             ScenarioEpoch 26 Feb 2020 00:00:00.000000
 
-            ShowGfx          On
+            ShowGfx          Off
 
             IntvlHideShowAll Off
 
@@ -14247,10 +14247,10 @@ BEGIN Extensions
                         ShowOrbitMarker      On
                         ShowElsetNum         Off
                         ShowSpecialSwath     On
-                        MarkerColor          #00ff00
-                        GroundTrackColor     #00ff00
-                        SwathColor           #00ff00
-                        LabelColor           #00ff00
+                        MarkerColor          #ff0000
+                        GroundTrackColor     #ff0000
+                        SwathColor           #ff0000
+                        LabelColor           #ff0000
                         LineStyle            0
                         LineWidth            1.000000
                         MarkerStyle          4
@@ -14272,10 +14272,10 @@ BEGIN Extensions
                         ShowOrbitMarker      On
                         ShowElsetNum         Off
                         ShowSpecialSwath     On
-                        MarkerColor          #00ff00
-                        GroundTrackColor     #00ff00
-                        SwathColor           #00ff00
-                        LabelColor           #00ff00
+                        MarkerColor          #ff0000
+                        GroundTrackColor     #ff0000
+                        SwathColor           #ff0000
+                        LabelColor           #ff0000
                         LineStyle            0
                         LineWidth            1.000000
                         MarkerStyle          4
@@ -14297,10 +14297,10 @@ BEGIN Extensions
                         ShowOrbitMarker      On
                         ShowElsetNum         Off
                         ShowSpecialSwath     On
-                        MarkerColor          #00ff00
-                        GroundTrackColor     #00ff00
-                        SwathColor           #00ff00
-                        LabelColor           #00ff00
+                        MarkerColor          #ff0000
+                        GroundTrackColor     #ff0000
+                        SwathColor           #ff0000
+                        LabelColor           #ff0000
                         LineStyle            0
                         LineWidth            1.000000
                         MarkerStyle          4
@@ -14611,9 +14611,6 @@ BEGIN Extensions
             Begin GroundTracks
                 Begin GroundTrack
                     CentralBody  Earth
-                End GroundTrack
-                Begin GroundTrack
-                    CentralBody  Sun
                 End GroundTrack
             End GroundTracks
         BEGIN EllipseSetGxData
@@ -15066,6 +15063,10 @@ BEGIN Extensions
     END ObjectCoverage
     
     BEGIN Desc
+        ShortText    0
+
+        LongText    0
+
     END Desc
     
     BEGIN Contours

@@ -32,6 +32,49 @@ BEGIN Access
 END Access
 
 BEGIN Access 
+        Scenario/JupiterProject/Facility/DSS_43_Tidbinbilla_STDN_DS43
+        Scenario/JupiterProject/Satellite/Zeus
+
+    IsComputed               Yes
+    UpdateOnReference        Yes
+    DupIsDifferent           Yes
+    UIOrderReversed          No
+    UITimePeriod             Custom
+    CustomTimeInterval
+		BEGIN	EVENTINTERVAL
+				BEGIN Interval
+					Start	14 Feb 2026 08:59:59.995999992
+					Stop	14 Feb 2026 11:59:59.995999992
+				END Interval
+				IntervalState	Explicit
+		END	EVENTINTERVAL
+
+    UseLightTimeDelay        Yes
+    ClockHost                Base
+    TimeSense                Transmit
+    AberrationType           Annual
+    TimeDelayConvergence     5.000000e-005
+    MaxTimeStep              3.600000e+002
+    MinTimeStep              1.000000e-002
+    TimeConvergence          5.000000e-003
+    AbsValueConvergence      1.000000e-014
+    RelValueConvergence      1.000000e-008
+    DetectEventsUsingSamplesOnly No
+	BEGINUserList 
+        188384399.996000 188395199.996000
+	ENDUserList 
+    Show                     No
+    Inherit                  No
+    ShowIV                   Yes
+    ShowLineGfx              Yes
+    ShowHiliteGfx            Yes
+    LineWidth                1.000000e+000
+    BEGIN  Crdn
+    END  Crdn
+
+END Access
+
+BEGIN Access 
         Scenario/JupiterProject/Facility/DSS_14_Goldstone_STDN_DS14
         Scenario/JupiterProject/Satellite/Zeus
 
@@ -108,49 +151,6 @@ BEGIN Access
 	ENDUserList 
     Show                     Yes
     Inherit                  Yes
-    ShowIV                   Yes
-    ShowLineGfx              Yes
-    ShowHiliteGfx            Yes
-    LineWidth                1.000000e+000
-    BEGIN  Crdn
-    END  Crdn
-
-END Access
-
-BEGIN Access 
-        Scenario/JupiterProject/Facility/DSS_43_Tidbinbilla_STDN_DS43
-        Scenario/JupiterProject/Satellite/Zeus
-
-    IsComputed               Yes
-    UpdateOnReference        Yes
-    DupIsDifferent           Yes
-    UIOrderReversed          No
-    UITimePeriod             Custom
-    CustomTimeInterval
-		BEGIN	EVENTINTERVAL
-				BEGIN Interval
-					Start	14 Feb 2026 08:59:59.995999992
-					Stop	14 Feb 2026 11:59:59.995999992
-				END Interval
-				IntervalState	Explicit
-		END	EVENTINTERVAL
-
-    UseLightTimeDelay        Yes
-    ClockHost                Base
-    TimeSense                Transmit
-    AberrationType           Annual
-    TimeDelayConvergence     5.000000e-005
-    MaxTimeStep              3.600000e+002
-    MinTimeStep              1.000000e-002
-    TimeConvergence          5.000000e-003
-    AbsValueConvergence      1.000000e-014
-    RelValueConvergence      1.000000e-008
-    DetectEventsUsingSamplesOnly No
-	BEGINUserList 
-        188384399.996000 188395199.996000
-	ENDUserList 
-    Show                     No
-    Inherit                  No
     ShowIV                   Yes
     ShowLineGfx              Yes
     ShowHiliteGfx            Yes

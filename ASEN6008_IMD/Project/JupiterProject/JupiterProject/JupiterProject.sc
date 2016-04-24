@@ -23,12 +23,12 @@ END Epoch
 BEGIN Interval
 
 Start                   26 Feb 2020 00:00:00.000000000
-Stop                    30 Jun 2026 23:00:00.000000000
+Stop                    30 Aug 2026 23:00:00.000000000
     SmartInterval
 	BEGIN	EVENTINTERVAL
 			BEGIN Interval
 				Start	26 Feb 2020 00:00:00.000000000
-				Stop	30 Jun 2026 23:00:00.000000000
+				Stop	30 Aug 2026 23:00:00.000000000
 			END Interval
 			IntervalState	Explicit
 	END	EVENTINTERVAL
@@ -104,10 +104,10 @@ BEGIN Extensions
 BEGIN Animation
 
     StartTime          26 Feb 2020 00:00:00.000000000
-    EndTime            30 Jun 2026 23:00:00.000000000
-    CurrentTime        14 Feb 2026 03:59:59.995999992
+    EndTime            30 Aug 2026 23:00:00.000000000
+    CurrentTime        4 Jul 2026 17:55:49.622000009
     Direction          Forward
-    UpdateDelta        600.000000
+    UpdateDelta        1800.000000
     RefreshDelta       0.010000
     XRealTimeMult      1.000000
     RealTimeOffset     0.000000
@@ -188,9 +188,9 @@ BEGIN MapData
         BEGIN MapAttributes
             PrimaryBody          Sun
             SecondaryBody        Earth
-            CenterLatitude       80.229588
-            CenterLongitude      162.815388
-            ProjectionAltitude   63621860.000162
+            CenterLatitude       42.939381
+            CenterLongitude      71.750865
+            ProjectionAltitude   63621860.000174
             FieldOfView          35.000000
             OrthoDisplayDistance 1600000000000.000000
             TransformTrajectory  On
@@ -212,7 +212,7 @@ BEGIN MapData
             ShowImageNames       Off
             ImageNameFont        0
             Projection           Orthographic
-            Resolution           VeryLow
+            Resolution           None
             CoordinateSys        ECI
             UseBackgroundImage   On
             UseBingForBackground Off
@@ -225,10 +225,10 @@ BEGIN MapData
             UseCloudsFile        Off
             BEGIN ZoomLocations
                 BEGIN ZoomLocation
-                    CenterLat    80.229588
-                    CenterLon    162.815388
-                    ZoomWidth    154.924790
-                    ZoomHeight   95.659380
+                    CenterLat    42.939381
+                    CenterLon    71.750865
+                    ZoomWidth    262.440000
+                    ZoomHeight   122.956318
                 End ZoomLocation
             END ZoomLocations
             UseVarAspectRatio    No
@@ -373,8 +373,8 @@ BEGIN MapData
         BEGIN MapAttributes
             PrimaryBody          Earth
             SecondaryBody        Sun
-            CenterLatitude       0.000000
-            CenterLongitude      0.000005
+            CenterLatitude       -0.284810
+            CenterLongitude      0.253884
             ProjectionAltitude   63621860.000000
             FieldOfView          35.000000
             OrthoDisplayDistance 20000000.000000
@@ -410,8 +410,8 @@ BEGIN MapData
             UseCloudsFile        Off
             BEGIN ZoomLocations
                 BEGIN ZoomLocation
-                    CenterLat    0.000000
-                    CenterLon    0.000005
+                    CenterLat    -0.284810
+                    CenterLon    0.253884
                     ZoomWidth    360.000000
                     ZoomHeight   180.000000
                 End ZoomLocation
@@ -1196,16 +1196,21 @@ END MapData
     
     BEGIN ReportFavorites
         BEGIN Class
-            Name  Access
+            Name  Satellite
             BEGIN Favorite
                 Type    Report
                 BaseDir Install
-                Style   Access Intervals by Time
+                Style   LLA Position
+            END Favorite
+            BEGIN Favorite
+                Type    Report
+                BaseDir Install
+                Style   Lifetime
             END Favorite
             BEGIN Favorite
                 Type    Graph
                 BaseDir Install
-                Style   Access
+                Style   Inertial Position Velocity
             END Favorite
         END Class
         BEGIN Class
@@ -1213,21 +1218,6 @@ END MapData
             BEGIN Favorite
                 Type    Report
                 BaseDir Install
-                Style   J2000 Position Velocity
-            END Favorite
-            BEGIN Favorite
-                Type    Report
-                BaseDir Install
-                Style   Apparent Helio Position Velocity
-            END Favorite
-            BEGIN Favorite
-                Type    Report
-                BaseDir Install
-                Style   Apparent LLA Position
-            END Favorite
-            BEGIN Favorite
-                Type    Report
-                BaseDir User
                 Style   Helio Position Velocity
             END Favorite
             BEGIN Favorite
@@ -1237,26 +1227,36 @@ END MapData
             END Favorite
             BEGIN Favorite
                 Type    Report
-                BaseDir Install
+                BaseDir User
                 Style   Helio Position Velocity
+            END Favorite
+            BEGIN Favorite
+                Type    Report
+                BaseDir Install
+                Style   Apparent LLA Position
+            END Favorite
+            BEGIN Favorite
+                Type    Report
+                BaseDir Install
+                Style   Apparent Helio Position Velocity
+            END Favorite
+            BEGIN Favorite
+                Type    Report
+                BaseDir Install
+                Style   J2000 Position Velocity
             END Favorite
         END Class
         BEGIN Class
-            Name  Satellite
+            Name  Access
             BEGIN Favorite
                 Type    Graph
                 BaseDir Install
-                Style   Inertial Position Velocity
+                Style   Access
             END Favorite
             BEGIN Favorite
                 Type    Report
                 BaseDir Install
-                Style   Lifetime
-            END Favorite
-            BEGIN Favorite
-                Type    Report
-                BaseDir Install
-                Style   LLA Position
+                Style   Access Intervals by Time
             END Favorite
         END Class
     END ReportFavorites
@@ -1472,6 +1472,10 @@ END MapData
     END ExportDataFile
     
     BEGIN Desc
+        ShortText    0
+
+        LongText    0
+
     END Desc
     
     BEGIN RfEnv

@@ -194,7 +194,7 @@ Launch                                                                   & \begi
 \begin{tabular}[c]{@{}c@{}}Resonant Orbit\end{tabular} &  -- & -- & \begin{tabular}[c]{@{}l@{}}Resonance: 2:1 \\$\varphi$: 130.06$^\circ$ \\ V$_\infty$: 9.45 km/s\\$\Delta$V$_\infty$: 2.7298e-4 km/s\end{tabular}                           \\ \hline
 \begin{tabular}[c]{@{}c@{}}Earth Gravity Assist 1 \\ (EGA1)\end{tabular} & \begin{tabular}[c]{@{}c@{}}12 July 2021 \\ 12:00:00\end{tabular}      &           2459408           & \begin{tabular}[c]{@{}l@{}}r$_\mathrm{p}$: 6745.2 km\\ B$_\mathrm{T}$: -7069.2 km\\ B$_\mathrm{R}$: -7474.7 km\\ Turning Angle: 47.00$^\circ$ \end{tabular}                           \\ \hline
 \begin{tabular}[c]{@{}c@{}}Earth Gravity Assist 2 \\ (EGA2)\end{tabular} & \begin{tabular}[c]{@{}c@{}}12 July 2023 \\ 12:00:00\end{tabular}      &         2460138             & \begin{tabular}[c]{@{}l@{}}r$_\mathrm{p}$: 7079.5 km\\ B$_\mathrm{T}$:-10549 km\\ B$_\mathrm{R}$: 1472.1 km\\ Turning Angle: 45.56$^\circ$ \end{tabular}                           \\ \hline
-\begin{tabular}[c]{@{}c@{}}Jupiter Orbit Insertion \\ (JOI)\end{tabular} & \begin{tabular}[c]{@{}c@{}}14 February 2026 \\ 12:00:00\end{tabular}  &                     2461086 & \begin{tabular}[c]{@{}l@{}}V$_\infty$: 5.5868 km/s\\ $\Delta$V:\\ Inclination:\\ r$_\mathrm{p}$:\end{tabular}             \\ \hline
+\begin{tabular}[c]{@{}c@{}}Jupiter Orbit Insertion \\ (JOI)\end{tabular} & \begin{tabular}[c]{@{}c@{}}14 February 2026 \\ 12:00:00\end{tabular}  &                     2461086 & \begin{tabular}[c]{@{}l@{}}V$_\infty$: 5.5868 km/s\\ $\Delta$V: 1.5336 km/s\\$\left |{\vec{B}}  \right |$: 3.1108e6 km\\ Inclination: 0$^\circ$\\ r$_\mathrm{p}$: 1.0711e6 km\\ r$_\mathrm{a}$: 1.4707e7 km\\ Period: 143.1 days\end{tabular}             \\ \hline
 \end{tabular}
 \end{table}
 
@@ -214,6 +214,10 @@ The range of $\varphi$ that prevents planetary impact for both gravity assists i
 	
 	\vspace{5 mm}
 
+Jupiter's moons can provide both scientific targets and gravity assists. Ganymede, being the most massive body, has been identified as the most useful Jovian moon for changing the spacecraft period\cite{Damario}. This moon is outside the worst of Jupiter's radiation, making its orbit safe for spacecraft perijove. Ganymede's orbital radius is 1.0711e6 km in radius from Jupiter with an eccentricity of 0.001\cite{Damario}. Choosing a 20:1 resonant initial orbit with Ganymede gave the spacecraft an apojove of 1.4707e7 km and period of 143.1 days, requiring a JOI $\Delta$V of 1.5336 km/s. Larger initial orbits substantially increased the period while encountering diminishing returns with the JOI $\Delta$V. This initial orbit could allow for a varietry of moon tours that would lower apojove and allow easier capture around one of the moons. In addition, the outer Galilean moons could reduce the JOI burn required. For this trajectory, Ganamede could provide a turning angle of up to 11$^\circ$. To find the magnitude of $\vec{B}$, one merely computes the hyperbola equation $b=a\sqrt{e^2-1}$ to find that $\left |{\vec{B}}  \right |$= 3.1108e6 km.
+	
+	\vspace{5 mm}
+
 A Hohmann transfer from Earth to Jupiter was constructed using semimajor axes of the planets given by Vallado\cite{Vallado} and assuming circular planetary orbits. It is shown alongside the trajectory requirements and the actual performance in Table \ref{TrajReqs} below. 
 \begin{table}[H]
 \centering
@@ -229,9 +233,72 @@ Arrival V$_\infty$ (km/s)       & \textless6           & 5.59       & 5.64     \
 Total $\Delta$V$_\infty$ (km/s)         & \textless0.3           & 2.65e-4    & N/A     \\ \hline
 \end{tabular}
 \end{table}
-The Hohmann transfer to Jupiter looked attractive due to the shorter time of flight, but the C$_3$ is prohibitively large. In fact, it's off the chart given by Vallado\cite{Vallado}. The proposed trajectory is most easily compared to the Galileo mission. Galileo was flown to study Jupiter and its moons; one could surmise that the mass of the spacecraft would be comparable. Like the proposed trajectory, Galileo took advantage of a VEEGA. Galileo's time of flight was just over six years. It also had a maximum C$_3$ of 17 $\mathrm{km^2/s^2}$\cite{Damario}. With a V$_\infty$ error orders of magnitude less than the maximum allowable, this trajectory was determined to be feasible.
+The Hohmann transfer to Jupiter looked attractive due to the shorter time of flight, but the C$_3$ is prohibitively large. In fact, it's off the chart given by Vallado\cite{Vallado}. The proposed trajectory is most easily compared to the Galileo mission. Galileo was flown to study Jupiter and its moons; one could surmise that the mass of the spacecraft would be comparable. Like the proposed trajectory, Galileo took advantage of a VEEGA. Galileo's time of flight was just over six years. It also had a maximum C$_3$ of 17 $\mathrm{km^2/s^2}$\cite{Damario}. With a V$_\infty$ error orders of magnitude less than the maximum allowable, this trajectory was determined to be feasible. The primary difference between this trajectory and Galileo's was its JOI $\Delta$V of 0.630 km/s.  Galileo flew by Europa and Io to reduce its jovecentric velocity. As previously  discussed, moon flybys could reducd the JOI $\Delta$V required by this trajectory.
 
 	\section{STK Simulation}
+The previously documented trajectory was visualized in STK 10. STK allows for simulations of spacecraft and ground facilities to give mission planners much of what they need to detail the spacecraft operations. It computes access between spacecraft and facilities. With the Astrogator package, STK assists in targeting interplanetary trajectories. It can take a savvy mission designer to know the best ways to target a trajectory, but the visualization and reports make communication to spacecraft designers easy. However, STK lacks the ability to search for trajectories given the requirements for this project. Therefore, one must create a trajectory in a similar fashion as described above. STK does allow for custom plugins, which could allow the STK application to be more capable. 
+	
+	\vspace{5 mm}
+
+Planetery ephemerides were from DE421. Launch was originally targeted at Cape Canaveral, but there was diffuculty in targeting the desired launch declination. Baikonur was the second choice, but the launch intersected Earth on its way out. Tanegashima successfully launched the spacecraft. Tanegashima is 2$^\circ$ above Cape Canaveral, so they are relatively similar for launch purposes.  Tanegashima can host interplanetary-bound spacecraft, but assuming Zeus is an American mission, there are regulatory constraints to launch from there.
+	
+	\vspace{5 mm}
+
+TCMs were targeted 10 days after each planetary flyby. This time period was found to be far enough from the previous planetary encounter that third-body effects would be small in the overall propagation. Being quite early in the segment, TCM $\Delta$V was kept low. The TCMs are outlined in Table \ref{TCMTable} below.
+
+\begin{table}[H]
+\centering
+\caption{STK Trajectory Correction Maneuvers}
+\label{TCMTable}
+\begin{tabular}{|c|c|c|c|}
+\hline
+\rowcolor[HTML]{C0C0C0} 
+\textbf{Maneuver} & \textbf{Calendar Date}                                                   & \textbf{Julian Date} & \textbf{$\Delta$V (km/s)} \\ \hline
+TCM1              & \begin{tabular}[c]{@{}c@{}}6 Mar 2020 \\ 15:18:46.684 UTCG\end{tabular}  & 2458915.13804032     & 0.1042                 \\ \hline
+TCM2              & \begin{tabular}[c]{@{}c@{}}25 Sep 2020 \\ 11:59:59.979 UTCG\end{tabular} & 2459117.99999976     & 0.1309                 \\ \hline
+TCM3              & \begin{tabular}[c]{@{}c@{}}22 Jul 2021 \\ 12:00:00.012 UTCG\end{tabular} & 2459418.00000013     & 0.3551                 \\ \hline
+TCM4              & \begin{tabular}[c]{@{}c@{}}22 Jul 2023 \\ 12:00:00.000 UTCG\end{tabular} & 2460148              & 1.0372                 \\ \hline
+\end{tabular}
+\end{table}
+
+The TCMs start small, but TCM4 ends up being quite large. This is due in part to the ephemerides being used in the Lambert solution (Meeus) versus in STK (DE421). The initial TCMs have smaller adjustments to make due to the time and distance scales being small. TCM4 corrects a segment that goes much farther and takes more time, enhancing the error between the ephemerides. The Lambert solution assumed simple two-body motion, whereas STK's heliocentric propagator includes the gravity effects from all the planets. The TCMs could be smaller if the Lambert solver and STK ephemerides were the same. In addition, a smaller-granularity Lambert solution window for all planetary encounters could allow for better planetary targeting.
+	
+	\vspace{5 mm}
+
+The trajectory has been visualized in Figures \ref{fig:InnerTrajectory} and \ref{fig:OuterTrajectory} below.
+	\begin{figure}[H]
+		\centering
+		\subfigure[Above Ecliptic]{
+			\includegraphics[width = 8cm]{../Figures/InnerTrajAbove.png}
+		}
+		\subfigure[Side view]{
+			\includegraphics[width = 8cm]{../Figures/InnerTrajSunEquatorial.png}
+		}
+		\caption{Inner Trajectory. }
+		\label{fig:InnerTrajectory}
+	\end{figure}	
+	\begin{figure}[H]
+		\centering
+		\subfigure[Above Ecliptic]{
+			\includegraphics[width = 8cm]{../Figures/OuterTrajAbove.png}
+		}
+		\subfigure[Side view]{
+			\includegraphics[width = 8cm]{../Figures/OuterTrajSunEquatorial.png}
+		}
+		\caption{Outer Trajectory. }
+		\label{fig:OuterTrajectory}
+	\end{figure}	
+
+The STK-visualized trajectory looks as expected. There is a Type II trajectory from Earth to Venus, Type II from Venus to Earth, a resonant orbit that goes beyond Earth's, and a Type I trajectory to Jupiter. The trajectory from Earth to Jupiter almost looks like a Hohmann transfer, but with a significantly less launch C$_3$. The JOI and initial Jupiter orbit can be seen in Figure \ref{fig:JOI} below.
+
+	\begin{figure}[H]
+		\centering
+			\includegraphics[width = 18cm]{../Figures/JOI_Initial_orb.png}
+		\caption{JOI and initial orbit. }
+		\label{fig:JOI}
+	\end{figure}	
+
+The B-plane target was chosen to be the $\left |{\vec{B}}  \right |$ found in the trajectory design, applied entirely in $+\hat{T}$. This resulted in a small inclination (2$^\circ$) and a period of 142.33 days. The orbit intersects with Ganymede, which will allow for apojove-lowering maneuvers.
 
 	\section{Earth Access}
 
