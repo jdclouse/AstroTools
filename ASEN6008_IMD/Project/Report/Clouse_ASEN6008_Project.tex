@@ -298,26 +298,111 @@ The STK-visualized trajectory looks as expected. There is a Type II trajectory f
 		\label{fig:JOI}
 	\end{figure}	
 
-The B-plane target was chosen to be the $\left |{\vec{B}}  \right |$ found in the trajectory design, applied entirely in $+\hat{T}$. This resulted in a small inclination (2$^\circ$) and a period of 142.33 days. The orbit intersects with Ganymede, which will allow for apojove-lowering maneuvers.
+The B-plane target was chosen to be the $\left |{\vec{B}}  \right |$ found in the trajectory design, applied entirely in $+\hat{T}$. A positive value of $\hat{T}$ was necessary for prograde motion around Jupiter, since its tilt with respect to the ecliptic plane is small. This resulted in a small inclination (2$^\circ$) and a period of 142.33 days. The orbit intersects with Ganymede, which will allow for apojove-lowering maneuvers.
 
 	\section{Earth Access}
 
-	\section{Europa Injection}
+Earthly access to a spacecraft is an important aspect of the mission. Software can be uploaded, commands sent, telemetry recieved, and emergencies abated as long as a ground station and the spacecraft have an onobstructed view of one another. It is desirable to see the spacecraft during maneuvers for navigation purposes so that the resulting state can be reconstructed. Figure \ref{fig:week1AccessGT} shows the ground track during the first week of the mission, along with the Deep Space Network (DSN) ground stations.
+	\begin{figure}[H]
+		\centering
+			\includegraphics[width = 12cm]{../Figures/Week1GroundTrack.png}
+		\caption{Week 1 ground track. }
+		\label{fig:week1AccessGT}
+	\end{figure}	
 
-	\section{System Model}
+The spacecraft is visible from the Madrid facility during launch injection, ascertained by the white access line on the ground track. As the craft leaves the earth, it has retrograde motion on the ground track. The first week of DSN access can be seen in Figure \ref{fig:week1Access}.
+	\begin{figure}[H]
+		\centering
+			\includegraphics[width = 18cm]{../Figures/Week1Access.png}
+		\caption{Week 1 DSN access. }
+		\label{fig:week1Access}
+	\end{figure}	
 
-	The equations of motion were linearized about the state $\alpha = \dot{\alpha} = \delta = \dot{\delta} =0$. Such a state was chosen because it is in equilibrium, due to the force resulting from the solar radiation pressure acting through the sailcraft's center of mass. They system is also stable about this point, as any disturbance to $\alpha$ would cause oscillation about $\alpha=0$ for a locked gimbal. The linearized equations are shown below\cite{WieSolarSail2}:
+ The spacecraft is visible to the DSN with at least one station for the rest of the week. Sometimes there is double-coverage available by the facilities.
 
-\begin{equation} \label{eq:1}
-[J_s+(m_sm_p/m)b(b+l)]\ddot{\alpha}+(m_sm_p/m)bl\ddot{\delta}=-(m_p/m)bF_t-T_g+T_{ext}
-\end{equation}
-\begin{equation} \label{eq:2}
-[J_p+(m_sm_p/m)l(b+l)]\ddot{\alpha}+[J_p+(m_sm_p/m)l^2]\ddot{\delta}=-(m_p/m)lF_t+(m_p/m)lF_n\delta+T_g
-\end{equation}
-	
 	\vspace{5 mm}
 
+The Venus gravity assist DSN access is visualized in Figure \ref{fig:VGA_Access}.
+	\begin{figure}[H]
+		\centering
+		\subfigure[VGA as seen from Earth]{
+			\includegraphics[width = 10cm]{../Figures/VGA_From_Earth.png}
+		}
+		\subfigure[VGA DSN access]{
+			\includegraphics[width = 17cm]{../Figures/VGA_Access.png}
+		}
+		\caption{VGA visibility to the DSN. }
+		\label{fig:VGA_Access}
+	\end{figure}	
 
+The VGA is most visible from Madrid. One could note that even if Venus obstructed the spacecraft view during closes approach, the spacecraft would be visible quite soon after. In fact, the access scenario is worst-case when the sun is in conjunction with the maneuver. A mission planner should take this into account when designing gravity assists, as there could be adverse impacts on the navigation solution if the maneuver wasn't executed as planned.
+
+	\vspace{5 mm}
+
+The first Earth gravity assist's DSN access is visualized in Figure \ref{fig:EGA1_Access}.
+	\begin{figure}[H]
+		\centering
+		\subfigure[EGA1 closest approach]{
+			\includegraphics[width = 10cm]{../Figures/EGA1_3d.png}
+		}
+		\subfigure[EGA1 DSN access]{
+			\includegraphics[width = 17cm]{../Figures/EGA1_Access.png}
+		}
+		\caption{EGA1 visibility to the DSN. }
+		\label{fig:EGA1_Access}
+	\end{figure}	
+EGA1 is not visible at the closest approach. However, there are long access periods immediately before and after the maneuver. 
+
+	\vspace{5 mm}
+
+The second Earth gravity assist's DSN access is visualized in Figure \ref{fig:EGA2_Access}.
+	\begin{figure}[H]
+		\centering
+		\subfigure[EGA2 closest approach]{
+			\includegraphics[width = 10cm]{../Figures/EGA2_3d.png}
+		}
+		\subfigure[EGA2 DSN access]{
+			\includegraphics[width = 17cm]{../Figures/EGA2_Access.png}
+		}
+		\caption{EGA2 visibility to the DSN. }
+		\label{fig:EGA2_Access}
+	\end{figure}	
+
+Again, the Earth gravity assist is not visible to the DSN at the closest approach. From the trajectory figures, one can see that unless the closest path is either above low Earth orbit or it passes directly over a DSN station, it will probably not be visible to the DSN. There are also other factors to consider with DSN access during Earth flybys. The first is that the groundstation antenna in use can move fast enough to maintain contact. In this case, an omnidirectional antenna may be better than the large, high-gain antennas the DSN is famous for. Secondly, the flyby occurs quickly. This means that a body-fixed antenna would need a large attitude maneuver, or a phased array would need to move fast enough to support the access. This is an example of how mission design trickles down into spacecraft subsystem requirements.
+
+	\vspace{5 mm}
+
+Jupiter orbit insertion access is shown in Figure \ref{fig:JOI_Access}.
+	\begin{figure}[H]
+		\centering
+		\subfigure[EGA2 closest approach]{
+			\includegraphics[width = 10cm]{../Figures/JOI_From_Earth.png}
+		}
+		\subfigure[EGA2 DSN access]{
+			\includegraphics[width = 17cm]{../Figures/JOI_Access.png}
+		}
+		\caption{JOI visibility to the DSN. }
+		\label{fig:JOI_Access}
+	\end{figure}	
+The DSN covers the JOI easily, since the DSN geometry can see spacecraft at all longitudes beyond geostationary orbit. The ground track up to and including the JOI is shown in Figure \ref{fig:JOIGroundTrack}.
+	\begin{figure}[H]
+		\centering
+			\includegraphics[width = 16cm]{../Figures/JOI_GroundTrack.png}
+		\caption{JOI Ground Track. }
+		\label{fig:JOIGroundTrack}
+	\end{figure}	
+
+DSN access can be seen with the lines connecting the ground station to the spacecraft. If one desired Goldstone-Madrid coverage instead of Goldstone-Canberra coverage, they could move the targeted JOI encounter. For this study, the JOI was moved to 14 Feb 2026 03:00:00 UTCG. The resulting ground track is shown in Figure \ref{fig:newJOI_GroundTrack}.
+	\begin{figure}[H]
+		\centering
+			\includegraphics[width = 16cm]{../Figures/newJOI_GroundTrack.png}
+		\caption{JOI Ground Track, Goldstone-Madrid coverage. }
+		\label{fig:newJOI_GroundTrack}
+	\end{figure}	
+
+DSN access to the JOI is easy to maintain due to the geometry of the transfer. The spacecraft has a smaller heliocentric velocity than Jupiter at the end of the transfer, requiring the spacecraft to lead the planet. The large $+\hat{T}$ target on the B-plane, which is required for prograde motion about Jupiter, points toward the inner solar system. This means that Jupiter will be in opposition, rather than in conjunction, of the spacecraft, making it visible to the DSN all the way up to JOI.  B-plane targets closer to Jupiter could shift JOI out of view, however. This is due to the greater turning angle of the spacecraft as the perijove decreases.
+
+	\section{Europa Injection}
 
 	\section{Conclusion}
 

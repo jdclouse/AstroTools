@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.4.5)  23 APR 2016 21:21
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.4.5)  23 APR 2016 22:40
 entering extended mode
 **C:/Users/John/Documents/Astro/ASEN6008_IMD/Project/Report/Clouse_ASEN6008_Pro
 ject.tex
@@ -537,7 +537,14 @@ ect.out)
 (C:\Users\John\Documents\Astro\ASEN6008_IMD\Project\Report\Clouse_ASEN6008_Proj
 ect.toc)
 \tf@toc=\write4
- [2] <../PCP/VEEJ/1_Launch_VGA.png, id=61, 843.15pt x 632.3625pt>
+ [2]
+
+LaTeX Warning: Reference `eq:1' on page 3 undefined on input line 148.
+
+
+LaTeX Warning: Reference `eq:2' on page 3 undefined on input line 148.
+
+<../PCP/VEEJ/1_Launch_VGA.png, id=54, 843.15pt x 632.3625pt>
 File: ../PCP/VEEJ/1_Launch_VGA.png Graphic file (type png)
 
 <use ../PCP/VEEJ/1_Launch_VGA.png>
@@ -548,7 +555,7 @@ Overfull \hbox (42.40434pt too wide) in paragraph at lines 157--158
  [][] 
  []
 
-[3] <../PCP/VEEJ/2_VGA_EGA1.png, id=74, 843.15pt x 632.3625pt>
+[3] <../PCP/VEEJ/2_VGA_EGA1.png, id=66, 843.15pt x 632.3625pt>
 File: ../PCP/VEEJ/2_VGA_EGA1.png Graphic file (type png)
 
 <use ../PCP/VEEJ/2_VGA_EGA1.png>
@@ -560,7 +567,7 @@ Overfull \hbox (42.40434pt too wide) in paragraph at lines 164--165
  []
 
 [4 <C:/Users/John/Documents/Astro/ASEN6008_IMD/Project/PCP/VEEJ/1_Launch_VGA.pn
-g (PNG copy)>] <../PCP/VEEJ/3_EGA2_JOI.png, id=82, 843.15pt x 632.3625pt>
+g (PNG copy)>] <../PCP/VEEJ/3_EGA2_JOI.png, id=74, 843.15pt x 632.3625pt>
 File: ../PCP/VEEJ/3_EGA2_JOI.png Graphic file (type png)
 
 <use ../PCP/VEEJ/3_EGA2_JOI.png>
@@ -574,7 +581,7 @@ Overfull \hbox (42.40434pt too wide) in paragraph at lines 171--172
 [5 <C:/Users/John/Documents/Astro/ASEN6008_IMD/Project/PCP/VEEJ/2_VGA_EGA1.png 
 (PNG copy)>] [6 <C:/Users/John/Documents/Astro/ASEN6008_IMD/Project/PCP/VEEJ/3_
 EGA2_JOI.png (PNG copy)>]
-<../PCP/VEEJ/PhiVsRp.png, id=99, 843.15pt x 632.3625pt>
+<../PCP/VEEJ/PhiVsRp.png, id=91, 843.15pt x 632.3625pt>
 File: ../PCP/VEEJ/PhiVsRp.png Graphic file (type png)
 
 <use ../PCP/VEEJ/PhiVsRp.png>
@@ -595,14 +602,14 @@ LaTeX Font Info:    Font shape `OML/cmr/m/n' in size <10> not available
 (Font)              Font shape `OML/cmm/m/it' tried instead on input line 230.
  [8 <C:/Users/John/Documents/Astro/ASEN6008_IMD/Project/PCP/VEEJ/PhiVsRp.png (P
 NG copy)>] [9]
-<../Figures/InnerTrajAbove.png, id=132, 411.78844pt x 396.7322pt>
+<../Figures/InnerTrajAbove.png, id=123, 411.78844pt x 396.7322pt>
 File: ../Figures/InnerTrajAbove.png Graphic file (type png)
 
 <use ../Figures/InnerTrajAbove.png>
 Package pdftex.def Info: ../Figures/InnerTrajAbove.png used on input line 273.
 (pdftex.def)             Requested size: 227.62161pt x 219.29909pt.
 
-<../Figures/InnerTrajSunEquatorial.png, id=134, 842.39719pt x 165.61874pt>
+<../Figures/InnerTrajSunEquatorial.png, id=125, 842.39719pt x 165.61874pt>
 File: ../Figures/InnerTrajSunEquatorial.png Graphic file (type png)
 
 <use ../Figures/InnerTrajSunEquatorial.png>
@@ -610,14 +617,14 @@ Package pdftex.def Info: ../Figures/InnerTrajSunEquatorial.png used on input li
 ne 276.
 (pdftex.def)             Requested size: 227.61737pt x 44.7505pt.
 
-<../Figures/OuterTrajAbove.png, id=135, 560.0925pt x 507.39563pt>
+<../Figures/OuterTrajAbove.png, id=126, 560.0925pt x 507.39563pt>
 File: ../Figures/OuterTrajAbove.png Graphic file (type png)
 
 <use ../Figures/OuterTrajAbove.png>
 Package pdftex.def Info: ../Figures/OuterTrajAbove.png used on input line 284.
 (pdftex.def)             Requested size: 227.62248pt x 206.20639pt.
 
-<../Figures/OuterTrajSunEquatorial.png, id=136, 1041.1397pt x 150.5625pt>
+<../Figures/OuterTrajSunEquatorial.png, id=127, 1041.1397pt x 150.5625pt>
 File: ../Figures/OuterTrajSunEquatorial.png Graphic file (type png)
 
 <use ../Figures/OuterTrajSunEquatorial.png>
@@ -627,7 +634,7 @@ ne 287.
  [10 <C:/Users/John/Documents/Astro/ASEN6008_IMD/Project/Figures/InnerTrajAbove
 .png> <C:/Users/John/Documents/Astro/ASEN6008_IMD/Project/Figures/InnerTrajSunE
 quatorial.png>]
-<../Figures/JOI_Initial_orb.png, id=149, 628.59843pt x 473.51906pt>
+<../Figures/JOI_Initial_orb.png, id=140, 628.59843pt x 473.51906pt>
 File: ../Figures/JOI_Initial_orb.png Graphic file (type png)
 
 <use ../Figures/JOI_Initial_orb.png>
@@ -641,51 +648,173 @@ Overfull \hbox (42.41869pt too wide) in paragraph at lines 296--297
 
 [11 <C:/Users/John/Documents/Astro/ASEN6008_IMD/Project/Figures/OuterTrajAbove.
 png> <C:/Users/John/Documents/Astro/ASEN6008_IMD/Project/Figures/OuterTrajSunEq
-uatorial.png>] [12 <C:/Users/John/Documents/Astro/ASEN6008_IMD/Project/Figures/
-JOI_Initial_orb.png>]
+uatorial.png>]
+<../Figures/Week1GroundTrack.png, id=152, 1081.79156pt x 508.90125pt>
+File: ../Figures/Week1GroundTrack.png Graphic file (type png)
+
+<use ../Figures/Week1GroundTrack.png>
+Package pdftex.def Info: ../Figures/Week1GroundTrack.png used on input line 308
+.
+(pdftex.def)             Requested size: 341.42642pt x 160.61534pt.
+ [12 <C:/Users/John/Documents/Astro/ASEN6008_IMD/Project/Figures/JOI_Initial_or
+b.png>]
+<../Figures/Week1Access.png, id=161, 879.285pt x 221.32687pt>
+File: ../Figures/Week1Access.png Graphic file (type png)
+
+<use ../Figures/Week1Access.png>
+Package pdftex.def Info: ../Figures/Week1Access.png used on input line 316.
+(pdftex.def)             Requested size: 512.15918pt x 128.91676pt.
+
+Overfull \hbox (42.40416pt too wide) in paragraph at lines 316--317
+ [][] 
+ []
+
+<../Figures/VGA_From_Earth.png, id=163, 488.57532pt x 420.82219pt>
+File: ../Figures/VGA_From_Earth.png Graphic file (type png)
+
+<use ../Figures/VGA_From_Earth.png>
+Package pdftex.def Info: ../Figures/VGA_From_Earth.png used on input line 330.
+(pdftex.def)             Requested size: 284.52942pt x 245.07233pt.
+
+<../Figures/VGA_Access.png, id=164, 886.06032pt x 219.06844pt>
+File: ../Figures/VGA_Access.png Graphic file (type png)
+
+<use ../Figures/VGA_Access.png>
+Package pdftex.def Info: ../Figures/VGA_Access.png used on input line 333.
+(pdftex.def)             Requested size: 483.71129pt x 119.59215pt.
+
+Overfull \hbox (20.62292pt too wide) in paragraph at lines 330--334
+ [][] 
+ []
+
+[13 <C:/Users/John/Documents/Astro/ASEN6008_IMD/Project/Figures/Week1GroundTrac
+k.png> <C:/Users/John/Documents/Astro/ASEN6008_IMD/Project/Figures/Week1Access.
+png>] <../Figures/EGA1_3d.png, id=176, 600.74437pt x 445.665pt>
+File: ../Figures/EGA1_3d.png Graphic file (type png)
+
+<use ../Figures/EGA1_3d.png>
+Package pdftex.def Info: ../Figures/EGA1_3d.png used on input line 347.
+(pdftex.def)             Requested size: 284.53154pt x 211.08104pt.
+
+<../Figures/EGA1_Access.png, id=177, 891.33pt x 221.32687pt>
+File: ../Figures/EGA1_Access.png Graphic file (type png)
+
+<use ../Figures/EGA1_Access.png>
+Package pdftex.def Info: ../Figures/EGA1_Access.png used on input line 350.
+(pdftex.def)             Requested size: 483.70474pt x 120.1091pt.
+
+Overfull \hbox (20.61638pt too wide) in paragraph at lines 347--351
+ [][] 
+ []
+
+[14 <C:/Users/John/Documents/Astro/ASEN6008_IMD/Project/Figures/VGA_From_Earth.
+png> <C:/Users/John/Documents/Astro/ASEN6008_IMD/Project/Figures/VGA_Access.png
+>] <../Figures/EGA2_3d.png, id=189, 599.23875pt x 440.39531pt>
+File: ../Figures/EGA2_3d.png Graphic file (type png)
+
+<use ../Figures/EGA2_3d.png>
+Package pdftex.def Info: ../Figures/EGA2_3d.png used on input line 363.
+(pdftex.def)             Requested size: 284.53163pt x 209.1093pt.
+
+<../Figures/EGA2_Access.png, id=190, 889.82437pt x 219.06844pt>
+File: ../Figures/EGA2_Access.png Graphic file (type png)
+
+<use ../Figures/EGA2_Access.png>
+Package pdftex.def Info: ../Figures/EGA2_Access.png used on input line 366.
+(pdftex.def)             Requested size: 483.68875pt x 119.08072pt.
+
+Overfull \hbox (20.60039pt too wide) in paragraph at lines 363--367
+ [][] 
+ []
+
+[15 <C:/Users/John/Documents/Astro/ASEN6008_IMD/Project/Figures/EGA1_3d.png> <C
+:/Users/John/Documents/Astro/ASEN6008_IMD/Project/Figures/EGA1_Access.png>]
+<../Figures/JOI_From_Earth.png, id=202, 588.69937pt x 406.51875pt>
+File: ../Figures/JOI_From_Earth.png Graphic file (type png)
+
+<use ../Figures/JOI_From_Earth.png>
+Package pdftex.def Info: ../Figures/JOI_From_Earth.png used on input line 380.
+(pdftex.def)             Requested size: 284.53073pt x 196.47902pt.
+
+<../Figures/JOI_Access.png, id=203, 901.11656pt x 221.32687pt>
+File: ../Figures/JOI_Access.png Graphic file (type png)
+
+<use ../Figures/JOI_Access.png>
+Package pdftex.def Info: ../Figures/JOI_Access.png used on input line 383.
+(pdftex.def)             Requested size: 483.69447pt x 118.80212pt.
+
+Overfull \hbox (20.60611pt too wide) in paragraph at lines 380--384
+ [][] 
+ []
+
+[16 <C:/Users/John/Documents/Astro/ASEN6008_IMD/Project/Figures/EGA2_3d.png> <C
+:/Users/John/Documents/Astro/ASEN6008_IMD/Project/Figures/EGA2_Access.png>]
+<../Figures/JOI_GroundTrack.png, id=215, 1062.21844pt x 475.7775pt>
+File: ../Figures/JOI_GroundTrack.png Graphic file (type png)
+
+<use ../Figures/JOI_GroundTrack.png>
+Package pdftex.def Info: ../Figures/JOI_GroundTrack.png used on input line 390.
+
+(pdftex.def)             Requested size: 455.25388pt x 203.91243pt.
+
+<../Figures/newJOI_GroundTrack.png, id=217, 1065.9825pt x 472.76625pt>
+File: ../Figures/newJOI_GroundTrack.png Graphic file (type png)
+
+<use ../Figures/newJOI_GroundTrack.png>
+Package pdftex.def Info: ../Figures/newJOI_GroundTrack.png used on input line 3
+98.
+(pdftex.def)             Requested size: 455.24055pt x 201.90047pt.
+ [17 <C:/Users/John/Documents/Astro/ASEN6008_IMD/Project/Figures/JOI_From_Earth
+.png> <C:/Users/John/Documents/Astro/ASEN6008_IMD/Project/Figures/JOI_Access.pn
+g> <C:/Users/John/Documents/Astro/ASEN6008_IMD/Project/Figures/JOI_GroundTrack.
+png>] [18 <C:/Users/John/Documents/Astro/ASEN6008_IMD/Project/Figures/newJOI_Gr
+oundTrack.png>]
 (C:\Users\John\Documents\Astro\ASEN6008_IMD\Project\Report\Clouse_ASEN6008_Proj
 ect.bbl) 
 AED: lastpage setting LastPage
-[13]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 376.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 376.
+[19]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 461.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 461.
 
 (C:\Users\John\Documents\Astro\ASEN6008_IMD\Project\Report\Clouse_ASEN6008_Proj
 ect.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 376.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 376.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 461.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 461.
 Package rerunfilecheck Info: File `Clouse_ASEN6008_Project.out' has not changed
 .
-(rerunfilecheck)             Checksum: 1963AC2F429D4E5AEC34314521B47A1F;357.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 376.
+(rerunfilecheck)             Checksum: 56C300FF021FE232D245E3303CB7B25D;309.
+
+
+LaTeX Warning: There were undefined references.
+
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 461.
  ) 
 Here is how much of TeX's memory you used:
- 9042 strings out of 493921
- 131111 string characters out of 3147286
- 237545 words of memory out of 3000000
- 12120 multiletter control sequences out of 15000+200000
+ 9128 strings out of 493921
+ 133153 string characters out of 3147286
+ 237860 words of memory out of 3000000
+ 12175 multiletter control sequences out of 15000+200000
  14941 words of font info for 52 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
- 42i,22n,45p,1260b,334s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 42i,22n,45p,1260b,355s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Pr
 ogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Program Fi
 les/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx8.pfb><C:/Program Files/MiKTe
 X 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Files/MiKTeX 2.9/fo
 nts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type
-1/public/amsfonts/cm/cmmi7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/
-amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/
-cm/cmr12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr6.p
-fb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Pro
-gram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Program Files
-/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 
-2.9/fonts/type1/public/amsfonts/cm/cmsy6.pfb><C:/Program Files/MiKTeX 2.9/fonts
-/type1/public/amsfonts/cm/cmsy7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/pu
-blic/amsfonts/cm/cmsy8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsf
-onts/cm/cmti10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/
-cmti8.pfb>
-Output written on Clouse_ASEN6008_Project.pdf (13 pages, 426834 bytes).
+1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/
+amsfonts/cm/cmr12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/
+cm/cmr6.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr7.pf
+b><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Prog
+ram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program File
+s/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy6.pfb><C:/Program Files/MiKTeX 
+2.9/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Program Files/MiKTeX 2.9/fonts
+/type1/public/amsfonts/cm/cmsy8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/pu
+blic/amsfonts/cm/cmti10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/ams
+fonts/cm/cmti8.pfb>
+Output written on Clouse_ASEN6008_Project.pdf (19 pages, 3809000 bytes).
 PDF statistics:
- 241 PDF objects out of 1000 (max. 8388607)
- 42 named destinations out of 1000 (max. 500000)
- 102 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 310 PDF objects out of 1000 (max. 8388607)
+ 61 named destinations out of 1000 (max. 500000)
+ 154 words of extra memory for PDF output out of 10000 (max. 10000000)
 

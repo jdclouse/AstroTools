@@ -23,12 +23,12 @@ END Epoch
 BEGIN Interval
 
 Start                   26 Feb 2020 00:00:00.000000000
-Stop                    30 Aug 2026 23:00:00.000000000
+Stop                    30 Dec 2026 23:00:00.000000000
     SmartInterval
 	BEGIN	EVENTINTERVAL
 			BEGIN Interval
 				Start	26 Feb 2020 00:00:00.000000000
-				Stop	30 Aug 2026 23:00:00.000000000
+				Stop	30 Dec 2026 23:00:00.000000000
 			END Interval
 			IntervalState	Explicit
 	END	EVENTINTERVAL
@@ -104,10 +104,10 @@ BEGIN Extensions
 BEGIN Animation
 
     StartTime          26 Feb 2020 00:00:00.000000000
-    EndTime            30 Aug 2026 23:00:00.000000000
-    CurrentTime        4 Jul 2026 17:55:49.622000009
+    EndTime            30 Dec 2026 23:00:00.000000000
+    CurrentTime        4 Dec 2026 14:20:14.201000005
     Direction          Forward
-    UpdateDelta        1800.000000
+    UpdateDelta        7200.000000
     RefreshDelta       0.010000
     XRealTimeMult      1.000000
     RealTimeOffset     0.000000
@@ -212,7 +212,7 @@ BEGIN MapData
             ShowImageNames       Off
             ImageNameFont        0
             Projection           Orthographic
-            Resolution           None
+            Resolution           VeryLow
             CoordinateSys        ECI
             UseBackgroundImage   On
             UseBingForBackground Off
@@ -1006,7 +1006,7 @@ END MapData
 		LaunchWindowTrajMETStart                0.000
 		LaunchWindowTrajMETStop                 900.000
 		LaunchWindowStart                       -121759200.000
-		LaunchWindowStop                        -321858000.000
+		LaunchWindowStop                        -337669200.000
 		LaunchMETOffset                         0.000
 		LaunchWindowUseSecEphem                 No 
 		LaunchWindowUseScenFolderForSecEphem    Yes
@@ -1196,6 +1196,19 @@ END MapData
     
     BEGIN ReportFavorites
         BEGIN Class
+            Name  Access
+            BEGIN Favorite
+                Type    Graph
+                BaseDir Install
+                Style   Access
+            END Favorite
+            BEGIN Favorite
+                Type    Report
+                BaseDir Install
+                Style   Access Intervals by Time
+            END Favorite
+        END Class
+        BEGIN Class
             Name  Satellite
             BEGIN Favorite
                 Type    Report
@@ -1244,19 +1257,6 @@ END MapData
                 Type    Report
                 BaseDir Install
                 Style   J2000 Position Velocity
-            END Favorite
-        END Class
-        BEGIN Class
-            Name  Access
-            BEGIN Favorite
-                Type    Graph
-                BaseDir Install
-                Style   Access
-            END Favorite
-            BEGIN Favorite
-                Type    Report
-                BaseDir Install
-                Style   Access Intervals by Time
             END Favorite
         END Class
     END ReportFavorites
@@ -1472,10 +1472,6 @@ END MapData
     END ExportDataFile
     
     BEGIN Desc
-        ShortText    0
-
-        LongText    0
-
     END Desc
     
     BEGIN RfEnv
@@ -1978,8 +1974,8 @@ Class Satellite
 
 	Satellite2
 	Zeus
+	Zeus1
 	Zeus_newJOI
-	ZeusBetterEGA2
 
 END Class
 
@@ -2021,11 +2017,11 @@ BEGIN References
         Satellite/Satellite2
     END Instance
     Instance Satellite/Zeus
-        *
         Satellite/Zeus
     END Instance
-    Instance Satellite/ZeusBetterEGA2
-        Satellite/ZeusBetterEGA2
+    Instance Satellite/Zeus1
+        *
+        Satellite/Zeus1
     END Instance
     Instance Satellite/Zeus_newJOI
         Satellite/Zeus_newJOI

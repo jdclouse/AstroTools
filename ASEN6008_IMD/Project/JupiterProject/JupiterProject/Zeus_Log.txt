@@ -1,0 +1,562 @@
+Astrogator Log File; DriverMCS: Mission_Control_Sequence
+-------------------------------------------------------------
+
+
+----------------------------------------------
+Begin targeter profile TCM_Gany1.Differential_Corrector
+
+Initial control parameters:
+
+Unscaled Controls:
+Name                                   Current Value            Last Update        Total Correction
+Maneuver : ImpulsiveMnvr.Cartesian.X -0.003992651148 km/sec  0.000000000000 km/sec   0.000000000000 km/sec
+Maneuver : ImpulsiveMnvr.Cartesian.Y  0.239209275534 km/sec  0.000000000000 km/sec   0.000000000000 km/sec
+Maneuver : ImpulsiveMnvr.Cartesian.Z -0.042119767866 km/sec  0.000000000000 km/sec   0.000000000000 km/sec
+
+
+Homotopy step   1 of   1
+
+Intermediate Goals Desired:
+Propagate : BDotR          0.000000000000 km  
+Propagate : BDotT      -3750.000000000000 km  
+Propagate : Epoch 6 Jul 2026 07:20:00.000 UTCG
+
+
+
+---Running one step of the differential corrector...
+
+--------------------------------------------------------
+
+<<< Targeting Finished >>>
+    [Goals met]
+
+
+--------------------------------------------------------
+
+---Done. (running one step of the differential corrector.)
+
+Params from single diff corr
+
+Unscaled Controls:
+Name                                   Current Value            Last Update        Total Correction
+Maneuver : ImpulsiveMnvr.Cartesian.X -0.003992651148 km/sec  0.000000000000 km/sec   0.000000000000 km/sec
+Maneuver : ImpulsiveMnvr.Cartesian.Y  0.239209275534 km/sec  0.000000000000 km/sec   0.000000000000 km/sec
+Maneuver : ImpulsiveMnvr.Cartesian.Z -0.042119767866 km/sec  0.000000000000 km/sec   0.000000000000 km/sec
+
+
+Unscaled Intermediate Constraints:
+Name                        Current Value                      Desired           Difference            Tolerance
+Propagate : BDotR          0.048939574340 km            0.000000000000 km    0.048939574340 km    0.100000000000 km 
+Propagate : BDotT      -3750.005666555877 km        -3750.000000000000 km   -0.005666555877 km    0.100000000000 km 
+Propagate : Epoch 6 Jul 2026 07:20:00.022 UTCG 6 Jul 2026 07:20:00.000 UTCG  0.022175878286 sec  60.000000000000 sec
+
+
+
+----------------------------------------------
+Final Params from Homotopy Diff Corr
+
+Unscaled Controls:
+Name                                   Current Value            Last Update        Total Correction
+Maneuver : ImpulsiveMnvr.Cartesian.X -0.003992651148 km/sec  0.000000000000 km/sec   0.000000000000 km/sec
+Maneuver : ImpulsiveMnvr.Cartesian.Y  0.239209275534 km/sec  0.000000000000 km/sec   0.000000000000 km/sec
+Maneuver : ImpulsiveMnvr.Cartesian.Z -0.042119767866 km/sec  0.000000000000 km/sec   0.000000000000 km/sec
+
+
+Unscaled Intermediate Constraints:
+Name                        Current Value                      Desired           Difference            Tolerance
+Propagate : BDotR          0.048939574340 km            0.000000000000 km    0.048939574340 km    0.100000000000 km 
+Propagate : BDotT      -3750.005666555877 km        -3750.000000000000 km   -0.005666555877 km    0.100000000000 km 
+Propagate : Epoch 6 Jul 2026 07:20:00.022 UTCG 6 Jul 2026 07:20:00.000 UTCG  0.022175878286 sec  60.000000000000 sec
+
+
+
+----------------------------------------------
+
+*********** Done Targeting************************
+
+End targeter profile TCM_Gany1.Differential_Corrector
+----------------------------------------------
+Begin targeter profile TCM_Gany2.Differential_Corrector
+
+Initial control parameters:
+
+Unscaled Controls:
+Name                                   Current Value            Last Update        Total Correction
+Maneuver : ImpulsiveMnvr.Cartesian.X -0.002402016575 km/sec  0.000000000000 km/sec   0.000000000000 km/sec
+Maneuver : ImpulsiveMnvr.Cartesian.Y -0.012213310397 km/sec  0.000000000000 km/sec   0.000000000000 km/sec
+Maneuver : ImpulsiveMnvr.Cartesian.Z -0.071199553838 km/sec  0.000000000000 km/sec   0.000000000000 km/sec
+
+
+Homotopy step   1 of   1
+
+Intermediate Goals Desired:
+Propagate : BDotR           0.000000000000 km  
+Propagate : BDotT       -4200.000000000000 km  
+Propagate : Epoch 23 Sep 2026 00:10:00.000 UTCG
+
+
+
+---Running one step of the differential corrector...
+
+--------------------------------------------------------
+
+<<< Targeting Finished >>>
+    [Goals met]
+
+
+--------------------------------------------------------
+
+---Done. (running one step of the differential corrector.)
+
+Params from single diff corr
+
+Unscaled Controls:
+Name                                   Current Value            Last Update        Total Correction
+Maneuver : ImpulsiveMnvr.Cartesian.X -0.002402016575 km/sec  0.000000000000 km/sec   0.000000000000 km/sec
+Maneuver : ImpulsiveMnvr.Cartesian.Y -0.012213310397 km/sec  0.000000000000 km/sec   0.000000000000 km/sec
+Maneuver : ImpulsiveMnvr.Cartesian.Z -0.071199553838 km/sec  0.000000000000 km/sec   0.000000000000 km/sec
+
+
+Unscaled Intermediate Constraints:
+Name                         Current Value                       Desired           Difference            Tolerance
+Propagate : BDotR           0.005441002817 km             0.000000000000 km    0.005441002817 km    0.100000000000 km 
+Propagate : BDotT       -4200.001050061332 km         -4200.000000000000 km   -0.001050061332 km    0.100000000000 km 
+Propagate : Epoch 23 Sep 2026 00:10:00.003 UTCG 23 Sep 2026 00:10:00.000 UTCG  0.002774655819 sec  60.000000000000 sec
+
+
+
+----------------------------------------------
+Final Params from Homotopy Diff Corr
+
+Unscaled Controls:
+Name                                   Current Value            Last Update        Total Correction
+Maneuver : ImpulsiveMnvr.Cartesian.X -0.002402016575 km/sec  0.000000000000 km/sec   0.000000000000 km/sec
+Maneuver : ImpulsiveMnvr.Cartesian.Y -0.012213310397 km/sec  0.000000000000 km/sec   0.000000000000 km/sec
+Maneuver : ImpulsiveMnvr.Cartesian.Z -0.071199553838 km/sec  0.000000000000 km/sec   0.000000000000 km/sec
+
+
+Unscaled Intermediate Constraints:
+Name                         Current Value                       Desired           Difference            Tolerance
+Propagate : BDotR           0.005441002817 km             0.000000000000 km    0.005441002817 km    0.100000000000 km 
+Propagate : BDotT       -4200.001050061332 km         -4200.000000000000 km   -0.001050061332 km    0.100000000000 km 
+Propagate : Epoch 23 Sep 2026 00:10:00.003 UTCG 23 Sep 2026 00:10:00.000 UTCG  0.002774655819 sec  60.000000000000 sec
+
+
+
+----------------------------------------------
+
+*********** Done Targeting************************
+
+End targeter profile TCM_Gany2.Differential_Corrector
+----------------------------------------------
+Begin targeter profile TCM_Gany3.Differential_Corrector
+
+Initial control parameters:
+
+Unscaled Controls:
+Name                                   Current Value            Last Update        Total Correction
+Maneuver : ImpulsiveMnvr.Cartesian.X -0.005394208346 km/sec  0.000000000000 km/sec  -0.001512041229 km/sec
+Maneuver : ImpulsiveMnvr.Cartesian.Y -0.009965304491 km/sec  0.000000000000 km/sec  -0.001223052237 km/sec
+Maneuver : ImpulsiveMnvr.Cartesian.Z -0.097281818619 km/sec  0.000000000000 km/sec   0.001379666556 km/sec
+
+
+Homotopy step   1 of   1
+
+Intermediate Goals Desired:
+Propagate : BDotR          0.000000000000 km  
+Propagate : BDotT      -5500.000000000000 km  
+Propagate : Epoch 4 Nov 2026 22:23:00.000 UTCG
+
+
+
+---Running one step of the differential corrector...
+
+--------------------------------------------------------
+
+<<< Targeting Finished >>>
+    [Goals met]
+
+
+--------------------------------------------------------
+
+---Done. (running one step of the differential corrector.)
+
+Params from single diff corr
+
+Unscaled Controls:
+Name                                   Current Value            Last Update        Total Correction
+Maneuver : ImpulsiveMnvr.Cartesian.X -0.005394208346 km/sec  0.000000000000 km/sec  -0.001512041229 km/sec
+Maneuver : ImpulsiveMnvr.Cartesian.Y -0.009965304491 km/sec  0.000000000000 km/sec  -0.001223052237 km/sec
+Maneuver : ImpulsiveMnvr.Cartesian.Z -0.097281818619 km/sec  0.000000000000 km/sec   0.001379666556 km/sec
+
+
+Unscaled Intermediate Constraints:
+Name                        Current Value                      Desired           Difference            Tolerance
+Propagate : BDotR          0.007681037159 km            0.000000000000 km    0.007681037159 km    0.100000000000 km 
+Propagate : BDotT      -5500.001016889113 km        -5500.000000000000 km   -0.001016889113 km    0.100000000000 km 
+Propagate : Epoch 4 Nov 2026 22:23:00.008 UTCG 4 Nov 2026 22:23:00.000 UTCG  0.008081287146 sec  60.000000000000 sec
+
+
+
+----------------------------------------------
+Final Params from Homotopy Diff Corr
+
+Unscaled Controls:
+Name                                   Current Value            Last Update        Total Correction
+Maneuver : ImpulsiveMnvr.Cartesian.X -0.005394208346 km/sec  0.000000000000 km/sec  -0.001512041229 km/sec
+Maneuver : ImpulsiveMnvr.Cartesian.Y -0.009965304491 km/sec  0.000000000000 km/sec  -0.001223052237 km/sec
+Maneuver : ImpulsiveMnvr.Cartesian.Z -0.097281818619 km/sec  0.000000000000 km/sec   0.001379666556 km/sec
+
+
+Unscaled Intermediate Constraints:
+Name                        Current Value                      Desired           Difference            Tolerance
+Propagate : BDotR          0.007681037159 km            0.000000000000 km    0.007681037159 km    0.100000000000 km 
+Propagate : BDotT      -5500.001016889113 km        -5500.000000000000 km   -0.001016889113 km    0.100000000000 km 
+Propagate : Epoch 4 Nov 2026 22:23:00.008 UTCG 4 Nov 2026 22:23:00.000 UTCG  0.008081287146 sec  60.000000000000 sec
+
+
+
+----------------------------------------------
+
+*********** Done Targeting************************
+
+End targeter profile TCM_Gany3.Differential_Corrector
+----------------------------------------------
+Begin targeter profile TCM_Gany4.Differential_Corrector
+
+Initial control parameters:
+
+Unscaled Controls:
+Name                                   Current Value            Last Update        Total Correction
+Maneuver : ImpulsiveMnvr.Cartesian.X  0.000739024715 km/sec  0.000000000000 km/sec   0.000739024715 km/sec
+Maneuver : ImpulsiveMnvr.Cartesian.Y -0.010343855800 km/sec  0.000000000000 km/sec  -0.010343855800 km/sec
+Maneuver : ImpulsiveMnvr.Cartesian.Z  0.026955486687 km/sec  0.000000000000 km/sec   0.026955486687 km/sec
+
+
+Homotopy step   1 of   1
+
+Intermediate Goals Desired:
+Propagate : BDotR          0.000000000000 km  
+Propagate : BDotT      -3500.000000000000 km  
+Propagate : Epoch 3 Dec 2026 13:15:00.000 UTCG
+
+
+
+---Running one step of the differential corrector...
+
+--------------------------------------------------------
+
+<<< Targeting Finished >>>
+    [Goals met]
+
+
+--------------------------------------------------------
+
+---Done. (running one step of the differential corrector.)
+
+Params from single diff corr
+
+Unscaled Controls:
+Name                                   Current Value            Last Update        Total Correction
+Maneuver : ImpulsiveMnvr.Cartesian.X  0.000739024715 km/sec  0.000000000000 km/sec   0.000739024715 km/sec
+Maneuver : ImpulsiveMnvr.Cartesian.Y -0.010343855800 km/sec  0.000000000000 km/sec  -0.010343855800 km/sec
+Maneuver : ImpulsiveMnvr.Cartesian.Z  0.026955486687 km/sec  0.000000000000 km/sec   0.026955486687 km/sec
+
+
+Unscaled Intermediate Constraints:
+Name                        Current Value                      Desired           Difference            Tolerance
+Propagate : BDotR         -0.000283487618 km            0.000000000000 km   -0.000283487618 km    0.100000000000 km 
+Propagate : BDotT      -3499.999473329413 km        -3500.000000000000 km    0.000526670588 km    0.100000000000 km 
+Propagate : Epoch 3 Dec 2026 13:15:00.000 UTCG 3 Dec 2026 13:15:00.000 UTCG -0.000091075897 sec  60.000000000000 sec
+
+
+
+----------------------------------------------
+Final Params from Homotopy Diff Corr
+
+Unscaled Controls:
+Name                                   Current Value            Last Update        Total Correction
+Maneuver : ImpulsiveMnvr.Cartesian.X  0.000739024715 km/sec  0.000000000000 km/sec   0.000739024715 km/sec
+Maneuver : ImpulsiveMnvr.Cartesian.Y -0.010343855800 km/sec  0.000000000000 km/sec  -0.010343855800 km/sec
+Maneuver : ImpulsiveMnvr.Cartesian.Z  0.026955486687 km/sec  0.000000000000 km/sec   0.026955486687 km/sec
+
+
+Unscaled Intermediate Constraints:
+Name                        Current Value                      Desired           Difference            Tolerance
+Propagate : BDotR         -0.000283487618 km            0.000000000000 km   -0.000283487618 km    0.100000000000 km 
+Propagate : BDotT      -3499.999473329413 km        -3500.000000000000 km    0.000526670588 km    0.100000000000 km 
+Propagate : Epoch 3 Dec 2026 13:15:00.000 UTCG 3 Dec 2026 13:15:00.000 UTCG -0.000091075897 sec  60.000000000000 sec
+
+
+
+----------------------------------------------
+
+*********** Done Targeting************************
+
+End targeter profile TCM_Gany4.Differential_Corrector
+----------------------------------------------
+Begin targeter profile GanIns.Differential_Corrector
+
+Initial control parameters:
+
+Unscaled Controls:
+Name                                   Current Value            Last Update        Total Correction
+Maneuver : ImpulsiveMnvr.Cartesian.X -3.000000000000 km/sec  0.000000000000 km/sec   0.000000000000 km/sec
+
+
+Homotopy step   1 of   1
+
+Intermediate Goals Desired:
+Propagate3 : Eccentricity  0.000000000000
+
+
+
+---Running one step of the differential corrector...
+
+-------------------------------------------------------------
+Iteration =   1
+Unscaled Intermediate Constraints:
+Name                        Current Value         Desired      Difference       Tolerance
+Propagate3 : Eccentricity  4.979441985044  0.000000000000  4.979441985044  0.010000000000
+
+
+
+Performing one Newton-Raphson Step...
+
+Perturbation evaluation +1
+Controls:
+Name                                           Value           Perturbation        Scaled Perturbation
+Maneuver : ImpulsiveMnvr.Cartesian.X -2.999900000000 km/sec  0.000100000000 km/sec      0.000033333333
+
+Constraints:
+Name                                Value          Change       Scaled Change
+Propagate3 : Eccentricity  4.991021550414  0.011579565370     0.0115795653703
+
+
+Partial derivative matrix (scaled) :
+
+         347.38696111
+
+Newton Step Done...
+
+DC proposed step:
+Name                                          Scaled        Unscaled
+Maneuver : ImpulsiveMnvr.Cartesian.X -0.014333992183 -0.043001976549 km/sec
+
+
+Step with Max Step limits applied:
+Name                                          Scaled        Unscaled
+Maneuver : ImpulsiveMnvr.Cartesian.X -0.014333992183 -0.043001976549 km/sec
+
+
+Step final values:
+
+Unscaled Controls:
+Name                                   Current Value            Last Update        Total Correction
+Maneuver : ImpulsiveMnvr.Cartesian.X -3.043001976549 km/sec -0.043001976549 km/sec  -0.043001976549 km/sec
+
+
+Unscaled Intermediate Constraints:
+Name                        Current Value         Desired      Difference       Tolerance
+Propagate3 : Eccentricity  1.411573801340  0.000000000000  1.411573801340  0.010000000000
+
+
+
+-------------------------------------------------------------
+Iteration =   2
+Unscaled Intermediate Constraints:
+Name                        Current Value         Desired      Difference       Tolerance
+Propagate3 : Eccentricity  1.411573801340  0.000000000000  1.411573801340  0.010000000000
+
+
+
+Updating partials with Secant method...
+
+Partial derivative matrix (scaled) :
+
+        248.909594629
+
+Secant Update Done...
+
+DC proposed step:
+Name                                          Scaled        Unscaled
+Maneuver : ImpulsiveMnvr.Cartesian.X -0.005671030092 -0.017013090276 km/sec
+
+
+Step with Max Step limits applied:
+Name                                          Scaled        Unscaled
+Maneuver : ImpulsiveMnvr.Cartesian.X -0.005671030092 -0.017013090276 km/sec
+
+
+Step final values:
+
+Unscaled Controls:
+Name                                   Current Value            Last Update        Total Correction
+Maneuver : ImpulsiveMnvr.Cartesian.X -3.060015066825 km/sec -0.017013090276 km/sec  -0.060015066825 km/sec
+
+
+Unscaled Intermediate Constraints:
+Name                        Current Value         Desired      Difference       Tolerance
+Propagate3 : Eccentricity  0.605919867732  0.000000000000  0.605919867732  0.010000000000
+
+
+
+-------------------------------------------------------------
+Iteration =   3
+Unscaled Intermediate Constraints:
+Name                        Current Value         Desired      Difference       Tolerance
+Propagate3 : Eccentricity  0.605919867732  0.000000000000  0.605919867732  0.010000000000
+
+
+
+Updating partials with Secant method...
+
+Partial derivative matrix (scaled) :
+
+         142.06483135
+
+Secant Update Done...
+
+DC proposed step:
+Name                                          Scaled        Unscaled
+Maneuver : ImpulsiveMnvr.Cartesian.X -0.004265094056 -0.012795282167 km/sec
+
+
+Step with Max Step limits applied:
+Name                                          Scaled        Unscaled
+Maneuver : ImpulsiveMnvr.Cartesian.X -0.004265094056 -0.012795282167 km/sec
+
+
+Step final values:
+
+Unscaled Controls:
+Name                                   Current Value            Last Update        Total Correction
+Maneuver : ImpulsiveMnvr.Cartesian.X -3.072810348993 km/sec -0.012795282167 km/sec  -0.072810348993 km/sec
+
+
+Unscaled Intermediate Constraints:
+Name                        Current Value         Desired      Difference       Tolerance
+Propagate3 : Eccentricity  0.160047598799  0.000000000000  0.160047598799  0.010000000000
+
+
+
+-------------------------------------------------------------
+Iteration =   4
+Unscaled Intermediate Constraints:
+Name                        Current Value         Desired      Difference       Tolerance
+Propagate3 : Eccentricity  0.160047598799  0.000000000000  0.160047598799  0.010000000000
+
+
+
+Updating partials with Secant method...
+
+Partial derivative matrix (scaled) :
+
+        104.539844397
+
+Secant Update Done...
+
+DC proposed step:
+Name                                          Scaled        Unscaled
+Maneuver : ImpulsiveMnvr.Cartesian.X -0.001530972231 -0.004592916693 km/sec
+
+
+Step with Max Step limits applied:
+Name                                          Scaled        Unscaled
+Maneuver : ImpulsiveMnvr.Cartesian.X -0.001530972231 -0.004592916693 km/sec
+
+
+Step final values:
+
+Unscaled Controls:
+Name                                   Current Value            Last Update        Total Correction
+Maneuver : ImpulsiveMnvr.Cartesian.X -3.077403265686 km/sec -0.004592916693 km/sec  -0.077403265686 km/sec
+
+
+Unscaled Intermediate Constraints:
+Name                        Current Value         Desired      Difference       Tolerance
+Propagate3 : Eccentricity  0.028035140227  0.000000000000  0.028035140227  0.010000000000
+
+
+
+-------------------------------------------------------------
+Iteration =   5
+Unscaled Intermediate Constraints:
+Name                        Current Value         Desired      Difference       Tolerance
+Propagate3 : Eccentricity  0.028035140227  0.000000000000  0.028035140227  0.010000000000
+
+
+
+Updating partials with Secant method...
+
+Partial derivative matrix (scaled) :
+
+        86.2278595939
+
+Secant Update Done...
+
+DC proposed step:
+Name                                          Scaled        Unscaled
+Maneuver : ImpulsiveMnvr.Cartesian.X -0.000325128565 -0.000975385694 km/sec
+
+
+Step with Max Step limits applied:
+Name                                          Scaled        Unscaled
+Maneuver : ImpulsiveMnvr.Cartesian.X -0.000325128565 -0.000975385694 km/sec
+
+
+Step final values:
+
+Unscaled Controls:
+Name                                   Current Value            Last Update        Total Correction
+Maneuver : ImpulsiveMnvr.Cartesian.X -3.078378651380 km/sec -0.000975385694 km/sec  -0.078378651380 km/sec
+
+
+Unscaled Intermediate Constraints:
+Name                        Current Value         Desired      Difference       Tolerance
+Propagate3 : Eccentricity  0.001723998380  0.000000000000  0.001723998380  0.010000000000
+
+
+
+--------------------------------------------------------
+
+<<< Targeting Finished >>>
+    [Goals met]
+
+
+--------------------------------------------------------
+
+---Done. (running one step of the differential corrector.)
+
+Params from single diff corr
+
+Unscaled Controls:
+Name                                   Current Value            Last Update        Total Correction
+Maneuver : ImpulsiveMnvr.Cartesian.X -3.078378651380 km/sec -0.000975385694 km/sec  -0.078378651380 km/sec
+
+
+Unscaled Intermediate Constraints:
+Name                        Current Value         Desired      Difference       Tolerance
+Propagate3 : Eccentricity  0.001723998380  0.000000000000  0.001723998380  0.010000000000
+
+
+
+----------------------------------------------
+Final Params from Homotopy Diff Corr
+
+Unscaled Controls:
+Name                                   Current Value            Last Update        Total Correction
+Maneuver : ImpulsiveMnvr.Cartesian.X -3.078378651380 km/sec -0.000975385694 km/sec  -0.078378651380 km/sec
+
+
+Unscaled Intermediate Constraints:
+Name                        Current Value         Desired      Difference       Tolerance
+Propagate3 : Eccentricity  0.001723998380  0.000000000000  0.001723998380  0.010000000000
+
+
+
+----------------------------------------------
+
+*********** Done Targeting************************
+
+End targeter profile GanIns.Differential_Corrector

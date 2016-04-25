@@ -107,7 +107,7 @@ VO_V100
     VaporRadius               1000.000000
     VaporExpansionRate        0.010000
     VaporStartTime            0.000000
-    VaporEndTime              205455600.000000
+    VaporEndTime              215996400.000000
     VaporIntervalPtr
 	BEGIN	EVENTINTERVAL
 			EventInterval

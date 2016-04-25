@@ -14,7 +14,7 @@ VO_V100
     Level4SwapDistance        1000000000000000.000000
     ShowMarker                Yes
     Begin Marker
-        Show               No
+        Show               Yes
         Type               LineGraphic
         Shape              Point
         IsTransparent      No
@@ -474,7 +474,7 @@ VO_V100
     VaporRadius               1000.000000
     VaporExpansionRate        0.010000
     VaporStartTime            0.000000
-    VaporEndTime              205455600.000000
+    VaporEndTime              215996400.000000
     VaporIntervalPtr
 	BEGIN	EVENTINTERVAL
 			EventInterval
@@ -537,7 +537,7 @@ VO_V100
 				BEGIN	AXES
 					Type	AXES_LINKTO
 					Name	VVLH
-					RelativePath	Satellite/Zeus
+					RelativePath	Satellite/Zeus1
 				END	AXES
             End
         End

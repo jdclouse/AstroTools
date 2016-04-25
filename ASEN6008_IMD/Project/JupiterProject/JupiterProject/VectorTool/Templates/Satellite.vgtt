@@ -21,6 +21,26 @@ BEGIN	AXES
 END	AXES
 BEGIN	AXES
 	Type	AXES_TRAJECTORY
+	Name	VNC(Ganymede)
+	Description	<Enter description (up to 300 chars)>
+		TrajPoint
+			BEGIN	POINT
+				Type	POINT_LINKTO
+				Name	Center
+			END	POINT
+		ReferenceSystem
+			BEGIN	SYSTEM
+				Type	SYSTEM_LINKTO
+				Name	Inertial
+				AbsolutePath	CentralBody/Ganymede
+			END	SYSTEM
+		TrajAxesType	11
+		LabelX	X
+		LabelY	Y
+		LabelZ	Z
+END	AXES
+BEGIN	AXES
+	Type	AXES_TRAJECTORY
 	Name	VNC(Jupiter)
 	Description	<Enter description (up to 300 chars)>
 		TrajPoint
