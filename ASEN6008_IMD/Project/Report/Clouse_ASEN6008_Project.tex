@@ -402,7 +402,34 @@ DSN access can be seen with the lines connecting the ground station to the space
 
 DSN access to the JOI is easy to maintain due to the geometry of the transfer. The spacecraft has a smaller heliocentric velocity than Jupiter at the end of the transfer, requiring the spacecraft to lead the planet. The large $+\hat{T}$ target on the B-plane, which is required for prograde motion about Jupiter, points toward the inner solar system. This means that Jupiter will be in opposition, rather than in conjunction, of the spacecraft, making it visible to the DSN all the way up to JOI.  B-plane targets closer to Jupiter could shift JOI out of view, however. This is due to the greater turning angle of the spacecraft as the perijove decreases.
 
-	\section{Europa Injection}
+	\section{Jupiter's Moons}
+An injection into Europan orbit after the initial Jovian orbit was considered. At apojove, a maneuver was made to encounter Europa. The maneuver was targeted such that Europa would be at the transfer's perijove. The Europa B-plane target was arbitrarily chosen to be 3500 km in $\hat{R}$, within the sphere-of-influence radius of 9700 km and a polar orbit. The epoch was manually adjusted until a minimum in the Europan V$_\infty$ was found in order to reduce insertion $\Delta$V. The resulting Europan orbit is shown in Figure \ref{fig:EuropaInjection}.
+	\begin{figure}[H]
+		\centering
+			\includegraphics[width = 16cm]{../Figures/EuOI_From_Earth.png}
+		\caption{Europa orbit. }
+		\label{fig:EuropaInjection}
+	\end{figure}	
+
+To reach Europan orbit, a apojove $\Delta$V of 0.2259 km/s was applied, followed by an insertion burn of 5.1252 km/s at the closest approach to Europa. The moon's small gravitational influence requires low orbits; a high apoapsis could make the spacecraft stray away from its intended object of study. These constraints, however, make for an unrealistic insertion burn. The required propellant needed to make this burn would be enormous, and require even more propellant to make the JOI burn in the first place. 
+
+	\vspace{5 mm}
+
+As mentioned previously, Ganymede has characteristics that could be helpful in reducing the energy of the Jovian orbit. By flying in front of Ganymede\cite{Vallado}, the energy relative to Jupiter can be decreased. By adjusting $r_p$, a resonant orbit was created that allowed for another flyby to further lower the apojove. Table \ref{GanymedeTable} below shows the results of this process.
+\begin{table}[]
+\centering
+\caption{Orbit lowering with Ganymede gravity assists.}
+\label{GanymedeTable}
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+\rowcolor[HTML]{C0C0C0} 
+\textbf{Maneuver} & \textbf{ \begin{tabular}[c]{@{}c@{}}Impulsive Maneuver \\ Calendar Date\end{tabular} }                                                   & \textbf{$\Delta$V (km/s)} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}\textbf{Period (days)}} & \textbf{\begin{tabular}[c]{@{}c@{}}Apojove \\ Radius (km)\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}Equivalent \\ $\Delta$V (km/s)\end{tabular}}\\ \hline
+JOI               & \begin{tabular}[c]{@{}c@{}}14 Feb 2026 \\ 12:00:00.004 UTCG\end{tabular} & 1.5336       & 142.33                                                              & 1.471e7                                                                   & -- \\ \hline
+   \begin{tabular}[c]{@{}c@{}}Jupiter TCM1/ \\ Ganymede GA1\end{tabular}   & \begin{tabular}[c]{@{}c@{}}26 Apr 2026 \\ 15:55:03.999 UTCG\end{tabular} & 0.2429                 & 79.47                                                           & 9.614e6         & 0.1519                                                              \\ \hline
+ \begin{tabular}[c]{@{}c@{}}Jupiter TCM2/ \\ Ganymede GA2\end{tabular}       & \begin{tabular}[c]{@{}c@{}}14 Aug 2026 \\ 18:23:50.746 UTCG\end{tabular} & 0.0723                 & 43.39                                                  & 6.108e6       & 0.2554                                                                         \\ \hline
+ \begin{tabular}[c]{@{}c@{}}Jupiter TCM3/ \\ Ganymede GA3\end{tabular}       & \begin{tabular}[c]{@{}c@{}}14 Oct 2026 \\ 07:08:39.955 UTCG\end{tabular} & 0.0979                 & 28.55                                                    & 4.406e6        &0.2753                                                                      \\ \hline
+\end{tabular}
+\end{table}
 
 	\section{Conclusion}
 
