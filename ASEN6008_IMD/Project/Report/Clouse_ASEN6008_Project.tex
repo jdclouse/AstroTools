@@ -128,52 +128,44 @@
 	\newpage
 
 	\section{Introduction}
-Jupiter is the largest planet in the solar system, and the closest gas giant to the sun. 
-
-A VEEJ (Venus-Earth-Earth-Jupiter) trajectory was considered for launch in 2020. The requirements are outlined as follows:
-	
-%	\begin{figure}[H]
-%		\centering
-%			\includegraphics[width = 7.5cm]{schematic.png}
-%		\caption{Diagram of the spacecraft\cite{WieSolarSail2}. }
-%		\label{fig:Diagram}
-%	\end{figure}	
-	
-	\vspace{5 mm}
-	
-The sailcraft's actuator was a gimbaled control boom between the sail subsystem and the spacecraft bus, which contained the majority of the spacecraft mass.  With the center of mass between the thrust point and the sun, expected disturbances would cause oscillation about some angle between the sun and the axis normal to the sail, $\alpha$, for a locked gimbal.  Changing the gimbal angle, $\delta$, would dampen this oscillation with the right control law. Roll and pitch angles were held to zero for this analysis. Sun sensors determined spacecraft yaw, and had a maximum error of $\pm$0.05$^{\circ}$.
+Jupiter is the largest planet in the solar system, and the closest gas giant to the sun. It is a planet that is rich with opportunities for scientific inquiry. Jupiter's makeup can give clues to how the solar system was created. The largest moon, Ganymede, is thought to have a subsurface ocean and an active core. Europa also has a subsurface ocean, and geysers that spout water far above the surface. Either of these moons could hold life, but the first step in exploring them is to reach the Jupiter system.
 	
 	\vspace{5 mm}
 
-The state-space model had four states: the sun angle ($\alpha$), the rate of the sun angle ($\dot{\alpha}$), the gimbal angle ($\delta$), and the gimbal angle rate ($\dot{\delta}$). These states were chosen due to their coupling and resulting output (sun angle), as well as being the only dynamic parameters, as seen in Equations \ref{eq:1} and \ref{eq:2}.The sail and boom were modeled as rigid bodies, justified by the slow actuation of the gimbal throughout the flight. The sail was modeled as a thin plate, rather than a billowed sail. The state-space model was obtained in a similar manner to that presented by Wie\cite{WieSolarSail2}. The equations of motion for a gimbaled thrust vector were obtained for the yaw axis. 
-	
-	\vspace{5 mm}
-
-System performance was judged by the response to errors, namely a step from $\alpha$=0$^{\circ}$ to $\alpha$=35$^{\circ}$. Mitigation of disturbance torques was also examined.
+A VEEGA (Venus-Earth-Earth Gravity Assist) trajectory for a mission called Zeus was considered for launch in 2020. The requirements are outlined as follows: time of flight fewer than ten years, C$_3$ under 18 km$^2$/s$^2$, arrival V$_\infty$ under 6 km/s, and total $\Delta$V$_\infty$ under 0.3 km/s for all gravity assists. The first step in finding a valid trajectory is to use Lambert's method to generate porkchop plots for all segments, except for resonant orbits, between planets. This will help the designer see what feasible trajectories exist, and whether each segment should be a Type I or Type II transfer. Next, an algorithm is applied to find one or more trajectories that meet the requirements. Finally, simulations can be performed using models of higher fidelity than the porkchop plots' Lambert solver. The designer can then correct the trajectory with propulsive maneuvers and determine overall feasibility of the orbit. 
 
 	\section{Preliminary Trajectory Design}
+The porkchop plots relevant to this trajectory are show in Figures \ref{fig:PCP_Launch_VGA}, \ref{fig:PCP_VGA_EGA1}, and \ref{fig:PCP_EGA2_JOI} below.
 	\begin{figure}[H]
 		\centering
-			\includegraphics[width = 18cm]{../PCP/VEEJ/1_Launch_VGA.png}
+			\includegraphics[width = 17.5cm]{../PCP/VEEJ/1_Launch_VGA.png}
 		\caption{Launch to VGA. }
 		\label{fig:PCP_Launch_VGA}
 	\end{figure}	
 
 	\begin{figure}[H]
 		\centering
-			\includegraphics[width = 18cm]{../PCP/VEEJ/2_VGA_EGA1.png}
+			\includegraphics[width = 17.5cm]{../PCP/VEEJ/2_VGA_EGA1.png}
 		\caption{VGA to EGA1. }
 		\label{fig:PCP_VGA_EGA1}
 	\end{figure}	
 
 	\begin{figure}[H]
 		\centering
-			\includegraphics[width = 18cm]{../PCP/VEEJ/3_EGA2_JOI.png}
+			\includegraphics[width = 17.5cm]{../PCP/VEEJ/3_EGA2_JOI.png}
 		\caption{EGA2 to JOI. }
 		\label{fig:PCP_EGA2_JOI}
 	\end{figure}	
 
-	Porkchop plots serve as great visual guides to determine low-cost trajectories. However, chaining together multiple gravity assists leads to many potential solutions whose benefits become difficult to compare using several porkchop plots. An algorithm was developed to trim the search space of the possible trajectories, as well as to determine the merits of each trajectory. The algorithm took a predetermined set of windows and determined the lambert solution between the launch, gravity assists, and orbit insertion. Next, launch C3 and final $V_\infty$ were applied to the initial and final windows to rid the search space of known unusable trajectories. The ${\Delta}V$ difference between planetary encounters on a given date were subsequently calculated; any ${\Delta}V$ difference outside of a tuned tolerance were thrown out. The result was a set of dates
+From the above plots, one can see the dearth of planetary encounters that are supported with this launch date and the launch criteria. Type II transfers were chosen for the Earth-Venus and Venus-Earth segments, while a Type I transfer was chosen for the Earth-Jupiter segment. Other planetary encounter windows were tried for a 2020 launch date, but none were found.
+	
+	\vspace{5 mm}
+
+	Porkchop plots serve as great visual guides to determine low-cost trajectories. However, chaining together multiple gravity assists leads to many potential solutions whose benefits become difficult to compare using several porkchop plots. An algorithm was developed to trim the search space of the possible trajectories, as well as to determine the merits of each trajectory. The algorithm took a predetermined set of windows and determined the Lambert solution between the launch, gravity assists, and orbit insertion. Next, launch C3 and final $V_\infty$ were applied to the initial and final windows to rid the search space of known unusable trajectories. The ${\Delta}V$ difference between planetary encounters on a given date were subsequently calculated; any ${\Delta}V$ difference outside of a tuned tolerance were thrown out. The result was a set of dates that fit the given requirements. The space was further pruned by calculating the closest approach to all flyby planets and discarding the ones that got too close.
+	
+	\vspace{5 mm}
+
+	Performance of this algorithm was found to be very hardware-dependent. The algorithm was implemented in Matlab and run on a 6-year-old desktop computer. For the VEEGA trajectory to Jupiter, the process took over 40 minutes to reach the point of calculating the closest approach for all the flybys. The same algorithm and data run on a computer with 16 cores and 64 GB of RAM did the entire algorithm in under five minutes. No doubt this hardware could find valid trajectory to the ice giants with smaller granularity in the encounter windows, but its availability was late-coming.
 	
 	\vspace{5 mm}
 
@@ -214,7 +206,7 @@ The range of $\varphi$ that prevents planetary impact for both gravity assists i
 	
 	\vspace{5 mm}
 
-Jupiter's moons can provide both scientific targets and gravity assists. Ganymede, being the most massive body, has been identified as the most useful Jovian moon for changing the spacecraft period\cite{Damario}. This moon is outside the worst of Jupiter's radiation, making its orbit safe for spacecraft perijove. Ganymede's orbital radius is 1.0711e6 km in radius from Jupiter with an eccentricity of 0.001\cite{Damario}. Choosing a 20:1 resonant initial orbit with Ganymede gave the spacecraft an apojove of 1.4707e7 km and period of 143.1 days, requiring a JOI $\Delta$V of 1.5336 km/s. Larger initial orbits substantially increased the period while encountering diminishing returns with the JOI $\Delta$V. This initial orbit could allow for a varietry of moon tours that would lower apojove and allow easier capture around one of the moons. In addition, the outer Galilean moons could reduce the JOI burn required. For this trajectory, Ganamede could provide a turning angle of up to 11$^\circ$. To find the magnitude of $\vec{B}$, one merely computes the hyperbola equation $b=a\sqrt{e^2-1}$ to find that $\left |{\vec{B}}  \right |$= 3.1108e6 km.
+Jupiter's moons can provide both scientific targets and gravity assists. Ganymede, being the most massive body, has been identified as the most useful Jovian moon for changing the spacecraft period\cite{Damario}. This moon is outside the worst of Jupiter's radiation, making its orbit safe for spacecraft perijove. Ganymede's orbital radius is 1.0711e6 km in radius from Jupiter with an eccentricity of 0.001\cite{Damario}. Choosing a 20:1 resonant initial orbit with Ganymede gave the spacecraft an apojove of 1.4707e7 km and period of 143.1 days, requiring a JOI $\Delta$V of 1.5336 km/s. Larger initial orbits substantially increased the period while encountering diminishing returns with the JOI $\Delta$V. This initial orbit could allow for a varietry of moon tours that would lower apojove and allow easier capture around one of the moons. In addition, the outer Galilean moons could reduce the JOI burn required. For this trajectory, Ganamede could provide a turning angle of up to 11$^\circ$. To find the magnitude of $\vec{B}$, one merely computes the hyperbola equation $b=a\sqrt{e^2-1}$ to find that $\left |{\vec{B}}  \right |= b = $ 3.1108e6 km.
 	
 	\vspace{5 mm}
 
@@ -233,14 +225,14 @@ Arrival V$_\infty$ (km/s)       & \textless6           & 5.59       & 5.64     \
 Total $\Delta$V$_\infty$ (km/s)         & \textless0.3           & 2.65e-4    & N/A     \\ \hline
 \end{tabular}
 \end{table}
-The Hohmann transfer to Jupiter looked attractive due to the shorter time of flight, but the C$_3$ is prohibitively large. In fact, it's off the chart given by Vallado\cite{Vallado}. The proposed trajectory is most easily compared to the Galileo mission. Galileo was flown to study Jupiter and its moons; one could surmise that the mass of the spacecraft would be comparable. Like the proposed trajectory, Galileo took advantage of a VEEGA. Galileo's time of flight was just over six years. It also had a maximum C$_3$ of 17 $\mathrm{km^2/s^2}$\cite{Damario}. With a V$_\infty$ error orders of magnitude less than the maximum allowable, this trajectory was determined to be feasible. The primary difference between this trajectory and Galileo's was its JOI $\Delta$V of 0.630 km/s.  Galileo flew by Europa and Io to reduce its jovecentric velocity. As previously  discussed, moon flybys could reducd the JOI $\Delta$V required by this trajectory.
+The Hohmann transfer to Jupiter looked attractive due to the shorter time of flight, but the C$_3$ is prohibitively large. In fact, it's off the chart given by Vallado\cite{Vallado}. The proposed trajectory is most easily compared to the Galileo mission. Galileo was flown to study Jupiter and its moons; one could surmise that the mass of the spacecraft would be comparable. Like the proposed trajectory, Galileo took advantage of a VEEGA. Galileo's time of flight was just over six years. It also had a maximum C$_3$ of 17 $\mathrm{km^2/s^2}$\cite{Damario}. With a V$_\infty$ error orders of magnitude less than the maximum allowable, this trajectory was determined to be feasible. The primary difference between this trajectory and Galileo's was its JOI $\Delta$V of 0.630 km/s.  Galileo flew by Europa and Io to reduce its Jupiter-centric velocity. As previously  discussed, moon flybys could reduce the JOI $\Delta$V required by this trajectory.
 
 	\section{STK Simulation}
-The previously documented trajectory was visualized in STK 10. STK allows for simulations of spacecraft and ground facilities to give mission planners much of what they need to detail the spacecraft operations. It computes access between spacecraft and facilities. With the Astrogator package, STK assists in targeting interplanetary trajectories. It can take a savvy mission designer to know the best ways to target a trajectory, but the visualization and reports make communication to spacecraft designers easy. However, STK lacks the ability to search for trajectories given the requirements for this project. Therefore, one must create a trajectory in a similar fashion as described above. STK does allow for custom plugins, which could allow the STK application to be more capable. 
+The previously documented trajectory was visualized in STK 10. STK allows for simulations of spacecraft and ground facilities to give mission planners much of what they need to detail the spacecraft operations. It computes access between spacecraft and facilities. With the Astrogator package, STK assists in targeting interplanetary trajectories. It can take a savvy mission designer to know the best ways to target a trajectory, but the visualization and reports make communication to spacecraft designers easy. However, STK lacks the ability to search for trajectories given the requirements for this project. Therefore, one must create a trajectory in a similar fashion as described above. STK does allow for custom plugins, which could allow the STK application to be more capable in targeting trajectories. 
 	
 	\vspace{5 mm}
 
-Planetery ephemerides were from DE421. Launch was originally targeted at Cape Canaveral, but there was diffuculty in targeting the desired launch declination. Baikonur was the second choice, but the launch intersected Earth on its way out. Tanegashima successfully launched the spacecraft. Tanegashima is 2$^\circ$ above Cape Canaveral, so they are relatively similar for launch purposes.  Tanegashima can host interplanetary-bound spacecraft, but assuming Zeus is an American mission, there are regulatory constraints to launch from there.
+Planetary ephemerides were from DE421. Launch was originally targeted at Cape Canaveral, but there was difficulty in targeting the desired launch declination. Baikonur was the second choice, but the launch intersected Earth on its way out. Tanegashima successfully launched the spacecraft. Tanegashima is 2$^\circ$ above Cape Canaveral, so they are relatively similar for launch purposes.  Tanegashima can host interplanetary-bound spacecraft, but assuming Zeus is an American mission, there are regulatory constraints to launch from there.
 	
 	\vspace{5 mm}
 
@@ -261,7 +253,7 @@ TCM4              & \begin{tabular}[c]{@{}c@{}}22 Jul 2023 \\ 12:00:00.000 UTCG\
 \end{tabular}
 \end{table}
 
-The TCMs start small, but TCM4 ends up being quite large. This is due in part to the ephemerides being used in the Lambert solution (Meeus) versus in STK (DE421). The initial TCMs have smaller adjustments to make due to the time and distance scales being small. TCM4 corrects a segment that goes much farther and takes more time, enhancing the error between the ephemerides. The Lambert solution assumed simple two-body motion, whereas STK's heliocentric propagator includes the gravity effects from all the planets. The TCMs could be smaller if the Lambert solver and STK ephemerides were the same. In addition, a smaller-granularity Lambert solution window for all planetary encounters could allow for better planetary targeting.
+The TCMs start small, but TCM4 ends up being quite large. This is due in part to the ephemerides being used in the Lambert solution (Meeus\cite{Meeus}) versus in STK (DE421). The initial TCMs have smaller adjustments to make due to the time and distance scales being small. TCM4 corrects a segment that goes much farther and takes more time, enhancing the error between the ephemerides. The Lambert solution assumed simple two-body motion, whereas STK's heliocentric propagator includes the gravity effects from all the planets. The TCMs could be smaller if the Lambert solver and STK ephemerides were the same. In addition, a smaller-granularity Lambert solution window for all planetary encounters could allow for better planetary targeting.
 	
 	\vspace{5 mm}
 
@@ -302,7 +294,7 @@ The B-plane target was chosen to be the $\left |{\vec{B}}  \right |$ found in th
 
 	\section{Earth Access}
 
-Earthly access to a spacecraft is an important aspect of the mission. Software can be uploaded, commands sent, telemetry recieved, and emergencies abated as long as a ground station and the spacecraft have an onobstructed view of one another. It is desirable to see the spacecraft during maneuvers for navigation purposes so that the resulting state can be reconstructed. Figure \ref{fig:week1AccessGT} shows the ground track during the first week of the mission, along with the Deep Space Network (DSN) ground stations.
+Earthly access to a spacecraft is an important aspect of the mission. Software can be uploaded, commands sent, telemetry received, and emergencies abated as long as a ground station and the spacecraft have an unobstructed view of one another. It is desirable to see the spacecraft during maneuvers for navigation purposes so that the resulting state can be reconstructed. Figure \ref{fig:week1AccessGT} shows the ground track during the first week of the mission, along with the Deep Space Network (DSN) ground stations.
 	\begin{figure}[H]
 		\centering
 			\includegraphics[width = 12cm]{../Figures/Week1GroundTrack.png}
@@ -368,7 +360,7 @@ The second Earth gravity assist's DSN access is visualized in Figure \ref{fig:EG
 		\label{fig:EGA2_Access}
 	\end{figure}	
 
-Again, the Earth gravity assist is not visible to the DSN at the closest approach. From the trajectory figures, one can see that unless the closest path is either above low Earth orbit or it passes directly over a DSN station, it will probably not be visible to the DSN. There are also other factors to consider with DSN access during Earth flybys. The first is that the groundstation antenna in use can move fast enough to maintain contact. In this case, an omnidirectional antenna may be better than the large, high-gain antennas the DSN is famous for. Secondly, the flyby occurs quickly. This means that a body-fixed antenna would need a large attitude maneuver, or a phased array would need to move fast enough to support the access. This is an example of how mission design trickles down into spacecraft subsystem requirements.
+Again, the Earth gravity assist is not visible to the DSN at the closest approach. From the trajectory figures, one can see that unless the closest path is either above low Earth orbit or it passes directly over a DSN station, it will probably not be visible to the DSN. There are also other factors to consider with DSN access during Earth flybys. The first is that the ground station antenna in use can move fast enough to maintain contact. In this case, an omnidirectional antenna may be better than the large, high-gain antennas the DSN is famous for. Secondly, the flyby occurs quickly. This means that a body-fixed antenna would need a large attitude maneuver, or a phased array would need to move fast enough to support the access. This is an example of how mission design trickles down into spacecraft subsystem requirements.
 
 	\vspace{5 mm}
 
@@ -415,7 +407,7 @@ To reach Europan orbit, a apojove $\Delta$V of 0.2259 km/s was applied, followed
 
 	\vspace{5 mm}
 
-As mentioned previously, Ganymede has characteristics that could be helpful in reducing the energy of the Jovian orbit. By flying in front of Ganymede\cite{Vallado}, the energy relative to Jupiter can be decreased. By adjusting $r_p$, a resonant orbit was created that allowed for another flyby to further lower the apojove. Table \ref{GanymedeTable} below shows the results of this process.
+As mentioned previously, Ganymede has characteristics that could be helpful in reducing the energy of the Jovian orbit. By flying in front of Ganymede\cite{Vallado}, the energy relative to Jupiter can be decreased. By adjusting $r_p$, a resonant orbit was created that allowed for another flyby to further lower the apojove. The B-plane target was purely in the $-\hat{T}$ direction, and the magnitude was varied until a resonant orbit was achieved. Table \ref{GanymedeTable} below shows the results of this process.
 \begin{table}[]
 \centering
 \caption{Orbit lowering with Ganymede gravity assists.}
@@ -431,21 +423,40 @@ JOI               & \begin{tabular}[c]{@{}c@{}}14 Feb 2026 \\ 12:00:00.004 UTCG\
 \end{tabular}
 \end{table}
 
+Each flyby of Ganymede was able to significantly reduce apojove. The first TCM's $\Delta$V actually had a significant out-of-plane component; a better targeting method would probably make the first TCM similar to the others. The second and third flybys required TCMs that were much smaller than an impulsive $\Delta$V at perijove. The first four orbits are visualized in Figure \ref{fig:FlybyOrbs} below.
+	\begin{figure}[H]
+		\centering
+		\subfigure[Apojove lowering]{
+			\includegraphics[width = 10cm]{../Figures/GanymedeLowering.png}
+		}
+		\subfigure[Resonant flybys of Ganymede]{
+			\includegraphics[width = 10cm]{../Figures/GanymedeFlybys.png}
+		}
+		\caption{Ganymede flybys. }
+		\label{fig:FlybyOrbs}
+	\end{figure}	
+
+After the fourth orbit, a $\Delta$V of 3.88 km/s is needed to insert into a 500 km altitude orbit. More flybys and flybys around Callisto, which is also a massive moon, would help to lower the orbit even further. If ephemerides were known of the moons, one could target a trajectory much better than manually targeting in STK. Due to the short timescale of the Jovian moon orbits compared to planetary orbits, there could be many tours available that could use small amounts of propellant until the time comes to insert into a moon orbit.
+
 	\section{Conclusion}
 
-	The non-optimal controller was able to meet the design criteria without observer errors. However, it proved to not be as robust to such errors as the LQR controller. This is due to the control effort used in both controllers. The LQR design assigned a cost to control effort, so less was used. On the other hand, the non-optimal controller, which was tuned with SISO methods, was otherwise sufficient in meeting control objectives. Perhaps with sensor filtering, observer error could be reduced such that the control effort would also be reduced. 
+	A trajectory to Jupiter was found that met all requirements was found. An algorithm was developed to find the trajectory, but improvements could still be made. Implementing a genetic algorithm or a minimization routine could reduce processing time for the algorithm. Further, the algorithm was implemented as a single thread; a multi-threaded version of the algorithm could also reduce search time.
 
 	\vspace{5 mm}
 
-	The Luenberger observer was able to reconstruct the entire state from only knowing the sun angle. The poles also drove initial (realistic) initial observer error to zero without forcing the actuator to violate its constraints.
+The trajectory was proven to work in STK. However, the TCMs became large in the end. This is due to the difference in ephemerides the algorithm and STK used, as well as STK's higher-fidelity modeling. Future would should implement JPL's SPICE kernel to make use of similar ephemerides to STK. Additionally, running the algorithm with a smaller window granularity could lower the STK-calculated TCMs. Incorporating these calculations into STK through its custom interfaces could make it easier to target a gravity assist with smaller TCMs required.
 
 	\vspace{5 mm}
 
-	The state feedback mitigated control of the disturbance. Without the integral term, the steady-state error would be untenable for a sailcraft to get the expected thrust.  The feedback on the rest of the state ensured a quick rise that did not exceed the defined overshoot limit.
+Earth access for this trajectory was computed for various events in the mission. During cruise, there is always DSN access when the sun is not in conjunction. The Venus gravity assist was visible to the Goldstone and Madrid facilities. For the Earth gravity assists, there was access except for a short time around the closest approach. However, even though there was line of sight between the spacecraft and the ground stations, the dynamics of the spacecraft flying quickly past the Earth could make it difficult for the DSN antennae to truly maintain access.  Due to the favorable geometry of the final transfer to Jupiter, JOI could be targeted to give access to any two DSN facilities. 
 
 	\vspace{5 mm}
 
-	The control methods presented were able to meet the design criteria for single-axis control of the specified solar-sail spacecraft. Further research should be done for both 2-axis gimballing and combining a gimbal with sail vanes at the edges of the sail, as well as craft with more massive busses and perhaps a gimballed payload on the other side of the sail. With such research, design flexibility will allow viable missions with reduced time or resource cost.
+Maneuvers to explore the Jupiter system were studied. First, a direct transfer from the initial Jovian orbit to Europa capture was considered. With a required $\Delta$V on the scale produced by launch vehicles, this was not feasible. Next, Ganymede was used to lower apojove. Although the first maneuver performed to fly by Ganymede had a large out-of-plane component, it was shown that using this moon to reduce orbit energy was much more efficient than impulsive $\Delta$Vs at perijove. A targeting algorithm with realistic ephemerides could lower the TCM $\Delta$V even further.
+
+	\vspace{5 mm}
+
+Mission design is a complex process that is part art, and part science. Trial and error were invoked many times through the course of this investigation, as the dynamics and timescales involved are beyond the implementation of a simple algorithm. With a firm grasp of the underlying mechanics, one can effectively utilize hardware computation after removing unrealistic scenarios from consideration. The subsequent fine-tuning will allow for a cost-efficient mission that can meet and exceed its stated goals.
 
 
 \bibliographystyle{aiaa}   % Number the references.

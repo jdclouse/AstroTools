@@ -1,10 +1,6 @@
 \begin{thebibliography}{1}
 \newcommand{\enquote}[1]{``#1''}
 
-\bibitem{WieSolarSail2}
-Wie, B., \enquote{Solar Sail Attitude Control and Dynamics, Part 2,} {\em
-  Journal of Guidance, Control, and Dynamics\/}, Vol.~27, 2004, pp.~536--544.
-
 \bibitem{Damario}
 D'Amario, L.~A., \enquote{Galileo Trajectory Design,} {\em Space Science
   Reviews\/}.
@@ -12,5 +8,9 @@ D'Amario, L.~A., \enquote{Galileo Trajectory Design,} {\em Space Science
 \bibitem{Vallado}
 Vallado, D.~A., {\em Fundamentals of Astrodynamics and Applications\/},
   Microcosm Press, Hawthorne, CA, 2013.
+
+\bibitem{Meeus}
+Meeus, J., {\em Astronomical Algorithms\/}, William-Bell, Inc, Richmond, VA,
+  1991.
 
 \end{thebibliography}

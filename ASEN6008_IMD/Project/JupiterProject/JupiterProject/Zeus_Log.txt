@@ -301,7 +301,7 @@ Initial control parameters:
 
 Unscaled Controls:
 Name                                   Current Value            Last Update        Total Correction
-Maneuver : ImpulsiveMnvr.Cartesian.X -3.000000000000 km/sec  0.000000000000 km/sec   0.000000000000 km/sec
+Maneuver : ImpulsiveMnvr.Cartesian.X -3.889185173868 km/sec  0.000000000000 km/sec  -0.889185173868 km/sec
 
 
 Homotopy step   1 of   1
@@ -312,211 +312,6 @@ Propagate3 : Eccentricity  0.000000000000
 
 
 ---Running one step of the differential corrector...
-
--------------------------------------------------------------
-Iteration =   1
-Unscaled Intermediate Constraints:
-Name                        Current Value         Desired      Difference       Tolerance
-Propagate3 : Eccentricity  4.979441985044  0.000000000000  4.979441985044  0.010000000000
-
-
-
-Performing one Newton-Raphson Step...
-
-Perturbation evaluation +1
-Controls:
-Name                                           Value           Perturbation        Scaled Perturbation
-Maneuver : ImpulsiveMnvr.Cartesian.X -2.999900000000 km/sec  0.000100000000 km/sec      0.000033333333
-
-Constraints:
-Name                                Value          Change       Scaled Change
-Propagate3 : Eccentricity  4.991021550414  0.011579565370     0.0115795653703
-
-
-Partial derivative matrix (scaled) :
-
-         347.38696111
-
-Newton Step Done...
-
-DC proposed step:
-Name                                          Scaled        Unscaled
-Maneuver : ImpulsiveMnvr.Cartesian.X -0.014333992183 -0.043001976549 km/sec
-
-
-Step with Max Step limits applied:
-Name                                          Scaled        Unscaled
-Maneuver : ImpulsiveMnvr.Cartesian.X -0.014333992183 -0.043001976549 km/sec
-
-
-Step final values:
-
-Unscaled Controls:
-Name                                   Current Value            Last Update        Total Correction
-Maneuver : ImpulsiveMnvr.Cartesian.X -3.043001976549 km/sec -0.043001976549 km/sec  -0.043001976549 km/sec
-
-
-Unscaled Intermediate Constraints:
-Name                        Current Value         Desired      Difference       Tolerance
-Propagate3 : Eccentricity  1.411573801340  0.000000000000  1.411573801340  0.010000000000
-
-
-
--------------------------------------------------------------
-Iteration =   2
-Unscaled Intermediate Constraints:
-Name                        Current Value         Desired      Difference       Tolerance
-Propagate3 : Eccentricity  1.411573801340  0.000000000000  1.411573801340  0.010000000000
-
-
-
-Updating partials with Secant method...
-
-Partial derivative matrix (scaled) :
-
-        248.909594629
-
-Secant Update Done...
-
-DC proposed step:
-Name                                          Scaled        Unscaled
-Maneuver : ImpulsiveMnvr.Cartesian.X -0.005671030092 -0.017013090276 km/sec
-
-
-Step with Max Step limits applied:
-Name                                          Scaled        Unscaled
-Maneuver : ImpulsiveMnvr.Cartesian.X -0.005671030092 -0.017013090276 km/sec
-
-
-Step final values:
-
-Unscaled Controls:
-Name                                   Current Value            Last Update        Total Correction
-Maneuver : ImpulsiveMnvr.Cartesian.X -3.060015066825 km/sec -0.017013090276 km/sec  -0.060015066825 km/sec
-
-
-Unscaled Intermediate Constraints:
-Name                        Current Value         Desired      Difference       Tolerance
-Propagate3 : Eccentricity  0.605919867732  0.000000000000  0.605919867732  0.010000000000
-
-
-
--------------------------------------------------------------
-Iteration =   3
-Unscaled Intermediate Constraints:
-Name                        Current Value         Desired      Difference       Tolerance
-Propagate3 : Eccentricity  0.605919867732  0.000000000000  0.605919867732  0.010000000000
-
-
-
-Updating partials with Secant method...
-
-Partial derivative matrix (scaled) :
-
-         142.06483135
-
-Secant Update Done...
-
-DC proposed step:
-Name                                          Scaled        Unscaled
-Maneuver : ImpulsiveMnvr.Cartesian.X -0.004265094056 -0.012795282167 km/sec
-
-
-Step with Max Step limits applied:
-Name                                          Scaled        Unscaled
-Maneuver : ImpulsiveMnvr.Cartesian.X -0.004265094056 -0.012795282167 km/sec
-
-
-Step final values:
-
-Unscaled Controls:
-Name                                   Current Value            Last Update        Total Correction
-Maneuver : ImpulsiveMnvr.Cartesian.X -3.072810348993 km/sec -0.012795282167 km/sec  -0.072810348993 km/sec
-
-
-Unscaled Intermediate Constraints:
-Name                        Current Value         Desired      Difference       Tolerance
-Propagate3 : Eccentricity  0.160047598799  0.000000000000  0.160047598799  0.010000000000
-
-
-
--------------------------------------------------------------
-Iteration =   4
-Unscaled Intermediate Constraints:
-Name                        Current Value         Desired      Difference       Tolerance
-Propagate3 : Eccentricity  0.160047598799  0.000000000000  0.160047598799  0.010000000000
-
-
-
-Updating partials with Secant method...
-
-Partial derivative matrix (scaled) :
-
-        104.539844397
-
-Secant Update Done...
-
-DC proposed step:
-Name                                          Scaled        Unscaled
-Maneuver : ImpulsiveMnvr.Cartesian.X -0.001530972231 -0.004592916693 km/sec
-
-
-Step with Max Step limits applied:
-Name                                          Scaled        Unscaled
-Maneuver : ImpulsiveMnvr.Cartesian.X -0.001530972231 -0.004592916693 km/sec
-
-
-Step final values:
-
-Unscaled Controls:
-Name                                   Current Value            Last Update        Total Correction
-Maneuver : ImpulsiveMnvr.Cartesian.X -3.077403265686 km/sec -0.004592916693 km/sec  -0.077403265686 km/sec
-
-
-Unscaled Intermediate Constraints:
-Name                        Current Value         Desired      Difference       Tolerance
-Propagate3 : Eccentricity  0.028035140227  0.000000000000  0.028035140227  0.010000000000
-
-
-
--------------------------------------------------------------
-Iteration =   5
-Unscaled Intermediate Constraints:
-Name                        Current Value         Desired      Difference       Tolerance
-Propagate3 : Eccentricity  0.028035140227  0.000000000000  0.028035140227  0.010000000000
-
-
-
-Updating partials with Secant method...
-
-Partial derivative matrix (scaled) :
-
-        86.2278595939
-
-Secant Update Done...
-
-DC proposed step:
-Name                                          Scaled        Unscaled
-Maneuver : ImpulsiveMnvr.Cartesian.X -0.000325128565 -0.000975385694 km/sec
-
-
-Step with Max Step limits applied:
-Name                                          Scaled        Unscaled
-Maneuver : ImpulsiveMnvr.Cartesian.X -0.000325128565 -0.000975385694 km/sec
-
-
-Step final values:
-
-Unscaled Controls:
-Name                                   Current Value            Last Update        Total Correction
-Maneuver : ImpulsiveMnvr.Cartesian.X -3.078378651380 km/sec -0.000975385694 km/sec  -0.078378651380 km/sec
-
-
-Unscaled Intermediate Constraints:
-Name                        Current Value         Desired      Difference       Tolerance
-Propagate3 : Eccentricity  0.001723998380  0.000000000000  0.001723998380  0.010000000000
-
-
 
 --------------------------------------------------------
 
@@ -532,12 +327,12 @@ Params from single diff corr
 
 Unscaled Controls:
 Name                                   Current Value            Last Update        Total Correction
-Maneuver : ImpulsiveMnvr.Cartesian.X -3.078378651380 km/sec -0.000975385694 km/sec  -0.078378651380 km/sec
+Maneuver : ImpulsiveMnvr.Cartesian.X -3.889185173868 km/sec  0.000000000000 km/sec  -0.889185173868 km/sec
 
 
 Unscaled Intermediate Constraints:
 Name                        Current Value         Desired      Difference       Tolerance
-Propagate3 : Eccentricity  0.001723998380  0.000000000000  0.001723998380  0.010000000000
+Propagate3 : Eccentricity  0.000481136795  0.000000000000  0.000481136795  0.010000000000
 
 
 
@@ -546,12 +341,12 @@ Final Params from Homotopy Diff Corr
 
 Unscaled Controls:
 Name                                   Current Value            Last Update        Total Correction
-Maneuver : ImpulsiveMnvr.Cartesian.X -3.078378651380 km/sec -0.000975385694 km/sec  -0.078378651380 km/sec
+Maneuver : ImpulsiveMnvr.Cartesian.X -3.889185173868 km/sec  0.000000000000 km/sec  -0.889185173868 km/sec
 
 
 Unscaled Intermediate Constraints:
 Name                        Current Value         Desired      Difference       Tolerance
-Propagate3 : Eccentricity  0.001723998380  0.000000000000  0.001723998380  0.010000000000
+Propagate3 : Eccentricity  0.000481136795  0.000000000000  0.000481136795  0.010000000000
 
 
 

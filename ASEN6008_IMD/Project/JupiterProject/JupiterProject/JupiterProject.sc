@@ -1196,57 +1196,11 @@ END MapData
     
     BEGIN ReportFavorites
         BEGIN Class
-            Name  Access
-            BEGIN Favorite
-                Type    Graph
-                BaseDir Install
-                Style   Access
-            END Favorite
-            BEGIN Favorite
-                Type    Report
-                BaseDir Install
-                Style   Access Intervals by Time
-            END Favorite
-        END Class
-        BEGIN Class
-            Name  Satellite
-            BEGIN Favorite
-                Type    Report
-                BaseDir Install
-                Style   LLA Position
-            END Favorite
-            BEGIN Favorite
-                Type    Report
-                BaseDir Install
-                Style   Lifetime
-            END Favorite
-            BEGIN Favorite
-                Type    Graph
-                BaseDir Install
-                Style   Inertial Position Velocity
-            END Favorite
-        END Class
-        BEGIN Class
             Name  Planet
             BEGIN Favorite
                 Type    Report
                 BaseDir Install
-                Style   Helio Position Velocity
-            END Favorite
-            BEGIN Favorite
-                Type    Report
-                BaseDir Install
-                Style   Helio Classical Elements
-            END Favorite
-            BEGIN Favorite
-                Type    Report
-                BaseDir User
-                Style   Helio Position Velocity
-            END Favorite
-            BEGIN Favorite
-                Type    Report
-                BaseDir Install
-                Style   Apparent LLA Position
+                Style   J2000 Position Velocity
             END Favorite
             BEGIN Favorite
                 Type    Report
@@ -1256,7 +1210,53 @@ END MapData
             BEGIN Favorite
                 Type    Report
                 BaseDir Install
-                Style   J2000 Position Velocity
+                Style   Apparent LLA Position
+            END Favorite
+            BEGIN Favorite
+                Type    Report
+                BaseDir User
+                Style   Helio Position Velocity
+            END Favorite
+            BEGIN Favorite
+                Type    Report
+                BaseDir Install
+                Style   Helio Classical Elements
+            END Favorite
+            BEGIN Favorite
+                Type    Report
+                BaseDir Install
+                Style   Helio Position Velocity
+            END Favorite
+        END Class
+        BEGIN Class
+            Name  Satellite
+            BEGIN Favorite
+                Type    Graph
+                BaseDir Install
+                Style   Inertial Position Velocity
+            END Favorite
+            BEGIN Favorite
+                Type    Report
+                BaseDir Install
+                Style   Lifetime
+            END Favorite
+            BEGIN Favorite
+                Type    Report
+                BaseDir Install
+                Style   LLA Position
+            END Favorite
+        END Class
+        BEGIN Class
+            Name  Access
+            BEGIN Favorite
+                Type    Report
+                BaseDir Install
+                Style   Access Intervals by Time
+            END Favorite
+            BEGIN Favorite
+                Type    Graph
+                BaseDir Install
+                Style   Access
             END Favorite
         END Class
     END ReportFavorites

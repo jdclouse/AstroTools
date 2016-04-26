@@ -1,6 +1,6 @@
 \contentsline {section}{\numberline {I}Introduction}{3}{section.1}
-\contentsline {section}{\numberline {II}Preliminary Trajectory Design}{4}{section.2}
-\contentsline {section}{\numberline {III}STK Simulation}{9}{section.3}
-\contentsline {section}{\numberline {IV}Earth Access}{12}{section.4}
-\contentsline {section}{\numberline {V}Jupiter's Moons}{18}{section.5}
-\contentsline {section}{\numberline {VI}Conclusion}{20}{section.6}
+\contentsline {section}{\numberline {II}Preliminary Trajectory Design}{3}{section.2}
+\contentsline {section}{\numberline {III}STK Simulation}{8}{section.3}
+\contentsline {section}{\numberline {IV}Earth Access}{11}{section.4}
+\contentsline {section}{\numberline {V}Jupiter's Moons}{17}{section.5}
+\contentsline {section}{\numberline {VI}Conclusion}{19}{section.6}

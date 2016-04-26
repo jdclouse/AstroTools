@@ -11,8 +11,8 @@ ptn_Child1=Frames
 ptn_Child1=MainFrame
 ptn_Child2=ChildFrames
 [WorkState_v1_2.Frames.MainFrame]
-WindowPlacement=MCAAAAAACAAAAAAADAAAAAAAAAAAAAAAAAAAAAAAPPPPPPPPPPPPPPPPLEAAAAAACAAAAAAALOAAAAAAICAAAAAA
-Title=JupiterProject - STK 10 - Zeus : Basic Orbit
+WindowPlacement=MCAAAAAACAAAAAAADAAAAAAAAADIPPPPAADIPPPPPPPPPPPPPPPPPPPPLEAAAAAACAAAAAAALOAAAAAAICAAAAAA
+Title=JupiterProject - STK 10 - Astrogator MCS Propagate3 Summary
 [WorkState_v1_2.Frames.ChildFrames]
 ptn_Child1=Document-0
 ptn_Child2=Document-1
@@ -24,6 +24,13 @@ ptn_Child7=Document-6
 ptn_Child8=Document-7
 ptn_Child9=Document-8
 ptn_Child10=Document-9
+ptn_Child11=Document-10
+ptn_Child12=Document-11
+ptn_Child13=Document-12
+ptn_Child14=Document-13
+ptn_Child15=Document-14
+ptn_Child16=Document-15
+ptn_Child17=Document-16
 [WorkState_v1_2.Frames.ChildFrames.Document-0]
 ptn_Child1=ViewFrame-0
 [WorkState_v1_2.Frames.ChildFrames.Document-0.ViewFrame-0]
@@ -124,9 +131,9 @@ IsActiveChildFrame=False
 IsFrameVisible=True
 ProfUISBarID=63000
 ptn_Child1=AGI Custom Node Data
-[WorkState_v1_2.Frames.ChildFrames.Document-9]
+[WorkState_v1_2.Frames.ChildFrames.Document-11]
 ptn_Child1=ViewFrame-0
-[WorkState_v1_2.Frames.ChildFrames.Document-9.ViewFrame-0]
+[WorkState_v1_2.Frames.ChildFrames.Document-11.ViewFrame-0]
 DocPathName=C:\Program Files (x86)\AGI\STK 10\bin\AgUiTimelineView10.AgUiPiTimelineView.1
 DocumentString=AgUiTimelineView.AgUiPiTimelineView.1
 DocTemplateIndex=0
@@ -135,7 +142,7 @@ IsActiveChildFrame=False
 IsFrameVisible=True
 ProfUISBarID=63001
 ptn_Child1=AGI Custom Node Data
-[WorkState_v1_2.Frames.ChildFrames.Document-9.ViewFrame-0.AGI Custom Node Data]
+[WorkState_v1_2.Frames.ChildFrames.Document-11.ViewFrame-0.AGI Custom Node Data]
 ComponentWellWidth=200
 CurrentContentView=Scenario Availability
 CurrentTimeView=Scenario Analysis Period

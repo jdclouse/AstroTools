@@ -11,7 +11,7 @@ BEGIN VehiclePath
     BEGIN Interval
 
          StartTime            25 Feb 2020 12:52:48.317193204
-         StopTime             5 Dec 2026 09:51:43.294386178
+         StopTime             3 Dec 2026 19:14:59.999908924
 
     END Interval
 
@@ -344,21 +344,21 @@ BEGIN VehiclePath
             <OBJECT Class = "AttrCon" Name = "FinalState">
                 <OBJECT Class = "Orbit_State" Name = "Orbit_State">
                     <OBJECT Class = "container" Name = "Cartesian">
-                        <OBJECT Class = "double" Name = "X"> 86515432.22448224 m </OBJECT>
-                        <OBJECT Class = "double" Name = "Y"> 1047249077.219104 m </OBJECT>
-                        <OBJECT Class = "double" Name = "Z"> -17303463.62063136 m </OBJECT>
-                        <OBJECT Class = "double" Name = "Vx"> -10789.53456502688 m*sec^-1 </OBJECT>
-                        <OBJECT Class = "double" Name = "Vy"> 45.9212673480456 m*sec^-1 </OBJECT>
-                        <OBJECT Class = "double" Name = "Vz"> 106.6387596768143 m*sec^-1 </OBJECT>
+                        <OBJECT Class = "double" Name = "X"> -2003729.181402828 m </OBJECT>
+                        <OBJECT Class = "double" Name = "Y"> 2369950.197904721 m </OBJECT>
+                        <OBJECT Class = "double" Name = "Z"> 461543.5784333982 m </OBJECT>
+                        <OBJECT Class = "double" Name = "Vx"> 979.927830494823 m*sec^-1 </OBJECT>
+                        <OBJECT Class = "double" Name = "Vy"> 1034.49782910224 m*sec^-1 </OBJECT>
+                        <OBJECT Class = "double" Name = "Vz"> -1059.251665717463 m*sec^-1 </OBJECT>
                     </OBJECT>
                     <OBJECT Class = "double" Name = "Cd"> 2.2 &quot;&quot; </OBJECT>
                     <OBJECT Class = "link" Name = "CoordSysRep">
-                        <OBJECT Class = "string" Name = ""> &quot;CentralBody/Jupiter Inertial&quot; </OBJECT>
+                        <OBJECT Class = "string" Name = ""> &quot;CentralBody/Ganymede Inertial&quot; </OBJECT>
                     </OBJECT>
                     <OBJECT Class = "double" Name = "Cr"> 1 &quot;&quot; </OBJECT>
                     <OBJECT Class = "double" Name = "DragArea"> 20 m^2 </OBJECT>
                     <OBJECT Class = "double" Name = "DryMass"> 500 kg </OBJECT>
-                    <OBJECT Class = "date" Name = "Epoch"> &quot;5 Dec 2026 09:52:18.294386178&quot; TAIG </OBJECT>
+                    <OBJECT Class = "date" Name = "Epoch"> &quot;3 Dec 2026 19:15:34.999908924&quot; TAIG </OBJECT>
                     <OBJECT Class = "double" Name = "FuelDensity"> 1000 kg*m^-3 </OBJECT>
                     <OBJECT Class = "double" Name = "FuelMass"> 500 kg </OBJECT>
                     <OBJECT Class = "double" Name = "K1"> 1 &quot;&quot; </OBJECT>
@@ -9698,7 +9698,7 @@ BEGIN VehiclePath
                                     <OBJECT Class = "string" Name = "UserComment"> &quot;Epoch of State&quot; </OBJECT>
                                     <OBJECT Class = "bool" Name = "Valid"> True </OBJECT>
                                     <OBJECT Class = "container" Name = "Values">
-                                        <DATE>&quot;5 Jul 2026 15:55:38.999000013&quot; TAIG</DATE>
+                                        <DATE>&quot;5 Jul 2026 15:55:38.998870879&quot; TAIG</DATE>
                                     </OBJECT>
                                     <OBJECT Class = "string" Name = "Version"> &quot;1.0.1 a&quot; </OBJECT>
                                     <OBJECT Class = "double" Name = "Weight"> 1 &quot;&quot; </OBJECT>
@@ -9776,7 +9776,7 @@ BEGIN VehiclePath
                                     <OBJECT Class = "string" Name = "UserComment"> &quot;Epoch of State&quot; </OBJECT>
                                     <OBJECT Class = "bool" Name = "Valid"> True </OBJECT>
                                     <OBJECT Class = "container" Name = "Values">
-                                        <DATE>&quot;6 Jul 2026 07:20:35.022000015&quot; TAIG</DATE>
+                                        <DATE>&quot;6 Jul 2026 07:20:35.022175878&quot; TAIG</DATE>
                                     </OBJECT>
                                     <OBJECT Class = "string" Name = "Version"> &quot;1.0.1 a&quot; </OBJECT>
                                     <OBJECT Class = "double" Name = "Weight"> 1 &quot;&quot; </OBJECT>
@@ -11561,7 +11561,7 @@ BEGIN VehiclePath
                                     <OBJECT Class = "string" Name = "UserComment"> &quot;Epoch of State&quot; </OBJECT>
                                     <OBJECT Class = "bool" Name = "Valid"> True </OBJECT>
                                     <OBJECT Class = "container" Name = "Values">
-                                        <DATE>&quot;23 Sep 2026 00:10:35.002999991&quot; TAIG</DATE>
+                                        <DATE>&quot;23 Sep 2026 00:10:35.002774656&quot; TAIG</DATE>
                                     </OBJECT>
                                     <OBJECT Class = "string" Name = "Version"> &quot;1.0.1 a&quot; </OBJECT>
                                     <OBJECT Class = "double" Name = "Weight"> 1 &quot;&quot; </OBJECT>
@@ -13318,7 +13318,7 @@ BEGIN VehiclePath
                                     <OBJECT Class = "string" Name = "UserComment"> &quot;Epoch of State&quot; </OBJECT>
                                     <OBJECT Class = "bool" Name = "Valid"> True </OBJECT>
                                     <OBJECT Class = "container" Name = "Values">
-                                        <DATE>&quot;4 Nov 2026 22:23:35.007999986&quot; TAIG</DATE>
+                                        <DATE>&quot;4 Nov 2026 22:23:35.008081287&quot; TAIG</DATE>
                                     </OBJECT>
                                     <OBJECT Class = "string" Name = "Version"> &quot;1.0.1 a&quot; </OBJECT>
                                     <OBJECT Class = "double" Name = "Weight"> 1 &quot;&quot; </OBJECT>
@@ -15075,7 +15075,7 @@ BEGIN VehiclePath
                                     <OBJECT Class = "string" Name = "UserComment"> &quot;Epoch of State&quot; </OBJECT>
                                     <OBJECT Class = "bool" Name = "Valid"> True </OBJECT>
                                     <OBJECT Class = "container" Name = "Values">
-                                        <DATE>&quot;3 Dec 2026 13:15:35.000000000&quot; TAIG</DATE>
+                                        <DATE>&quot;3 Dec 2026 13:15:34.999908924&quot; TAIG</DATE>
                                     </OBJECT>
                                     <OBJECT Class = "string" Name = "Version"> &quot;1.0.1 a&quot; </OBJECT>
                                     <OBJECT Class = "double" Name = "Weight"> 1 &quot;&quot; </OBJECT>
@@ -16230,21 +16230,21 @@ BEGIN VehiclePath
                     <OBJECT Class = "AttrCon" Name = "FinalState">
                         <OBJECT Class = "Orbit_State" Name = "Orbit_State">
                             <OBJECT Class = "container" Name = "Cartesian">
-                                <OBJECT Class = "double" Name = "X"> 86515432.22448224 m </OBJECT>
-                                <OBJECT Class = "double" Name = "Y"> 1047249077.219104 m </OBJECT>
-                                <OBJECT Class = "double" Name = "Z"> -17303463.62063136 m </OBJECT>
-                                <OBJECT Class = "double" Name = "Vx"> -10789.53456502688 m*sec^-1 </OBJECT>
-                                <OBJECT Class = "double" Name = "Vy"> 45.9212673480456 m*sec^-1 </OBJECT>
-                                <OBJECT Class = "double" Name = "Vz"> 106.6387596768143 m*sec^-1 </OBJECT>
+                                <OBJECT Class = "double" Name = "X"> -2003729.181402828 m </OBJECT>
+                                <OBJECT Class = "double" Name = "Y"> 2369950.197904721 m </OBJECT>
+                                <OBJECT Class = "double" Name = "Z"> 461543.5784333982 m </OBJECT>
+                                <OBJECT Class = "double" Name = "Vx"> 979.927830494823 m*sec^-1 </OBJECT>
+                                <OBJECT Class = "double" Name = "Vy"> 1034.49782910224 m*sec^-1 </OBJECT>
+                                <OBJECT Class = "double" Name = "Vz"> -1059.251665717463 m*sec^-1 </OBJECT>
                             </OBJECT>
                             <OBJECT Class = "double" Name = "Cd"> 2.2 &quot;&quot; </OBJECT>
                             <OBJECT Class = "link" Name = "CoordSysRep">
-                                <OBJECT Class = "string" Name = ""> &quot;CentralBody/Jupiter Inertial&quot; </OBJECT>
+                                <OBJECT Class = "string" Name = ""> &quot;CentralBody/Ganymede Inertial&quot; </OBJECT>
                             </OBJECT>
                             <OBJECT Class = "double" Name = "Cr"> 1 &quot;&quot; </OBJECT>
                             <OBJECT Class = "double" Name = "DragArea"> 20 m^2 </OBJECT>
                             <OBJECT Class = "double" Name = "DryMass"> 500 kg </OBJECT>
-                            <OBJECT Class = "date" Name = "Epoch"> &quot;5 Dec 2026 09:52:18.294386178&quot; TAIG </OBJECT>
+                            <OBJECT Class = "date" Name = "Epoch"> &quot;3 Dec 2026 19:15:34.999908924&quot; TAIG </OBJECT>
                             <OBJECT Class = "double" Name = "FuelDensity"> 1000 kg*m^-3 </OBJECT>
                             <OBJECT Class = "double" Name = "FuelMass"> 500 kg </OBJECT>
                             <OBJECT Class = "double" Name = "K1"> 1 &quot;&quot; </OBJECT>
@@ -16304,7 +16304,7 @@ BEGIN VehiclePath
                                     <OBJECT Class = "string" Name = "Category"> &quot;&quot; </OBJECT>
                                     <OBJECT Class = "bool" Name = "Clonable"> True </OBJECT>
                                     <OBJECT Class = "string" Name = "ControlName"> &quot;ImpulsiveMnvr.Cartesian.X&quot; </OBJECT>
-                                    <OBJECT Class = "double" Name = "Correction"> -78.3786513796843 m*sec^-1 </OBJECT>
+                                    <OBJECT Class = "double" Name = "Correction"> 0 m*sec^-1 </OBJECT>
                                     <OBJECT Class = "string" Name = "Description"> &quot;DeltaV in X Direction of coordinate axes&quot; </OBJECT>
                                     <OBJECT Class = "string" Name = "Dimension"> &quot;Rate&quot; </OBJECT>
                                     <OBJECT Class = "double" Name = "MaxStep"> 100 m*sec^-1 </OBJECT>
@@ -16316,19 +16316,12 @@ BEGIN VehiclePath
                                     <OBJECT Class = "container" Name = "ShooterControls" />
                                     <OBJECT Class = "string" Name = "SlaveSegments"> &quot;&quot; </OBJECT>
                                     <OBJECT Class = "double" Name = "Tolerance"> 1e-006 m*sec^-1 </OBJECT>
-                                    <OBJECT Class = "double" Name = "TotalCorrection"> -78.3786513796843 m*sec^-1 </OBJECT>
+                                    <OBJECT Class = "double" Name = "TotalCorrection"> 0 m*sec^-1 </OBJECT>
                                     <OBJECT Class = "string" Name = "Type"> &quot;ShooterControl&quot; </OBJECT>
                                     <OBJECT Class = "string" Name = "Unit"> &quot;km/sec&quot; </OBJECT>
                                     <OBJECT Class = "bool" Name = "UseCustomUnit"> False </OBJECT>
                                     <OBJECT Class = "string" Name = "UserComment"> &quot;DeltaV in X Direction of coordinate axes&quot; </OBJECT>
-                                    <OBJECT Class = "container" Name = "Values">
-                                        <REAL>-3000 m*sec^-1</REAL>
-                                        <REAL>-3043.001976549173 m*sec^-1</REAL>
-                                        <REAL>-3060.015066825302 m*sec^-1</REAL>
-                                        <REAL>-3072.810348992749 m*sec^-1</REAL>
-                                        <REAL>-3077.403265685583 m*sec^-1</REAL>
-                                        <REAL>-3078.378651379685 m*sec^-1</REAL>
-                                    </OBJECT>
+                                    <OBJECT Class = "container" Name = "Values" />
                                     <OBJECT Class = "string" Name = "Version"> &quot;1.0.1 a&quot; </OBJECT>
                                 </OBJECT>
                             </OBJECT>
@@ -16397,7 +16390,7 @@ BEGIN VehiclePath
                             <OBJECT Class = "int" Name = "MaxIterations"> 50 </OBJECT>
                             <OBJECT Class = "string" Name = "Mode"> &quot;Iterate&quot; </OBJECT>
                             <OBJECT Class = "int" Name = "NumHomotopySteps"> 1 </OBJECT>
-                            <OBJECT Class = "int" Name = "NumIterations"> 5 </OBJECT>
+                            <OBJECT Class = "int" Name = "NumIterations"> 0 </OBJECT>
                             <OBJECT Class = "string" Name = "PerturbationColor"> &quot;Segment Color&quot; </OBJECT>
                             <OBJECT Class = "bool" Name = "ReadOnly"> False </OBJECT>
                             <OBJECT Class = "container" Name = "ResultsSelected" />
@@ -16422,14 +16415,7 @@ BEGIN VehiclePath
                                     <OBJECT Class = "bool" Name = "UseCustomUnit"> False </OBJECT>
                                     <OBJECT Class = "string" Name = "UserComment"> &quot;Eccentricity of the conic orbit&quot; </OBJECT>
                                     <OBJECT Class = "bool" Name = "Valid"> True </OBJECT>
-                                    <OBJECT Class = "container" Name = "Values">
-                                        <REAL>4.979441985043758 &quot;&quot;</REAL>
-                                        <REAL>1.411573801340455 &quot;&quot;</REAL>
-                                        <REAL>0.605919867732345 &quot;&quot;</REAL>
-                                        <REAL>0.1600475987989971 &quot;&quot;</REAL>
-                                        <REAL>0.02803514022694513 &quot;&quot;</REAL>
-                                        <REAL>0.001723998379553509 &quot;&quot;</REAL>
-                                    </OBJECT>
+                                    <OBJECT Class = "container" Name = "Values" />
                                     <OBJECT Class = "string" Name = "Version"> &quot;1.0.1 a&quot; </OBJECT>
                                     <OBJECT Class = "double" Name = "Weight"> 1 &quot;&quot; </OBJECT>
                                 </OBJECT>
@@ -16460,7 +16446,7 @@ BEGIN VehiclePath
                                 </OBJECT>
                             </OBJECT>
                             <OBJECT Class = "container" Name = "ShooterControls" />
-                            <OBJECT Class = "string" Name = "Status"> &quot;Converged&quot; </OBJECT>
+                            <OBJECT Class = "string" Name = "Status"> &quot;Not Initialized&quot; </OBJECT>
                             <OBJECT Class = "bool" Name = "StopOnLimitCycleDetection"> True </OBJECT>
                             <OBJECT Class = "string" Name = "Type"> &quot;DifferentialCorrector&quot; </OBJECT>
                             <OBJECT Class = "bool" Name = "UseHomotopy"> False </OBJECT>
@@ -16491,9 +16477,9 @@ BEGIN VehiclePath
                                         <OBJECT Class = "double" Name = "X"> 1065353970.014659 m </OBJECT>
                                         <OBJECT Class = "double" Name = "Y"> -42418248.14907791 m </OBJECT>
                                         <OBJECT Class = "double" Name = "Z"> -408501.5412897667 m </OBJECT>
-                                        <OBJECT Class = "double" Name = "Vx"> 2371.178943254765 m*sec^-1 </OBJECT>
-                                        <OBJECT Class = "double" Name = "Vy"> 11653.0653488338 m*sec^-1 </OBJECT>
-                                        <OBJECT Class = "double" Name = "Vz"> -1560.458359613423 m*sec^-1 </OBJECT>
+                                        <OBJECT Class = "double" Name = "Vx"> 1775.849156233258 m*sec^-1 </OBJECT>
+                                        <OBJECT Class = "double" Name = "Vy"> 11416.49835855606 m*sec^-1 </OBJECT>
+                                        <OBJECT Class = "double" Name = "Vz"> -1063.441538262231 m*sec^-1 </OBJECT>
                                     </OBJECT>
                                     <OBJECT Class = "double" Name = "Cd"> 2.2 &quot;&quot; </OBJECT>
                                     <OBJECT Class = "link" Name = "CoordSysRep">
@@ -16794,14 +16780,14 @@ BEGIN VehiclePath
                                     </OBJECT>
                                     <OBJECT Class = "container" Name = "BPlanes" />
                                     <OBJECT Class = "container" Name = "Cartesian">
-                                        <OBJECT Class = "double" Name = "X"> -3000 m*sec^-1 </OBJECT>
+                                        <OBJECT Class = "double" Name = "X"> -3889.185173868363 m*sec^-1 </OBJECT>
                                         <OBJECT Class = "double" Name = "Y"> 3.67394039744206e-013 m*sec^-1 </OBJECT>
                                         <OBJECT Class = "double" Name = "Z"> 0 m*sec^-1 </OBJECT>
                                     </OBJECT>
                                     <OBJECT Class = "string" Name = "Category"> &quot;&quot; </OBJECT>
                                     <OBJECT Class = "bool" Name = "Clonable"> True </OBJECT>
-                                    <OBJECT Class = "double" Name = "ComputedBurnDuration"> 3817.446173041454 sec </OBJECT>
-                                    <OBJECT Class = "double" Name = "ComputedFuelUsed"> 648.7852924701527 kg </OBJECT>
+                                    <OBJECT Class = "double" Name = "ComputedBurnDuration"> 4315.23855628916 sec </OBJECT>
+                                    <OBJECT Class = "double" Name = "ComputedFuelUsed"> 733.3864531192542 kg </OBJECT>
                                     <OBJECT Class = "string" Name = "ConstraintSign"> &quot;+&quot; </OBJECT>
                                     <OBJECT Class = "link" Name = "ConstraintVector">
                                         <OBJECT Class = "string" Name = ""> &quot;CentralBody/Earth ICRF-X&quot; </OBJECT>
@@ -16816,24 +16802,24 @@ BEGIN VehiclePath
                                         <OBJECT Class = "string" Name = ""> &quot;Constant_Thrust_and_Isp&quot; </OBJECT>
                                     </OBJECT>
                                     <OBJECT Class = "string" Name = "EulerSequence"> &quot;313&quot; </OBJECT>
-                                    <OBJECT Class = "double" Name = "FinalDeltaV"> 3078.378651379685 m*sec^-1 </OBJECT>
-                                    <OBJECT Class = "double" Name = "FinalInertialDeltaVx"> -2260.280912975771 m*sec^-1 </OBJECT>
-                                    <OBJECT Class = "double" Name = "FinalInertialDeltaVy"> -898.1708364368847 m*sec^-1 </OBJECT>
-                                    <OBJECT Class = "double" Name = "FinalInertialDeltaVz"> 1887.0173460469 m*sec^-1 </OBJECT>
+                                    <OBJECT Class = "double" Name = "FinalDeltaV"> 3889.185173868363 m*sec^-1 </OBJECT>
+                                    <OBJECT Class = "double" Name = "FinalInertialDeltaVx"> -2855.610699997277 m*sec^-1 </OBJECT>
+                                    <OBJECT Class = "double" Name = "FinalInertialDeltaVy"> -1134.737826714624 m*sec^-1 </OBJECT>
+                                    <OBJECT Class = "double" Name = "FinalInertialDeltaVz"> 2384.034167398092 m*sec^-1 </OBJECT>
                                     <OBJECT Class = "double" Name = "FinalMassFlowRate"> 0 kg*sec^-1 </OBJECT>
-                                    <OBJECT Class = "double" Name = "FinalQs"> 0.08607246641459876 &quot;&quot; </OBJECT>
+                                    <OBJECT Class = "double" Name = "FinalQs"> 0.0860724664145988 &quot;&quot; </OBJECT>
                                     <OBJECT Class = "double" Name = "FinalQx"> -0.3542168170947133 &quot;&quot; </OBJECT>
                                     <OBJECT Class = "double" Name = "FinalQy"> 0.1903525342245802 &quot;&quot; </OBJECT>
-                                    <OBJECT Class = "double" Name = "FinalQz"> -0.9115305204582448 &quot;&quot; </OBJECT>
+                                    <OBJECT Class = "double" Name = "FinalQz"> -0.9115305204582447 &quot;&quot; </OBJECT>
                                     <OBJECT Class = "AttrCon" Name = "FinalState">
                                         <OBJECT Class = "Orbit_State" Name = "Orbit_State">
                                             <OBJECT Class = "container" Name = "Cartesian">
                                                 <OBJECT Class = "double" Name = "X"> 1065353970.014659 m </OBJECT>
                                                 <OBJECT Class = "double" Name = "Y"> -42418248.14907791 m </OBJECT>
                                                 <OBJECT Class = "double" Name = "Z"> -408501.5412897667 m </OBJECT>
-                                                <OBJECT Class = "double" Name = "Vx"> 2371.178943254765 m*sec^-1 </OBJECT>
-                                                <OBJECT Class = "double" Name = "Vy"> 11653.0653488338 m*sec^-1 </OBJECT>
-                                                <OBJECT Class = "double" Name = "Vz"> -1560.458359613423 m*sec^-1 </OBJECT>
+                                                <OBJECT Class = "double" Name = "Vx"> 1775.849156233258 m*sec^-1 </OBJECT>
+                                                <OBJECT Class = "double" Name = "Vy"> 11416.49835855606 m*sec^-1 </OBJECT>
+                                                <OBJECT Class = "double" Name = "Vz"> -1063.441538262231 m*sec^-1 </OBJECT>
                                             </OBJECT>
                                             <OBJECT Class = "double" Name = "Cd"> 2.2 &quot;&quot; </OBJECT>
                                             <OBJECT Class = "link" Name = "CoordSysRep">
@@ -16859,10 +16845,10 @@ BEGIN VehiclePath
                                     <OBJECT Class = "double" Name = "FinalThrustY"> 0 N </OBJECT>
                                     <OBJECT Class = "double" Name = "FinalThrustZ"> 0 N </OBJECT>
                                     <OBJECT Class = "double" Name = "InitialMassFlowRate"> 0 kg*sec^-1 </OBJECT>
-                                    <OBJECT Class = "double" Name = "InitialQs"> 0.08607246641459876 &quot;&quot; </OBJECT>
+                                    <OBJECT Class = "double" Name = "InitialQs"> 0.0860724664145988 &quot;&quot; </OBJECT>
                                     <OBJECT Class = "double" Name = "InitialQx"> -0.3542168170947133 &quot;&quot; </OBJECT>
                                     <OBJECT Class = "double" Name = "InitialQy"> 0.1903525342245802 &quot;&quot; </OBJECT>
-                                    <OBJECT Class = "double" Name = "InitialQz"> -0.9115305204582448 &quot;&quot; </OBJECT>
+                                    <OBJECT Class = "double" Name = "InitialQz"> -0.9115305204582447 &quot;&quot; </OBJECT>
                                     <OBJECT Class = "AttrCon" Name = "InitialState">
                                         <OBJECT Class = "Orbit_State" Name = "Orbit_State">
                                             <OBJECT Class = "container" Name = "Cartesian">
@@ -16911,8 +16897,8 @@ BEGIN VehiclePath
                                             </OBJECT>
                                         </OBJECT>
                                         <OBJECT Class = "container" Name = "LastRunCartesian">
-                                            <OBJECT Class = "double" Name = "LastRunX"> -3078.378651379685 m*sec^-1 </OBJECT>
-                                            <OBJECT Class = "double" Name = "LastRunY"> 0 m*sec^-1 </OBJECT>
+                                            <OBJECT Class = "double" Name = "LastRunX"> -3889.185173868363 m*sec^-1 </OBJECT>
+                                            <OBJECT Class = "double" Name = "LastRunY"> 3.67394039744206e-013 m*sec^-1 </OBJECT>
                                             <OBJECT Class = "double" Name = "LastRunZ"> 0 m*sec^-1 </OBJECT>
                                         </OBJECT>
                                         <OBJECT Class = "string" Name = "LastRunConstraintSign"> &quot;+&quot; </OBJECT>
@@ -16969,7 +16955,7 @@ BEGIN VehiclePath
                                     <OBJECT Class = "container" Name = "ShooterControls" />
                                     <OBJECT Class = "double" Name = "SmallestStep"> 0 sec </OBJECT>
                                     <OBJECT Class = "container" Name = "Spherical">
-                                        <OBJECT Class = "double" Name = "Magnitude"> 3000 m*sec^-1 </OBJECT>
+                                        <OBJECT Class = "double" Name = "Magnitude"> 3889.185173868363 m*sec^-1 </OBJECT>
                                     </OBJECT>
                                     <OBJECT Class = "link" Name = "ThrustAxes">
                                         <OBJECT Class = "string" Name = ""> &quot;Satellite VNC(Ganymede)&quot; </OBJECT>
@@ -17037,14 +17023,14 @@ BEGIN VehiclePath
                             <OBJECT Class = "string" Name = "Version"> &quot;1.0.0 a&quot; </OBJECT>
                         </OBJECT>
                         <OBJECT Class = "MCSSegment" Name = "Propagate3">
-                            <OBJECT Class = "double" Name = "AverageStep"> 2862.314263157895 sec </OBJECT>
+                            <OBJECT Class = "double" Name = "AverageStep"> 141.6238157894737 sec </OBJECT>
                             <OBJECT Class = "bool" Name = "BeenRun"> True </OBJECT>
                             <OBJECT Class = "container" Name = "BPlanes" />
                             <OBJECT Class = "string" Name = "Category"> &quot;@Top&quot; </OBJECT>
                             <OBJECT Class = "bool" Name = "Clonable"> True </OBJECT>
                             <OBJECT Class = "string" Name = "Description"> &quot;Propagates until stopping conditions are met&quot; </OBJECT>
                             <OBJECT Class = "link" Name = "DisplayCoordSystem">
-                                <OBJECT Class = "string" Name = ""> &quot;CentralBody/Jupiter Inertial&quot; </OBJECT>
+                                <OBJECT Class = "string" Name = ""> &quot;CentralBody/Ganymede Inertial&quot; </OBJECT>
                             </OBJECT>
                             <OBJECT Class = "double" Name = "FinalDeltaV"> 0 m*sec^-1 </OBJECT>
                             <OBJECT Class = "double" Name = "FinalInertialDeltaVx"> 0 m*sec^-1 </OBJECT>
@@ -17053,21 +17039,21 @@ BEGIN VehiclePath
                             <OBJECT Class = "AttrCon" Name = "FinalState">
                                 <OBJECT Class = "Orbit_State" Name = "Orbit_State">
                                     <OBJECT Class = "container" Name = "Cartesian">
-                                        <OBJECT Class = "double" Name = "X"> 86515432.22448224 m </OBJECT>
-                                        <OBJECT Class = "double" Name = "Y"> 1047249077.219104 m </OBJECT>
-                                        <OBJECT Class = "double" Name = "Z"> -17303463.62063136 m </OBJECT>
-                                        <OBJECT Class = "double" Name = "Vx"> -10789.53456502688 m*sec^-1 </OBJECT>
-                                        <OBJECT Class = "double" Name = "Vy"> 45.9212673480456 m*sec^-1 </OBJECT>
-                                        <OBJECT Class = "double" Name = "Vz"> 106.6387596768143 m*sec^-1 </OBJECT>
+                                        <OBJECT Class = "double" Name = "X"> -2003729.181402828 m </OBJECT>
+                                        <OBJECT Class = "double" Name = "Y"> 2369950.197904721 m </OBJECT>
+                                        <OBJECT Class = "double" Name = "Z"> 461543.5784333982 m </OBJECT>
+                                        <OBJECT Class = "double" Name = "Vx"> 979.927830494823 m*sec^-1 </OBJECT>
+                                        <OBJECT Class = "double" Name = "Vy"> 1034.49782910224 m*sec^-1 </OBJECT>
+                                        <OBJECT Class = "double" Name = "Vz"> -1059.251665717463 m*sec^-1 </OBJECT>
                                     </OBJECT>
                                     <OBJECT Class = "double" Name = "Cd"> 2.2 &quot;&quot; </OBJECT>
                                     <OBJECT Class = "link" Name = "CoordSysRep">
-                                        <OBJECT Class = "string" Name = ""> &quot;CentralBody/Jupiter Inertial&quot; </OBJECT>
+                                        <OBJECT Class = "string" Name = ""> &quot;CentralBody/Ganymede Inertial&quot; </OBJECT>
                                     </OBJECT>
                                     <OBJECT Class = "double" Name = "Cr"> 1 &quot;&quot; </OBJECT>
                                     <OBJECT Class = "double" Name = "DragArea"> 20 m^2 </OBJECT>
                                     <OBJECT Class = "double" Name = "DryMass"> 500 kg </OBJECT>
-                                    <OBJECT Class = "date" Name = "Epoch"> &quot;5 Dec 2026 09:52:18.294386178&quot; TAIG </OBJECT>
+                                    <OBJECT Class = "date" Name = "Epoch"> &quot;3 Dec 2026 19:15:34.999908924&quot; TAIG </OBJECT>
                                     <OBJECT Class = "double" Name = "FuelDensity"> 1000 kg*m^-3 </OBJECT>
                                     <OBJECT Class = "double" Name = "FuelMass"> 500 kg </OBJECT>
                                     <OBJECT Class = "double" Name = "K1"> 1 &quot;&quot; </OBJECT>
@@ -17083,16 +17069,16 @@ BEGIN VehiclePath
                             <OBJECT Class = "AttrCon" Name = "InitialState">
                                 <OBJECT Class = "Orbit_State" Name = "Orbit_State">
                                     <OBJECT Class = "container" Name = "Cartesian">
-                                        <OBJECT Class = "double" Name = "X"> 1065353970.014659 m </OBJECT>
-                                        <OBJECT Class = "double" Name = "Y"> -42418248.14907791 m </OBJECT>
-                                        <OBJECT Class = "double" Name = "Z"> -408501.5412897667 m </OBJECT>
-                                        <OBJECT Class = "double" Name = "Vx"> 2371.178943254765 m*sec^-1 </OBJECT>
-                                        <OBJECT Class = "double" Name = "Vy"> 11653.0653488338 m*sec^-1 </OBJECT>
-                                        <OBJECT Class = "double" Name = "Vz"> -1560.458359613423 m*sec^-1 </OBJECT>
+                                        <OBJECT Class = "double" Name = "X"> -1280820.369952321 m </OBJECT>
+                                        <OBJECT Class = "double" Name = "Y"> 2856387.921691626 m </OBJECT>
+                                        <OBJECT Class = "double" Name = "Z"> -211489.0604868797 m </OBJECT>
+                                        <OBJECT Class = "double" Name = "Vx"> 1311.117909187412 m*sec^-1 </OBJECT>
+                                        <OBJECT Class = "double" Name = "Vy"> 507.6236169757194 m*sec^-1 </OBJECT>
+                                        <OBJECT Class = "double" Name = "Vz"> -1084.389729357623 m*sec^-1 </OBJECT>
                                     </OBJECT>
                                     <OBJECT Class = "double" Name = "Cd"> 2.2 &quot;&quot; </OBJECT>
                                     <OBJECT Class = "link" Name = "CoordSysRep">
-                                        <OBJECT Class = "string" Name = ""> &quot;CentralBody/Jupiter Inertial&quot; </OBJECT>
+                                        <OBJECT Class = "string" Name = ""> &quot;CentralBody/Ganymede Inertial&quot; </OBJECT>
                                     </OBJECT>
                                     <OBJECT Class = "double" Name = "Cr"> 1 &quot;&quot; </OBJECT>
                                     <OBJECT Class = "double" Name = "DragArea"> 20 m^2 </OBJECT>
@@ -17110,14 +17096,14 @@ BEGIN VehiclePath
                                     <OBJECT Class = "container" Name = "UserVariables" />
                                 </OBJECT>
                             </OBJECT>
-                            <OBJECT Class = "double" Name = "LargestStep"> 8742.004000000001 sec </OBJECT>
+                            <OBJECT Class = "double" Name = "LargestStep"> 149.575 sec </OBJECT>
                             <OBJECT Class = "string" Name = "LastRunCode"> &quot;Marching&quot; </OBJECT>
                             <OBJECT Class = "link" Name = "LastRunPropagator">
-                                <OBJECT Class = "string" Name = ""> &quot;Jupiter_moons&quot; </OBJECT>
+                                <OBJECT Class = "string" Name = ""> &quot;Ganymede_J2&quot; </OBJECT>
                             </OBJECT>
                             <OBJECT Class = "double" Name = "MaxPropTime"> 8640000 sec </OBJECT>
                             <OBJECT Class = "double" Name = "MinPropTime"> 0 sec </OBJECT>
-                            <OBJECT Class = "int" Name = "NumSteps"> 57 </OBJECT>
+                            <OBJECT Class = "int" Name = "NumSteps"> 152 </OBJECT>
                             <OBJECT Class = "bool" Name = "OverrideMaxPropTime"> True </OBJECT>
                             <OBJECT Class = "link" Name = "Propagator">
                                 <OBJECT Class = "string" Name = ""> &quot;Ganymede_J2&quot; </OBJECT>
@@ -17147,7 +17133,7 @@ BEGIN VehiclePath
                             <OBJECT Class = "container" Name = "StoppingConditionsSelected" />
                             <OBJECT Class = "ListLink" Name = "StoppingConditions">
                                 <OBJECT Class = "AsStateTrigger" Name = "Duration">
-                                    <OBJECT Class = "bool" Name = "Active"> False </OBJECT>
+                                    <OBJECT Class = "bool" Name = "Active"> True </OBJECT>
                                     <OBJECT Class = "container" Name = "BeforeConditionsSelected" />
                                     <OBJECT Class = "ListLink" Name = "BeforeConditions" />
                                     <OBJECT Class = "AttrCon" Name = "CalcObjectAttributes">
@@ -17175,13 +17161,13 @@ BEGIN VehiclePath
                                     </OBJECT>
                                     <OBJECT Class = "container" Name = "ShooterControls" />
                                     <OBJECT Class = "double" Name = "Tolerance"> 1e-008 sec </OBJECT>
-                                    <OBJECT Class = "double" Name = "TripValue"> 1123200 sec </OBJECT>
+                                    <OBJECT Class = "double" Name = "TripValue"> 21600 sec </OBJECT>
                                     <OBJECT Class = "string" Name = "Type"> &quot;Duration&quot; </OBJECT>
                                     <OBJECT Class = "string" Name = "UserComment"> &quot;Stop after a specified duration&quot; </OBJECT>
                                     <OBJECT Class = "string" Name = "Version"> &quot;1.0.0 a&quot; </OBJECT>
                                 </OBJECT>
                                 <OBJECT Class = "AsStateTrigger" Name = "Apoapsis">
-                                    <OBJECT Class = "bool" Name = "Active"> True </OBJECT>
+                                    <OBJECT Class = "bool" Name = "Active"> False </OBJECT>
                                     <OBJECT Class = "container" Name = "BeforeConditionsSelected" />
                                     <OBJECT Class = "ListLink" Name = "BeforeConditions" />
                                     <OBJECT Class = "AttrCon" Name = "CalcObjectAttributes">
@@ -17225,10 +17211,10 @@ BEGIN VehiclePath
                                     <OBJECT Class = "bool" Name = "CausedTermination"> True </OBJECT>
                                     <OBJECT Class = "bool" Name = "Clonable"> True </OBJECT>
                                     <OBJECT Class = "string" Name = "Description"> &quot;Trigger Log Information&quot; </OBJECT>
-                                    <OBJECT Class = "date" Name = "Epoch"> &quot;5 Dec 2026 09:52:18.294386178&quot; TAIG </OBJECT>
+                                    <OBJECT Class = "date" Name = "Epoch"> &quot;3 Dec 2026 19:15:34.999908924&quot; TAIG </OBJECT>
                                     <OBJECT Class = "bool" Name = "ReadOnly"> False </OBJECT>
                                     <OBJECT Class = "container" Name = "ShooterControls" />
-                                    <OBJECT Class = "string" Name = "TriggerDescription"> &quot;Apoapsis; Run Sequence STOP&quot; </OBJECT>
+                                    <OBJECT Class = "string" Name = "TriggerDescription"> &quot;Duration; Run Sequence STOP&quot; </OBJECT>
                                     <OBJECT Class = "string" Name = "Type"> &quot;TriggerLogEntry&quot; </OBJECT>
                                     <OBJECT Class = "string" Name = "UserComment"> &quot;Trigger Log Information&quot; </OBJECT>
                                     <OBJECT Class = "string" Name = "Version"> &quot;1.0.0 a&quot; </OBJECT>
@@ -17254,21 +17240,21 @@ BEGIN VehiclePath
                             <OBJECT Class = "AttrCon" Name = "FinalState">
                                 <OBJECT Class = "Orbit_State" Name = "Orbit_State">
                                     <OBJECT Class = "container" Name = "Cartesian">
-                                        <OBJECT Class = "double" Name = "X"> 86515432.22448224 m </OBJECT>
-                                        <OBJECT Class = "double" Name = "Y"> 1047249077.219104 m </OBJECT>
-                                        <OBJECT Class = "double" Name = "Z"> -17303463.62063136 m </OBJECT>
-                                        <OBJECT Class = "double" Name = "Vx"> -10789.53456502688 m*sec^-1 </OBJECT>
-                                        <OBJECT Class = "double" Name = "Vy"> 45.9212673480456 m*sec^-1 </OBJECT>
-                                        <OBJECT Class = "double" Name = "Vz"> 106.6387596768143 m*sec^-1 </OBJECT>
+                                        <OBJECT Class = "double" Name = "X"> -2003729.181402828 m </OBJECT>
+                                        <OBJECT Class = "double" Name = "Y"> 2369950.197904721 m </OBJECT>
+                                        <OBJECT Class = "double" Name = "Z"> 461543.5784333982 m </OBJECT>
+                                        <OBJECT Class = "double" Name = "Vx"> 979.927830494823 m*sec^-1 </OBJECT>
+                                        <OBJECT Class = "double" Name = "Vy"> 1034.49782910224 m*sec^-1 </OBJECT>
+                                        <OBJECT Class = "double" Name = "Vz"> -1059.251665717463 m*sec^-1 </OBJECT>
                                     </OBJECT>
                                     <OBJECT Class = "double" Name = "Cd"> 2.2 &quot;&quot; </OBJECT>
                                     <OBJECT Class = "link" Name = "CoordSysRep">
-                                        <OBJECT Class = "string" Name = ""> &quot;CentralBody/Jupiter Inertial&quot; </OBJECT>
+                                        <OBJECT Class = "string" Name = ""> &quot;CentralBody/Ganymede Inertial&quot; </OBJECT>
                                     </OBJECT>
                                     <OBJECT Class = "double" Name = "Cr"> 1 &quot;&quot; </OBJECT>
                                     <OBJECT Class = "double" Name = "DragArea"> 20 m^2 </OBJECT>
                                     <OBJECT Class = "double" Name = "DryMass"> 500 kg </OBJECT>
-                                    <OBJECT Class = "date" Name = "Epoch"> &quot;5 Dec 2026 09:52:18.294386178&quot; TAIG </OBJECT>
+                                    <OBJECT Class = "date" Name = "Epoch"> &quot;3 Dec 2026 19:15:34.999908924&quot; TAIG </OBJECT>
                                     <OBJECT Class = "double" Name = "FuelDensity"> 1000 kg*m^-3 </OBJECT>
                                     <OBJECT Class = "double" Name = "FuelMass"> 500 kg </OBJECT>
                                     <OBJECT Class = "double" Name = "K1"> 1 &quot;&quot; </OBJECT>
@@ -17284,21 +17270,21 @@ BEGIN VehiclePath
                             <OBJECT Class = "AttrCon" Name = "InitialState">
                                 <OBJECT Class = "Orbit_State" Name = "Orbit_State">
                                     <OBJECT Class = "container" Name = "Cartesian">
-                                        <OBJECT Class = "double" Name = "X"> 86515432.22448224 m </OBJECT>
-                                        <OBJECT Class = "double" Name = "Y"> 1047249077.219104 m </OBJECT>
-                                        <OBJECT Class = "double" Name = "Z"> -17303463.62063136 m </OBJECT>
-                                        <OBJECT Class = "double" Name = "Vx"> -10789.53456502688 m*sec^-1 </OBJECT>
-                                        <OBJECT Class = "double" Name = "Vy"> 45.9212673480456 m*sec^-1 </OBJECT>
-                                        <OBJECT Class = "double" Name = "Vz"> 106.6387596768143 m*sec^-1 </OBJECT>
+                                        <OBJECT Class = "double" Name = "X"> -2003729.181402828 m </OBJECT>
+                                        <OBJECT Class = "double" Name = "Y"> 2369950.197904721 m </OBJECT>
+                                        <OBJECT Class = "double" Name = "Z"> 461543.5784333982 m </OBJECT>
+                                        <OBJECT Class = "double" Name = "Vx"> 979.927830494823 m*sec^-1 </OBJECT>
+                                        <OBJECT Class = "double" Name = "Vy"> 1034.49782910224 m*sec^-1 </OBJECT>
+                                        <OBJECT Class = "double" Name = "Vz"> -1059.251665717463 m*sec^-1 </OBJECT>
                                     </OBJECT>
                                     <OBJECT Class = "double" Name = "Cd"> 2.2 &quot;&quot; </OBJECT>
                                     <OBJECT Class = "link" Name = "CoordSysRep">
-                                        <OBJECT Class = "string" Name = ""> &quot;CentralBody/Jupiter Inertial&quot; </OBJECT>
+                                        <OBJECT Class = "string" Name = ""> &quot;CentralBody/Ganymede Inertial&quot; </OBJECT>
                                     </OBJECT>
                                     <OBJECT Class = "double" Name = "Cr"> 1 &quot;&quot; </OBJECT>
                                     <OBJECT Class = "double" Name = "DragArea"> 20 m^2 </OBJECT>
                                     <OBJECT Class = "double" Name = "DryMass"> 500 kg </OBJECT>
-                                    <OBJECT Class = "date" Name = "Epoch"> &quot;5 Dec 2026 09:52:18.294386178&quot; TAIG </OBJECT>
+                                    <OBJECT Class = "date" Name = "Epoch"> &quot;3 Dec 2026 19:15:34.999908924&quot; TAIG </OBJECT>
                                     <OBJECT Class = "double" Name = "FuelDensity"> 1000 kg*m^-3 </OBJECT>
                                     <OBJECT Class = "double" Name = "FuelMass"> 500 kg </OBJECT>
                                     <OBJECT Class = "double" Name = "K1"> 1 &quot;&quot; </OBJECT>
@@ -17345,21 +17331,21 @@ BEGIN VehiclePath
                     <OBJECT Class = "AttrCon" Name = "FinalState">
                         <OBJECT Class = "Orbit_State" Name = "Orbit_State">
                             <OBJECT Class = "container" Name = "Cartesian">
-                                <OBJECT Class = "double" Name = "X"> 86515432.22448224 m </OBJECT>
-                                <OBJECT Class = "double" Name = "Y"> 1047249077.219104 m </OBJECT>
-                                <OBJECT Class = "double" Name = "Z"> -17303463.62063136 m </OBJECT>
-                                <OBJECT Class = "double" Name = "Vx"> -10789.53456502688 m*sec^-1 </OBJECT>
-                                <OBJECT Class = "double" Name = "Vy"> 45.9212673480456 m*sec^-1 </OBJECT>
-                                <OBJECT Class = "double" Name = "Vz"> 106.6387596768143 m*sec^-1 </OBJECT>
+                                <OBJECT Class = "double" Name = "X"> -2003729.181402828 m </OBJECT>
+                                <OBJECT Class = "double" Name = "Y"> 2369950.197904721 m </OBJECT>
+                                <OBJECT Class = "double" Name = "Z"> 461543.5784333982 m </OBJECT>
+                                <OBJECT Class = "double" Name = "Vx"> 979.927830494823 m*sec^-1 </OBJECT>
+                                <OBJECT Class = "double" Name = "Vy"> 1034.49782910224 m*sec^-1 </OBJECT>
+                                <OBJECT Class = "double" Name = "Vz"> -1059.251665717463 m*sec^-1 </OBJECT>
                             </OBJECT>
                             <OBJECT Class = "double" Name = "Cd"> 2.2 &quot;&quot; </OBJECT>
                             <OBJECT Class = "link" Name = "CoordSysRep">
-                                <OBJECT Class = "string" Name = ""> &quot;CentralBody/Jupiter Inertial&quot; </OBJECT>
+                                <OBJECT Class = "string" Name = ""> &quot;CentralBody/Ganymede Inertial&quot; </OBJECT>
                             </OBJECT>
                             <OBJECT Class = "double" Name = "Cr"> 1 &quot;&quot; </OBJECT>
                             <OBJECT Class = "double" Name = "DragArea"> 20 m^2 </OBJECT>
                             <OBJECT Class = "double" Name = "DryMass"> 500 kg </OBJECT>
-                            <OBJECT Class = "date" Name = "Epoch"> &quot;5 Dec 2026 09:52:18.294386178&quot; TAIG </OBJECT>
+                            <OBJECT Class = "date" Name = "Epoch"> &quot;3 Dec 2026 19:15:34.999908924&quot; TAIG </OBJECT>
                             <OBJECT Class = "double" Name = "FuelDensity"> 1000 kg*m^-3 </OBJECT>
                             <OBJECT Class = "double" Name = "FuelMass"> 500 kg </OBJECT>
                             <OBJECT Class = "double" Name = "K1"> 1 &quot;&quot; </OBJECT>
@@ -17375,21 +17361,21 @@ BEGIN VehiclePath
                     <OBJECT Class = "AttrCon" Name = "InitialState">
                         <OBJECT Class = "Orbit_State" Name = "Orbit_State">
                             <OBJECT Class = "container" Name = "Cartesian">
-                                <OBJECT Class = "double" Name = "X"> 86515432.22448224 m </OBJECT>
-                                <OBJECT Class = "double" Name = "Y"> 1047249077.219104 m </OBJECT>
-                                <OBJECT Class = "double" Name = "Z"> -17303463.62063136 m </OBJECT>
-                                <OBJECT Class = "double" Name = "Vx"> -10789.53456502688 m*sec^-1 </OBJECT>
-                                <OBJECT Class = "double" Name = "Vy"> 45.9212673480456 m*sec^-1 </OBJECT>
-                                <OBJECT Class = "double" Name = "Vz"> 106.6387596768143 m*sec^-1 </OBJECT>
+                                <OBJECT Class = "double" Name = "X"> -2003729.181402828 m </OBJECT>
+                                <OBJECT Class = "double" Name = "Y"> 2369950.197904721 m </OBJECT>
+                                <OBJECT Class = "double" Name = "Z"> 461543.5784333982 m </OBJECT>
+                                <OBJECT Class = "double" Name = "Vx"> 979.927830494823 m*sec^-1 </OBJECT>
+                                <OBJECT Class = "double" Name = "Vy"> 1034.49782910224 m*sec^-1 </OBJECT>
+                                <OBJECT Class = "double" Name = "Vz"> -1059.251665717463 m*sec^-1 </OBJECT>
                             </OBJECT>
                             <OBJECT Class = "double" Name = "Cd"> 2.2 &quot;&quot; </OBJECT>
                             <OBJECT Class = "link" Name = "CoordSysRep">
-                                <OBJECT Class = "string" Name = ""> &quot;CentralBody/Jupiter Inertial&quot; </OBJECT>
+                                <OBJECT Class = "string" Name = ""> &quot;CentralBody/Ganymede Inertial&quot; </OBJECT>
                             </OBJECT>
                             <OBJECT Class = "double" Name = "Cr"> 1 &quot;&quot; </OBJECT>
                             <OBJECT Class = "double" Name = "DragArea"> 20 m^2 </OBJECT>
                             <OBJECT Class = "double" Name = "DryMass"> 500 kg </OBJECT>
-                            <OBJECT Class = "date" Name = "Epoch"> &quot;5 Dec 2026 09:52:18.294386178&quot; TAIG </OBJECT>
+                            <OBJECT Class = "date" Name = "Epoch"> &quot;3 Dec 2026 19:15:34.999908924&quot; TAIG </OBJECT>
                             <OBJECT Class = "double" Name = "FuelDensity"> 1000 kg*m^-3 </OBJECT>
                             <OBJECT Class = "double" Name = "FuelMass"> 500 kg </OBJECT>
                             <OBJECT Class = "double" Name = "K1"> 1 &quot;&quot; </OBJECT>
@@ -25452,11 +25438,11 @@ BEGIN VehiclePath
         <OBJECT Class = "ManeuverSummary" Name = "Maneuver_Summary">
             <OBJECT Class = "string" Name = "Category"> &quot;&quot; </OBJECT>
             <OBJECT Class = "bool" Name = "Clonable"> True </OBJECT>
-            <OBJECT Class = "double" Name = "DeltaV"> 3078.378651379685 m*sec^-1 </OBJECT>
+            <OBJECT Class = "double" Name = "DeltaV"> 3889.185173868363 m*sec^-1 </OBJECT>
             <OBJECT Class = "string" Name = "Description"> &quot;Maneuver Summary Information&quot; </OBJECT>
-            <OBJECT Class = "double" Name = "Duration"> 3817.446173041454 sec </OBJECT>
+            <OBJECT Class = "double" Name = "Duration"> 4315.23855628916 sec </OBJECT>
             <OBJECT Class = "string" Name = "Engine"> &quot;Constant_Thrust_and_Isp&quot; </OBJECT>
-            <OBJECT Class = "double" Name = "FuelUsed"> 648.7852924701527 kg </OBJECT>
+            <OBJECT Class = "double" Name = "FuelUsed"> 733.3864531192542 kg </OBJECT>
             <OBJECT Class = "bool" Name = "ReadOnly"> False </OBJECT>
             <OBJECT Class = "string" Name = "Segment"> &quot;GanIns.Maneuver&quot; </OBJECT>
             <OBJECT Class = "container" Name = "ShooterControls" />
@@ -25529,7 +25515,7 @@ BEGIN Attitude
       BEGIN Profile
           Name			 ECIVVLH
           UserNamed			 No
-          StartTime			 0.000000000000e+000
+          StartTime			 -4.003168280680e+004
           BEGIN ECIVVLH
              	Azimuth		 0.000000000000e+000
           END ECIVVLH
@@ -25600,7 +25586,7 @@ ScenarioEpoch			26 Feb 2020 00:00:00.000000
 # Epoch in YYDDD format:	  20057.00000000000000
 
 
-# Time of first point: 6 Mar 2020 15:18:46.683631207 UTCG = 2458915.13804031980564 JDate = 20066.63804031980564 YYDDD
+# Time of first point: 6 Mar 2020 15:18:46.683631207 UTCG = 2458915.13804031980563 JDate = 20066.63804031980564 YYDDD
 
 CoordinateAxes		Inertial
 
@@ -25639,7 +25625,7 @@ ScenarioEpoch			26 Feb 2020 00:00:00.000000
 # Epoch in YYDDD format:	  20057.00000000000000
 
 
-# Time of first point: 25 Sep 2020 11:59:59.978994898 UTCG = 2459117.99999975688540 JDate = 20269.49999975688540 YYDDD
+# Time of first point: 25 Sep 2020 11:59:59.978994884 UTCG = 2459117.99999975688523 JDate = 20269.49999975688523 YYDDD
 
 CoordinateAxes		Inertial
 
@@ -25678,7 +25664,7 @@ ScenarioEpoch			26 Feb 2020 00:00:00.000000
 # Epoch in YYDDD format:	  20057.00000000000000
 
 
-# Time of first point: 22 Jul 2021 12:00:00.011512697 UTCG = 2459418.00000013324880 JDate = 21203.50000013324880 YYDDD
+# Time of first point: 22 Jul 2021 12:00:00.011512674 UTCG = 2459418.00000013324855 JDate = 21203.50000013324855 YYDDD
 
 CoordinateAxes		Inertial
 
@@ -25717,7 +25703,7 @@ ScenarioEpoch			26 Feb 2020 00:00:00.000000
 # Epoch in YYDDD format:	  20057.00000000000000
 
 
-# Time of first point: 22 Jul 2023 11:59:59.999689996 UTCG = 2460147.99999999641199 JDate = 23203.49999999641199 YYDDD
+# Time of first point: 22 Jul 2023 11:59:59.999689952 UTCG = 2460147.99999999641148 JDate = 23203.49999999641148 YYDDD
 
 CoordinateAxes		Inertial
 
@@ -25756,7 +25742,7 @@ ScenarioEpoch			26 Feb 2020 00:00:00.000000
 # Epoch in YYDDD format:	  20057.00000000000000
 
 
-# Time of first point: 14 Feb 2026 12:00:00.003987014 UTCG = 2461086.00000004614600 JDate = 26045.50000004614600 YYDDD
+# Time of first point: 14 Feb 2026 12:00:00.003987283 UTCG = 2461086.00000004614910 JDate = 26045.50000004614910 YYDDD
 
 CoordinateAxes		Inertial
 
@@ -25795,7 +25781,7 @@ ScenarioEpoch			26 Feb 2020 00:00:00.000000
 # Epoch in YYDDD format:	  20057.00000000000000
 
 
-# Time of first point: 26 Apr 2026 15:55:03.998870999 UTCG = 2461157.16324072767360 JDate = 26116.66324072767360 YYDDD
+# Time of first point: 26 Apr 2026 15:55:03.998870879 UTCG = 2461157.16324072767222 JDate = 26116.66324072767222 YYDDD
 
 CoordinateAxes		Inertial
 
@@ -25834,7 +25820,7 @@ ScenarioEpoch			26 Feb 2020 00:00:00.000000
 # Epoch in YYDDD format:	  20057.00000000000000
 
 
-# Time of first point: 14 Aug 2026 18:23:50.746021003 UTCG = 2461267.26655956042827 JDate = 26226.76655956042827 YYDDD
+# Time of first point: 14 Aug 2026 18:23:50.746021360 UTCG = 2461267.26655956043241 JDate = 26226.76655956043241 YYDDD
 
 CoordinateAxes		Inertial
 
@@ -25873,7 +25859,7 @@ ScenarioEpoch			26 Feb 2020 00:00:00.000000
 # Epoch in YYDDD format:	  20057.00000000000000
 
 
-# Time of first point: 14 Oct 2026 07:08:39.954919010 UTCG = 2461327.79768466341447 JDate = 26287.29768466341447 YYDDD
+# Time of first point: 14 Oct 2026 07:08:39.954918563 UTCG = 2461327.79768466340930 JDate = 26287.29768466340930 YYDDD
 
 CoordinateAxes		Inertial
 
@@ -25912,7 +25898,7 @@ ScenarioEpoch			26 Feb 2020 00:00:00.000000
 # Epoch in YYDDD format:	  20057.00000000000000
 
 
-# Time of first point: 18 Nov 2026 15:58:20.422948986 UTCG = 2461363.16551415450216 JDate = 26322.66551415450216 YYDDD
+# Time of first point: 18 Nov 2026 15:58:20.422948509 UTCG = 2461363.16551415449664 JDate = 26322.66551415449664 YYDDD
 
 CoordinateAxes		Inertial
 
@@ -25951,7 +25937,7 @@ ScenarioEpoch			26 Feb 2020 00:00:00.000000
 # Epoch in YYDDD format:	  20057.00000000000000
 
 
-# Time of first point: 3 Dec 2026 13:14:59.999909014 UTCG = 2461378.05208333228025 JDate = 26337.55208333228025 YYDDD
+# Time of first point: 3 Dec 2026 13:14:59.999908924 UTCG = 2461378.05208333227921 JDate = 26337.55208333227921 YYDDD
 
 CoordinateAxes		Inertial
 
@@ -26683,7 +26669,7 @@ BEGIN Extensions
                 END GraphicsInterval
                 BEGIN GraphicsInterval
                     StartTime            2.136284999999e+008
-                    StopTime             2.137891032944e+008
+                    StopTime             2.136500999999e+008
                     BEGIN Attributes
                         Show                 On
                         Inherit              On
@@ -27338,6 +27324,10 @@ BEGIN Extensions
     END ObjectCoverage
     
     BEGIN Desc
+        ShortText    0
+
+        LongText    0
+
     END Desc
     
     BEGIN Contours

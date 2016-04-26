@@ -41,3 +41,41 @@ dv_ins = sqrt(Jupiter.mu*2/r_Ganymede + v_inf_arr^2) - v_p_final
 e_hyp = ((Jupiter.mu*2/r_Ganymede + v_inf_arr^2)-Jupiter.mu/r_Ganymede)*r_Ganymede/Jupiter.mu;
 a_hyp = -Jupiter.mu/v_inf_arr/v_inf_arr;
 B_mag = -a_hyp*sqrt(e_hyp*e_hyp-1)
+
+%% Europa SOI
+r_ESOI = 671.4e3*(3196/Jupiter.mu)^(2/5)
+
+EurInj = norm([       -0.2021268970271654 
+                    -0.09229850003525951
+                     0.04043692774225515])
+              
+EurIns = norm([         -5.12522143513952 
+                  1.364242052659392e-015
+                 5.471179065352771e-016])
+              
+%% Ganymede
+Period:         142.3265208830074 day  Rad. Apo:   1.4706999999997567e+007 km 14 Feb 2026 12:00:00.004 UTCG
+Period:         79.47088010196345 day  Rad. Apo:   9.6141675683632549e+006 km 26 Apr 2026 15:55:03.999 UTCG
+Period:         43.39294109872095 day  Rad. Apo:   6.1076384538077535e+006 km 14 Aug 2026 18:23:50.746 UTCG
+Period:          28.5459066380272 day  Rad. Apo:   4.4061968318778453e+006 km 14 Oct 2026 07:08:39.955 UTCG
+
+JTCM1=norm([     -0.003992651148234995 
+                      0.2392092755335887 
+                    -0.04211976786582281]) 
+              
+JTCM2=norm([                   -0.002402016575019953 
+                    -0.01221331039729084 
+                    -0.07119955383848155 ])
+              
+JTCM3=norm([                   -0.005394208346032947 
+                   -0.009965304490565962 
+                    -0.09728181861921918 ])
+                
+v1 = sqrt(2*Jupiter.mu/r_Ganymede - Jupiter.mu/1.4706999999997567e+007)
+v2 = sqrt(2*Jupiter.mu/r_Ganymede - Jupiter.mu/9.6141675683632549e+006)
+v3 = sqrt(2*Jupiter.mu/r_Ganymede - Jupiter.mu/6.1076384538077535e+006)
+v4 = sqrt(2*Jupiter.mu/r_Ganymede - Jupiter.mu/4.4061968318778453e+006)
+
+v1 - v2
+v2 - v3
+v3 - v4

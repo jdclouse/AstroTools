@@ -3450,6 +3450,10 @@ VO_V100
             RubberBandLineWidth       2.000000
             RubberBandCrosshairSize   16
             RubberBandRGB             0.660000 0.660000 0.660000
+    _AGI_PIBEGINTYPEMGR3DSCENEDATA
+        Begin 3dScene
+        End
+    End
             Begin View
                 ViewName                STKVOInitialView
                 ViewTime                213596414.201000
@@ -3490,9 +3494,9 @@ VO_V100
                 UseLayer                Yes
                 FromName                "Ganymede"
                 FromRegPosAttView       "Point"
-                FromPosition            69907537.479299575000000000  3237429.890709321900000000  58271709.629470721000000000
-                FromOffset              69907537.479299575000000000  3237429.890648286800000000  58271709.629479304000000000
-                FromOffsetLLR           0.694341731574155570  0.046277105671553305  91066661.802543789000000000
+                FromPosition            14530384.743631314000000000  6292847.817279014700000000  38912503.903310977000000000
+                FromOffset              14530384.743631314000000000  6292847.817217979600000000  38912503.903319560000000000
+                FromOffsetLLR           1.184333332436358100  0.408696194374410290  42010891.141160987000000000
                 ToName                  "Ganymede"
                 ToRegPosAttView         "Point"
                 ToPosition              0.000000000000000000  0.000061035156250000  -0.000008583068847656
@@ -3500,9 +3504,9 @@ VO_V100
                 ToOffsetLLR             0.000000000000000000  0.000000000000000000  0.000000000000000000
                 ConstantDistanceType    None
                 ConstantDistanceValue   1.000000
-                UpVector                -0.639194663827708950  -0.029601213048470864  0.768475080871358630
-                ViewRad                 91066661.802543789000000000
-                ViewQuat                0.0217561 0.3401478 0.0078719 -0.9400873
+                UpVector                -0.849961985357640340  -0.368103220846951130  0.376914635227924620
+                ViewRad                 42010891.141160987000000000
+                ViewQuat                0.1683768 0.5465467 0.1132668 -0.8124694
                 ViewCoordSystem         From
                 ViewFromToMode          FromTo
                 ViewToCBIMtx            1.000000000000000000 0.000000000000000000 0.000000000000000000 0.000000000000000000 1.000000000000000000 0.000000000000000000  0.000000000000000000 0.000000000000000000 1.000000000000000000
@@ -3516,7 +3520,7 @@ VO_V100
                 MinAngleToUpAxis        0.0087266
                 InitUpAxisUp            Yes
                 TempUpAxisUp            Yes
-                CrossAxis               0.0462606 -0.9989294 0.0000000
+                CrossAxis               0.3974132 -0.9176398 0.0000000
                 DefaultOffset           14471600.0000000
                 BaseDefaultOffset       2631200.0000000
             End View
