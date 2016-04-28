@@ -64,6 +64,8 @@ combined_opts.PV_prop_opts = PV_prop_opts;
 combined_opts.att_prop_opts = att_prop_opts;
 sim_out = zeros(length(sim_tspan),13);
 sim_out(1,:) = [r_init' v_init' Qi' ratei'];
+
+% The simulation
 for ii = 2:length(sim_tspan)
 %     ii
     %sim_out(ii-1:ii,:)
@@ -81,6 +83,7 @@ end
 %         PV_prop_opts.ode_opts, combined_opts);
 %     toc
 
+% Compute the euler angles for visualization
 euler_angs = zeros(length(sim_tspan),3);
 for ii = 1:length(sim_tspan)
     DCM = inrtl2lvlh(sim_out(ii,1:3)', sim_out(ii,4:6)');
