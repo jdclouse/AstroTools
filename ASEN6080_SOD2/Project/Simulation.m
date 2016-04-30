@@ -46,7 +46,7 @@ I33 = m/12*(dim_wd^2+dim_wd^2);
 
 % Initial attitude from LVLH
 % att_prop_opts.PV_state = PV_state;
-att_prop_opts.gravity_gradient.use = false;
+att_prop_opts.gravity_gradient.use = true;
 att_prop_opts.mu = PV_prop_opts.mu;
 att_prop_opts.I = [I11; I22; I33];
 
@@ -92,3 +92,12 @@ for ii = 1:length(sim_tspan)
 %     Q_lvlh2body = subEP(Q_inrtl2lvlh, sim_out(ii,7:10));
     euler_angs(ii,:) = EP2Euler321(Q_lvlh2body)';
 end
+
+figure; 
+for ii = 1:3
+subplot(3,1,ii)
+plot(euler_angs(:,ii)*180/pi)
+end
+
+rate_meas_data = sim_out(:,11:13) + normrnd(0,1e-6,length(sim_tspan),3);
+rate_meas_data = [sim_tspan' rate_meas_data];
