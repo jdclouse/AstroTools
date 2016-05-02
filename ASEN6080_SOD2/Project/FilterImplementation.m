@@ -6,11 +6,11 @@ state_ap = [1;0;0;0;0;-orbit.n;0];
 EKFoutput = AttKalmanFilter(state_ap, rate_meas_data(1:200,:), filter_opts);
 %% Euler CKF
 project_filter_params;
-filter_opts.P0 = diag([5*pi/180,5*pi/180,5*pi/180, 1e-5,1e-5,1e-5]);
+filter_opts.P0 = diag([(5*pi/180)^2,(5*pi/180)^2,(5*pi/180)^2, 1e-5,1e-5,1e-5]);
 % state_ap = [0;0;0;0;-orbit.n;0];
 % state_ap = [0;0;0;0;0;0];
-% state_ap = [[0;5;-3]*pi/180;0;-orbit.n;0];
-state_ap = [[0;4;-2]*pi/180;0;-orbit.n;0];
+state_ap = [[0;5;-3]*pi/180;0;-orbit.n;0];
+% state_ap = [[0;4;-2]*pi/180;0;-orbit.n;0];
 filter_opts.state_length = 6;
 filter_opts.important_block = [6 6];
 filter_opts.propagator_opts.att_prop_opts.fcn = @rigid_body_Euler_estimation;
@@ -51,7 +51,7 @@ EulerCKFoutput = AttKalmanFilter(state_ap, rate_meas_data, filter_opts);
 
 filter_output = EulerCKFoutput;
 case_title = 'CKF - Rates only';
-resid_plot_units = {'rad/s', 'rad/s', 'rad/s'};
+resid_plot_units = {'$\delta\dot{\psi}$ (rad/s)', '$\delta\dot{\theta}$ (rad/s)', '$\delta\dot{\phi}$ (rad/s)'};
 plot_results;
 
 %% Euler CKF -- with yaw
@@ -71,7 +71,7 @@ filter_opts.use_EKF = 0;
 filter_opts.use_SNC = 1;
 % 1e-10 fit the data way too much, good example though
 filter_opts.SNC_Q = eye(3)*1e-14;
-% EulerCKFoutput_pitch = AttKalmanFilter(state_ap, yaw_and_rate_meas_data(1:500,:), filter_opts);
+% EulerCKFoutput_yaw = AttKalmanFilter(state_ap, yaw_and_rate_meas_data(1:500,:), filter_opts);
 EulerCKFoutput_yaw = AttKalmanFilter(state_ap, yaw_and_rate_meas_data, filter_opts);
 
 figure; 
@@ -107,7 +107,7 @@ plot_att_resid(EulerCKFoutput_yaw.pfr_store, filter_opts.R, {'rad/s', 'rad/s', '
 
 %% Euler EKF -- yaw
 project_filter_params;
-filter_opts.P0 = diag([5*pi/180,5*pi/180,5*pi/180, 1e-5,1e-5,1e-5]);
+filter_opts.P0 = diag([(5*pi/180)^2,(5*pi/180)^2,(5*pi/180)^2, 1e-5,1e-5,1e-5]);
 state_ap = [0;0;0;0;-orbit.n;0];
 % state_ap = [0;0;0;0;0;0];
 % state_ap = [[0;5;-3]*pi/180;0;-orbit.n;0];
@@ -123,13 +123,13 @@ filter_opts.use_EKF = 1;
 filter_opts.EKF_switchover = 1000;
 filter_opts.use_SNC = 1;
 % 1e-10 fit the data way too much, good example though
-filter_opts.SNC_Q = eye(3)*1e-13;
-EulerEKFoutput = AttKalmanFilter(state_ap, yaw_and_rate_meas_data(1:2000,:), filter_opts);
-% EulerEKFoutput = AttKalmanFilter(state_ap, yaw_and_rate_meas_data, filter_opts);
+filter_opts.SNC_Q = eye(3)*1e-14;
+% EulerEKFoutput = AttKalmanFilter(state_ap, yaw_and_rate_meas_data(1:2000,:), filter_opts);
+EulerEKFoutput = AttKalmanFilter(state_ap, yaw_and_rate_meas_data, filter_opts);
 
 filter_output = EulerEKFoutput;
-case_title = 'EKF - yaw';
-resid_plot_units = {'rad/s', 'rad/s', 'rad/s', 'rad'};
+case_title = 'EKF - Yaw and Rate Meas';
+resid_plot_units = {'$\delta\dot{\psi}$ (rad/s)', '$\delta\dot{\theta}$ (rad/s)', '$\delta\dot{\phi}$ (rad/s)', '$\psi$ (rad)'};
 plot_results;
 
 %% Euler EKF -- YPR measurements

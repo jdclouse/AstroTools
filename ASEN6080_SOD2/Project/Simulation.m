@@ -113,18 +113,24 @@ YPR_meas_data_and_rates = [YPR_meas_data sim_out(:,11:13) + normrnd(0,1e-6,lengt
 [~, X_out_angles] = ode45(@combined_state_dot_Euler, ...
     sim_tspan, [r_init; v_init; euler_angs_i; ratei]',...
     PV_prop_opts.ode_opts, combined_opts);
+ang_label = {'$\psi$ (deg)', '$\theta$ (deg)', '$\phi$ (deg)'};
+rate_label = {'body $\dot{\psi}$ (deg/s)', 'body $\dot{\theta}$ (deg/s)', 'body $\dot{\phi}$ (deg/s)'};
 figure; 
 for ii = 1:3
 subplot(3,1,ii)
 plot(X_out_angles(:,ii+6)*180/pi)
+ylabel(ang_label{ii},'Interpreter','latex')
 end
-subplot(3,1,1); title('Simulated angles -- angles EOM')
+% subplot(3,1,1); title('Simulated angles -- angles EOM')
+subplot(3,1,1); title('Simulated Euler Angle Deviation from LVLH')
 figure; 
 for ii = 1:3
 subplot(3,1,ii)
 plot(X_out_angles(:,ii+9)*180/pi)
+ylabel(rate_label{ii},'Interpreter','latex')
 end
-subplot(3,1,1); title('Simulated rates -- angles EOM')
+% subplot(3,1,1); title('Simulated rates -- angles EOM')
+subplot(3,1,1); title('Simulated Body Rates')
 figure; 
 for ii = 1:3
 subplot(3,1,ii)

@@ -1,0 +1,5 @@
+\contentsline {section}{\numberline {I}Introduction}{3}{section.1}
+\contentsline {section}{\numberline {II}Attitude Dynamics}{3}{section.2}
+\contentsline {section}{\numberline {III}Simulation}{3}{section.3}
+\contentsline {section}{\numberline {IV}Filtering the Euler Representation}{4}{section.4}
+\contentsline {section}{\numberline {V}Conclusion}{4}{section.5}
