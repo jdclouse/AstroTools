@@ -101,3 +101,5 @@ filter_opts.R = eye(3)*(1e-6)^2;
 filter_opts.important_block = [7 7];
 filter_opts.state_length = 7;
 filter_opts.propagator_opts.att_prop_opts.fcn = @rigid_body_quat_estimation;
+filter_opts.YPR = false;
+filter_opts.YPR_rates = false;

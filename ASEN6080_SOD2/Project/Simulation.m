@@ -50,11 +50,11 @@ att_prop_opts.gravity_gradient.use = true;
 att_prop_opts.mu = PV_prop_opts.mu;
 att_prop_opts.I = [I11; I22; I33];
 
-euler_angs = [0;5;-3]*pi/180;
+euler_angs_i = [0;5;-3]*pi/180;
 % euler_angs = [0;0;-3]*pi/180;
 % euler_angs = [0;0;0]*pi/180;
 euler_seq = '321';
-Qi_lvlh2body = Euler2EP(euler_seq, euler_angs);
+Qi_lvlh2body = Euler2EP(euler_seq, euler_angs_i);
 Qi_inrtl2lvlh = C2EP(inrtl2lvlh(r_init, v_init));
 Qi = addEP(Qi_inrtl2lvlh, Qi_lvlh2body);
 ratei = [0; -orbit.n; 0.00655*pi/180];
@@ -101,3 +101,33 @@ end
 
 rate_meas_data = sim_out(:,11:13) + normrnd(0,1e-6,length(sim_tspan),3);
 rate_meas_data = [sim_tspan' rate_meas_data];
+pitch_meas = euler_angs(:,2) + normrnd(0,0.5*pi/180,length(sim_tspan),1);
+pitch_and_rate_meas_data = [rate_meas_data pitch_meas];
+yaw_meas = euler_angs(:,1) + normrnd(0,0.5/3*pi/180,length(sim_tspan),1);
+yaw_and_rate_meas_data = [rate_meas_data yaw_meas];
+
+YPR_meas_data = [sim_tspan' (euler_angs + normrnd(0,0.5/3*pi/180,length(sim_tspan),3))];
+YPR_meas_data_and_rates = [YPR_meas_data sim_out(:,11:13) + normrnd(0,1e-6,length(sim_tspan),3)];
+
+%%
+[~, X_out_angles] = ode45(@combined_state_dot_Euler, ...
+    sim_tspan, [r_init; v_init; euler_angs_i; ratei]',...
+    PV_prop_opts.ode_opts, combined_opts);
+figure; 
+for ii = 1:3
+subplot(3,1,ii)
+plot(X_out_angles(:,ii+6)*180/pi)
+end
+subplot(3,1,1); title('Simulated angles -- angles EOM')
+figure; 
+for ii = 1:3
+subplot(3,1,ii)
+plot(X_out_angles(:,ii+9)*180/pi)
+end
+subplot(3,1,1); title('Simulated rates -- angles EOM')
+figure; 
+for ii = 1:3
+subplot(3,1,ii)
+plot(X_out_angles(:,ii+6)*180/pi-euler_angs(:,ii)*180/pi)
+end
+subplot(3,1,1); title('Simulated angles error -- angles EOM')

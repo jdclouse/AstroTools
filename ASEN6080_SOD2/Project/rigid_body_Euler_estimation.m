@@ -53,9 +53,13 @@ A = [...
 
 A(1:3, 1:3) = A(1:3, 1:3) + linearized_correction;
 
+if length(state) > 6
 STM = reshape(state(7:end),6,6);
 STM_dot = -STM\A;
 
 state_dot = [dEuler321(EulerAng,w)-w_ON; w_dot; reshape(STM_dot,36,1)];
+else
+state_dot = [dEuler321(EulerAng,w)-w_ON; w_dot];
+end
     
 end

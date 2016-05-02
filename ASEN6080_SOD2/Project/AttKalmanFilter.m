@@ -11,6 +11,10 @@ function output = AttKalmanFilter(state_ap, meas_store, fo)
 % ObsData = load('ObsData.txt');
 ObsData = meas_store;
 obs_t_idx = 2;
+hasYaw = false;
+if length(ObsData(1,:)) > 4
+    hasYaw = true;
+end
 
 propagator_opts = fo.propagator_opts;
 theta_dot = fo.theta_dot;
@@ -44,6 +48,14 @@ fo.ode_opts = odeset('RelTol', 1e-12, 'AbsTol', 1e-20);
 y1 = zeros(num_obs,1);
 y2 = zeros(num_obs,1);
 y3 = zeros(num_obs,1);
+if hasYaw
+    y4 = zeros(num_obs,1);
+end
+if fo.YPR_rates
+    y4 = zeros(num_obs,1);
+    y5 = zeros(num_obs,1);
+    y6 = zeros(num_obs,1);
+end
 
 % CKF init
 x_est = x0_ap;
@@ -89,6 +101,12 @@ end
 
 STM_accum = eye(consts.state_len);
 pfr_store = zeros(3,num_obs);
+if hasYaw
+    pfr_store = zeros(4,num_obs);
+end
+if fo.YPR_rates
+    pfr_store = zeros(6,num_obs);
+end
 
 mystr = '';
 fprintf('Observation ');
@@ -137,9 +155,25 @@ for ii = 1:num_obs
     ref_state_at_obs = X(end,7:7 + consts.state_len-1)';
         
     % Calculate measurement deviation y
-    y1(ii) = (ObsData(ii,2)-ref_state_at_obs(4));
-    y2(ii) = (ObsData(ii,3)-ref_state_at_obs(5));
-    y3(ii) = (ObsData(ii,4)-ref_state_at_obs(6));
+    if ~fo.YPR
+        y1(ii) = (ObsData(ii,2)-ref_state_at_obs(4));
+        y2(ii) = (ObsData(ii,3)-ref_state_at_obs(5));
+        y3(ii) = (ObsData(ii,4)-ref_state_at_obs(6));
+        if hasYaw
+            y4(ii) = (ObsData(ii,5)-ref_state_at_obs(1));
+        end
+    else
+        y1(ii) = (ObsData(ii,2)-ref_state_at_obs(1));
+        y2(ii) = (ObsData(ii,3)-ref_state_at_obs(2));
+        y3(ii) = (ObsData(ii,4)-ref_state_at_obs(3));
+        if fo.YPR_rates
+            y4(ii) = (ObsData(ii,5)-ref_state_at_obs(4));
+            y5(ii) = (ObsData(ii,6)-ref_state_at_obs(5));
+            y6(ii) = (ObsData(ii,7)-ref_state_at_obs(6));
+        end
+    end
+        
+    
     
     % Time update
     STM_accum = STM_obs2obs*STM_accum;
@@ -151,7 +185,7 @@ for ii = 1:num_obs
             && dt < fo.SNC_meas_separation_threshold
         
         % Compute Q. Use the state from last obs for any transformations.
-        Q = compute_SNC_Q(fo, X(1,1:consts.state_len)');
+        Q = fo.SNC_Q;
         Gamma = fo.SNC_Gamma(dt);
 
         P_ap = P_ap + Gamma*Q*Gamma'; % Add the process noise
@@ -163,7 +197,20 @@ for ii = 1:num_obs
     % H~
     consts.t = obs_time;
 %     H_tilda = fo.H_tilda_handle(ref_state_at_obs, consts);
-    H_tilda = [zeros(3,consts.state_len-3) eye(3)];
+
+    if ~fo.YPR
+        H_tilda = [zeros(3,consts.state_len-3) eye(3)];
+        if hasYaw
+            H_tilda = [H_tilda; 1 0 0 0 0 0];
+        end
+    else
+        if fo.YPR_rates
+            H_tilda = eye(6);
+        else
+            H_tilda = [eye(3) zeros(3,consts.state_len-3)];
+        end
+    end
+    
 %     if fo.use_DMC
 %         H_tilda = [H_tilda zeros(2,3)]; %#ok<AGROW>
 %     end
@@ -173,6 +220,12 @@ for ii = 1:num_obs
     
     % Measurement Update
     y = [y1(ii);y2(ii);y3(ii)];
+    if hasYaw
+        y = [y; y4(ii)];
+    end
+    if fo.YPR && fo.YPR_rates
+        y = [y1(ii);y2(ii);y3(ii);y4(ii);y5(ii);y6(ii)];
+    end
     x_est = x_ap + K*(y - H_tilda*x_ap);
     I = eye(consts.state_len);
     if fo.use_joseph
@@ -286,23 +339,23 @@ if fo.use_smoother
 end
 
 %%
-sig_range = 1e-6;
-sig_rangerate = 1e-6;
-figure
-subplot(2,1,1)
-plot(1:num_obs, pfr_store(1,:),'.','LineWidth',1)
-hold on
-plot(1:num_obs,3*sig_range*ones(1,num_obs),'r--')
-plot(1:num_obs,-3*sig_range*ones(1,num_obs),'r--')
-title(sprintf('Range RMS = %.4e m',output.range_RMS))
-ylabel('m')
-subplot(2,1,2)
-plot(1:num_obs, pfr_store(2,:),'.','LineWidth',1)
-hold on
-plot(1:num_obs,3*sig_rangerate*ones(1,num_obs),'r--')
-plot(1:num_obs,-3*sig_rangerate*ones(1,num_obs),'r--')
-title(sprintf('Range-Rate RMS = %.4e m/s',output.rangerate_RMS))
-ylabel('m/s'),xlabel('Observation')
+% sig_range = 1e-6;
+% sig_rangerate = 1e-6;
+% figure
+% subplot(2,1,1)
+% plot(1:num_obs, pfr_store(1,:),'.','LineWidth',1)
+% hold on
+% plot(1:num_obs,3*sig_range*ones(1,num_obs),'r--')
+% plot(1:num_obs,-3*sig_range*ones(1,num_obs),'r--')
+% title(sprintf('Range RMS = %.4e m',output.range_RMS))
+% ylabel('m')
+% subplot(2,1,2)
+% plot(1:num_obs, pfr_store(2,:),'.','LineWidth',1)
+% hold on
+% plot(1:num_obs,3*sig_rangerate*ones(1,num_obs),'r--')
+% plot(1:num_obs,-3*sig_rangerate*ones(1,num_obs),'r--')
+% title(sprintf('Range-Rate RMS = %.4e m/s',output.rangerate_RMS))
+% ylabel('m/s'),xlabel('Observation')
 
 % %% Covariance Matrix Traces
 % % The Joseph formulation follows the same basic shape of the regular Kalman
