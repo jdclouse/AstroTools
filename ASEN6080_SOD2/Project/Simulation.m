@@ -76,6 +76,10 @@ for ii = 2:length(sim_tspan)
     sim_out(ii,:) = iter_out(end,:);
     % renormalize the quaternion.
     sim_out(ii,7:10) = sim_out(ii,7:10)/norm(sim_out(ii,7:10));
+    % Make it represent the shortest rotation
+    if sim_out(ii,7)<0
+        sim_out(ii,7:10) = sim_out(ii,7:10)*-1;
+    end
 end
 % tic
 %     [~, iter_out] = ode45(@combined_state_dot, ...
@@ -109,6 +113,25 @@ yaw_and_rate_meas_data = [rate_meas_data yaw_meas];
 YPR_meas_data = [sim_tspan' (euler_angs + normrnd(0,0.5/3*pi/180,length(sim_tspan),3))];
 YPR_meas_data_and_rates = [YPR_meas_data sim_out(:,11:13) + normrnd(0,1e-6,length(sim_tspan),3)];
 
+quat_meas_data = zeros(length(sim_tspan),4);
+for ii = 1:length(sim_tspan)
+%     q_meas = Euler3212EP(YPR_meas_data(ii,2:4));
+    DCM = inrtl2lvlh(sim_out(ii,1:3)', sim_out(ii,4:6)');
+    Q_inrtl2lvlh = C2EP(DCM);
+    q_lvlh2body_meas = Euler3212EP(YPR_meas_data(ii,2:4));
+    q_meas = addEP(Q_inrtl2lvlh,q_lvlh2body_meas);
+    quat_meas_data(ii,:) = q_meas';
+end
+quat_meas_data = [sim_tspan' quat_meas_data rate_meas_data(:,2:4)];
+
+figure;
+for ii = 1:4
+    subplot(4,1,ii);
+    plot(sim_out(:,ii+6))
+    hold on
+    plot(quat_meas_data(:,ii+1),'r')
+end
+
 %%
 [~, X_out_angles] = ode45(@combined_state_dot_Euler, ...
     sim_tspan, [r_init; v_init; euler_angs_i; ratei]',...
@@ -137,3 +160,4 @@ subplot(3,1,ii)
 plot(X_out_angles(:,ii+6)*180/pi-euler_angs(:,ii)*180/pi)
 end
 subplot(3,1,1); title('Simulated angles error -- angles EOM')
+

@@ -310,6 +310,87 @@ title(sprintf('EKF Angle Error, SNC = %.1e',filter_opts.SNC_Q(1)))
 
 %% quaternion CKF, no process noise
 %% Multiplicitive EKF, no process noise
+project_filter_params;
+
+% n_off = sqrt(Earth.mu/(orbit.a+10)^3);
+% 
+% [r_init_off, v_init_off] = OE2cart(orbit.a+10, orbit.e, orbit.i, orbit.RAAN, ...
+%     orbit.w, orbit.f, Earth.mu);
+% filter_opts.PV_state = [r_init_off; v_init_off];
+
+filter_opts.P0 = diag([1,1,1]*(0.0416)^2);
+state_ap = [Qi_inrtl2lvlh;0;0;0];
+filter_opts.state_length = 7;
+filter_opts.important_block = [6 6];
+% filter_opts.propagator_opts.att_prop_opts.fcn = @rigid_body_Euler_estimation;
+
+filter_opts.R =diag([1,1,1]*(0.001452)^2);
+
+% filter_opts.use_EKF = 1;
+% filter_opts.EKF_switchover = 200;
+% filter_opts.use_SNC = 1;
+% 1e-13 had residuals that were too big.
+% filter_opts.SNC_Q = eye(3)*1e-14;
+
+filter_opts.MEKF = true;
+filter_opts.use_joseph = false;
+filter_opts.propagator_opts.att_prop_opts.gravity_gradient.use = false;
+filter_opts.propagator_opts.att_prop_opts.R = filter_opts.R;
+filter_opts.propagator_opts.att_prop_opts.Q = eye(3)*1e-6;
+
+% MEKFoutput = AttKalmanFilter(state_ap, quat_meas_data(1:2000,:), filter_opts);
+MEKFoutput = AttKalmanFilter(state_ap, quat_meas_data, filter_opts);
+
+% Compute the euler angles for visualization
+euler_angs_out = zeros(length(sim_tspan),3);
+for ii = 1:length(MEKFoutput.state_store)
+    DCM = inrtl2lvlh(sim_out(ii,1:3)', sim_out(ii,4:6)');
+    Q_inrtl2lvlh = C2EP(DCM);
+    Q_lvlh2body = subEP(MEKFoutput.state_store(1:4,ii), Q_inrtl2lvlh);
+%     Q_lvlh2body = subEP(Q_inrtl2lvlh, sim_out(ii,7:10));
+    euler_angs_out(ii,:) = EP2Euler321(Q_lvlh2body)';
+end
+
+figure; 
+for ii = 1:3
+subplot(3,1,ii)
+plot(euler_angs_out(:,ii)*180/pi,'.')
+end
+
+% Angle error
+figure; 
+for ii = 1:3
+subplot(3,1,ii)
+plot((euler_angs_out(:,ii)-euler_angs(:,ii))*180/pi)
+hold on
+plot([1 length(euler_angs_out)], -0.5
+end
+
+% Quaternion vector
+figure;
+for ii = 1:4
+    subplot(4,1,ii)
+    plot(MEKFoutput.state_store(ii,:))
+    hold on
+    plot(sim_out(1:length(MEKFoutput.state_store),6+ii),'r')
+end
+
+% Quaternion vector error
+figure;
+for ii = 1:3
+    subplot(3,1,ii)
+    plot((MEKFoutput.state_store(ii+1,:)-sim_out(1:length(MEKFoutput.state_store),6+ii+1)')*2,'.')
+    hold on
+    plot(3*sqrt(MEKFoutput.cov_store(ii,:)),'r')
+    plot(-3*sqrt(MEKFoutput.cov_store(ii,:)),'r')
+end
+xlabel('Observation')
+
+filter_output = MEKFoutput;
+case_title = 'MEKF ';
+resid_plot_units = {'rad', 'rad', 'rad', 'rad/s', 'rad/s', 'rad/s'};
+plot_results;
+
 %% Process noise
 %% Bad ephemeris
 % If the ephemeris is inaccurate for some reason, could throw things off.

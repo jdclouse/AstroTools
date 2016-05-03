@@ -62,11 +62,11 @@ x_est = x0_ap;
 P = P0;
 obs_time_last = ObsData(1,obs_t_idx);
 
-if fo.use_joseph
-    P_joseph_store = zeros(num_obs,1);
-else
-    P_trace_store = zeros(num_obs,1);
-end
+% if fo.use_joseph
+%     P_joseph_store = zeros(num_obs,1);
+% else
+%     P_trace_store = zeros(num_obs,1);
+% end
 num_state_store = consts.state_len;
 if fo.use_EKF
 
@@ -79,6 +79,9 @@ state_store = zeros(num_state_store,num_obs);
 state_ap_store = zeros(num_state_store,num_obs);
 num_variance_store = num_state_store;
 EKF_cov_store = zeros(num_variance_store,num_obs);
+if fo.MEKF
+    EKF_cov_store = zeros(3,num_obs);
+end
 
 % Smoother
 % Set up all the storage mechanisms for good memory managements
@@ -107,6 +110,9 @@ end
 if fo.YPR_rates
     pfr_store = zeros(6,num_obs);
 end
+if fo.MEKF
+    pfr_store = zeros(3,num_obs);
+end
 
 mystr = '';
 fprintf('Observation ');
@@ -122,47 +128,55 @@ for ii = 1:num_obs
     % Propagate
     % Get the state on the reference trajectory at this obs time.
     % Get STM from last obs to this one.
-    if ii == 1 || obs_time - obs_time_last == 0
-        STM_obs2obs = eye(consts.state_len);
-        X = [PV_state; state]';
-    else
-%         times = obs_time_last:meas_dt:obs_time;
-        times = [obs_time_last obs_time];
-        % Make the STM reflect an epoch time == the last msmnt time
-        STM_obs2obs = eye(consts.state_len);
-        last_state = [PV_state; state;...
-            reshape(STM_obs2obs(1:fo.important_block(1),1:fo.important_block(2)),...
-            fo.important_block(1)*fo.important_block(2),1)];
-        
-        try
-            [~,X] = ode45(@combined_state_dot_estimation, times, last_state, ...
-            fo.ode_opts, propagator_opts);
-        STM_obs2obs(1:fo.important_block(1),1:fo.important_block(2)) = ...
-            reshape(X(end,end-(consts.state_len*consts.state_len-1):end), ...
-            fo.important_block(1), fo.important_block(2));
-        PV_state = X(end,1:6)';
-%         if fo.use_DMC
-%             STM_obs2obs = compute_DMC_STM(fo, dt, STM_obs2obs(1:fo.important_block(1),1:fo.important_block(2)));
-%         end
-        catch
-            fprintf('Got that error.\n');
-            times
-            last_state
-            ii
-            return
+    if fo.MEKF
+        if ii == 1 || obs_time - obs_time_last == 0
+            STM_obs2obs = eye(consts.state_len);
+            X = [state; reshape(P, 9,1)]';
+        else
+            times = [obs_time_last obs_time];
+            last_state = [state;...
+                reshape(P, 9,1)];
+            [~,X] = ode45(@rigid_body_quat_MEKF, times, last_state, ...
+                fo.ode_opts, propagator_opts.att_prop_opts);
         end
+        ref_state_at_obs = X(end,1:7)';
+        
+    else
+        if ii == 1 || obs_time - obs_time_last == 0
+            STM_obs2obs = eye(consts.state_len);
+            X = [PV_state; state]';
+        else
+    %         times = obs_time_last:meas_dt:obs_time;
+            times = [obs_time_last obs_time];
+            % Make the STM reflect an epoch time == the last msmnt time
+            STM_obs2obs = eye(consts.state_len);
+            last_state = [PV_state; state;...
+                reshape(STM_obs2obs(1:fo.important_block(1),1:fo.important_block(2)),...
+                fo.important_block(1)*fo.important_block(2),1)];
+
+            try
+                [~,X] = ode45(@combined_state_dot_estimation, times, last_state, ...
+                fo.ode_opts, propagator_opts);
+            STM_obs2obs(1:fo.important_block(1),1:fo.important_block(2)) = ...
+                reshape(X(end,end-(consts.state_len*consts.state_len-1):end), ...
+                fo.important_block(1), fo.important_block(2));
+            PV_state = X(end,1:6)';
+    %         if fo.use_DMC
+    %             STM_obs2obs = compute_DMC_STM(fo, dt, STM_obs2obs(1:fo.important_block(1),1:fo.important_block(2)));
+    %         end
+            catch
+                fprintf('Got that error.\n');
+                times
+                last_state
+                ii
+                return
+            end
+        end
+        ref_state_at_obs = X(end,7:7 + consts.state_len-1)';
     end
-    ref_state_at_obs = X(end,7:7 + consts.state_len-1)';
         
     % Calculate measurement deviation y
-    if ~fo.YPR
-        y1(ii) = (ObsData(ii,2)-ref_state_at_obs(4));
-        y2(ii) = (ObsData(ii,3)-ref_state_at_obs(5));
-        y3(ii) = (ObsData(ii,4)-ref_state_at_obs(6));
-        if hasYaw
-            y4(ii) = (ObsData(ii,5)-ref_state_at_obs(1));
-        end
-    else
+    if fo.YPR
         y1(ii) = (ObsData(ii,2)-ref_state_at_obs(1));
         y2(ii) = (ObsData(ii,3)-ref_state_at_obs(2));
         y3(ii) = (ObsData(ii,4)-ref_state_at_obs(3));
@@ -171,14 +185,45 @@ for ii = 1:num_obs
             y5(ii) = (ObsData(ii,6)-ref_state_at_obs(5));
             y6(ii) = (ObsData(ii,7)-ref_state_at_obs(6));
         end
+    elseif fo.MEKF
+        if ref_state_at_obs(1) < 0
+            ref_state_at_obs(1:4) = ref_state_at_obs(1:4)*-1;
+        end
+        dq_z1 = subEP(ObsData(ii,2:5),ref_state_at_obs(1:4));
+        dq_z2 = subEP(ObsData(ii,2:5),-ref_state_at_obs(1:4));
+%         dq_z = subEP(ref_state_at_obs(1:4),ObsData(ii,2:5));
+        if dq_z1(1) > 0
+            y1(ii) = 2*dq_z1(2);
+            y2(ii) = 2*dq_z1(3);
+            y3(ii) = 2*dq_z1(4);   
+        else
+            y1(ii) = 2*dq_z2(2);
+            y2(ii) = 2*dq_z2(3);
+            y3(ii) = 2*dq_z2(4);   
+        end
+%         y1(ii) = 2*(ObsData(ii,2)-ref_state_at_obs(2));
+%         y2(ii) = 2*(ObsData(ii,3)-ref_state_at_obs(3));
+%         y3(ii) = 2*(ObsData(ii,4)-ref_state_at_obs(4));        
+    else
+        y1(ii) = (ObsData(ii,2)-ref_state_at_obs(4));
+        y2(ii) = (ObsData(ii,3)-ref_state_at_obs(5));
+        y3(ii) = (ObsData(ii,4)-ref_state_at_obs(6));
+        if hasYaw
+            y4(ii) = (ObsData(ii,5)-ref_state_at_obs(1));
+        end
     end
         
     
     
     % Time update
     STM_accum = STM_obs2obs*STM_accum;
-    x_ap = STM_obs2obs*x_est;
-    P_ap = STM_obs2obs*P*STM_obs2obs';
+    if fo.MEKF
+        x_ap = zeros(3,1);
+        P_ap = reshape(X(end,8:end), 3, 3);
+    else
+        x_ap = STM_obs2obs*x_est;
+        P_ap = STM_obs2obs*P*STM_obs2obs';
+    end
     
     dt = obs_time - obs_time_last;
     if fo.use_SNC ...
@@ -198,16 +243,18 @@ for ii = 1:num_obs
     consts.t = obs_time;
 %     H_tilda = fo.H_tilda_handle(ref_state_at_obs, consts);
 
-    if ~fo.YPR
-        H_tilda = [zeros(3,consts.state_len-3) eye(3)];
-        if hasYaw
-            H_tilda = [H_tilda; 1 0 0 0 0 0];
-        end
-    else
+    if fo.MEKF
+        H_tilda = eye(3);
+    elseif fo.YPR
         if fo.YPR_rates
             H_tilda = eye(6);
         else
             H_tilda = [eye(3) zeros(3,consts.state_len-3)];
+        end
+    else
+        H_tilda = [zeros(3,consts.state_len-3) eye(3)];
+        if hasYaw
+            H_tilda = [H_tilda; 1 0 0 0 0 0];
         end
     end
     
@@ -220,7 +267,7 @@ for ii = 1:num_obs
     
     % Measurement Update
     y = [y1(ii);y2(ii);y3(ii)];
-    if hasYaw
+    if hasYaw && ~fo.MEKF
         y = [y; y4(ii)];
     end
     if fo.YPR && fo.YPR_rates
@@ -228,12 +275,15 @@ for ii = 1:num_obs
     end
     x_est = x_ap + K*(y - H_tilda*x_ap);
     I = eye(consts.state_len);
+    if fo.MEKF
+        I = eye(3);
+    end
     if fo.use_joseph
         P = (I-K*H_tilda)*P_ap*(I-K*H_tilda)' + K*R*K';
-        P_joseph_store(ii) = trace(P(1:6,1:6));
+%         P_joseph_store(ii) = trace(P(1:6,1:6));
     else
         P = (I-K*H_tilda)*P_ap;
-        P_trace_store(ii) = trace(P(1:6,1:6));
+%         P_trace_store(ii) = trace(P(1:6,1:6));
     end
     
     % Track the last time
@@ -246,6 +296,21 @@ for ii = 1:num_obs
     pfr_store(:,ii) = pfr;
     
     % Set up ref state for next pass
+    if fo.MEKF
+        dq = 0.5*[sqrt(4-norm(x_est)^2); x_est];
+        state(1:4) = addEP(ref_state_at_obs(1:4),dq);
+        state(1:4) = state(1:4)/norm(state(1:4)); %Normalize!
+        % Shortest rotation
+        if state(1) < 0
+            state(1:4) = state(1:4)*-1;
+        end
+        state(5:7) = ObsData(ii,6:8)';
+        
+        % Store things
+        state_store(:,ii) = state(1:num_state_store);
+%         EKF_cov_store(:,ii) = diag(P(1:3,1:3));
+        EKF_cov_store(:,ii) = diag(P);
+    else
     state = ref_state_at_obs;
     if fo.use_EKF && ii > fo.EKF_switchover
         state = state + x_est;
@@ -271,6 +336,7 @@ for ii = 1:num_obs
             state(1:num_state_store) + x_est(1:num_state_store);
         EKF_cov_store(:,ii) = ...
             diag(P(1:num_variance_store,1:num_variance_store));
+    end
     end
     
     if fo.use_smoother
