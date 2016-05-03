@@ -194,7 +194,7 @@ EulerEKFoutput_YPR_rates = AttKalmanFilter(state_ap, YPR_meas_data_and_rates, fi
 
 filter_output = EulerEKFoutput_YPR_rates;
 case_title = 'EKF - YPR';
-resid_plot_units = {'rad', 'rad', 'rad', 'rad/s', 'rad/s', 'rad/s'};
+resid_plot_units = {'$\psi$ (rad)', '$\theta$ (rad)', '$\phi$ (rad)', '$\dot{\psi}$ (rad/s)', '$\dot{\theta}$ (rad/s)', '$\dot{\phi}$ (rad/s)'};
 plot_results;
 
 %% Euler EKF -- YPR and rate measurements, SNC Gamma changed
