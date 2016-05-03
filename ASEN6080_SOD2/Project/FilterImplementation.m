@@ -1,4 +1,11 @@
 %% Attitude Filter Implementations by John Clouse
+%% Init
+hw_pub.figWidth = 1120; % pixels
+hw_pub.figHeight = 840; % pixels
+hw_pub.figPosn = [0, 0, hw_pub.figWidth, hw_pub.figHeight];
+% Example: some_fig = figure('Position', hw_pub.figPosn);
+hw_pub.lineWidth = 2; % pixels
+hw_pub.fontSize = 12;
 %% quaternion EKF, no process noise
 project_filter_params;
 filter_opts.P0 = diag([0.001,0.001,0.001,0.001, 1e-5,1e-5,1e-5]);
@@ -351,14 +358,14 @@ for ii = 1:length(MEKFoutput.state_store)
     euler_angs_out(ii,:) = EP2Euler321(Q_lvlh2body)';
 end
 
-figure; 
+figure('Position', hw_pub.figPosn); 
 for ii = 1:3
 subplot(3,1,ii)
 plot(euler_angs_out(:,ii)*180/pi,'.')
 end
 
 % Angle error
-figure; 
+figure('Position', hw_pub.figPosn); 
 for ii = 1:3
 subplot(3,1,ii)
 plot((euler_angs_out(:,ii)-euler_angs(:,ii))*180/pi)
@@ -367,7 +374,7 @@ plot([1 length(euler_angs_out)], -0.5
 end
 
 % Quaternion vector
-figure;
+figure('Position', hw_pub.figPosn);
 for ii = 1:4
     subplot(4,1,ii)
     plot(MEKFoutput.state_store(ii,:))
@@ -376,15 +383,20 @@ for ii = 1:4
 end
 
 % Quaternion vector error
-figure;
+figure('Position', hw_pub.figPosn);
 for ii = 1:3
     subplot(3,1,ii)
     plot((MEKFoutput.state_store(ii+1,:)-sim_out(1:length(MEKFoutput.state_store),6+ii+1)')*2,'.')
     hold on
     plot(3*sqrt(MEKFoutput.cov_store(ii,:)),'r')
     plot(-3*sqrt(MEKFoutput.cov_store(ii,:)),'r')
+    ylabel(['2\beta_' num2str(ii)],'fontsize',hw_pub.fontSize)
 end
-xlabel('Observation')
+xlabel('Observation','fontsize',hw_pub.fontSize)
+subplot(3,1,1)
+title('MEKF Quaternion Vector Error','fontsize',hw_pub.fontSize)
+h = legend('Filter results error','Filter 3\sigma');
+set(h,'fontsize',hw_pub.fontSize);
 
 filter_output = MEKFoutput;
 case_title = 'MEKF ';
