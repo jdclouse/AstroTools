@@ -138,26 +138,30 @@ end
     PV_prop_opts.ode_opts, combined_opts);
 ang_label = {'$\psi$ (deg)', '$\theta$ (deg)', '$\phi$ (deg)'};
 rate_label = {'body $\dot{\psi}$ (deg/s)', 'body $\dot{\theta}$ (deg/s)', 'body $\dot{\phi}$ (deg/s)'};
-figure; 
+figure('Position', hw_pub.figPosn); 
 for ii = 1:3
 subplot(3,1,ii)
 plot(X_out_angles(:,ii+6)*180/pi)
-ylabel(ang_label{ii},'Interpreter','latex')
+ylabel(ang_label{ii},'Interpreter','latex','fontsize',hw_pub.fontSize)
 end
+xlabel('Time (s)','fontsize',hw_pub.fontSize)
 % subplot(3,1,1); title('Simulated angles -- angles EOM')
-subplot(3,1,1); title('Simulated Euler Angle Deviation from LVLH')
-figure; 
+subplot(3,1,1); title('Simulated Euler Angle Deviation from LVLH','fontsize',hw_pub.fontSize)
+
+figure('Position', hw_pub.figPosn); 
 for ii = 1:3
 subplot(3,1,ii)
 plot(X_out_angles(:,ii+9)*180/pi)
-ylabel(rate_label{ii},'Interpreter','latex')
+ylabel(rate_label{ii},'Interpreter','latex','fontsize',hw_pub.fontSize)
 end
+xlabel('Time (s)','fontsize',hw_pub.fontSize)
 % subplot(3,1,1); title('Simulated rates -- angles EOM')
-subplot(3,1,1); title('Simulated Body Rates')
-figure; 
+subplot(3,1,1); title('Simulated Body Rates','fontsize',hw_pub.fontSize)
+
+figure('Position', hw_pub.figPosn); 
 for ii = 1:3
 subplot(3,1,ii)
 plot(X_out_angles(:,ii+6)*180/pi-euler_angs(:,ii)*180/pi)
 end
-subplot(3,1,1); title('Simulated angles error -- angles EOM')
+subplot(3,1,1); title('Simulated angles error -- angles EOM','fontsize',hw_pub.fontSize)
 

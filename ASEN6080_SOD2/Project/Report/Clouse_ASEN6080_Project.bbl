@@ -1,4 +1,8 @@
-\begin{thebibliography}{}
+\begin{thebibliography}{1}
 \newcommand{\enquote}[1]{``#1''}
+
+\bibitem{SchaubJunkins}
+Schaub, H. and Junkins, J.~L., {\em Analytical Mechanics of Space Systems\/},
+  AIAA, Reston, VA, 2nd ed., 2009.
 
 \end{thebibliography}

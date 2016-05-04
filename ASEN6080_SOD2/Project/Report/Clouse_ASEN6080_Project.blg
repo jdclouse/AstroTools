@@ -1,10 +1,9 @@
 This is BibTeX, Version 0.99dThe top-level auxiliary file: Clouse_ASEN6080_Project.aux
 The style file: aiaa.bst
-I found no \citation commands---while reading file Clouse_ASEN6080_Project.aux
 Database file #1: ASEN6080ProjectBib.bib
 I was expecting a `,' or a `}'---line 86 of file ASEN6080ProjectBib.bib
  :    
  :    volume = "60",
 (Error may have been on previous line)
 I'm skipping whatever remains of this entry
-(There were 2 error messages)
+(There was 1 error message)

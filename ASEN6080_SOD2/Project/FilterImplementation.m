@@ -169,7 +169,7 @@ plot_results;
 
 %% Euler EKF -- YPR and rate measurements
 project_filter_params;
-filter_opts.P0 = diag([5*pi/180,5*pi/180,5*pi/180, 1e-5,1e-5,1e-5]);
+filter_opts.P0 = diag([(5*pi/180)^2,(5*pi/180)^2,(5*pi/180)^2, 1e-5,1e-5,1e-5]);
 state_ap = [0;0;0;0;-orbit.n;0];
 % state_ap = [0;0;0;0;0;0];
 % state_ap = [[0;5;-3]*pi/180;0;-orbit.n;0];
@@ -370,7 +370,7 @@ for ii = 1:3
 subplot(3,1,ii)
 plot((euler_angs_out(:,ii)-euler_angs(:,ii))*180/pi)
 hold on
-plot([1 length(euler_angs_out)], -0.5
+% plot([1 length(euler_angs_out)], -0.5
 end
 
 % Quaternion vector

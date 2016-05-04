@@ -128,9 +128,18 @@
 	\newpage
 
 	\section{Introduction}
-Jupiter is the largest planet in the solar system, and the closest gas giant to the sun. It is a planet that is rich with opportunities for scientific inquiry. Jupiter's makeup can give clues to how the solar system was created. The largest moon, Ganymede, is thought to have a subsurface ocean and an active core. Europa also has a subsurface ocean, and geysers that spout water far above the surface. Either of these moons could hold life, but the first step in exploring them is to reach the Jupiter system.
+Estimation of spacecraft attitude can provide solutions needed for control inputs. Many spacecraft have payloads that must be pointed in a specified direction to perform their function; attitude knowledge is the first step of that process. 
+
+	\vspace{5 mm}
+
+Attitude can be represented in several ways. The most fundamental representation is a 3x3 direction cosine matrix, which can transform a vector from one frame to another. However, it has a total of nine elements. Euler angles can represent the same orientation in three elements. But, like all three-element representations, singularities can occur at certain rotations. Quaternions are representations that are universally non-singular, but they have four constrained elements.
+
+	\vspace{5 mm}
+
+This paper will identify the dynamics for a gravity gradient microsatellite. It will then detail two methods of attitude determination: an EKF estimating the Euler yaw-pitch-roll angles, and the Multiplicative EKF.
 	
 	\section{Attitude Dynamics}
+The rotational equations of motion are given by Equation \ref{eqn:EOM}, where $I_{xx}$ is the mass-moment of inertia about a principle axis and $\omega$ is the body rate about that axis.  
 	\begin{equation}
 		\begin{matrix}
 		I_{11}\dot{\omega_1}=-(I_{33}-I_{22})\omega_2\omega_3+T_1\\ 
@@ -140,6 +149,7 @@ Jupiter is the largest planet in the solar system, and the closest gas giant to 
 		\label{eqn:EOM}
 	\end{equation}
 
+The kinematic equation for a yaw-pitch-roll ($\psi$, $\theta$, $\phi$) representation is shown in Equation\ref{eqn:diffEqEuler}\cite{SchaubJunkins}. It is useful due to how the body rate vector $\boldsymbol{\omega}$ is separated, allowing for a change in Euler-angle representation if a singularity is being approached.
 	\begin{equation}		
 		\begin{pmatrix}
 		\dot{\psi}\\ 
@@ -160,14 +170,7 @@ Jupiter is the largest planet in the solar system, and the closest gas giant to 
 		\label{eqn:diffEqEuler}
 	\end{equation}
 
-	\begin{equation}
-		DCM_{YPR} = \begin{bmatrix}
-		\cos\theta\cos\psi & \cos\theta\sin\psi & -\sin\theta\\ 
-		\sin\phi\sin\theta\cos\psi -\cos\phi\sin\psi& \sin\phi\sin\theta\sin\psi+\cos\phi\cos\psi & \sin\phi\cos\theta\\ 
-		\cos\phi\sin\theta\cos\psi+\sin\phi\sin\psi & \cos\phi\sin\theta\sin\psi-\sin\phi\cos\psi & cos\phi\cos\theta
-		\end{bmatrix}
-		\label{eqn:DCM_Euler}
-	\end{equation}
+Gravity-gradient torque is given by Equation \ref{eqn:GGTorque}\cite{SchaubJunkins}:
 
 	\begin{equation}
 		\vec{T}_{grav} = \frac{3\mu}{R^5}\begin{pmatrix}
@@ -178,6 +181,17 @@ Jupiter is the largest planet in the solar system, and the closest gas giant to 
 		\label{eqn:GGTorque}
 	\end{equation}
 
+\noindent where $mu$ is Earth's gravitational parameter and $R$ is the vector from the center of the Earth to the spacecraft center of mass, expressed in the body frame. $R$ is obtained through inertial knowledge (either ephemeris or estimated) and rotated by the DCM in Equation \ref{eqn:DCM_Euler}.
+	\begin{equation}
+		DCM_{YPR} = \begin{bmatrix}
+		\cos\theta\cos\psi & \cos\theta\sin\psi & -\sin\theta\\ 
+		\sin\phi\sin\theta\cos\psi -\cos\phi\sin\psi& \sin\phi\sin\theta\sin\psi+\cos\phi\cos\psi & \sin\phi\cos\theta\\ 
+		\cos\phi\sin\theta\cos\psi+\sin\phi\sin\psi & \cos\phi\sin\theta\sin\psi-\sin\phi\cos\psi & cos\phi\cos\theta
+		\end{bmatrix}
+		\label{eqn:DCM_Euler}
+	\end{equation}
+
+Combining the Equations \ref{eqn:diffEqEuler}, \ref{eqn:GGTorque}, and \ref{eqn:DCM_Euler} lead to the kinematic Equation \ref{eqn:EulerGGDiffEq}\cite{SchaubJunkins}:
 	\begin{equation}
 		\begin{pmatrix}
 		\dot{\psi}\\ 
@@ -191,6 +205,9 @@ Jupiter is the largest planet in the solar system, and the closest gas giant to 
 		\end{pmatrix}
 		\label{eqn:EulerGGDiffEq}
 	\end{equation}
+
+Equation \ref{eqn:EulerGGDiffEq} are the kinematics of a yaw-pitch-roll angle representation of attitude of the spacecraft body with respect to the Local Vertical, Local Horizontal (LVLH) frame. The LVLH frame in this paper is one where the vertical axis is anti-orbit-radial, and the cross-axis is anti-orbit-normal. This is the LVLH definition used by Johnson Space Center.
+
 	\section{Simulation}
 
 A microsatellite in low Earth orbit was simulated to provide data to be filtered. The simulated state was comprised of Earth-inertial position and velocity, the inertial-to-body quaternion, and the inertial rates expressed in the body frame. Position and velocity were propagated with a two-body point-mass model, while attitude was propagated with gravity gradient torque using Equations \ref{eqn:EOM} and \ref{eqn:GGTorque}. Table \ref{table:SimParams} lists the parameter values that were used in the simulation.
@@ -233,27 +250,145 @@ The results of the simulation are shown in Figure \ref{fig:SimResults} below.
 
 As expected, the gravity-gradient torque produced an oscillatory motion about the pitch and roll axes. The body yaw rate stays at zero due to the spacecraft symmetry, but the yaw in the euler representation is non-zero because it's a component of the attitude representation.
 
+	\vspace{5 mm}
+
+To simulate measurements, the rates were sampled at 1 Hz with noise of mean 0 rad/s and standard deviation of 1e-6 rad/s. Direct Euler-angle measurements were also modeled, possibly from a composite attitude device (sun sensor with Earth sensor) or a (very coarse, as explained) star tracker. Noise was added with the model with mean 0$^\circ$ and standard deviation of 0.165$^\circ$, applied about each Euler angle rotation.
+
 	\section{Filtering the Euler Representation}
+
+An Extended Kalman Filter was developed for estimating the Euler-angle representation of attitude from LVLH. The state being estimated was
+\begin{equation}
+X=\begin{pmatrix}
+\psi\\ 
+\theta\\ 
+\phi\\ 
+\boldsymbol{\omega}
+\end{pmatrix}
+\label{eqn:stateEuler}
+\end{equation}
+
+The dynamic model was linearized about $X=0$, which is the equilibrium state for a gravity-gradient satellite. The direct attitude and rate measurements lead to simple measurement sensitivity matrices. For angles only:
+\begin{equation}
+H=\begin{bmatrix}
+I_{3\times 3} & 0_{3\times 3}
+\end{bmatrix}
+\label{eqn:H_Euler}
+\end{equation}
+
+\noindent For body rates only:
+\begin{equation}
+H=\begin{bmatrix}
+0_{3\times 3} & I_{3\times 3}
+\end{bmatrix}
+\end{equation}
+
+\noindent For both measurement types:
+\begin{equation}
+H=
+I_{6\times 6}
+\label{eqn:H_Euler}
+\end{equation}
+
+\noindent All of these measurement sets make the system observable.  The position and velocity states are not estimated; instead, they are propagated from ephemerides. These could be provided by ground-based observation and orbit determination.
+
+	\vspace{5 mm}
+
+The first filter implementation of the Euler-angle filter, a conventional Kalman filter, was run with exact \textit{a priori} state. Only rate measurements were used, and SNC variance of 1e-14 rad$^2$/s$^2$ was implemented to abate the diminishing covariance. Figure \ref{fig:ResultsEulerAPExact} shows the results.
+	\begin{figure}[H]
+		\centering
+		\subfigure[Euler angle error]{
+			\includegraphics[width = 9cm]{../Figures/CKF_apExact_AngleError.eps}
+		}
+		\subfigure[Body rate error]{
+			\includegraphics[width = 9cm]{../Figures/CKF_apExact_RateError.eps}
+		}
+		\subfigure[Post-fit residuals.]{
+			\includegraphics[width = 9cm]{../Figures/CKF_apExact_pfr.eps}
+		}
+		\caption{Euler-angle CKF, exact \textit{a priori} state, with rate measurements }
+		\label{fig:ResultsEulerAPExact}
+	\end{figure}	
+
+As one would expect, the resulting error was small and the filter fit to the measurement noise. However, the error did not remain completely within covariance envelope. The dynamic model cannot predict change in z-axis rate at all, because the symmetry of the spacecraft forces the angular acceleration to be zero in this axis. 
+
+	\vspace{5 mm}
+
+In order to gain more accuracy in the yaw solution, a yaw measurement was introduced. For this gravity-gradient spacecraft, such an observation could be realistically obtained by the spacecraft being in a sun-synchronous orbit. The extended Kalman filter was used after 1000 measurements. Figure \ref{fig:ResultsEulerAPExact_yaw} shows the results.
+	\begin{figure}[H]
+		\centering
+		\subfigure[Euler angle error]{
+			\includegraphics[width = 9cm]{../Figures/EKF_Yaw_AngleError.eps}
+		}
+		\subfigure[Body rate error]{
+			\includegraphics[width = 9cm]{../Figures/EKF_Yaw_RatesError.eps}
+		}
+		\subfigure[Post-fit residuals.]{
+			\includegraphics[width = 9cm]{../Figures/EKF_Yaw_pfr.eps}
+		}
+		\caption{Euler-angle EKF, exact \textit{a priori} state, with yaw measurement }
+		\label{fig:ResultsEulerAPExact_yaw}
+	\end{figure}	
+
+The results are clearly poor. While yaw was initially more accurate, the pitch and roll errors stayed outside the covariance envelopes. The extended filter's state reset did not improve the estimate as desired. Further, the post-fit residuals do not match the noise.
+
+	\vspace{5 mm}
+
+The direct attitude measurement was incorporated without the body rate measurements. SNC was tuned to be 1e-16 rad$^2$/s$^2$ for the best post-fit residual result. Figure \ref{fig:ResultsEulerAPExact_ypr} shows the results.
+	\begin{figure}[H]
+		\centering
+		\subfigure[Euler angle error]{
+			\includegraphics[width = 9cm]{../Figures/EKF_YPR_AngleError.eps}
+		}
+		\subfigure[Body rate error]{
+			\includegraphics[width = 9cm]{../Figures/EKF_YPR_RateError.eps}
+		}
+		\subfigure[Post-fit residuals.]{
+			\includegraphics[width = 9cm]{../Figures/EKF_YPR_pfr.eps}
+		}
+		\caption{Euler-angle EKF, exact \textit{a priori} state, with yaw-pitch-roll measurements }
+		\label{fig:ResultsEulerAPExact_ypr}
+	\end{figure}	
+
+The errors and residuals are, again, poor. The EKF did nothing to improve the state estimates. Pitch and roll diverged more after the EKF started.
+
+	\vspace{5 mm}
+
+Next, the direct attitude measurement and rate measurement were used by the filter. The exact \textit{a priori} case was successful within the covariance envelope. The \textit{a priori} state was set to $X=0$, a good estimate as any for a nominally nadir-pointing spacecraft. The EKF was also started after 200 CKF-process observations. The results are shown in Figure \ref{fig:ResultsEulerBest}.
+	\begin{figure}[H]
+		\centering
+		\subfigure[Euler angle error]{
+			\includegraphics[width = 7.75cm]{../Figures/EKF_Final_AngError.eps}
+		}
+		\subfigure[Body rate error]{
+			\includegraphics[width = 7.75cm]{../Figures/EKF_Final_RateError.eps}
+		}
+		\subfigure[Euler angle post-fit residuals.]{
+			\includegraphics[width = 7.75cm]{../Figures/EKF_Final_PFR_Ang.eps}
+		}
+		\subfigure[Body rate post-fit residuals.]{
+			\includegraphics[width = 7.75cm]{../Figures/EKF_Final_PFR_Rates.eps}
+		}
+		\caption{Euler-angle EKF, \textit{a priori} state $X=0$, with yaw-pitch-roll and body rate measurements }
+		\label{fig:ResultsEulerBest}
+	\end{figure}	
+
+The filter results stay close to the truth value, however, they are outside of the covariance envelope much of the time. The post-fit residuals do not match the noise well.
+
+	\vspace{5 mm}
+
+As a final test of the capability of this Euler-angle filter, a 10-km error was introduced in the knowledge of the orbit altitude. Figure \ref{fig:AltOff} shows how the error affected the filter estimate.
+	\begin{figure}[H]
+		\centering
+			\includegraphics[width = 9cm]{../Figures/EKF_AltOff_AngleError.eps}
+
+		\caption{Euler-angle EKF, exact \textit{a priori} state, with yaw-pitch-roll measurements }
+		\label{fig:AltOff}
+	\end{figure}	
+
 
 	\section{Conclusion}
 
-	A trajectory to Jupiter was found that met all requirements was found. An algorithm was developed to find the trajectory, but improvements could still be made. Implementing a genetic algorithm or a minimization routine could reduce processing time for the algorithm. Further, the algorithm was implemented as a single thread; a multi-threaded version of the algorithm could also reduce search time.
 
-	\vspace{5 mm}
-
-The trajectory was proven to work in STK. However, the TCMs became large in the end. This is due to the difference in ephemerides the algorithm and STK used, as well as STK's higher-fidelity modeling. Future would should implement JPL's SPICE kernel to make use of similar ephemerides to STK. Additionally, running the algorithm with a smaller window granularity could lower the STK-calculated TCMs. Incorporating these calculations into STK through its custom interfaces could make it easier to target a gravity assist with smaller TCMs required.
-
-	\vspace{5 mm}
-
-Earth access for this trajectory was computed for various events in the mission. During cruise, there is always DSN access when the sun is not in conjunction. The Venus gravity assist was visible to the Goldstone and Madrid facilities. For the Earth gravity assists, there was access except for a short time around the closest approach. However, even though there was line of sight between the spacecraft and the ground stations, the dynamics of the spacecraft flying quickly past the Earth could make it difficult for the DSN antennae to truly maintain access.  Due to the favorable geometry of the final transfer to Jupiter, JOI could be targeted to give access to any two DSN facilities. 
-
-	\vspace{5 mm}
-
-Maneuvers to explore the Jupiter system were studied. First, a direct transfer from the initial Jovian orbit to Europa capture was considered. With a required $\Delta$V on the scale produced by launch vehicles, this was not feasible. Next, Ganymede was used to lower apojove. Although the first maneuver performed to fly by Ganymede had a large out-of-plane component, it was shown that using this moon to reduce orbit energy was much more efficient than impulsive $\Delta$Vs at perijove. A targeting algorithm with realistic ephemerides could lower the TCM $\Delta$V even further.
-
-	\vspace{5 mm}
-
-Mission design is a complex process that is part art, and part science. Trial and error were invoked many times through the course of this investigation, as the dynamics and timescales involved are beyond the implementation of a simple algorithm. With a firm grasp of the underlying mechanics, one can effectively utilize hardware computation after removing unrealistic scenarios from consideration. The subsequent fine-tuning will allow for a cost-efficient mission that can meet and exceed its stated goals.
 
 
 \bibliographystyle{aiaa}   % Number the references.
