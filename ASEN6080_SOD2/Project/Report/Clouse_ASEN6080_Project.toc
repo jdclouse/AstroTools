@@ -2,4 +2,5 @@
 \contentsline {section}{\numberline {II}Attitude Dynamics}{3}{section.2}
 \contentsline {section}{\numberline {III}Simulation}{4}{section.3}
 \contentsline {section}{\numberline {IV}Filtering the Euler Representation}{6}{section.4}
-\contentsline {section}{\numberline {V}Conclusion}{13}{section.5}
+\contentsline {section}{\numberline {V}Multiplicative EKF}{13}{section.5}
+\contentsline {section}{\numberline {VI}Conclusion}{15}{section.6}

@@ -181,7 +181,7 @@ Gravity-gradient torque is given by Equation \ref{eqn:GGTorque}\cite{SchaubJunki
 		\label{eqn:GGTorque}
 	\end{equation}
 
-\noindent where $mu$ is Earth's gravitational parameter and $R$ is the vector from the center of the Earth to the spacecraft center of mass, expressed in the body frame. $R$ is obtained through inertial knowledge (either ephemeris or estimated) and rotated by the DCM in Equation \ref{eqn:DCM_Euler}.
+\noindent where $\mu$ is Earth's gravitational parameter and $R$ is the vector from the center of the Earth to the spacecraft center of mass, expressed in the body frame. $R$ is obtained through inertial knowledge (either ephemeris or estimated) and rotated by the DCM in Equation \ref{eqn:DCM_Euler}.
 	\begin{equation}
 		DCM_{YPR} = \begin{bmatrix}
 		\cos\theta\cos\psi & \cos\theta\sin\psi & -\sin\theta\\ 
@@ -248,7 +248,7 @@ The results of the simulation are shown in Figure \ref{fig:SimResults} below.
 		\label{fig:SimResults}
 	\end{figure}	
 
-As expected, the gravity-gradient torque produced an oscillatory motion about the pitch and roll axes. The body yaw rate stays at zero due to the spacecraft symmetry, but the yaw in the euler representation is non-zero because it's a component of the attitude representation.
+As expected, the gravity-gradient torque produced an oscillatory motion about the pitch and roll axes. The body yaw rate stays at zero due to the spacecraft symmetry, but the yaw in the euler representation is non-zero because it's a component of the attitude representation. This component changes with time due to the other components.
 
 	\vspace{5 mm}
 
@@ -313,7 +313,7 @@ As one would expect, the resulting error was small and the filter fit to the mea
 
 	\vspace{5 mm}
 
-In order to gain more accuracy in the yaw solution, a yaw measurement was introduced. For this gravity-gradient spacecraft, such an observation could be realistically obtained by the spacecraft being in a sun-synchronous orbit. The extended Kalman filter was used after 1000 measurements. Figure \ref{fig:ResultsEulerAPExact_yaw} shows the results.
+In order to gain more accuracy in the yaw solution, a yaw measurement was introduced. For this gravity-gradient spacecraft, such an observation could be realistically obtained by the spacecraft being in a sun-synchronous orbit. The extended Kalman filter was used after 1000 measurements, however, other values were considered and had the same result. Figure \ref{fig:ResultsEulerAPExact_yaw} shows the results.
 	\begin{figure}[H]
 		\centering
 		\subfigure[Euler angle error]{
@@ -325,7 +325,7 @@ In order to gain more accuracy in the yaw solution, a yaw measurement was introd
 		\subfigure[Post-fit residuals.]{
 			\includegraphics[width = 9cm]{../Figures/EKF_Yaw_pfr.eps}
 		}
-		\caption{Euler-angle EKF, exact \textit{a priori} state, with yaw measurement }
+		\caption{Euler-angle EKF, exact \textit{a priori} state, with yaw and body rate measurements }
 		\label{fig:ResultsEulerAPExact_yaw}
 	\end{figure}	
 
@@ -349,7 +349,7 @@ The direct attitude measurement was incorporated without the body rate measureme
 		\label{fig:ResultsEulerAPExact_ypr}
 	\end{figure}	
 
-The errors and residuals are, again, poor. The EKF did nothing to improve the state estimates. Pitch and roll diverged more after the EKF started.
+The errors and residuals were, again, poor. The EKF did nothing to improve the state estimates. Pitch and roll diverged more after the EKF started.
 
 	\vspace{5 mm}
 
@@ -385,10 +385,108 @@ As a final test of the capability of this Euler-angle filter, a 10-km error was 
 		\label{fig:AltOff}
 	\end{figure}	
 
+The estimated pitch diverges from the truth as time passes. The calculated orbit mean motion was affected by the increase in orbit altitude. The pitch was most affected by this error, as the LVLH frame with respect to the inertial frame changes by the mean motion, and the body is nominally aligned with pitch.
+
+	\vspace{5 mm}
+
+The Euler-angle filter proved difficult in getting good, meaningful results. While a singularity was avoided, the filter dynamics made it difficult to estimate the true attitude. A kinematic model that does not try to predict body rates may be of more use in this situation. This approach would make sense when the \textit{a priori} state is the equilibrium state $X=0$. When the spacecraft is in equilibrium, it is difficult to determine what the body rates are through the dynamic model. By using direct rate measurements, one could avoid this difficulty. However, rate gyro hardware does require knowing or estimating the bias about each axis. 
+
+	\section{Multiplicative EKF}
+
+The Multiplicative EKF (MEKF) is useful in determining the attitude quaternion by estimating three parameters that represent a deviation from a propagated quaternion. Such parmeters can include Rodriquez parameters, Euler vector and rotation, and the vector part of the quaternion. The latter representation was chosen for this effort.  For the MEKF, the best estimate of the quaternion, $\hat{q}$ given the estimate of the three-parameter representation $\hat{\mathbf{a}}$ is\cite{MarkleyAtt} 
+\begin{equation}
+\hat{q}=\delta q(\hat{\mathbf{a}})\otimes q_{ref}
+\label{eqn:quatEst}
+\end{equation}
+Equation \ref{eqn:quatEst} shows that the error quaternion $\delta q$ represented by $\hat{\mathbf{a}}$ is a rotation applied after the reference quaternion $q_{ref}$ to get the best estimate of the true attitude quaternion. This equation is used in the state reset portion of the EKF. The error quaterion for the chosen representation of $\hat{\mathbf{a}}$ is 
+\begin{equation}
+\delta q(\mathbf{a}) = \frac{1}{2}\begin{bmatrix}
+\mathbf{a}\\ 
+\sqrt{4-a^2}
+\end{bmatrix}
+\label{eqn:quat_representation}
+\end{equation}
+
+Markley\cite{MarkleyAtt} shows that the covariance can be propagated as 
+\begin{equation}
+\dot{P}=FP+PF^T+GQG^T-PHR^{-1}HP
+\label{eqn:covariance_dot}
+\end{equation}
+\noindent where
+\begin{equation}
+F = \frac{\partial }{\partial a} \left (-\frac{1}{2}[\boldsymbol{\omega}\times]  q_v\right )=-[\boldsymbol{\omega}\times]
+\label{eqn:F}
+\end{equation}
+\noindent is the linearization of the vector part quaternion propagation equation, resulting in the cross-product matrix for $\boldsymbol{\omega}$. $G$ is simply identity for this case, and $Q$ is the covariance matrix of the noise in the rates. The product of these terms act as process noise, keeping the filter from saturating. Finally, $H$ is the measurement sensitivity matrix, and $R$ is the direct attitude measurement covariance.
+
+	\vspace{5 mm}
+
+Given a quaternion measurement, the measurement sensitivity matrix is $H=I_{3\times 3}$. The measurement deviation $y$ is computed by computing the successive rotations
+\begin{equation}
+\delta q(y)=q_{meas}\otimes q_{ref}
+\label{eqn:dqy}
+\end{equation}
+\noindent Equation \ref{eqn:quat_representation} is applied to the result of \ref{eqn:dqy} to put the measurement deviation into the specified parameter set. Care must be taken in this step, as $q=-q$. This means that the same attitude can be represented in two opposite quaternion representations, where the shortest rotation is the one with the positive scalar quaternion element. If the result of $\delta q(y)$ is not close to the reference quaternion, the filter will display large divergence. However, the solution converges about the truth soon after. It is best to account for the discontinuity by using the smaller value of $y$.
+
+	\vspace{5 mm}
+
+The filter was implemented by feeding the body rate measurements directly into the kinematic model, rather than estimating them. The attitude measurement quaternion became the measurement the estimation was based on. Figure \ref{fig:MEKFResults} shows the results.
+	\begin{figure}[H]
+		\centering
+		\subfigure[Euler angle error]{
+			\includegraphics[width = 7.75cm]{../Figures/MEKF_AngleError.eps}
+		}
+		\subfigure[Quaternion vector error]{
+			\includegraphics[width = 7.75cm]{../Figures/MEKF_QuatVecError.eps}
+		}
+		\subfigure[Quaternion vector post-fit residuals.]{
+			\includegraphics[width = 7.75cm]{../Figures/MEKF_pfr.eps}
+		}
+		\caption{Multiplicative EKF, \textit{a priori} state $X=0$, with attitude quaternion measurements }
+		\label{fig:MEKFResults}
+	\end{figure}	
+
+The error of the estimation with respect to the true attitude was generally about zero. However, in the Euler-angle representation, one can see how noisy this error is compared to the Euler-angle EKF. The post-fit residuals did not show any sign of bias or unaccounted systematic errors, but there were many points outside of the 3$\sigma$ measurement envelope. 
+
+	\vspace{5 mm}
+
+Figure \ref{fig:MEKFResultsMoreAcc} shows results for measuremtns with $\sigma=0.033^\circ$.
+	\begin{figure}[H]
+		\centering
+		\subfigure[Euler angle error]{
+			\includegraphics[width = 7.75cm]{../Figures/MEKF_AngleError_moreAcc.eps}
+		}
+		\subfigure[Quaternion vector error]{
+			\includegraphics[width = 7.75cm]{../Figures/MEKF_QuatVecError_moreAcc.eps}
+		}
+		\subfigure[Quaternion vector post-fit residuals.]{
+			\includegraphics[width = 7.75cm]{../Figures/MEKF_pfr_moreAcc.eps}
+		}
+		\caption{Multiplicative EKF, \textit{a priori} state $X=0$, with attitude quaternion measurements. $\boldsymbol{\sigma}\mathbf{_{meas}=0.033^\circ}$ }
+		\label{fig:MEKFResultsMoreAcc}
+	\end{figure}	
+
+Quantitatively, the filter behaved the same. Processing more precise measurements lead to more precision in the overall attitude error.
+
+	\vspace{5 mm}
+
+While this MEKF implementation was more accurate than the Euler-angle EKF, it was less precise given the same measurements. Such a solution would be more desirable for coarse control corrections, but not for high-precision tasks. This issue can be mitigated with a more precise sensor. This noisy error is thought to come from taking the body rates and feeding them into the filter kinematic model without estimating more accurate body rates.
 
 	\section{Conclusion}
 
+Attitude estimation is quite different from orbit estimation. The usage of kinematics, rather than dynamics, generally makes it easier to estimate spacecraft attitude\cite{MarklyRepresentations}. The constraints on attitude representation also make filter design more difficult.
 
+	\vspace{5 mm}
+
+Estimating the Euler angles was attempted due to the ease with which they can be understood. Kinematic equations exist for these representations, simplifying the direct calculation in the dynamic model that was used. Although the system was found to be observable with either direct attitude or rate measurements, in practice there was difficulty in converging on the true attitude. Using both measurement types constrained the filter to just follow the measurements. In addition, the noise may have been improperly applied to the yaw-pitch-roll attitude measurement, which may have introduced error into the filter that was not accounted for.
+
+	\vspace{5 mm}
+
+The MEKF, on the other hand, was very easy to implement following Markley's\cite{MarkleyAtt} method. This filter fit the data much better, and was able to give a more accurate estimation of the attitude. In reality, the gyro drift would also have to be estimated to keep the solution accurate. In addition, the error could probably be smoothed out if the body rates were sampled at a higher rate.
+
+	\vspace{5 mm}
+
+Attitude estimation was a tougher problem to tackle than I first thought. But it gave me several insights into estimation that do not exist in the orbit determination problem, namely state constraints and representation issues. In the end, I was able to use what I learned with the resources I found to estimate a gravity-gradient-stabilized spacecraft. It was an enjoyable project and I look forward to applying these techniques to other problems.
 
 
 \bibliographystyle{aiaa}   % Number the references.

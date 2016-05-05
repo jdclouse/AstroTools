@@ -42,11 +42,11 @@
 \@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Body rate error}}}{7}{figure.2}}
 \@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces {Post-fit residuals.}}}{7}{figure.2}}
 \newlabel{fig:ResultsEulerAPExact}{{2}{7}{Euler-angle CKF, exact \textit {a priori} state, with rate measurements}{figure.2}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Euler-angle EKF, exact \textit  {a priori} state, with yaw measurement }}{9}{figure.3}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Euler-angle EKF, exact \textit  {a priori} state, with yaw and body rate measurements }}{9}{figure.3}}
 \@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Euler angle error}}}{9}{figure.3}}
 \@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Body rate error}}}{9}{figure.3}}
 \@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces {Post-fit residuals.}}}{9}{figure.3}}
-\newlabel{fig:ResultsEulerAPExact_yaw}{{3}{9}{Euler-angle EKF, exact \textit {a priori} state, with yaw measurement}{figure.3}{}}
+\newlabel{fig:ResultsEulerAPExact_yaw}{{3}{9}{Euler-angle EKF, exact \textit {a priori} state, with yaw and body rate measurements}{figure.3}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Euler-angle EKF, exact \textit  {a priori} state, with yaw-pitch-roll measurements }}{11}{figure.4}}
 \@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Euler angle error}}}{11}{figure.4}}
 \@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Body rate error}}}{11}{figure.4}}
@@ -58,12 +58,34 @@
 \@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces {Euler angle post-fit residuals.}}}{12}{figure.5}}
 \@writefile{lof}{\contentsline {subfigure}{\numberline{(d)}{\ignorespaces {Body rate post-fit residuals.}}}{12}{figure.5}}
 \newlabel{fig:ResultsEulerBest}{{5}{12}{Euler-angle EKF, \textit {a priori} state $X=0$, with yaw-pitch-roll and body rate measurements}{figure.5}{}}
+\citation{MarkleyAtt}
+\citation{MarkleyAtt}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Euler-angle EKF, exact \textit  {a priori} state, with yaw-pitch-roll measurements }}{13}{figure.6}}
+\newlabel{fig:AltOff}{{6}{13}{Euler-angle EKF, exact \textit {a priori} state, with yaw-pitch-roll measurements}{figure.6}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {V}Multiplicative EKF}{13}{section.5}}
+\newlabel{eqn:quatEst}{{10}{13}{Multiplicative EKF}{equation.5.10}{}}
+\newlabel{eqn:quat_representation}{{11}{13}{Multiplicative EKF}{equation.5.11}{}}
+\newlabel{eqn:covariance_dot}{{12}{13}{Multiplicative EKF}{equation.5.12}{}}
+\newlabel{eqn:F}{{13}{13}{Multiplicative EKF}{equation.5.13}{}}
+\newlabel{eqn:dqy}{{14}{14}{Multiplicative EKF}{equation.5.14}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Multiplicative EKF, \textit  {a priori} state $X=0$, with attitude quaternion measurements }}{14}{figure.7}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Euler angle error}}}{14}{figure.7}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Quaternion vector error}}}{14}{figure.7}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces {Quaternion vector post-fit residuals.}}}{14}{figure.7}}
+\newlabel{fig:MEKFResults}{{7}{14}{Multiplicative EKF, \textit {a priori} state $X=0$, with attitude quaternion measurements}{figure.7}{}}
+\citation{MarklyRepresentations}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Multiplicative EKF, \textit  {a priori} state $X=0$, with attitude quaternion measurements. $\bm  {\sigma }\mathbf  {_{meas}=0.033^\circ }$ }}{15}{figure.8}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Euler angle error}}}{15}{figure.8}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Quaternion vector error}}}{15}{figure.8}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces {Quaternion vector post-fit residuals.}}}{15}{figure.8}}
+\newlabel{fig:MEKFResultsMoreAcc}{{8}{15}{Multiplicative EKF, \textit {a priori} state $X=0$, with attitude quaternion measurements. $\boldsymbol {\sigma }\mathbf {_{meas}=0.033^\circ }$}{figure.8}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {VI}Conclusion}{15}{section.6}}
+\citation{MarkleyAtt}
 \bibstyle{aiaa}
 \bibdata{ASEN6080ProjectBib}
 \bibcite{SchaubJunkins}{1}
-\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Euler-angle EKF, exact \textit  {a priori} state, with yaw-pitch-roll measurements }}{13}{figure.6}}
-\newlabel{fig:AltOff}{{6}{13}{Euler-angle EKF, exact \textit {a priori} state, with yaw-pitch-roll measurements}{figure.6}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {V}Conclusion}{13}{section.5}}
-\newlabel{LastPage}{{}{13}{}{page.13}{}}
-\xdef\lastpage@lastpage{13}
-\xdef\lastpage@lastpageHy{13}
+\bibcite{MarkleyAtt}{2}
+\bibcite{MarklyRepresentations}{3}
+\newlabel{LastPage}{{}{16}{}{page.16}{}}
+\xdef\lastpage@lastpage{16}
+\xdef\lastpage@lastpageHy{16}

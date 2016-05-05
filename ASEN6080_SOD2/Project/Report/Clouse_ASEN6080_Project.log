@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.4.5)  3 MAY 2016 22:06
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.4.5)  4 MAY 2016 18:28
 entering extended mode
 **C:/Users/John/Documents/Astro/ASEN6080_SOD2/Project/Report/Clouse_ASEN6080_Pr
 oject.tex
@@ -554,7 +554,7 @@ onverted-to.pdf ../Figures/sim_angles.eps>
 (epstopdf)             \includegraphics on input line 243.
 Package epstopdf Info: Output file is already uptodate.
 
-<../Figures/sim_angles-eps-converted-to.pdf, id=81, 842.14626pt x 632.3625pt>
+<../Figures/sim_angles-eps-converted-to.pdf, id=86, 842.14626pt x 632.3625pt>
 File: ../Figures/sim_angles-eps-converted-to.pdf Graphic file (type pdf)
 
 <use ../Figures/sim_angles-eps-converted-to.pdf>
@@ -573,7 +573,7 @@ nverted-to.pdf ../Figures/sim_rates.eps>
 (epstopdf)             \includegraphics on input line 246.
 Package epstopdf Info: Output file is already uptodate.
 
-<../Figures/sim_rates-eps-converted-to.pdf, id=82, 842.14626pt x 632.3625pt>
+<../Figures/sim_rates-eps-converted-to.pdf, id=87, 842.14626pt x 632.3625pt>
 File: ../Figures/sim_rates-eps-converted-to.pdf Graphic file (type pdf)
 
 <use ../Figures/sim_rates-eps-converted-to.pdf>
@@ -595,7 +595,7 @@ eError-eps-converted-to.pdf ../Figures/CKF_apExact_AngleError.eps>
 (epstopdf)             \includegraphics on input line 301.
 Package epstopdf Info: Output file is already uptodate.
 
-<../Figures/CKF_apExact_AngleError-eps-converted-to.pdf, id=124, 842.14626pt x 
+<../Figures/CKF_apExact_AngleError-eps-converted-to.pdf, id=129, 842.14626pt x 
 632.3625pt>
 File: ../Figures/CKF_apExact_AngleError-eps-converted-to.pdf Graphic file (type
  pdf)
@@ -615,7 +615,7 @@ Error-eps-converted-to.pdf ../Figures/CKF_apExact_RateError.eps>
 (epstopdf)             \includegraphics on input line 304.
 Package epstopdf Info: Output file is already uptodate.
 
-<../Figures/CKF_apExact_RateError-eps-converted-to.pdf, id=125, 843.15pt x 632.
+<../Figures/CKF_apExact_RateError-eps-converted-to.pdf, id=130, 843.15pt x 632.
 3625pt>
 File: ../Figures/CKF_apExact_RateError-eps-converted-to.pdf Graphic file (type 
 pdf)
@@ -635,7 +635,7 @@ eps-converted-to.pdf ../Figures/CKF_apExact_pfr.eps>
 (epstopdf)             \includegraphics on input line 307.
 Package epstopdf Info: Output file is already uptodate.
 
-<../Figures/CKF_apExact_pfr-eps-converted-to.pdf, id=126, 843.15pt x 630.355pt>
+<../Figures/CKF_apExact_pfr-eps-converted-to.pdf, id=131, 843.15pt x 630.355pt>
 File: ../Figures/CKF_apExact_pfr-eps-converted-to.pdf Graphic file (type pdf)
 <use ../Figures/CKF_apExact_pfr-eps-converted-to.pdf>
 Package pdftex.def Info: ../Figures/CKF_apExact_pfr-eps-converted-to.pdf used o
@@ -658,7 +658,7 @@ or-eps-converted-to.pdf ../Figures/EKF_Yaw_AngleError.eps>
 (epstopdf)             \includegraphics on input line 321.
 Package epstopdf Info: Output file is already uptodate.
 
-<../Figures/EKF_Yaw_AngleError-eps-converted-to.pdf, id=189, 843.15pt x 632.362
+<../Figures/EKF_Yaw_AngleError-eps-converted-to.pdf, id=194, 843.15pt x 632.362
 5pt>
 File: ../Figures/EKF_Yaw_AngleError-eps-converted-to.pdf Graphic file (type pdf
 )
@@ -678,7 +678,7 @@ or-eps-converted-to.pdf ../Figures/EKF_Yaw_RatesError.eps>
 (epstopdf)             \includegraphics on input line 324.
 Package epstopdf Info: Output file is already uptodate.
 
-<../Figures/EKF_Yaw_RatesError-eps-converted-to.pdf, id=190, 842.14626pt x 632.
+<../Figures/EKF_Yaw_RatesError-eps-converted-to.pdf, id=195, 842.14626pt x 632.
 3625pt>
 File: ../Figures/EKF_Yaw_RatesError-eps-converted-to.pdf Graphic file (type pdf
 )
@@ -698,7 +698,7 @@ converted-to.pdf ../Figures/EKF_Yaw_pfr.eps>
 (epstopdf)             \includegraphics on input line 327.
 Package epstopdf Info: Output file is already uptodate.
 
-<../Figures/EKF_Yaw_pfr-eps-converted-to.pdf, id=191, 842.14626pt x 632.3625pt>
+<../Figures/EKF_Yaw_pfr-eps-converted-to.pdf, id=196, 842.14626pt x 632.3625pt>
 File: ../Figures/EKF_Yaw_pfr-eps-converted-to.pdf Graphic file (type pdf)
 <use ../Figures/EKF_Yaw_pfr-eps-converted-to.pdf>
 Package pdftex.def Info: ../Figures/EKF_Yaw_pfr-eps-converted-to.pdf used on in
@@ -724,7 +724,7 @@ or-eps-converted-to.pdf ../Figures/EKF_YPR_AngleError.eps>
 (epstopdf)             \includegraphics on input line 341.
 Package epstopdf Info: Output file is already uptodate.
 
-<../Figures/EKF_YPR_AngleError-eps-converted-to.pdf, id=248, 842.14626pt x 632.
+<../Figures/EKF_YPR_AngleError-eps-converted-to.pdf, id=253, 842.14626pt x 632.
 3625pt>
 File: ../Figures/EKF_YPR_AngleError-eps-converted-to.pdf Graphic file (type pdf
 )
@@ -744,7 +744,7 @@ r-eps-converted-to.pdf ../Figures/EKF_YPR_RateError.eps>
 (epstopdf)             \includegraphics on input line 344.
 Package epstopdf Info: Output file is already uptodate.
 
-<../Figures/EKF_YPR_RateError-eps-converted-to.pdf, id=249, 842.14626pt x 632.3
+<../Figures/EKF_YPR_RateError-eps-converted-to.pdf, id=254, 842.14626pt x 632.3
 625pt>
 File: ../Figures/EKF_YPR_RateError-eps-converted-to.pdf Graphic file (type pdf)
 
@@ -764,7 +764,7 @@ converted-to.pdf ../Figures/EKF_YPR_pfr.eps>
 (epstopdf)             \includegraphics on input line 347.
 Package epstopdf Info: Output file is already uptodate.
 
-<../Figures/EKF_YPR_pfr-eps-converted-to.pdf, id=250, 842.14626pt x 632.3625pt>
+<../Figures/EKF_YPR_pfr-eps-converted-to.pdf, id=255, 842.14626pt x 632.3625pt>
 File: ../Figures/EKF_YPR_pfr-eps-converted-to.pdf Graphic file (type pdf)
 <use ../Figures/EKF_YPR_pfr-eps-converted-to.pdf>
 Package pdftex.def Info: ../Figures/EKF_YPR_pfr-eps-converted-to.pdf used on in
@@ -790,7 +790,7 @@ or-eps-converted-to.pdf ../Figures/EKF_Final_AngError.eps>
 (epstopdf)             \includegraphics on input line 361.
 Package epstopdf Info: Output file is already uptodate.
 
-<../Figures/EKF_Final_AngError-eps-converted-to.pdf, id=302, 842.14626pt x 632.
+<../Figures/EKF_Final_AngError-eps-converted-to.pdf, id=307, 842.14626pt x 632.
 3625pt>
 File: ../Figures/EKF_Final_AngError-eps-converted-to.pdf Graphic file (type pdf
 )
@@ -810,7 +810,7 @@ ror-eps-converted-to.pdf ../Figures/EKF_Final_RateError.eps>
 (epstopdf)             \includegraphics on input line 364.
 Package epstopdf Info: Output file is already uptodate.
 
-<../Figures/EKF_Final_RateError-eps-converted-to.pdf, id=303, 842.14626pt x 632
+<../Figures/EKF_Final_RateError-eps-converted-to.pdf, id=308, 842.14626pt x 632
 .3625pt>
 File: ../Figures/EKF_Final_RateError-eps-converted-to.pdf Graphic file (type pd
 f)
@@ -830,7 +830,7 @@ g-eps-converted-to.pdf ../Figures/EKF_Final_PFR_Ang.eps>
 (epstopdf)             \includegraphics on input line 367.
 Package epstopdf Info: Output file is already uptodate.
 
-<../Figures/EKF_Final_PFR_Ang-eps-converted-to.pdf, id=304, 842.14626pt x 632.3
+<../Figures/EKF_Final_PFR_Ang-eps-converted-to.pdf, id=309, 842.14626pt x 632.3
 625pt>
 File: ../Figures/EKF_Final_PFR_Ang-eps-converted-to.pdf Graphic file (type pdf)
 
@@ -850,7 +850,7 @@ tes-eps-converted-to.pdf ../Figures/EKF_Final_PFR_Rates.eps>
 (epstopdf)             \includegraphics on input line 370.
 Package epstopdf Info: Output file is already uptodate.
 
-<../Figures/EKF_Final_PFR_Rates-eps-converted-to.pdf, id=305, 843.15pt x 632.36
+<../Figures/EKF_Final_PFR_Rates-eps-converted-to.pdf, id=310, 843.15pt x 632.36
 25pt>
 File: ../Figures/EKF_Final_PFR_Rates-eps-converted-to.pdf Graphic file (type pd
 f)
@@ -870,7 +870,7 @@ Error-eps-converted-to.pdf ../Figures/EKF_AltOff_AngleError.eps>
 (epstopdf)             \includegraphics on input line 382.
 Package epstopdf Info: Output file is already uptodate.
 
-<../Figures/EKF_AltOff_AngleError-eps-converted-to.pdf, id=307, 842.14626pt x 6
+<../Figures/EKF_AltOff_AngleError-eps-converted-to.pdf, id=312, 842.14626pt x 6
 30.355pt>
 File: ../Figures/EKF_AltOff_AngleError-eps-converted-to.pdf Graphic file (type 
 pdf)
@@ -883,57 +883,184 @@ Error-eps-converted-to.pdf> <C:/Users/John/Documents/Astro/ASEN6080_SOD2/Projec
 t/Figures/EKF_Final_RateError-eps-converted-to.pdf> <C:/Users/John/Documents/As
 tro/ASEN6080_SOD2/Project/Figures/EKF_Final_PFR_Ang-eps-converted-to.pdf> <C:/U
 sers/John/Documents/Astro/ASEN6080_SOD2/Project/Figures/EKF_Final_PFR_Rates-eps
--converted-to.pdf>]
+-converted-to.pdf>] [13 <C:/Users/John/Documents/Astro/ASEN6080_SOD2/Project/Fi
+gures/EKF_AltOff_AngleError-eps-converted-to.pdf>]
+Package epstopdf Info: Source file: <../Figures/MEKF_AngleError.eps>
+(epstopdf)                    date: 2016-05-04 08:11:12
+(epstopdf)                    size: 197236 bytes
+(epstopdf)             Output file: <../Figures/MEKF_AngleError-eps-converted-t
+o.pdf>
+(epstopdf)                    date: 2016-05-04 08:36:14
+(epstopdf)                    size: 80738 bytes
+(epstopdf)             Command: <epstopdf --outfile=../Figures/MEKF_AngleError-
+eps-converted-to.pdf ../Figures/MEKF_AngleError.eps>
+(epstopdf)             \includegraphics on input line 438.
+Package epstopdf Info: Output file is already uptodate.
+
+<../Figures/MEKF_AngleError-eps-converted-to.pdf, id=409, 842.14626pt x 632.362
+5pt>
+File: ../Figures/MEKF_AngleError-eps-converted-to.pdf Graphic file (type pdf)
+ <use ../Figures/MEKF_AngleError-eps-converted-to.pdf>
+Package pdftex.def Info: ../Figures/MEKF_AngleError-eps-converted-to.pdf used o
+n input line 438.
+(pdftex.def)             Requested size: 220.50772pt x 165.57791pt.
+Package epstopdf Info: Source file: <../Figures/MEKF_QuatVecError.eps>
+(epstopdf)                    date: 2016-05-02 22:08:31
+(epstopdf)                    size: 481226 bytes
+(epstopdf)             Output file: <../Figures/MEKF_QuatVecError-eps-converted
+-to.pdf>
+(epstopdf)                    date: 2016-05-04 08:36:15
+(epstopdf)                    size: 809494 bytes
+(epstopdf)             Command: <epstopdf --outfile=../Figures/MEKF_QuatVecErro
+r-eps-converted-to.pdf ../Figures/MEKF_QuatVecError.eps>
+(epstopdf)             \includegraphics on input line 441.
+Package epstopdf Info: Output file is already uptodate.
+
+<../Figures/MEKF_QuatVecError-eps-converted-to.pdf, id=410, 842.14626pt x 632.3
+625pt>
+File: ../Figures/MEKF_QuatVecError-eps-converted-to.pdf Graphic file (type pdf)
+
+ <use ../Figures/MEKF_QuatVecError-eps-converted-to.pdf>
+Package pdftex.def Info: ../Figures/MEKF_QuatVecError-eps-converted-to.pdf used
+ on input line 441.
+(pdftex.def)             Requested size: 220.50772pt x 165.57791pt.
+Package epstopdf Info: Source file: <../Figures/MEKF_pfr.eps>
+(epstopdf)                    date: 2016-05-04 17:44:02
+(epstopdf)                    size: 339900 bytes
+(epstopdf)             Output file: <../Figures/MEKF_pfr-eps-converted-to.pdf>
+(epstopdf)                    date: 2016-05-04 17:48:01
+(epstopdf)                    size: 807700 bytes
+(epstopdf)             Command: <epstopdf --outfile=../Figures/MEKF_pfr-eps-con
+verted-to.pdf ../Figures/MEKF_pfr.eps>
+(epstopdf)             \includegraphics on input line 444.
+Package epstopdf Info: Output file is already uptodate.
+
+<../Figures/MEKF_pfr-eps-converted-to.pdf, id=411, 842.14626pt x 632.3625pt>
+File: ../Figures/MEKF_pfr-eps-converted-to.pdf Graphic file (type pdf)
+
+<use ../Figures/MEKF_pfr-eps-converted-to.pdf>
+Package pdftex.def Info: ../Figures/MEKF_pfr-eps-converted-to.pdf used on input
+ line 444.
+(pdftex.def)             Requested size: 220.50772pt x 165.57791pt.
+ [14 <C:/Users/John/Documents/Astro/ASEN6080_SOD2/Project/Figures/MEKF_AngleErr
+or-eps-converted-to.pdf> <C:/Users/John/Documents/Astro/ASEN6080_SOD2/Project/F
+igures/MEKF_QuatVecError-eps-converted-to.pdf> <C:/Users/John/Documents/Astro/A
+SEN6080_SOD2/Project/Figures/MEKF_pfr-eps-converted-to.pdf>]
+Package epstopdf Info: Source file: <../Figures/MEKF_AngleError_moreAcc.eps>
+(epstopdf)                    date: 2016-05-04 17:35:20
+(epstopdf)                    size: 198070 bytes
+(epstopdf)             Output file: <../Figures/MEKF_AngleError_moreAcc-eps-con
+verted-to.pdf>
+(epstopdf)                    date: 2016-05-04 17:51:20
+(epstopdf)                    size: 80898 bytes
+(epstopdf)             Command: <epstopdf --outfile=../Figures/MEKF_AngleError_
+moreAcc-eps-converted-to.pdf ../Figures/MEKF_AngleError_moreAcc.eps>
+(epstopdf)             \includegraphics on input line 458.
+Package epstopdf Info: Output file is already uptodate.
+
+<../Figures/MEKF_AngleError_moreAcc-eps-converted-to.pdf, id=446, 842.14626pt x
+ 632.3625pt>
+File: ../Figures/MEKF_AngleError_moreAcc-eps-converted-to.pdf Graphic file (typ
+e pdf)
+ <use ../Figures/MEKF_AngleError_moreAcc-eps-converted-to.pdf>
+Package pdftex.def Info: ../Figures/MEKF_AngleError_moreAcc-eps-converted-to.pd
+f used on input line 458.
+(pdftex.def)             Requested size: 220.50772pt x 165.57791pt.
+Package epstopdf Info: Source file: <../Figures/MEKF_QuatVecError_moreAcc.eps>
+(epstopdf)                    date: 2016-05-04 17:35:06
+(epstopdf)                    size: 481771 bytes
+(epstopdf)             Output file: <../Figures/MEKF_QuatVecError_moreAcc-eps-c
+onverted-to.pdf>
+(epstopdf)                    date: 2016-05-04 17:51:21
+(epstopdf)                    size: 807934 bytes
+(epstopdf)             Command: <epstopdf --outfile=../Figures/MEKF_QuatVecErro
+r_moreAcc-eps-converted-to.pdf ../Figures/MEKF_QuatVecError_moreAcc.eps>
+(epstopdf)             \includegraphics on input line 461.
+Package epstopdf Info: Output file is already uptodate.
+
+<../Figures/MEKF_QuatVecError_moreAcc-eps-converted-to.pdf, id=447, 842.14626pt
+ x 632.3625pt>
+File: ../Figures/MEKF_QuatVecError_moreAcc-eps-converted-to.pdf Graphic file (t
+ype pdf)
+ <use ../Figures/MEKF_QuatVecError_moreAcc-eps-converted-to.pdf>
+Package pdftex.def Info: ../Figures/MEKF_QuatVecError_moreAcc-eps-converted-to.
+pdf used on input line 461.
+(pdftex.def)             Requested size: 220.50772pt x 165.57791pt.
+Package epstopdf Info: Source file: <../Figures/MEKF_pfr_moreAcc.eps>
+(epstopdf)                    date: 2016-05-04 17:34:38
+(epstopdf)                    size: 340650 bytes
+(epstopdf)             Output file: <../Figures/MEKF_pfr_moreAcc-eps-converted-
+to.pdf>
+(epstopdf)                    date: 2016-05-04 17:51:23
+(epstopdf)                    size: 808974 bytes
+(epstopdf)             Command: <epstopdf --outfile=../Figures/MEKF_pfr_moreAcc
+-eps-converted-to.pdf ../Figures/MEKF_pfr_moreAcc.eps>
+(epstopdf)             \includegraphics on input line 464.
+Package epstopdf Info: Output file is already uptodate.
+
+<../Figures/MEKF_pfr_moreAcc-eps-converted-to.pdf, id=448, 842.14626pt x 632.36
+25pt>
+File: ../Figures/MEKF_pfr_moreAcc-eps-converted-to.pdf Graphic file (type pdf)
+ <use ../Figures/MEKF_pfr_moreAcc-eps-converted-to.pdf>
+Package pdftex.def Info: ../Figures/MEKF_pfr_moreAcc-eps-converted-to.pdf used 
+on input line 464.
+(pdftex.def)             Requested size: 220.50772pt x 165.57791pt.
+ [15 <C:/Users/John/Documents/Astro/ASEN6080_SOD2/Project/Figures/MEKF_AngleErr
+or_moreAcc-eps-converted-to.pdf> <C:/Users/John/Documents/Astro/ASEN6080_SOD2/P
+roject/Figures/MEKF_QuatVecError_moreAcc-eps-converted-to.pdf> <C:/Users/John/D
+ocuments/Astro/ASEN6080_SOD2/Project/Figures/MEKF_pfr_moreAcc-eps-converted-to.
+pdf>]
 (C:\Users\John\Documents\Astro\ASEN6080_SOD2\Project\Report\Clouse_ASEN6080_Pro
 ject.bbl) 
 AED: lastpage setting LastPage
-[13 <C:/Users/John/Documents/Astro/ASEN6080_SOD2/Project/Figures/EKF_AltOff_Ang
-leError-eps-converted-to.pdf>]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 431.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 431.
+[16]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 529.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 529.
 
 (C:\Users\John\Documents\Astro\ASEN6080_SOD2\Project\Report\Clouse_ASEN6080_Pro
 ject.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 431.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 431.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 529.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 529.
 Package rerunfilecheck Info: File `Clouse_ASEN6080_Project.out' has not changed
 .
-(rerunfilecheck)             Checksum: 127B0B64EEAF59BD3DAD74657C2DD0E2;263.
+(rerunfilecheck)             Checksum: D97DA50B135DF0F97D16F0146E1405B6;317.
 
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 431.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 529.
  ) 
 Here is how much of TeX's memory you used:
- 9071 strings out of 493921
- 133425 string characters out of 3147286
- 239924 words of memory out of 3000000
- 12134 multiletter control sequences out of 15000+200000
+ 9130 strings out of 493921
+ 135242 string characters out of 3147286
+ 240485 words of memory out of 3000000
+ 12168 multiletter control sequences out of 15000+200000
  15300 words of font info for 53 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
- 42i,16n,45p,986b,332s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 42i,16n,45p,986b,344s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Pr
 ogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Program Fi
-les/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx8.pfb><C:/Program Files/MiKTe
-X 2.9/fonts/type1/public/amsfonts/cm/cmbxti10.pfb><C:/Program Files/MiKTeX 2.9/
-fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Files/MiKTeX 2.9/fonts/ty
-pe1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/publ
-ic/amsfonts/cm/cmmi7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfon
-ts/cm/cmmi8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmm
-ib10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb>
-<C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Progr
-am Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Program Files/M
-iKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Program Files/MiKTeX 2.9/
-fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type
-1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public
-/amsfonts/cm/cmsy6.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts
-/cm/cmsy7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8
-.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:
-/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti8.pfb>
-Output written on Clouse_ASEN6080_Project.pdf (13 pages, 4674221 bytes).
+les/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx6.pfb><C:/Program Files/MiKTe
+X 2.9/fonts/type1/public/amsfonts/cm/cmbx8.pfb><C:/Program Files/MiKTeX 2.9/fon
+ts/type1/public/amsfonts/cm/cmbxti10.pfb><C:/Program Files/MiKTeX 2.9/fonts/typ
+e1/public/amsfonts/cm/cmex10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/publi
+c/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfon
+ts/cm/cmmi7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmm
+i8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmib10.pfb>
+<C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cmextra/cmmib8.pfb><C:
+/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program 
+Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files/MiK
+TeX 2.9/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Program Files/MiKTeX 2.9/fo
+nts/type1/public/amsfonts/cm/cmr7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/
+public/amsfonts/cm/cmr8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/ams
+fonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm
+/cmsy6.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy7.pf
+b><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Pro
+gram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Program Fil
+es/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti8.pfb>
+Output written on Clouse_ASEN6080_Project.pdf (16 pages, 8101918 bytes).
 PDF statistics:
- 471 PDF objects out of 1000 (max. 8388607)
- 53 named destinations out of 1000 (max. 500000)
- 121 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 578 PDF objects out of 1000 (max. 8388607)
+ 72 named destinations out of 1000 (max. 500000)
+ 159 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -5,4 +5,13 @@
 Schaub, H. and Junkins, J.~L., {\em Analytical Mechanics of Space Systems\/},
   AIAA, Reston, VA, 2nd ed., 2009.
 
+\bibitem{MarkleyAtt}
+Markley, F.~L., \enquote{Attitude Estimation or Quaternion Estimation?} {\em
+  Flight Mechanics Symposium\/}, 2003.
+
+\bibitem{MarklyRepresentations}
+Markley, F.~L., \enquote{Attitude Error Representations for Kalman Filtering,}
+  {\em Journal of Guidance, Control, and Dynamics\/}, Vol.~26, 2003,
+  pp.~311--317.
+
 \end{thebibliography}

@@ -331,6 +331,7 @@ filter_opts.state_length = 7;
 filter_opts.important_block = [6 6];
 % filter_opts.propagator_opts.att_prop_opts.fcn = @rigid_body_Euler_estimation;
 
+% filter_opts.R =diag([1,1,1]*(0.001452/5)^2);
 filter_opts.R =diag([1,1,1]*(0.001452)^2);
 
 % filter_opts.use_EKF = 1;
@@ -371,7 +372,12 @@ subplot(3,1,ii)
 plot((euler_angs_out(:,ii)-euler_angs(:,ii))*180/pi)
 hold on
 % plot([1 length(euler_angs_out)], -0.5
+ylabel(ang_label{ii},'Interpreter','latex','fontsize',hw_pub.fontSize);
 end
+xlabel('Observation','fontsize',hw_pub.fontSize)
+subplot(3,1,1);
+title(sprintf(['MEKF Angle error'],filter_opts.SNC_Q(1)),'fontsize',hw_pub.fontSize)
+
 
 % Quaternion vector
 figure('Position', hw_pub.figPosn);
@@ -398,10 +404,28 @@ title('MEKF Quaternion Vector Error','fontsize',hw_pub.fontSize)
 h = legend('Filter results error','Filter 3\sigma');
 set(h,'fontsize',hw_pub.fontSize);
 
-filter_output = MEKFoutput;
-case_title = 'MEKF ';
-resid_plot_units = {'rad', 'rad', 'rad', 'rad/s', 'rad/s', 'rad/s'};
-plot_results;
+% Residuals
+figure('Position', hw_pub.figPosn);
+for ii = 1:3
+    subplot(3,1,ii)
+    plot(MEKFoutput.pfr_store(ii,:),'.')
+    hold on
+    
+    plot([1 length(MEKFoutput.pfr_store)],[1 1]*3*sqrt(filter_opts.R(ii,ii)),'r')
+    plot([1 length(MEKFoutput.pfr_store)],[1 1]*-3*sqrt(filter_opts.R(ii,ii)),'r')
+%     plot(-3*sqrt(MEKFoutput.cov_store(ii,:)),'r')
+    ylabel(['2\beta_' num2str(ii)],'fontsize',hw_pub.fontSize)
+end
+xlabel('Observation','fontsize',hw_pub.fontSize)
+subplot(3,1,1)
+title('MEKF Post-fit Residuals','fontsize',hw_pub.fontSize)
+h = legend('Residual','Measurement 3\sigma');
+set(h,'fontsize',hw_pub.fontSize);
+
+% filter_output = MEKFoutput;
+% case_title = 'MEKF ';
+% resid_plot_units = {'--', '--', '--'};
+% plot_results;
 
 %% Process noise
 %% Bad ephemeris
