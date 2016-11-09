@@ -10,6 +10,7 @@ au2km = 149597870.7;
 %% Physical constants
 day2sec = 86400; % sec/day
 speed_of_light = 299792458; %m/s
+G = 6.673e-20; %Nm2/kg2, Vallado
 
 %% Earth
 Earth.name = 'Earth';

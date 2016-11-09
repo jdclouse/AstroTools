@@ -1,7 +1,7 @@
 function DCM = Euler2DCM( seq_string, angle_vector ) 
 %Euler2DCM Turn an Euler Angle set into a DCM
 %   Angle vector in radians
-fcnPrintQueue(mfilename('fullpath'))
+% fcnPrintQueue(mfilename('fullpath'))
 
 DCM = eye(3);
 %get the trig functions
