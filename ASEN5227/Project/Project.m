@@ -250,7 +250,7 @@ alpha_MS_Frenet_wrt_body = zeros(3,length(t));
 t_MAV_GS = zeros(3,num_pts);
 b_MAV_GS = zeros(3,num_pts);
 n_MAV_GS = zeros(3,num_pts);
-for ii = 1:length(t) - 2 % due to forward diff
+for ii = 1:length(t)% - 2 % due to forward diff
     rot = [t(:,ii)';n(:,ii)';b(:,ii)'];
     % Orthogonal transformation, so the inverse is the transpose.
     G_MS2GS = rot';
@@ -276,16 +276,26 @@ for ii = 1:length(t) - 2 % due to forward diff
     if ii >= 2 && abs(psi(ii)-psi(ii-1)) > pi
         psi(ii) = psi(ii) + 2*pi;
     end
-    if ii >=2 % for first-order backward differencing
-        phi_dot(ii) = (phi(ii)-phi(ii-1))/t_diffs(ii-1);
-        theta_dot(ii) = (theta(ii)-theta(ii-1))/t_diffs(ii-1);
-        psi_dot(ii) = (psi(ii)-psi(ii-1))/t_diffs(ii-1);
-    end
-    if ii >=3 % for first-order backward differencing
-        phi_dotdot(ii) = (phi_dot(ii)-phi_dot(ii-1))/t_diffs(ii-1);
-        theta_dotdot(ii) = (theta_dot(ii)-theta_dot(ii-1))/t_diffs(ii-1);
-        psi_dotdot(ii) = (psi_dot(ii)-psi_dot(ii-1))/t_diffs(ii-1);
-    end
+end
+for ii = 1:length(t) - 1 % due to forward diff
+        phi_dot(ii) = (phi(ii+1)-phi(ii))/t_diffs(ii);
+        theta_dot(ii) = (theta(ii+1)-theta(ii))/t_diffs(ii);
+        psi_dot(ii) = (psi(ii+1)-psi(ii))/t_diffs(ii);
+end
+for ii = 1:length(t) - 2 % due to forward diff
+    rot = [t(:,ii)';n(:,ii)';b(:,ii)'];
+    % Orthogonal transformation, so the inverse is the transpose.
+    G_MS2GS = rot';
+%     if ii >=2 % for first-order backward differencing
+%         phi_dot(ii) = (phi(ii+1)-phi(ii))/t_diffs(ii);
+%         theta_dot(ii) = (theta(ii+1)-theta(ii))/t_diffs(ii);
+%         psi_dot(ii) = (psi(ii+1)-psi(ii))/t_diffs(ii);
+%     end
+%     if ii >=3 % for first-order backward differencing
+        phi_dotdot(ii) = (phi_dot(ii+1)-phi_dot(ii))/t_diffs(ii);
+        theta_dotdot(ii) = (theta_dot(ii+1)-theta_dot(ii))/t_diffs(ii);
+        psi_dotdot(ii) = (psi_dot(ii+1)-psi_dot(ii))/t_diffs(ii);
+%     end
     w_MS_Frenet_wrt_GS(1,ii) = psi_dot(ii)*sin(theta(ii))*sin(phi(ii)) ...
         + theta_dot(ii)*cos(phi(ii));
     w_MS_Frenet_wrt_GS(2,ii) = -psi_dot(ii)*sin(theta(ii))*cos(phi(ii)) ...
@@ -315,9 +325,10 @@ for ii = 1:length(t) - 2 % due to forward diff
         - phi_dot(ii)*psi_dot(ii)*sin(theta(ii))*sin(psi(ii))...
         - theta_dotdot(ii)*sin(psi(ii)) - theta_dot(ii)*psi_dot(ii)*cos(psi(ii));
     alpha_MS_Frenet_wrt_body(3,ii) = ...
-        phi_dotdot(ii)*cos(theta(ii)) - phi_dot(ii)*sin(theta(ii))...
+        phi_dotdot(ii)*cos(theta(ii)) ...
+        - phi_dot(ii)*theta_dot(ii)*sin(theta(ii))...
         + psi_dotdot(ii);
-    alpha_MS_Frenet_wrt_body(:,ii) = alpha_MS_Frenet_wrt_body(:,ii) + blah;
+%     alpha_MS_Frenet_wrt_body(:,ii) = alpha_MS_Frenet_wrt_body(:,ii) + blah;
     
     a(:,ii) = A(:,ii) + G_MS2GS*(a_bar_forward(:,ii) ...
         + cross(alpha_MS_Frenet_wrt_body(:,ii),r_bar(:,ii))...
@@ -385,4 +396,5 @@ normal_diff = abs(normal_diff(1:end-2)-sum(n_MAV_GS_ND.*a_forward,1));
 plot(time(1:length(tan_diff)),tan_diff)
 hold on
 plot(time(1:length(normal_diff)),normal_diff,'r')
+legend('Tangential Accel Error', 'Normal Accel Error');
 end
