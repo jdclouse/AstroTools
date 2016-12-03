@@ -1,5 +1,6 @@
 %% ASEN 5227 Project
 % John Clouse
+%% Initialize
 clear all
 close all
 
@@ -9,8 +10,10 @@ hw_pub.figPosn = [0, 0, hw_pub.figWidth, hw_pub.figHeight];
 
 scenarios = {'Part 1', 'Part 2'};
 
+% Loop through the analytical and discreet scenarios
 for scenario = scenarios
 
+% get time for the analysis.
 if strcmp(scenario, 'Part 1')
     num_pts = 1000;
     time = linspace(0,2*pi,num_pts);
@@ -90,6 +93,7 @@ end
 
 orange = [1.0,0.4,0.0];
 lgreen = [20 187 51] ./ 255;
+% plot the MS path
 if strcmp(scenario, 'Part 1')
     figure('Position', hw_pub.figPosn);
     plot3(R(1,:),R(2,:),R(3,:));
@@ -113,7 +117,7 @@ if strcmp(scenario, 'Part 1')
     saveas(gcf, ['Figures\' 'MS_ISO'],'jpg')
 end
 
-% MAV's local Frenet frame
+% MAV's Frenet frame expressed in the MS Frenet frame
 t_MAV = zeros(3,num_pts);
 b_MAV = zeros(3,num_pts);
 n_MAV = zeros(3,num_pts);
@@ -124,7 +128,7 @@ for ii = 1:num_pts-2 % missing 2 points at end from 2 forward diffs
     n_MAV(:,ii) = cross(b_MAV(:,ii),t_MAV(:,ii));
 end
 
-
+% Plot MAV path
 if strcmp(scenario, 'Part 1')
     plot_idx = [1:20:num_pts num_pts];
 else
@@ -150,9 +154,8 @@ view([-1,-1,1])
 legend({'Path','Tangential','Binormal','Normal'});
 saveas(gcf, ['Figures\' char(strrep(scenario,' ','_')) '_MAV_ISO'],'jpg')
 
-
 if strcmp(scenario, 'Part 1')
-    % Mothership normal, tangent accels
+    % Mothership normal, tangent accels wrt GS
     MS_accel_tangent = zeros(1,length(A_forward));
     MS_accel_normal = zeros(1,length(A_forward));
     MS_accel_bi = zeros(1,length(A_forward));
@@ -172,6 +175,7 @@ if strcmp(scenario, 'Part 1')
 %     plot(MS_accel_bi)
 %     title('MS Binormal Acceleration wrt GS')
     
+    % Plot the accelerations, speed of MS
     figure('Position', hw_pub.figPosn);
     plot(time(1:end-2),MS_accel_tangent)
     hold on
@@ -189,7 +193,7 @@ if strcmp(scenario, 'Part 1')
     
 end
 
-% MAV normal, tangent accels
+% MAV normal, tangent accels wrt MS
 MAV_accel_tangent = zeros(1,length(a_bar_forward));
 MAV_accel_normal = zeros(1,length(a_bar_forward));
 MAV_accel_bi = zeros(1,length(a_bar_forward));
@@ -209,6 +213,7 @@ end
 % plot(MAV_accel_bi)
 % title('MAV Binormal Acceleration wrt MS')
     
+% Plot the accelerations, speed of MAV
 figure('Position', hw_pub.figPosn);
 plot(time(1:end-2),MAV_accel_tangent)
 hold on
@@ -228,22 +233,31 @@ saveas(gcf, ['Figures\' char(strrep(scenario,' ','_')) '_MAV_Speed'],'jpg')
 % The 
 r = nan(3,length(t)); % nans so that the zeros don't drag down the plots
 v = zeros(3,length(t));
+a = zeros(3,length(t));
 phi = zeros(1,length(t));
 theta = zeros(1,length(t));
 psi = zeros(1,length(t));
 phi_dot = zeros(1,length(t));
 theta_dot = zeros(1,length(t));
 psi_dot = zeros(1,length(t));
+phi_dotdot = zeros(1,length(t));
+theta_dotdot = zeros(1,length(t));
+psi_dotdot = zeros(1,length(t));
 w_MS_Frenet_wrt_GS = zeros(3,length(t));
 w_MS_Frenet_wrt_body = zeros(3,length(t));
+alpha_MS_Frenet_wrt_body = zeros(3,length(t));
+% MAV's Frenet frame in GS cartesian
+t_MAV_GS = zeros(3,num_pts);
+b_MAV_GS = zeros(3,num_pts);
+n_MAV_GS = zeros(3,num_pts);
 for ii = 1:length(t) - 2 % due to forward diff
     rot = [t(:,ii)';n(:,ii)';b(:,ii)'];
     % Orthogonal transformation, so the inverse is the transpose.
-    G = rot';
-    r(:,ii) = R(:,ii)+G*r_bar(:,ii);
-    phi(ii) = atan2(G(1,3),-G(2,3));
-    theta(ii) = atan2(sqrt(1-G(3,3)^2),G(3,3));
-    psi(ii) = atan2(G(3,1),G(3,2));
+    G_MS2GS = rot';
+    r(:,ii) = R(:,ii)+G_MS2GS*r_bar(:,ii);
+    phi(ii) = atan2(G_MS2GS(1,3),-G_MS2GS(2,3));
+    theta(ii) = atan2(sqrt(1-G_MS2GS(3,3)^2),G_MS2GS(3,3));
+    psi(ii) = atan2(G_MS2GS(3,1),G_MS2GS(3,2));
     if phi(ii) < 0
         phi(ii) = phi(ii) + 2*pi;
     end
@@ -267,6 +281,11 @@ for ii = 1:length(t) - 2 % due to forward diff
         theta_dot(ii) = (theta(ii)-theta(ii-1))/t_diffs(ii-1);
         psi_dot(ii) = (psi(ii)-psi(ii-1))/t_diffs(ii-1);
     end
+    if ii >=3 % for first-order backward differencing
+        phi_dotdot(ii) = (phi_dot(ii)-phi_dot(ii-1))/t_diffs(ii-1);
+        theta_dotdot(ii) = (theta_dot(ii)-theta_dot(ii-1))/t_diffs(ii-1);
+        psi_dotdot(ii) = (psi_dot(ii)-psi_dot(ii-1))/t_diffs(ii-1);
+    end
     w_MS_Frenet_wrt_GS(1,ii) = psi_dot(ii)*sin(theta(ii))*sin(phi(ii)) ...
         + theta_dot(ii)*cos(phi(ii));
     w_MS_Frenet_wrt_GS(2,ii) = -psi_dot(ii)*sin(theta(ii))*cos(phi(ii)) ...
@@ -278,8 +297,40 @@ for ii = 1:length(t) - 2 % due to forward diff
         -theta_dot(ii)*sin(psi(ii));
     w_MS_Frenet_wrt_body(3,ii) = phi_dot(ii)*cos(theta(ii))+psi_dot(ii);
     
-    v(:,ii) = V(:,ii) + G*(v_bar_forward(:,ii) ...
+    v(:,ii) = V(:,ii) + G_MS2GS*(v_bar_forward(:,ii) ...
         + cross(w_MS_Frenet_wrt_body(:,ii),r_bar(:,ii)));
+    
+    blah = w_MS_Frenet_wrt_body(1,ii)*cross(w_MS_Frenet_wrt_body(:,ii),t(:,ii))...
+        + w_MS_Frenet_wrt_body(2,ii)*cross(w_MS_Frenet_wrt_body(:,ii),n(:,ii))...
+        + w_MS_Frenet_wrt_body(3,ii)*cross(w_MS_Frenet_wrt_body(:,ii),b(:,ii));
+    
+    alpha_MS_Frenet_wrt_body(1,ii) = ...
+        phi_dotdot(ii)*sin(theta(ii))*sin(psi(ii)) ...
+        + phi_dot(ii)*theta_dot(ii)*cos(theta(ii))*sin(psi(ii))...
+        + phi_dot(ii)*psi_dot(ii)*sin(theta(ii))*cos(psi(ii))...
+        + theta_dotdot(ii)*cos(psi(ii)) - theta_dot(ii)*psi_dot(ii)*sin(psi(ii));
+    alpha_MS_Frenet_wrt_body(2,ii) = ...
+        phi_dotdot(ii)*sin(theta(ii))*cos(psi(ii)) ...
+        + phi_dot(ii)*theta_dot(ii)*cos(theta(ii))*cos(psi(ii))...
+        - phi_dot(ii)*psi_dot(ii)*sin(theta(ii))*sin(psi(ii))...
+        - theta_dotdot(ii)*sin(psi(ii)) - theta_dot(ii)*psi_dot(ii)*cos(psi(ii));
+    alpha_MS_Frenet_wrt_body(3,ii) = ...
+        phi_dotdot(ii)*cos(theta(ii)) - phi_dot(ii)*sin(theta(ii))...
+        + psi_dotdot(ii);
+    alpha_MS_Frenet_wrt_body(:,ii) = alpha_MS_Frenet_wrt_body(:,ii) + blah;
+    
+    a(:,ii) = A(:,ii) + G_MS2GS*(a_bar_forward(:,ii) ...
+        + cross(alpha_MS_Frenet_wrt_body(:,ii),r_bar(:,ii))...
+        + 2*cross(w_MS_Frenet_wrt_body(:,ii),v_bar_forward(:,ii))...
+        + cross(w_MS_Frenet_wrt_body(:,ii),...
+                cross(w_MS_Frenet_wrt_body(:,ii),r_bar(:,ii))));
+    
+    % MAV's Frenet frame in GS cartesian
+    t_MAV_GS(:,ii) = v(:,ii)/norm(v(:,ii));
+    b_MAV_GS(:,ii) = cross(v(:,ii),a(:,ii))...
+        /norm(cross(v(:,ii),a(:,ii)));
+    n_MAV_GS(:,ii) = cross(b_MAV(:,ii),t_MAV(:,ii));
+
 end
 figure('Position', hw_pub.figPosn)
 plot3(r(1,:),r(2,:),r(3,:));
@@ -305,4 +356,33 @@ title('MAV Velocity wrt GS: Error Between Euler-Angle-Rotation and Numerical Dif
 legend('v_x error', 'v_y error', 'v_z error');
 xlabel('Time'); ylabel('Velocity Error');
 saveas(gcf, ['Figures\' char(strrep(scenario,' ','_')) '_MAV_vel_err'],'jpg')
+
+a_forward = forward_diff(v_forward,time(1:end-1));
+t_MAV_GS_ND = zeros(3,length(a_forward));
+b_MAV_GS_ND = zeros(3,length(a_forward));
+n_MAV_GS_ND = zeros(3,length(a_forward));
+for ii = 1:length(a_forward)
+    t_MAV_GS_ND(:,ii) = v_forward(:,ii)/norm(v_forward(:,ii));
+    b_MAV_GS_ND(:,ii) = cross(v_forward(:,ii),a_forward(:,ii))...
+        /norm(cross(v_forward(:,ii),a_forward(:,ii)));
+    n_MAV_GS_ND(:,ii) = cross(b_MAV(:,ii),t_MAV(:,ii));
+    
+end
+figure('Position', hw_pub.figPosn)
+plot(time,sum(t_MAV_GS.*a,1))
+hold on
+plot(time,sum(n_MAV_GS.*a,1),'r')
+% plot(time,sum(b_MAV_GS.*a,1))
+figure('Position', hw_pub.figPosn)
+plot(time(1:end-2),sum(t_MAV_GS_ND.*a_forward,1))
+hold on
+plot(time(1:end-2),sum(n_MAV_GS_ND.*a_forward,1),'r')
+figure('Position', hw_pub.figPosn)
+tan_diff = sum(t_MAV_GS.*a,1);
+tan_diff = abs(tan_diff(1:end-2)-sum(t_MAV_GS_ND.*a_forward,1));
+normal_diff = sum(n_MAV_GS.*a,1);
+normal_diff = abs(normal_diff(1:end-2)-sum(n_MAV_GS_ND.*a_forward,1));
+plot(time(1:length(tan_diff)),tan_diff)
+hold on
+plot(time(1:length(normal_diff)),normal_diff,'r')
 end
