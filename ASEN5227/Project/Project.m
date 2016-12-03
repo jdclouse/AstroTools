@@ -142,13 +142,13 @@ quiver3(r_bar(1,plot_idx),r_bar(2,plot_idx),r_bar(3,plot_idx),...
     n_MAV(1,plot_idx),n_MAV(2,plot_idx),n_MAV(3,plot_idx),'color',lgreen);
 xlabel('t'); ylabel('n'); zlabel('b')
 title('MAV observed in MS Frenet frame with Frenet frame vectors')
-    view([1,0,0])
-    saveas(gcf, ['Figures\' char(strrep(scenario,' ','_')) '_MAV_NB'],'jpg')
-    view([0,0,1])
-    saveas(gcf, ['Figures\' char(strrep(scenario,' ','_')) '_MAV_TN'],'jpg')
-    view([-1,-1,1])
-    legend({'Path','Tangential','Binormal','Normal'});
-    saveas(gcf, ['Figures\' char(strrep(scenario,' ','_')) '_MAV_ISO'],'jpg')
+view([1,0,0])
+saveas(gcf, ['Figures\' char(strrep(scenario,' ','_')) '_MAV_NB'],'jpg')
+view([0,0,1])
+saveas(gcf, ['Figures\' char(strrep(scenario,' ','_')) '_MAV_TN'],'jpg')
+view([-1,-1,1])
+legend({'Path','Tangential','Binormal','Normal'});
+saveas(gcf, ['Figures\' char(strrep(scenario,' ','_')) '_MAV_ISO'],'jpg')
 
 
 if strcmp(scenario, 'Part 1')
@@ -162,15 +162,31 @@ if strcmp(scenario, 'Part 1')
         MS_accel_bi(ii) = dot(b(:,ii),A_forward(:,ii));
     end
 
+%     figure('Position', hw_pub.figPosn);
+%     plot(MS_accel_tangent)
+%     title('MS Tangential Acceleration wrt GS')
+%     figure('Position', hw_pub.figPosn);
+%     plot(MS_accel_normal)
+%     title('MS Normal Acceleration wrt GS')
+%     figure('Position', hw_pub.figPosn);
+%     plot(MS_accel_bi)
+%     title('MS Binormal Acceleration wrt GS')
+    
     figure('Position', hw_pub.figPosn);
-    plot(MS_accel_tangent)
-    title('MS Tangential Acceleration wrt GS')
+    plot(time(1:end-2),MS_accel_tangent)
+    hold on
+    plot(time(1:end-2),MS_accel_normal,'r')
+    title('MAV Accelerations wrt GS')
+    xlabel('Time'); ylabel('Acceleration')
+    legend('Tangential Accel', 'Normal Accel')
+    saveas(gcf, ['Figures\' 'MS_Accels'],'jpg')
+    
     figure('Position', hw_pub.figPosn);
-    plot(MS_accel_normal)
-    title('MS Normal Acceleration wrt GS')
-    figure('Position', hw_pub.figPosn);
-    plot(MS_accel_bi)
-title('MS Binormal Acceleration wrt GS')
+    plot(time(1:end-1),sqrt(sum(V_forward.^2,1)))
+    title('MAV Speed wrt GS')
+    xlabel('Time'); ylabel('Speed')
+    saveas(gcf, ['Figures\' 'MS_Speed'],'jpg')
+    
 end
 
 % MAV normal, tangent accels
@@ -183,15 +199,30 @@ for ii = 1:length(a_bar_forward)
     MAV_accel_bi(ii) = dot(b_MAV(:,ii),a_bar_forward(:,ii));
 end
 
+% figure('Position', hw_pub.figPosn);
+% plot(MAV_accel_tangent)
+% title('MAV Tangential Acceleration wrt MS')
+% figure('Position', hw_pub.figPosn);
+% plot(MAV_accel_normal)
+% title('MAV Normal Acceleration wrt MS')
+% figure('Position', hw_pub.figPosn);
+% plot(MAV_accel_bi)
+% title('MAV Binormal Acceleration wrt MS')
+    
 figure('Position', hw_pub.figPosn);
-plot(MAV_accel_tangent)
-title('MAV Tangential Acceleration wrt MS')
+plot(time(1:end-2),MAV_accel_tangent)
+hold on
+plot(time(1:end-2),MAV_accel_normal,'r')
+title('MAV Accelerations wrt MS')
+xlabel('Time'); ylabel('Acceleration')
+legend('Tangential Accel', 'Normal Accel')
+saveas(gcf, ['Figures\' char(strrep(scenario,' ','_')) '_MAV_Accels'],'jpg')
+
 figure('Position', hw_pub.figPosn);
-plot(MAV_accel_normal)
-title('MAV Normal Acceleration wrt MS')
-figure('Position', hw_pub.figPosn);
-plot(MAV_accel_bi)
-title('MAV Binormal Acceleration wrt MS')
+plot(time(1:end-1),sqrt(sum(v_bar_forward.^2,1)))
+title('MAV Speed wrt MS')
+xlabel('Time'); ylabel('Speed')
+saveas(gcf, ['Figures\' char(strrep(scenario,' ','_')) '_MAV_Speed'],'jpg')
 
 % MAV wrt GS
 % The 
@@ -256,12 +287,22 @@ hold on
 plot3(R(1,:),R(2,:),R(3,:),'r');
 xlabel('i'); ylabel('j'); zlabel('k')
 title('MAV observed from GS')
+view([1,0,0])
+saveas(gcf, ['Figures\' char(strrep(scenario,' ','_')) '_MAV_JK'],'jpg')
+view([0,0,1])
+saveas(gcf, ['Figures\' char(strrep(scenario,' ','_')) '_MAV_IJ'],'jpg')
+view([-1,-1,1])
+legend({'MAV path','MS path'});
+saveas(gcf, ['Figures\' char(strrep(scenario,' ','_')) '_MAV_GS_ISO'],'jpg')
 
 v_forward = forward_diff(r,time);
 figure('Position', hw_pub.figPosn)
 hold on
-plot(abs(v(1,1:end-1) - v_forward(1,:)));
-plot(abs(v(2,1:end-1) - v_forward(2,:)),'r');
-plot(abs(v(3,1:end-1) - v_forward(3,:)),'k');
+plot(time(1:end-1),abs(v(1,1:end-1) - v_forward(1,:)));
+plot(time(1:end-1),abs(v(2,1:end-1) - v_forward(2,:)),'r');
+plot(time(1:end-1),abs(v(3,1:end-1) - v_forward(3,:)),'k');
 title('MAV Velocity wrt GS: Error Between Euler-Angle-Rotation and Numerical Differentiation Solution')
+legend('v_x error', 'v_y error', 'v_z error');
+xlabel('Time'); ylabel('Velocity Error');
+saveas(gcf, ['Figures\' char(strrep(scenario,' ','_')) '_MAV_vel_err'],'jpg')
 end
