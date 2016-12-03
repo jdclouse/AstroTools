@@ -3,6 +3,10 @@
 clear all
 close all
 
+hw_pub.figWidth = 1120; % pixels
+hw_pub.figHeight = 840; % pixels
+hw_pub.figPosn = [0, 0, hw_pub.figWidth, hw_pub.figHeight];
+
 scenarios = {'Part 1', 'Part 2'};
 
 for scenario = scenarios
@@ -35,7 +39,7 @@ end
 % Forward differentiation
 % Mothership velocity
 V_forward = forward_diff(R,time);
-figure;
+figure('Position', hw_pub.figPosn);
 hold on
 plot(abs(V(1,1:end-1) - V_forward(1,:)));
 plot(abs(V(2,1:end-1) - V_forward(2,:)),'r');
@@ -44,7 +48,7 @@ title('MS Velocity: Error Between Analytical and Numerical Solution')
 
 % Mothership acceleration
 A_forward = forward_diff(V_forward,time);
-figure;
+figure('Position', hw_pub.figPosn);
 hold on
 plot(abs(A(1,1:end-2) - A_forward(1,:)));
 plot(abs(A(2,1:end-2) - A_forward(2,:)),'r');
@@ -55,7 +59,7 @@ v_bar_forward = forward_diff(r_bar,time);
 a_bar_forward = forward_diff(v_bar_forward,time);
 if strcmp(scenario, 'Part 1')
     % MAV velocity
-    figure;
+    figure('Position', hw_pub.figPosn);
     hold on
     plot(abs(v_bar(1,1:end-1) - v_bar_forward(1,:)));
     plot(abs(v_bar(2,1:end-1) - v_bar_forward(2,:)),'r');
@@ -63,7 +67,7 @@ if strcmp(scenario, 'Part 1')
     title('MAV Velocity: Error Between Analytical and Numerical Solution')
 
     % MAV acceleration
-    figure;
+    figure('Position', hw_pub.figPosn);
     hold on
     plot(abs(a_bar(1,1:end-2) - a_bar_forward(1,:)));
     plot(abs(a_bar(2,1:end-2) - a_bar_forward(2,:)),'r');
@@ -75,14 +79,19 @@ end
 t = zeros(3,num_pts);
 b = zeros(3,num_pts);
 n = zeros(3,num_pts);
-for ii = 1:num_pts
-    t(:,ii) = V(:,ii)/norm(V(:,ii));
-    b(:,ii) = cross(V(:,ii),A(:,ii))/norm(cross(V(:,ii),A(:,ii)));
+for ii = 1:num_pts-2
+%     t(:,ii) = V(:,ii)/norm(V(:,ii));
+%     b(:,ii) = cross(V(:,ii),A(:,ii))/norm(cross(V(:,ii),A(:,ii)));
+%     n(:,ii) = cross(b(:,ii),t(:,ii));
+    t(:,ii) = V_forward(:,ii)/norm(V_forward(:,ii));
+    b(:,ii) = cross(V_forward(:,ii),A_forward(:,ii))/norm(cross(V_forward(:,ii),A_forward(:,ii)));
     n(:,ii) = cross(b(:,ii),t(:,ii));
 end
 
+orange = [1.0,0.4,0.0];
+lgreen = [20 187 51] ./ 255;
 if strcmp(scenario, 'Part 1')
-    figure;
+    figure('Position', hw_pub.figPosn);
     plot3(R(1,:),R(2,:),R(3,:));
     xlabel('i'); ylabel('j'); zlabel('k')
     hold on
@@ -90,11 +99,18 @@ if strcmp(scenario, 'Part 1')
     quiver3(R(1,plot_idx),R(2,plot_idx),R(3,plot_idx),...
         t(1,plot_idx),t(2,plot_idx),t(3,plot_idx),'r');
     quiver3(R(1,plot_idx),R(2,plot_idx),R(3,plot_idx),...
-        b(1,plot_idx),b(2,plot_idx),b(3,plot_idx),'r');
+        b(1,plot_idx),b(2,plot_idx),b(3,plot_idx),'color',orange);
     quiver3(R(1,plot_idx),R(2,plot_idx),R(3,plot_idx),...
-        n(1,plot_idx),n(2,plot_idx),n(3,plot_idx),'r');
+        n(1,plot_idx),n(2,plot_idx),n(3,plot_idx),'color',lgreen);
     xlabel('i'); ylabel('j'); zlabel('k')
     title('MS observed from GS with Frenet frame vectors')
+    view([1,0,0])
+    saveas(gcf, ['Figures\' 'MS_JK'],'jpg')
+    view([0,0,1])
+    saveas(gcf, ['Figures\' 'MS_IJ'],'jpg')
+    view([-1,-1,1])
+    legend({'Path','Tangential','Binormal','Normal'});
+    saveas(gcf, ['Figures\' 'MS_ISO'],'jpg')
 end
 
 % MAV's local Frenet frame
@@ -114,18 +130,25 @@ if strcmp(scenario, 'Part 1')
 else
     plot_idx=[1:4:num_pts num_pts];
 end
-figure;
+figure('Position', hw_pub.figPosn);
 plot3(r_bar(1,:),r_bar(2,:),r_bar(3,:));
 xlabel('i'); ylabel('j'); zlabel('k')
 hold on
 quiver3(r_bar(1,plot_idx),r_bar(2,plot_idx),r_bar(3,plot_idx),...
     t_MAV(1,plot_idx),t_MAV(2,plot_idx),t_MAV(3,plot_idx),'r');
 quiver3(r_bar(1,plot_idx),r_bar(2,plot_idx),r_bar(3,plot_idx),...
-    b_MAV(1,plot_idx),b_MAV(2,plot_idx),b_MAV(3,plot_idx),'r');
+    b_MAV(1,plot_idx),b_MAV(2,plot_idx),b_MAV(3,plot_idx),'color',orange);
 quiver3(r_bar(1,plot_idx),r_bar(2,plot_idx),r_bar(3,plot_idx),...
-    n_MAV(1,plot_idx),n_MAV(2,plot_idx),n_MAV(3,plot_idx),'r');
+    n_MAV(1,plot_idx),n_MAV(2,plot_idx),n_MAV(3,plot_idx),'color',lgreen);
 xlabel('t'); ylabel('n'); zlabel('b')
-title('MAV observed from GS with Frenet frame vectors')
+title('MAV observed in MS Frenet frame with Frenet frame vectors')
+    view([1,0,0])
+    saveas(gcf, ['Figures\' char(strrep(scenario,' ','_')) '_MAV_NB'],'jpg')
+    view([0,0,1])
+    saveas(gcf, ['Figures\' char(strrep(scenario,' ','_')) '_MAV_TN'],'jpg')
+    view([-1,-1,1])
+    legend({'Path','Tangential','Binormal','Normal'});
+    saveas(gcf, ['Figures\' char(strrep(scenario,' ','_')) '_MAV_ISO'],'jpg')
 
 
 if strcmp(scenario, 'Part 1')
@@ -139,13 +162,13 @@ if strcmp(scenario, 'Part 1')
         MS_accel_bi(ii) = dot(b(:,ii),A_forward(:,ii));
     end
 
-    figure;
+    figure('Position', hw_pub.figPosn);
     plot(MS_accel_tangent)
     title('MS Tangential Acceleration wrt GS')
-    figure;
+    figure('Position', hw_pub.figPosn);
     plot(MS_accel_normal)
     title('MS Normal Acceleration wrt GS')
-    figure;
+    figure('Position', hw_pub.figPosn);
     plot(MS_accel_bi)
 title('MS Binormal Acceleration wrt GS')
 end
@@ -160,13 +183,13 @@ for ii = 1:length(a_bar_forward)
     MAV_accel_bi(ii) = dot(b_MAV(:,ii),a_bar_forward(:,ii));
 end
 
-figure;
+figure('Position', hw_pub.figPosn);
 plot(MAV_accel_tangent)
 title('MAV Tangential Acceleration wrt MS')
-figure;
+figure('Position', hw_pub.figPosn);
 plot(MAV_accel_normal)
 title('MAV Normal Acceleration wrt MS')
-figure;
+figure('Position', hw_pub.figPosn);
 plot(MAV_accel_bi)
 title('MAV Binormal Acceleration wrt MS')
 
@@ -227,7 +250,7 @@ for ii = 1:length(t) - 2 % due to forward diff
     v(:,ii) = V(:,ii) + G*(v_bar_forward(:,ii) ...
         + cross(w_MS_Frenet_wrt_body(:,ii),r_bar(:,ii)));
 end
-figure
+figure('Position', hw_pub.figPosn)
 plot3(r(1,:),r(2,:),r(3,:));
 hold on
 plot3(R(1,:),R(2,:),R(3,:),'r');
@@ -235,7 +258,7 @@ xlabel('i'); ylabel('j'); zlabel('k')
 title('MAV observed from GS')
 
 v_forward = forward_diff(r,time);
-figure
+figure('Position', hw_pub.figPosn)
 hold on
 plot(abs(v(1,1:end-1) - v_forward(1,:)));
 plot(abs(v(2,1:end-1) - v_forward(2,:)),'r');
