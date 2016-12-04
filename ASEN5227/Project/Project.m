@@ -424,11 +424,17 @@ plot(time,sum(t_MAV_GS.*a,1))
 hold on
 plot(time,sum(n_MAV_GS.*a,1),'r')
 % plot(time,sum(b_MAV_GS.*a,1))
+legend('Tangential','Normal')
+xlabel('Time');ylabel('Acceleration');
+title('MAV Accelerations wrt GS, Rotation Method')
 saveas(gcf, ['Figures\' char(strrep(scenario,' ','_')) '_MAV_rot_accel'],'jpg')
 figure('Position', hw_pub.figPosn)
 plot(time(1:end-2),sum(t_MAV_GS_ND.*a_forward,1))
 hold on
 plot(time(1:end-2),sum(n_MAV_GS_ND.*a_forward,1),'r')
+legend('Tangential','Normal')
+xlabel('Time');ylabel('Acceleration');
+title('MAV Accelerations wrt GS, Direct Numerical Differentiation')
 saveas(gcf, ['Figures\' char(strrep(scenario,' ','_')) '_MAV_nd_accel'],'jpg')
 figure('Position', hw_pub.figPosn)
 tan_diff = sum(t_MAV_GS.*a,1);
