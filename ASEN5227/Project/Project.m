@@ -10,7 +10,15 @@ hw_pub.figPosn = [0, 0, hw_pub.figWidth, hw_pub.figHeight];
 
 scenarios = {'Part 1', 'Part 2'};
 
-% Loop through the analytical and discreet scenarios
+% Some color definitions
+orange = [1.0,0.4,0.0];
+lgreen = [20 187 51] ./ 255;
+
+%% Loop through the analytical and discreet scenarios
+% The mothership calculations are only done on the first part
+% The big thing to remember here is that only forward differentiation is
+% used, so each differentiation has one fewer element than the diff'ed
+% quantity.
 for scenario = scenarios
 
 % get time for the analysis.
@@ -75,7 +83,8 @@ if strcmp(scenario, 'Part 1')
     plot(abs(a_bar(1,1:end-2) - a_bar_forward(1,:)));
     plot(abs(a_bar(2,1:end-2) - a_bar_forward(2,:)),'r');
     plot(abs(a_bar(3,1:end-2) - a_bar_forward(3,:)),'k');
-    title('MAV Acceleration: Error Between Analytical and Numerical Solution')
+    title(['MAV Acceleration:'...
+        'Error Between Analytical and Numerical Solution'])
 end
 
 % Mothership's local Frenet frame
@@ -83,21 +92,22 @@ t = zeros(3,num_pts);
 b = zeros(3,num_pts);
 n = zeros(3,num_pts);
 for ii = 1:num_pts-2
+    % Analytically differentiated
 %     t(:,ii) = V(:,ii)/norm(V(:,ii));
 %     b(:,ii) = cross(V(:,ii),A(:,ii))/norm(cross(V(:,ii),A(:,ii)));
 %     n(:,ii) = cross(b(:,ii),t(:,ii));
+    % Numerically differentiated
     t(:,ii) = V_forward(:,ii)/norm(V_forward(:,ii));
-    b(:,ii) = cross(V_forward(:,ii),A_forward(:,ii))/norm(cross(V_forward(:,ii),A_forward(:,ii)));
+    b(:,ii) = cross(V_forward(:,ii),A_forward(:,ii))...
+        /norm(cross(V_forward(:,ii),A_forward(:,ii)));
     n(:,ii) = cross(b(:,ii),t(:,ii));
 end
 
-orange = [1.0,0.4,0.0];
-lgreen = [20 187 51] ./ 255;
 % plot the MS path
 if strcmp(scenario, 'Part 1')
     figure('Position', hw_pub.figPosn);
     plot3(R(1,:),R(2,:),R(3,:));
-    xlabel('i'); ylabel('j'); zlabel('k')
+    xlabel('i (DU)'); ylabel('j (DU)'); zlabel('k (DU)')
     hold on
     plot_idx = [1:20:num_pts num_pts];
     quiver3(R(1,plot_idx),R(2,plot_idx),R(3,plot_idx),...
@@ -106,7 +116,7 @@ if strcmp(scenario, 'Part 1')
         b(1,plot_idx),b(2,plot_idx),b(3,plot_idx),'color',orange);
     quiver3(R(1,plot_idx),R(2,plot_idx),R(3,plot_idx),...
         n(1,plot_idx),n(2,plot_idx),n(3,plot_idx),'color',lgreen);
-    xlabel('i'); ylabel('j'); zlabel('k')
+    xlabel('i (DU)'); ylabel('j (DU)'); zlabel('k (DU)')
     title('MS observed from GS with Frenet frame vectors')
     view([1,0,0])
     saveas(gcf, ['Figures\' 'MS_JK'],'jpg')
@@ -136,7 +146,7 @@ else
 end
 figure('Position', hw_pub.figPosn);
 plot3(r_bar(1,:),r_bar(2,:),r_bar(3,:));
-xlabel('i'); ylabel('j'); zlabel('k')
+xlabel('i (DU)'); ylabel('j (DU)'); zlabel('k (DU)')
 hold on
 quiver3(r_bar(1,plot_idx),r_bar(2,plot_idx),r_bar(3,plot_idx),...
     t_MAV(1,plot_idx),t_MAV(2,plot_idx),t_MAV(3,plot_idx),'r');
@@ -144,7 +154,7 @@ quiver3(r_bar(1,plot_idx),r_bar(2,plot_idx),r_bar(3,plot_idx),...
     b_MAV(1,plot_idx),b_MAV(2,plot_idx),b_MAV(3,plot_idx),'color',orange);
 quiver3(r_bar(1,plot_idx),r_bar(2,plot_idx),r_bar(3,plot_idx),...
     n_MAV(1,plot_idx),n_MAV(2,plot_idx),n_MAV(3,plot_idx),'color',lgreen);
-xlabel('t'); ylabel('n'); zlabel('b')
+xlabel('t (DU)'); ylabel('n (DU)'); zlabel('b (DU)')
 title('MAV observed in MS Frenet frame with Frenet frame vectors')
 view([1,0,0])
 saveas(gcf, ['Figures\' char(strrep(scenario,' ','_')) '_MAV_NB'],'jpg')
@@ -181,14 +191,14 @@ if strcmp(scenario, 'Part 1')
     hold on
     plot(time(1:end-2),MS_accel_normal,'r')
     title('MAV Accelerations wrt GS')
-    xlabel('Time'); ylabel('Acceleration')
+    xlabel('Time (TU)'); ylabel('Acceleration (DU/TU^2)')
     legend('Tangential Accel', 'Normal Accel')
     saveas(gcf, ['Figures\' 'MS_Accels'],'jpg')
     
     figure('Position', hw_pub.figPosn);
     plot(time(1:end-1),sqrt(sum(V_forward.^2,1)))
     title('MS Speed wrt GS')
-    xlabel('Time'); ylabel('Speed')
+    xlabel('Time (TU)'); ylabel('Speed (DU/TU)')
     saveas(gcf, ['Figures\' 'MS_Speed'],'jpg')
     
 end
@@ -219,19 +229,21 @@ plot(time(1:end-2),MAV_accel_tangent)
 hold on
 plot(time(1:end-2),MAV_accel_normal,'r')
 title('MAV Accelerations wrt MS')
-xlabel('Time'); ylabel('Acceleration')
+xlabel('Time (TU)'); ylabel('Acceleration (DU/TU^2)')
 legend('Tangential Accel', 'Normal Accel')
 saveas(gcf, ['Figures\' char(strrep(scenario,' ','_')) '_MAV_Accels'],'jpg')
 
 figure('Position', hw_pub.figPosn);
 plot(time(1:end-1),sqrt(sum(v_bar_forward.^2,1)))
 title('MAV Speed wrt MS')
-xlabel('Time'); ylabel('Speed')
+xlabel('Time (TU)'); ylabel('Speed (DU/TU)')
 saveas(gcf, ['Figures\' char(strrep(scenario,' ','_')) '_MAV_Speed'],'jpg')
 
 % MAV wrt GS
-% The 
-r = nan(3,length(t)); % nans so that the zeros don't drag down the plots
+% The euler angles are found from G
+% These are plugged into the w/alpha calcs
+% nans are used to init so that the zeros don't drag down the plots
+r = nan(3,length(t)); 
 v = nan(3,length(t));
 a = nan(3,length(t));
 phi = zeros(1,length(t));
@@ -259,6 +271,8 @@ for ii = 1:length(t) - 2 % due to forward diff
     phi(ii) = atan2(G_MS2GS(1,3),-G_MS2GS(2,3));
     theta(ii) = atan2(sqrt(1-G_MS2GS(3,3)^2),G_MS2GS(3,3));
     psi(ii) = atan2(G_MS2GS(3,1),G_MS2GS(3,2));
+    
+    % Unroll the angles so we have continuous derivatives
     if phi(ii) < 0
         phi(ii) = phi(ii) + 2*pi;
     end
@@ -278,25 +292,24 @@ for ii = 1:length(t) - 2 % due to forward diff
         psi(ii) = psi(ii) + 2*pi;
     end
 end
+% Euler angle derivs
 for ii = 1:length(t) - 1 % due to forward diff
         phi_dot(ii) = (phi(ii+1)-phi(ii))/t_diffs(ii);
         theta_dot(ii) = (theta(ii+1)-theta(ii))/t_diffs(ii);
         psi_dot(ii) = (psi(ii+1)-psi(ii))/t_diffs(ii);
 end
+% Euler double-derivs + body rates/accel
 for ii = 1:length(t) - 4 % due to forward diff
     rot = [t(:,ii)';n(:,ii)';b(:,ii)'];
     % Orthogonal transformation, so the inverse is the transpose.
     G_MS2GS = rot';
-%     if ii >=2 % for first-order backward differencing
-%         phi_dot(ii) = (phi(ii+1)-phi(ii))/t_diffs(ii);
-%         theta_dot(ii) = (theta(ii+1)-theta(ii))/t_diffs(ii);
-%         psi_dot(ii) = (psi(ii+1)-psi(ii))/t_diffs(ii);
-%     end
-%     if ii >=3 % for first-order backward differencing
-        phi_dotdot(ii) = (phi_dot(ii+1)-phi_dot(ii))/t_diffs(ii);
-        theta_dotdot(ii) = (theta_dot(ii+1)-theta_dot(ii))/t_diffs(ii);
-        psi_dotdot(ii) = (psi_dot(ii+1)-psi_dot(ii))/t_diffs(ii);
-%     end
+
+    % Euler angle double-derivs
+    phi_dotdot(ii) = (phi_dot(ii+1)-phi_dot(ii))/t_diffs(ii);
+    theta_dotdot(ii) = (theta_dot(ii+1)-theta_dot(ii))/t_diffs(ii);
+    psi_dotdot(ii) = (psi_dot(ii+1)-psi_dot(ii))/t_diffs(ii);
+        
+    % MS frame rot rate in a couple systems
     w_MS_Frenet_wrt_GS(1,ii) = psi_dot(ii)*sin(theta(ii))*sin(phi(ii)) ...
         + theta_dot(ii)*cos(phi(ii));
     w_MS_Frenet_wrt_GS(2,ii) = -psi_dot(ii)*sin(theta(ii))*cos(phi(ii)) ...
@@ -307,39 +320,40 @@ for ii = 1:length(t) - 4 % due to forward diff
     w_MS_Frenet_wrt_body(2,ii) = phi_dot(ii)*sin(theta(ii))*cos(psi(ii))...
         -theta_dot(ii)*sin(psi(ii));
     w_MS_Frenet_wrt_body(3,ii) = phi_dot(ii)*cos(theta(ii))+psi_dot(ii);
-    
+    % The MAV velocity in GS calculation
     v(:,ii) = V(:,ii) + G_MS2GS*(v_bar_forward(:,ii) ...
         + cross(w_MS_Frenet_wrt_body(:,ii),r_bar(:,ii)));
     
-    blah = w_MS_Frenet_wrt_body(1,ii)*cross(w_MS_Frenet_wrt_body(:,ii),t(:,ii))...
-        + w_MS_Frenet_wrt_body(2,ii)*cross(w_MS_Frenet_wrt_body(:,ii),n(:,ii))...
-        + w_MS_Frenet_wrt_body(3,ii)*cross(w_MS_Frenet_wrt_body(:,ii),b(:,ii));
-    
+    % MS frame rot rate-rate in a couple systems
     alpha_MS_Frenet_wrt_body(1,ii) = ...
         phi_dotdot(ii)*sin(theta(ii))*sin(psi(ii)) ...
         + phi_dot(ii)*theta_dot(ii)*cos(theta(ii))*sin(psi(ii))...
         + phi_dot(ii)*psi_dot(ii)*sin(theta(ii))*cos(psi(ii))...
-        + theta_dotdot(ii)*cos(psi(ii)) - theta_dot(ii)*psi_dot(ii)*sin(psi(ii));
+        + theta_dotdot(ii)*cos(psi(ii)) ...
+        - theta_dot(ii)*psi_dot(ii)*sin(psi(ii));
     alpha_MS_Frenet_wrt_body(2,ii) = ...
         phi_dotdot(ii)*sin(theta(ii))*cos(psi(ii)) ...
         + phi_dot(ii)*theta_dot(ii)*cos(theta(ii))*cos(psi(ii))...
         - phi_dot(ii)*psi_dot(ii)*sin(theta(ii))*sin(psi(ii))...
-        - theta_dotdot(ii)*sin(psi(ii)) - theta_dot(ii)*psi_dot(ii)*cos(psi(ii));
+        - theta_dotdot(ii)*sin(psi(ii)) ...
+        - theta_dot(ii)*psi_dot(ii)*cos(psi(ii));
     alpha_MS_Frenet_wrt_body(3,ii) = ...
         phi_dotdot(ii)*cos(theta(ii)) ...
         - phi_dot(ii)*theta_dot(ii)*sin(theta(ii))...
         + psi_dotdot(ii);
-%     alpha_MS_Frenet_wrt_body(:,ii) = alpha_MS_Frenet_wrt_body(:,ii) + blah;
+    
     alpha_MS_Frenet_wrt_GS(1,ii) = ...
         psi_dotdot(ii)*sin(theta(ii))*sin(phi(ii)) ...
         + psi_dot(ii)*theta_dot(ii)*cos(theta(ii))*sin(phi(ii))...
         + psi_dot(ii)*phi_dot(ii)*sin(theta(ii))*cos(phi(ii))...
-        + theta_dotdot(ii)*cos(phi(ii)) - theta_dot(ii)*phi_dot(ii)*sin(phi(ii));
+        + theta_dotdot(ii)*cos(phi(ii)) ...
+        - theta_dot(ii)*phi_dot(ii)*sin(phi(ii));
     alpha_MS_Frenet_wrt_GS(2,ii) = ...
         -psi_dotdot(ii)*sin(theta(ii))*cos(phi(ii)) ...
         - psi_dot(ii)*theta_dot(ii)*cos(theta(ii))*cos(phi(ii))...
         + psi_dot(ii)*phi_dot(ii)*sin(theta(ii))*sin(phi(ii))...
-        + theta_dotdot(ii)*sin(phi(ii)) + theta_dot(ii)*phi_dot(ii)*cos(phi(ii));
+        + theta_dotdot(ii)*sin(phi(ii)) ...
+        + theta_dot(ii)*phi_dot(ii)*cos(phi(ii));
     alpha_MS_Frenet_wrt_GS(3,ii) = ...
         psi_dotdot(ii)*cos(theta(ii)) ...
         - psi_dot(ii)*theta_dot(ii)*sin(theta(ii))...
@@ -350,6 +364,7 @@ for ii = 1:length(t) - 4 % due to forward diff
 %         + 2*cross(w_MS_Frenet_wrt_body(:,ii),v_bar_forward(:,ii))...
 %         + cross(w_MS_Frenet_wrt_body(:,ii),...
 %                 cross(w_MS_Frenet_wrt_body(:,ii),r_bar(:,ii))));
+    % The MAV accel in GS
     a(:,ii) = A(:,ii) + G_MS2GS*a_bar_forward(:,ii) ...
         + cross(alpha_MS_Frenet_wrt_GS(:,ii),G_MS2GS*r_bar(:,ii))...
         + 2*cross(w_MS_Frenet_wrt_GS(:,ii),G_MS2GS*v_bar_forward(:,ii))...
@@ -363,11 +378,12 @@ for ii = 1:length(t) - 4 % due to forward diff
     n_MAV_GS(:,ii) = cross(b_MAV(:,ii),t_MAV(:,ii));
 
 end
+% Plot the MAV position in GS Cartesian
 figure('Position', hw_pub.figPosn)
 plot3(r(1,:),r(2,:),r(3,:));
 hold on
 plot3(R(1,:),R(2,:),R(3,:),'r');
-xlabel('i'); ylabel('j'); zlabel('k')
+xlabel('i (DU)'); ylabel('j (DU)'); zlabel('k (DU)')
 title('MAV observed from GS')
 view([1,0,0])
 saveas(gcf, ['Figures\' char(strrep(scenario,' ','_')) '_MAV_JK'],'jpg')
@@ -375,19 +391,24 @@ view([0,0,1])
 saveas(gcf, ['Figures\' char(strrep(scenario,' ','_')) '_MAV_IJ'],'jpg')
 view([-1,-1,1])
 legend({'MAV path','MS path'});
-saveas(gcf, ['Figures\' char(strrep(scenario,' ','_')) '_MAV_GS_ISO'],'jpg')
+saveas(gcf, ['Figures\' char(strrep(scenario,' ','_'))...
+    '_MAV_GS_ISO'],'jpg')
 
+% Plot the velocity component err
 v_forward = forward_diff(r,time);
 figure('Position', hw_pub.figPosn)
 hold on
 plot(time(1:end-1),abs(v(1,1:end-1) - v_forward(1,:)));
 plot(time(1:end-1),abs(v(2,1:end-1) - v_forward(2,:)),'r');
 plot(time(1:end-1),abs(v(3,1:end-1) - v_forward(3,:)),'k');
-title('MAV Velocity wrt GS: Error Between Euler-Angle-Rotation and Numerical Differentiation Solution')
+title(['MAV Velocity wrt GS: Error Between Euler-Angle-Rotation and '...
+    'Numerical Differentiation Solution'])
 legend('v_x error', 'v_y error', 'v_z error');
 xlabel('Time'); ylabel('Velocity Error');
-saveas(gcf, ['Figures\' char(strrep(scenario,' ','_')) '_MAV_vel_err'],'jpg')
+saveas(gcf, ['Figures\' char(strrep(scenario,' ','_'))...
+    '_MAV_vel_err'],'jpg')
 
+% Plot the MAV speed wrt GS
 figure('Position', hw_pub.figPosn)
 hold on
 rotated_speed = sqrt(sum(v.*v,1));
@@ -395,19 +416,23 @@ nd_speed = sqrt(sum(v_forward.*v_forward,1));
 plot(time(1:length(rotated_speed)),rotated_speed);
 plot(time(1:length(v_forward)),nd_speed,'r');
 title('MAV Speed wrt GS')
-xlabel('Time'); ylabel('Speed');
+xlabel('Time (TU)'); ylabel('Speed (DU/TU)');
 legend('rotating coord frame', 'numerically differentiated')
-saveas(gcf, ['Figures\' char(strrep(scenario,' ','_')) '_MAV_GS_speed'],'jpg')
+saveas(gcf, ['Figures\' char(strrep(scenario,' ','_'))...
+    '_MAV_GS_speed'],'jpg')
 
+% Plot the MAV speed err between the two methods
 figure('Position', hw_pub.figPosn)
 hold on
-plot(time(1:length(nd_speed)),abs(nd_speed-rotated_speed(1:length(nd_speed))));
+plot(time(1:length(nd_speed)),...
+    abs(nd_speed-rotated_speed(1:length(nd_speed))));
 % plot(time(1:length(v_forward)),sqrt(sum(v_forward.*v_forward,1)),'r');
-title('MAV Speed wrt GS')
-xlabel('Time'); ylabel('Speed');
-saveas(gcf, ['Figures\' char(strrep(scenario,' ','_')) '_MAV_GS_speed_err'],'jpg')
+title('Error in calculation methods for MAV Speed wrt GS')
+xlabel('Time (TU)'); ylabel('Speed (DU/TU)');
+saveas(gcf, ['Figures\' char(strrep(scenario,' ','_'))...
+    '_MAV_GS_speed_err'],'jpg')
 
-
+% Compute the MAV Frenet frame in GS Cartesian
 a_forward = forward_diff(v_forward,time(1:end-1));
 t_MAV_GS_ND = zeros(3,length(a_forward));
 b_MAV_GS_ND = zeros(3,length(a_forward));
@@ -419,23 +444,30 @@ for ii = 1:length(a_forward)
     n_MAV_GS_ND(:,ii) = cross(b_MAV(:,ii),t_MAV(:,ii));
     
 end
+% Plot the kinematic-method results
 figure('Position', hw_pub.figPosn)
 plot(time,sum(t_MAV_GS.*a,1))
 hold on
 plot(time,sum(n_MAV_GS.*a,1),'r')
 % plot(time,sum(b_MAV_GS.*a,1))
 legend('Tangential','Normal')
-xlabel('Time');ylabel('Acceleration');
+xlabel('Time (TU)');ylabel('Acceleration (DU/TU^2)');
 title('MAV Accelerations wrt GS, Rotation Method')
-saveas(gcf, ['Figures\' char(strrep(scenario,' ','_')) '_MAV_rot_accel'],'jpg')
+saveas(gcf, ['Figures\' char(strrep(scenario,' ','_'))...
+    '_MAV_rot_accel'],'jpg')
+
+% Plot the ND results
 figure('Position', hw_pub.figPosn)
 plot(time(1:end-2),sum(t_MAV_GS_ND.*a_forward,1))
 hold on
 plot(time(1:end-2),sum(n_MAV_GS_ND.*a_forward,1),'r')
 legend('Tangential','Normal')
-xlabel('Time');ylabel('Acceleration');
+xlabel('Time (TU)');ylabel('Acceleration (DU/TU^2)');
 title('MAV Accelerations wrt GS, Direct Numerical Differentiation')
-saveas(gcf, ['Figures\' char(strrep(scenario,' ','_')) '_MAV_nd_accel'],'jpg')
+saveas(gcf, ['Figures\' char(strrep(scenario,' ','_'))...
+    '_MAV_nd_accel'],'jpg')
+
+% Plot the error between the two methods
 figure('Position', hw_pub.figPosn)
 tan_diff = sum(t_MAV_GS.*a,1);
 tan_diff = abs(tan_diff(1:end-2)-sum(t_MAV_GS_ND.*a_forward,1));
@@ -444,6 +476,9 @@ normal_diff = abs(normal_diff(1:end-2)-sum(n_MAV_GS_ND.*a_forward,1));
 plot(time(1:length(tan_diff)),tan_diff)
 hold on
 plot(time(1:length(normal_diff)),normal_diff,'r')
+title('Error in calculation methods for MAV acceleration wrt GS')
+xlabel('Time (TU)');ylabel('Acceleration Error (DU/TU^2)');
 legend('Tangential Accel Error', 'Normal Accel Error');
-saveas(gcf, ['Figures\' char(strrep(scenario,' ','_')) '_MAV_rot_nd_accel_err'],'jpg')
+saveas(gcf, ['Figures\' char(strrep(scenario,' ','_'))...
+    '_MAV_rot_nd_accel_err'],'jpg')
 end
