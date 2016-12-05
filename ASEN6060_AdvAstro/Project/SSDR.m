@@ -39,6 +39,8 @@ Ti = Ti + dx(7);
 end
 if ii == 20
     fprintf('Hit 20 loops');
+    dx
+    norm(dx)
 end
 % dx_store
 % F_store

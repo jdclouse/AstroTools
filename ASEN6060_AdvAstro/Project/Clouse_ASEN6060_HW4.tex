@@ -178,7 +178,7 @@ In scalar form, the Lagrangian is represented as
 
 \begin{equation}
 \begin{aligned} 
-L=&\frac{1}{2}\left [ \dot{x}+\dot{y}+\dot{z}+ n^2y^2+n^2x^2 +2(-ny\dot{x}+nx\dot{y})\right ]\\&+\frac{GM_1}{\sqrt{x^2+2\nu Rx+\nu^2R^2+y^2+z^2}} + \frac{GM_2}{\sqrt{x^2-2(1-\nu) Rx+(1-\nu)^2R^2+y^2+z^2}}
+L=&\frac{1}{2}\left [ \dot{x}^2+\dot{y}^2+\dot{z}^2+ n^2y^2+n^2x^2 +2(-ny\dot{x}+nx\dot{y})\right ]\\&+\frac{GM_1}{\sqrt{x^2+2\nu Rx+\nu^2R^2+y^2+z^2}} + \frac{GM_2}{\sqrt{x^2-2(1-\nu) Rx+(1-\nu)^2R^2+y^2+z^2}}
 \end{aligned}
 \end{equation}
 
@@ -236,8 +236,8 @@ The equations of motion in the barycentric rotating frame using the Lagrangian f
 \end{bmatrix}
 =
 \begin{bmatrix}
-xn^2+n\dot{y} - \frac{GM_1}{\left | \mathbf{r}+\nu \boldsymbol{\mathbf{R}}  \right |^3} \left ( x+\nu R \right ) - \frac{GM_2}{\left | \mathbf{r}-\left (1-\nu  \right ) \boldsymbol{\mathbf{R}} \right |^3}\left ( x-(1-\nu)R \right ) +n\dot{y}\\ 
-yn^2-n\dot{x} - \frac{GM_1}{\left | \mathbf{r}+\nu \boldsymbol{\mathbf{R}}  \right |^3}  y  - \frac{GM_2}{\left | \mathbf{r}-\left (1-\nu  \right ) \boldsymbol{\mathbf{R}} \right |^3} y-n\dot{x}\\ 
+xn^2+2n\dot{y} - \frac{GM_1}{\left | \mathbf{r}+\nu \boldsymbol{\mathbf{R}}  \right |^3} \left ( x+\nu R \right ) - \frac{GM_2}{\left | \mathbf{r}-\left (1-\nu  \right ) \boldsymbol{\mathbf{R}} \right |^3}\left ( x-(1-\nu)R \right )\\ 
+yn^2-2n\dot{x} - \frac{GM_1}{\left | \mathbf{r}+\nu \boldsymbol{\mathbf{R}}  \right |^3}  y  - \frac{GM_2}{\left | \mathbf{r}-\left (1-\nu  \right ) \boldsymbol{\mathbf{R}} \right |^3} y\\ 
 - \frac{GM_1}{\left | \mathbf{r}+\nu \boldsymbol{\mathbf{R}}  \right |^3}  z - \frac{GM_2}{\left | \mathbf{r}-\left (1-\nu  \right ) \boldsymbol{\mathbf{R}} \right |^3} z
 \end{bmatrix}
 \end{equation}
