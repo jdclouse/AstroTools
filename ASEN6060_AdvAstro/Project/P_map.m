@@ -56,8 +56,8 @@ disturbances = [1, 10, 100, 1000, 10000];
 colors = {[19 19 23] ./ 255, [235 19 51] ./ 255, [12 130 62] ./ 255, ...
     [72 30 104] ./ 255, [64 99 196] ./ 255};
 %% Perturb X
-x_only_p_map_x_z = figure(Position', hw_pub.figPosn);
-x_only_p_map_x_vx = figure(Position', hw_pub.figPosn);
+x_only_p_map_x_z = figure('Position', hw_pub.figPosn);
+x_only_p_map_x_vx = figure('Position', hw_pub.figPosn);
 for ii = 1:length(disturbances)
     tic
 x_only_pert = member_PO + disturbances(ii)/R*[1 0 0 0 0 0 ]';
@@ -98,8 +98,8 @@ x_label('x, DU'); y_label('y, DU')
 
 
 %% Perturb Z
-Z_only_p_map = figure(Position', hw_pub.figPosn);
-z_only_p_map_z_vz = figure(Position', hw_pub.figPosn);
+Z_only_p_map = figure('Position', hw_pub.figPosn);
+z_only_p_map_z_vz = figure('Position', hw_pub.figPosn);
 for ii = 1:length(disturbances)
     tic
 Z_only_pert = member_PO + disturbances(ii)/R*[0 0 1 0 0 0 ]';
@@ -116,7 +116,7 @@ plot(X_e_zo(:,3),X_e_zo(:,6),'x','color', colors{ii})
 axis equal; hold on; drawnow;
 toc
 if disturbances(ii) == 1000
-    figure(Position', hw_pub.figPosn);
+    figure('Position', hw_pub.figPosn);
     plot3(X_zo(:,1),X_zo(:,2),X_zo(:,3))
 end
 end
@@ -127,10 +127,10 @@ vx_only_pert(5) = find_ydot(member_PO,vx_only_pert);
     odeset('Events', @y_crossing_1k, 'RelTol', 3e-14, 'AbsTol', 1e-14), ...
     propatagor_opts);
 
-vx_only_p_map = figure(Position', hw_pub.figPosn);
+vx_only_p_map = figure('Position', hw_pub.figPosn);
 plot(X_e_vxo(:,1),X_e_vxo(:,3),'x')
 axis equal
-vx_only_p_map_x_vx = figure(Position', hw_pub.figPosn);
+vx_only_p_map_x_vx = figure('Position', hw_pub.figPosn);
 plot(X_e_vxo(:,1),X_e_vxo(:,4),'x')
 axis equal
 % plot(X_e(:,1),X_e(:,6),'x')
@@ -141,10 +141,10 @@ xz_pert(5) = find_ydot(member_PO,xz_pert);
     odeset('Events', @y_crossing_1k, 'RelTol', 3e-14, 'AbsTol', 1e-14), ...
     propatagor_opts);
 
-xz_p_map = figure(Position', hw_pub.figPosn);
+xz_p_map = figure('Position', hw_pub.figPosn);
 % plot(X_e_xo(:,2))
 plot(X_e_xz(:,1),X_e_xz(:,3),'x')
 axis equal
-xz_p_map_x_vx = figure(Position', hw_pub.figPosn);
+xz_p_map_x_vx = figure('Position', hw_pub.figPosn);
 plot(X_e_xz(:,1),X_e_xz(:,4),'x')
 axis equal

@@ -127,7 +127,7 @@ end
 [~,X] = ...
     ode45(@Lagrange_CR3BP,[0 10*T_out(end)], X_ini, ...
     ode_opts, propatagor_opts);
-DRO_Plot = figure(Position', hw_pub.figPosn);
+DRO_Plot = figure('Position', hw_pub.figPosn);
 plot(X(:,1),X(:,2))
 hold on
 axis equal
@@ -306,7 +306,7 @@ for ii = 1:num_members
 end
 % freq_store = 1./freq_store;
 blah = freq_store(1,1:end-2) > freq_store(2,1:end-2);
-DRO_CM_freq_plot = figure(Position', hw_pub.figPosn);
+DRO_CM_freq_plot = figure('Position', hw_pub.figPosn);
 plot(X_PO_store(1,blah), freq_store(1,blah), 'bx')
 hold on
 plot(X_PO_store(1,~blah), freq_store(1,~blah), 'rx')
@@ -324,7 +324,7 @@ dyn_mat = hamiltonian_dyn_mat(stab_state_i, propatagor_opts);
 dyn_mat_e_vals = eigs(dyn_mat)
 
 %% Prograde
-prograde_plots = figure(Position', hw_pub.figPosn);
+prograde_plots = figure('Position', hw_pub.figPosn);
 d = 1;
 tol = 1e-13;
 X_ini = first_guess_state;
