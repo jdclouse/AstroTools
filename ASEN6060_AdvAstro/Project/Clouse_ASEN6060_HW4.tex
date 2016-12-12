@@ -340,6 +340,19 @@ Figure \ref{fig:Orb_elems_m2_0} shows the orbital elements when $M_2=0$. Figure 
 		\label{fig:Orb_elems_m2_0_err}
 	\end{figure}
 
+\section{Single Shooting}	
+\section{Distant Retrograde Orbits}	
+Distant Retrograde Orbits (DROs) are periodic orbits characterized by their retrograde motion about the moon and the distance that they remain stable. To find a family of DROs, two lunar, circular orbits with altitudes of 950 km and 1000 km were corrected using the SSDR to correct $\dot{y}$. These initial orbits allowed for a family tangent to be taken between them by:
+
+equation
+
+The family tangent is then used by the pseudo-arclength continuation method,
+
+equation
+
+The parameter $\Delta s$ is the step size that the predictor will increment the periodic orbit initial state and period by. For the purposes of this analysis, $\Delta s = 0.1$ is found to be a large step size that does not break the Newton-method corrector. With the initial periodic orbit calculated by the SSDR and the first family tangent, a family of DROs were found up to the point that members became unstable.
+
+
 \bibliographystyle{aiaa}   % Number the references.
 \bibliography{ASEN6080ProjectBib}   % Use references.bib to resolve the labels.
 

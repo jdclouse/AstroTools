@@ -67,4 +67,10 @@ for ii = 1:3
 end
 xlabel('t');
 subplot(3,1,1);
+
+
+figure(forward_fig);
+subplot(3,1,1); title('Forward Euler Integration')
+figure(backwrd_fig);
+subplot(3,1,1); title('Backward Euler Integration')
     
